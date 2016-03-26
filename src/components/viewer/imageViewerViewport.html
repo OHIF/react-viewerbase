@@ -1,0 +1,14 @@
+<template name="imageViewerViewport">
+    <div class='imageViewerViewport'
+        oncontextmenu='return false;'
+        unselectable='on'
+        onselectstart='return false;'
+        tabindex='0'>
+    </div>
+    <div class='viewportInstructions'>
+        Please drag a stack here to view images.
+    </div>
+    {{ >loadingIndicator }}
+    {{ >viewportOverlay }}
+    {{ >viewportOrientationMarkers }}
+</template>
