@@ -4,7 +4,7 @@
  *
  * @param element The DOM element of the Cornerstone viewport
  */
-updateOrientationMarkers = function(element) {
+function updateOrientationMarkers(element) {
     // Get the current viewport settings
     var viewport = cornerstone.getViewport(element);
 
@@ -56,3 +56,18 @@ updateOrientationMarkers = function(element) {
         leftMarker.text(markers.left);
     }
 };
+
+import React, { Component } from 'react';
+
+export default class ViewportOrientationMarkers extends Component {
+    render() {
+        return (
+            <div className="viewportOrientationMarkers noselect">
+                <div className="topMid orientationMarker">
+                </div>
+                <div className="leftMid orientationMarker">
+                </div>
+            </div>
+        )
+    }
+}

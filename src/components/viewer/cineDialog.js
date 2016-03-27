@@ -75,3 +75,54 @@ Template.cineDialog.onRendered(function() {
     var dialog = $('#cineDialog');
     dialog.draggable();
 });
+
+import React, { Component } from 'react';
+
+export default class CineDialog extends Component {
+    render() {
+        var studies = this.props.studies;
+        return (
+            <div id="cineDialog">
+                <h5>Cine Controls</h5>
+                <div id="cineButtons">
+                    <a id="cineFirstButton" title="Skip to first image" className="cineButton" data-toggle="tooltip">
+                        <i className="fa fa-lg fa-fast-backward"></i>
+                    </a>
+                    <a id="cineBackButton" title="Previous image" className="cineButton" data-toggle="tooltip">
+                        <i className="fa fa-lg fa-step-backward"></i>
+                    </a>
+                    <a id="cineSlowPlaybackButton" title="Slow playback" className="cineButton" data-toggle="tooltip">
+                        <i className="fa fa-lg fa-backward"></i>
+                    </a>
+                    <a id="cinePlayButton" title="Play / Pause" className="cineButton" data-toggle="tooltip">
+                        {{#if isPlaying}}
+                        <i className="fa fa-lg fa-pause"></i>
+                        {{else}}
+                        <i className="fa fa-lg fa-play"></i>
+                        {{ /if}}
+                    </a>
+                    <a id="cineFastForwardButton" title="Increase playback speed" className="cineButton"
+                       data-toggle="tooltip">
+                        <i className="fa fa-lg fa-forward"></i>
+                    </a>
+                    <a id="cineNextButton" title="Next image" className="cineButton" data-toggle="tooltip">
+                        <i className="fa fa-lg fa-step-forward"></i>
+                    </a>
+                    <a id="cineLastButton" title="Skip to last image" className="cineButton" data-toggle="tooltip">
+                        <i className="fa fa-lg fa-fast-forward"></i>
+                    </a>
+                </div>
+                <div id="cineOptions">
+                    <div id="loopSection">
+                        <label>Loop?</label>
+                        <input type="checkbox" checked id="cineLoopCheckbox"/>
+                    </div>
+                    <div id="fpsSection">
+                        <label>Cine Speed: <span id="fps">{{framerate}}</span></label>
+                        <input type="range" id="cineSlider" min="1" max="90" value="{{framerate}}"/>
+                    </div>
+                </div>
+            </div>
+        )
+    }
+}

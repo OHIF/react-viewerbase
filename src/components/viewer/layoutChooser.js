@@ -28,7 +28,8 @@ function highlightCells(currentCell) {
         }
     }
 }
-Template.layoutChooser.events({
+
+/*Template.layoutChooser.events({
     'touchstart .layoutChooser table td, mouseenter .layoutChooser table td': function(evt) {
         highlightCells(evt.currentTarget);
     },
@@ -47,4 +48,38 @@ Template.layoutChooser.events({
         layoutManager.layoutProps = layoutProps;
         layoutManager.updateViewports();
     }
-});
+});*/
+
+import React, { Component } from 'react';
+
+export default class LayoutChooser extends Component {
+    render() {
+        var rows = this.props.rows;
+        var columns = this.props.columns;
+        return (
+            <div className="layoutChooser pull-left dropdown-menu" role="menu">
+                <table>
+                    {rows.map(function (row) {
+                        return (
+                            <tr>
+                                {columns.map(function (column) {
+                                    return <td></td>;
+                                })}
+                            </tr>
+                        );
+                    })}
+                </table>
+            </div>
+        )
+    }
+}
+
+LayoutChooser.propTypes = {
+    rows: React.PropTypes.number.isRequired,
+    columns: React.PropTypes.number.isRequired
+};
+
+LayoutChooser.defaultProps = {
+    rows: 4,
+    columns: 4
+};

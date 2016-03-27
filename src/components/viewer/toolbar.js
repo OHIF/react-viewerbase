@@ -108,7 +108,7 @@ function getDefaultButtonData() {
     return buttonData;
 }
 
-Template.toolbar.events({
+/*Template.toolbar.events({
     'click .imageViewerTool': function(e) {
         $(e.currentTarget).tooltip('hide');
 
@@ -162,42 +162,39 @@ Template.toolbar.onRendered(function() {
             }
         }
     }
-});
+});*/
 
-Template.toolbar.helpers({
-    button: function() {
-        if (this.toolbarOptions && this.toolbarOptions.buttonData) {
-            return this.toolbarOptions.buttonData;
-        }
+import React, { Component } from 'react';
 
-        return getDefaultButtonData();
-    },
-    includePlayClipButton: function() {
-        if (this.toolbarOptions && this.toolbarOptions.includePlayClipButton !== undefined) {
-            return this.toolbarOptions.includePlayClipButton;
-        }
-
-        return true;
-    },
-    includeLayoutButton: function() {
-        if (this.toolbarOptions && this.toolbarOptions.includeLayoutButton !== undefined) {
-            return this.toolbarOptions.includeLayoutButton;
-        }
-
-        return true;
-    },
-    includeHangingProtocolButtons: function() {
-        if (this.toolbarOptions && this.toolbarOptions.includeHangingProtocolButtons !== undefined) {
-            return this.toolbarOptions.includeHangingProtocolButtons;
-        }
-
-        return true;
-    },
-    btnGroup: function() {
-        if (this.toolbarOptions && this.toolbarOptions.btnGroup !== undefined) {
-            return this.toolbarOptions.btnGroup;
-        }
-
-        return [];
+export default class LayoutButton extends Component {
+    render() {
+        return (
+            <div className="btn-group">
+                <button id="layout" type="button"
+                        className="btn btn-sm btn-default dropdown-toggle"
+                        data-container="body" data-toggle="dropdown"
+                        aria-expanded="false" data-placement="right" title="Layout" rel="tooltip">
+                    <span className="fa fa-th-large"></span>
+                </button>
+                <LayoutChooser />
+            </div>
+        )
     }
-});
+}
+
+export default class Toolbar extends Component {
+    render() {
+        return (
+            <div id='toolbar'>
+                <div className="btn-group">
+                    {buttons.map(function (button) {
+                        return <SimpleToolbarButton />
+                    })}
+
+                    {this.props.includePlayClipButton ? <PlayClipButton />}
+                    {this.props.includeLayoutButton ? <LayoutButton />}
+                </div>
+            </div>
+        );
+    }
+}

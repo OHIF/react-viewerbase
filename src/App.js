@@ -4,6 +4,7 @@ import LoadingText from './components/basic/loadingText';
 import RemovableBackdrop from './components/basic/RemovableBackdrop';
 
 import StudyBrowser from './components/studyBrowser/StudyBrowser';
+import GridLayout from './components/viewer/GridLayout';
 
 var exampleStudies = [
     {
@@ -50,6 +51,20 @@ var exampleStudies = [
     }
 ];
 
+var exampleViewportData = [{
+    studyInstanceUid: 'testStudy1',
+    seriesInstanceUid: 'testSeries1'
+}, {
+    studyInstanceUid: 'testStudy1',
+    seriesInstanceUid: 'testSeries2'
+}, {
+    studyInstanceUid: 'testStudy2',
+    seriesInstanceUid: 'testSeries3'
+}, {
+    studyInstanceUid: 'testStudy1',
+    seriesInstanceUid: 'testSeries1'
+}];
+
 export default class App extends Component {
     render() {
         return (
@@ -62,8 +77,15 @@ export default class App extends Component {
                 <LoadingText />
                 <RemovableBackdrop />
 
-                <h3>Study Browser</h3>
-                <StudyBrowser studies={exampleStudies}/>
+                <div style={{width: "100%", height: "100%"}}>
+                    <div style={{width: "20%", height: "100%", display: 'inline-block'}}>
+                        <StudyBrowser studies={exampleStudies}/>
+                    </div>
+
+                    <div style={{width: "80%", height: "100%", display: 'inline-block'}}>
+                        <GridLayout rows={2} columns={2} viewportData={exampleViewportData}/>
+                    </div>
+                </div>
             </div>
         );
     }

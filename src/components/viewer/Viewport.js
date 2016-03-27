@@ -409,7 +409,7 @@ function getKeysByValue(object, value) {
     });
 }
 
-Meteor.startup(function() {
+/*Meteor.startup(function() {
     // On Meteor startup, define the global objects used to store loading imageIds
     // by viewport / thumbnail element
     ViewportLoading = {};
@@ -519,4 +519,46 @@ Template.imageViewerViewport.events({
         var viewportIndex = $('.imageViewerViewport').index(e.currentTarget);
         Session.set('activeViewport', viewportIndex);
     }
-});
+});*/
+
+import React, { Component } from 'react';
+import ViewportLoadingIndicator from './ViewportLoadingIndicator';
+import ViewportErrorIndicator from './ViewportErrorIndicator';
+import ViewportOverlay from './ViewportOverlay';
+import ViewportOrientationMarkers from './ViewportOrientationMarkers';
+
+export default class Viewport extends Component {
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            loading: false,
+            error: false
+        };
+    }
+    render() {
+        var loadingOrError;
+        if (this.state.error) {
+            loadingOrError = <ViewportErrorIndicator />;
+        } else if (this.state.loading) {
+            loadingOrError = <ViewportLoadingIndicator percentComplete={this.state.percentComplete}/>;
+        }
+        
+        return (
+            <div>
+                <div className='imageViewerViewport'
+                     oncontextmenu='return false;'
+                     unselectable='on'
+                     onselectstart='return false;'
+                     tabIndex='0'>
+                </div>
+                <div className='viewportInstructions'>
+                    Please drag a stack here to view images.
+                </div>
+                {loadingOrError}
+                <ViewportOverlay />
+                <ViewportOrientationMarkers />
+            </div>
+        )
+    }
+}

@@ -25,7 +25,7 @@ function getElementIfNotEmpty(viewportIndex) {
 }
 
 function getPatient(property) {
-    Session.get('CornerstoneNewImage' + this.viewportIndex);
+    //Session.get('CornerstoneNewImage' + this.viewportIndex);
     if (!this.imageId) {
         return false;
     }
@@ -39,7 +39,7 @@ function getPatient(property) {
 }
 
 function getStudy(property) {
-    Session.get('CornerstoneNewImage' + this.viewportIndex);
+    //Session.get('CornerstoneNewImage' + this.viewportIndex);
     if (!this.imageId) {
         return false;
     }
@@ -53,7 +53,7 @@ function getStudy(property) {
 }
 
 function getSeries(property) {
-    Session.get('CornerstoneNewImage' + this.viewportIndex);
+    //Session.get('CornerstoneNewImage' + this.viewportIndex);
     if (!this.imageId) {
         return false;
     }
@@ -67,7 +67,7 @@ function getSeries(property) {
 }
 
 function getInstance(property) {
-    Session.get('CornerstoneNewImage' + this.viewportIndex);
+    //Session.get('CornerstoneNewImage' + this.viewportIndex);
     if (!this.imageId) {
         return false;
     }
@@ -100,9 +100,9 @@ function getImage(viewportIndex) {
     return enabledElement.image;
 }
 
-Template.viewportOverlay.helpers({
+/*Template.viewportOverlay.helpers({
     wwwc: function() {
-        Session.get('CornerstoneImageRendered' + this.viewportIndex);
+        //Session.get('CornerstoneImageRendered' + this.viewportIndex);
         var element = getElementIfNotEmpty(this.viewportIndex);
         if (!element) {
             return '';
@@ -116,7 +116,7 @@ Template.viewportOverlay.helpers({
         return 'W ' + viewport.voi.windowWidth.toFixed(0) + ' L ' + viewport.voi.windowCenter.toFixed(0);
     },
     zoom: function() {
-        Session.get('CornerstoneImageRendered' + this.viewportIndex);
+        //Session.get('CornerstoneImageRendered' + this.viewportIndex);
         var element = getElementIfNotEmpty(this.viewportIndex);
         if (!element) {
             return '';
@@ -130,7 +130,7 @@ Template.viewportOverlay.helpers({
         return (viewport.scale * 100.0);
     },
     imageDimensions: function() {
-        Session.get('CornerstoneNewImage' + this.viewportIndex);
+        //Session.get('CornerstoneNewImage' + this.viewportIndex);
 
         var image = getImage(this.viewportIndex);
         if (!image) {
@@ -139,48 +139,9 @@ Template.viewportOverlay.helpers({
 
         return image.width + ' x ' + image.height;
     },
-    patientName: function() {
-        return getPatient.call(this, 'name');
-    },
-    patientId: function() {
-        return getPatient.call(this, 'id');
-    },
-    studyDate: function() {
-        return getStudy.call(this, 'studyDate');
-    },
-    studyTime: function() {
-        return getStudy.call(this, 'studyTime');
-    },
-    studyDescription: function() {
-        return getStudy.call(this, 'studyDescription');
-    },
-    seriesDescription: function() {
-        return getSeries.call(this, 'seriesDescription');
-    },
-    frameRate: function() {
-        var frameTime = getInstance.call(this, 'frameTime');
-        if (!frameTime) {
-            return;
-        }
-        
-        var frameRate = 1000 / frameTime;
-        return frameRate.toFixed(1);
-    },
-    seriesNumber: function() {
-        return getSeries.call(this, 'seriesNumber');
-    },
-    imageNumber: function() {
-        return getInstance.call(this, 'instanceNumber');
-    },
-    imageIndex: function() {
-        return getInstance.call(this, 'index');
-    },
-    numImages: function() {
-        return getSeries.call(this, 'numImages');
-    },
     prior: function() {
         // This helper is updated whenever a new image is displayed in the viewport
-        Session.get('CornerstoneNewImage' + this.viewportIndex);
+        //Session.get('CornerstoneNewImage' + this.viewportIndex);
         if (!this.imageId) {
             return;
         }
@@ -206,4 +167,93 @@ Template.viewportOverlay.helpers({
             return 'Prior';
         }
     }
-});
+});*/
+
+import React, { Component } from 'react';
+import ImageControls from './ImageControls';
+
+export default class ViewportOverlay extends Component {
+    patientName() {
+        return getPatient.call(this, 'name');
+    }
+
+    patientId() {
+        return getPatient.call(this, 'id');
+    }
+    
+    studyDate() {
+        return getStudy.call(this, 'studyDate');
+    }
+
+    studyTime() {
+        return getStudy.call(this, 'studyTime');
+    }
+
+    studyDescription() {
+        return getStudy.call(this, 'studyDescription');
+    }
+
+    seriesDescription() {
+        return getSeries.call(this, 'seriesDescription');
+    }
+
+    frameRate() {
+        var frameTime = getInstance.call(this, 'frameTime');
+        if (!frameTime) {
+            return;
+        }
+
+        var frameRate = 1000 / frameTime;
+        return frameRate.toFixed(1);
+    }
+
+    seriesNumber() {
+        return getSeries.call(this, 'seriesNumber');
+    }
+
+    imageNumber() {
+        return getInstance.call(this, 'instanceNumber');
+    }
+
+    imageIndex() {
+        return getInstance.call(this, 'index');
+    }
+
+    numImages() {
+        return getSeries.call(this, 'numImages');
+    }
+
+    render() {
+        var ifFramerate;
+        if (this.frameRate()) {
+            ifFramerate = this.frameRate() + " FPS";
+        }
+
+        return (
+            <div className="imageViewerViewportOverlay noselect">
+                <div className="topleft dicomTag">
+                    <div>{this.patientName}</div>
+                    <div>{this.patientId}</div>
+                    <div className='priorIndicator'>{this.prior}</div>
+                </div>
+                <div className="topright dicomTag">
+                    <div>{this.studyDescription}</div>
+                    <div>{this.studyDate} {this.studyTime}</div>
+                </div>
+                <div className="bottomright dicomTag">
+                    <div>Zoom: {this.zoom}%</div>
+                    <div>{this.compression}</div>
+                    <div>{this.wwwc}</div>
+                </div>
+                <div className="bottomleft dicomTag">
+                    <div>Ser: {this.seriesNumber}</div>
+                    <div>Img: {this.imageNumber} ({this.imageIndex}/{this.numImages})</div>
+                    <div>{ifFramerate}</div>
+                    <div>{this.imageDimensions}</div>
+                    <div>{this.seriesDescription}</div>
+                </div>
+                <ImageControls />
+            </div>
+        )
+    }
+}

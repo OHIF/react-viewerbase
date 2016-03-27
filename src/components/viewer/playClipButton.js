@@ -35,7 +35,7 @@ isPlaying = function() {
     return !!OHIF.viewer.isPlaying[activeViewport];
 };
 
-Template.playClipButton.helpers({
+/*Template.playClipButton.helpers({
     isPlaying: function() {
         return isPlaying();
     }
@@ -49,4 +49,30 @@ Template.playClipButton.events({
         var cineDialog = document.getElementById('cineDialog');
         toggleDialog(cineDialog);
     }
-});
+});*/
+
+import React, { Component } from 'react';
+
+export default class PlayClipButton extends Component {
+    render() {
+        return (
+            <div className="btn-group">
+                <button id="playClip" type="button" className="imageViewerCommand btn btn-sm btn-default"
+                        data-container="body" data-toggle="tooltip" data-placement="bottom" title="Play/Stop Clip">
+                    {this.props.isPlaying ? <span className="fa fa-stop"></span> : <span className="fa fa-play"></span> }
+                </button>
+                <button id="toggleCineDialog" type="button" className="imageViewerCommand btn btn-sm btn-default" data-container="body" data-toggle="tooltip" data-placement="bottom" title="Toggle CINE Dialog">
+                    <span className="fa fa-youtube-play"></span>
+                </button>
+            </div>
+        );
+    }
+}
+
+PlayClipButton.propTypes = {
+    isPlaying: React.PropTypes.string.bool
+};
+
+PlayClipButton.defaultProps = {
+    isPlaying: false
+};

@@ -1,12 +1,6 @@
-Meteor.startup(function() {
-    cornerstoneTools.loadHandlerManager.setStartLoadHandler(startLoadingHandler);
-    cornerstoneTools.loadHandlerManager.setEndLoadHandler(doneLoadingHandler);
-    cornerstoneTools.loadHandlerManager.setErrorLoadingHandler(errorLoadingHandler);
-});
-
 var loadHandlerTimeout;
 
-startLoadingHandler = function(element) {
+function startLoadingHandler(element) {
     clearTimeout(loadHandlerTimeout);
     loadHandlerTimeout = setTimeout(function() {
         var elem = $(element);
@@ -14,9 +8,9 @@ startLoadingHandler = function(element) {
         elem.find('canvas').not('.magnifyTool').addClass('faded');
         elem.siblings('.imageViewerLoadingIndicator').css('display', 'block');
     }, OHIF.viewer.loadIndicatorDelay);
-};
+}
 
-doneLoadingHandler = function(element) {
+function doneLoadingHandler(element) {
     clearTimeout(loadHandlerTimeout);
     var elem = $(element);
     elem.siblings('.imageViewerErrorLoadingIndicator').css('display', 'none');
@@ -24,7 +18,7 @@ doneLoadingHandler = function(element) {
     elem.siblings('.imageViewerLoadingIndicator').css('display', 'none');
 };
 
-errorLoadingHandler = function(element, imageId, error, source) {
+function errorLoadingHandler(element, imageId, error, source) {
     clearTimeout(loadHandlerTimeout);
     var elem = $(element);
 
@@ -58,13 +52,29 @@ errorLoadingHandler = function(element, imageId, error, source) {
     if (error) {
         errorLoadingIndicator.find('.details').text('Details: ' + error);
     }
-};
+}
 
-Template.loadingIndicator.helpers({
+/*Template.loadingIndicator.helpers({
     'percentComplete': function(e) {
         var percentComplete = Session.get('CornerstoneLoadProgress' + this.viewportIndex);
         if (percentComplete && percentComplete !== 100) {
             return percentComplete + '%';
         }
     }
-});
+});*/
+
+import React, { Component } from 'react';
+
+export default class ViewportLoadingIndicator extends Component {
+    render() {
+        return (
+            <div className="loadingIndicator">
+                <p>Loading {this.props.percentComplete}</p>
+            </div>
+        );
+    }
+}
+
+ViewportLoadingIndicator.propTypes = {
+    percentComplete: React.PropTypes.number
+};
