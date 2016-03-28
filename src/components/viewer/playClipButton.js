@@ -1,4 +1,4 @@
-toggleCinePlay = function(element) {
+function toggleCinePlay(element) {
     var viewports = $('.imageViewerViewport');
 
     if (!element) {
@@ -21,7 +21,7 @@ toggleCinePlay = function(element) {
     Session.set('UpdateCINE', Random.id());
 };
 
-isPlaying = function() {
+function isPlaying() {
     Session.get('UpdateCINE');
     var activeViewport = Session.get('activeViewport');
 
@@ -55,11 +55,16 @@ import React, { Component } from 'react';
 
 export default class PlayClipButton extends Component {
     render() {
+        var playClass = 'fa-stop';
+        if (this.props.isPlaying) {
+            playClass = 'fa-play';
+        }
+
         return (
             <div className="btn-group">
                 <button id="playClip" type="button" className="imageViewerCommand btn btn-sm btn-default"
                         data-container="body" data-toggle="tooltip" data-placement="bottom" title="Play/Stop Clip">
-                    {this.props.isPlaying ? <span className="fa fa-stop"></span> : <span className="fa fa-play"></span> }
+                    <span className="fa {playClass}"></span>
                 </button>
                 <button id="toggleCineDialog" type="button" className="imageViewerCommand btn btn-sm btn-default" data-container="body" data-toggle="tooltip" data-placement="bottom" title="Toggle CINE Dialog">
                     <span className="fa fa-youtube-play"></span>
@@ -70,7 +75,7 @@ export default class PlayClipButton extends Component {
 }
 
 PlayClipButton.propTypes = {
-    isPlaying: React.PropTypes.string.bool
+    isPlaying: React.PropTypes.bool.isRequired
 };
 
 PlayClipButton.defaultProps = {

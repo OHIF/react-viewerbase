@@ -165,36 +165,45 @@ Template.toolbar.onRendered(function() {
 });*/
 
 import React, { Component } from 'react';
-
-export default class LayoutButton extends Component {
-    render() {
-        return (
-            <div className="btn-group">
-                <button id="layout" type="button"
-                        className="btn btn-sm btn-default dropdown-toggle"
-                        data-container="body" data-toggle="dropdown"
-                        aria-expanded="false" data-placement="right" title="Layout" rel="tooltip">
-                    <span className="fa fa-th-large"></span>
-                </button>
-                <LayoutChooser />
-            </div>
-        )
-    }
-}
+import SimpleToolbarButton from './SimpleToolbarButton'
+import PlayClipButton from './PlayClipButton'
+import LayoutButton from './LayoutButton'
 
 export default class Toolbar extends Component {
     render() {
+        var maybePlayClipButton;
+        if (this.props.includePlayClipButton) {
+            maybePlayClipButton = <PlayClipButton />;
+        }
+
+        var maybeLayoutButton;
+        if (this.props.includeLayoutButton) {
+            maybeLayoutButton = <LayoutButton />;
+        }
+
         return (
             <div id='toolbar'>
                 <div className="btn-group">
-                    {buttons.map(function (button) {
-                        return <SimpleToolbarButton />
+                    {this.props.buttons.map(function(button, i) {
+                        return <SimpleToolbarButton {...button} key={i} />
                     })}
 
-                    {this.props.includePlayClipButton ? <PlayClipButton />}
-                    {this.props.includeLayoutButton ? <LayoutButton />}
+                    {maybePlayClipButton}
+                    {maybeLayoutButton}
                 </div>
             </div>
         );
     }
 }
+
+Toolbar.propTypes = {
+    buttons: React.PropTypes.array.isRequired,
+    includeLayoutButton: React.PropTypes.bool.isRequired,
+    includePlayClipButton: React.PropTypes.bool.isRequired
+};
+
+Toolbar.defaultProps = {
+    buttons: getDefaultButtonData(),
+    includeLayoutButton: true,
+    includePlayClipButton: true
+};

@@ -59,15 +59,21 @@ export default class LayoutChooser extends Component {
         return (
             <div className="layoutChooser pull-left dropdown-menu" role="menu">
                 <table>
-                    {rows.map(function (row) {
+                    <tbody>
+                    {[...Array(rows)].map(function(row, i) {
                         return (
-                            <tr>
-                                {columns.map(function (column) {
-                                    return <td></td>;
+                            <tr key={i}>
+                                {[...Array(columns)].map(function(column, j) {
+                                    return <td style={{width: '20px',
+                                                       height: '20px',
+                                                       border: 'solid 1px black'
+                                                       }}
+                                               key={j}></td>;
                                 })}
                             </tr>
                         );
                     })}
+                    </tbody>
                 </table>
             </div>
         )

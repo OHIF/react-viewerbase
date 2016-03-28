@@ -32,7 +32,7 @@ Template.cineDialog.helpers({
     },
     framerate: function() {
         Session.get('UpdateCine');
-        return OHIF.viewer.cine.framesPerSecond.toFixed(1);
+        return ;
     }
 });
 
@@ -80,7 +80,13 @@ import React, { Component } from 'react';
 
 export default class CineDialog extends Component {
     render() {
-        var studies = this.props.studies;
+        var playClass = 'fa-play';
+        if (isPlaying()) {
+            playClass = 'fa-pause';
+        }
+
+        var frameRate = this.props.frameRate.toFixed(1);
+
         return (
             <div id="cineDialog">
                 <h5>Cine Controls</h5>
@@ -95,11 +101,7 @@ export default class CineDialog extends Component {
                         <i className="fa fa-lg fa-backward"></i>
                     </a>
                     <a id="cinePlayButton" title="Play / Pause" className="cineButton" data-toggle="tooltip">
-                        {{#if isPlaying}}
-                        <i className="fa fa-lg fa-pause"></i>
-                        {{else}}
-                        <i className="fa fa-lg fa-play"></i>
-                        {{ /if}}
+                        <i className="fa fa-lg {playClass}"></i>
                     </a>
                     <a id="cineFastForwardButton" title="Increase playback speed" className="cineButton"
                        data-toggle="tooltip">
@@ -118,7 +120,7 @@ export default class CineDialog extends Component {
                         <input type="checkbox" checked id="cineLoopCheckbox"/>
                     </div>
                     <div id="fpsSection">
-                        <label>Cine Speed: <span id="fps">{{framerate}}</span></label>
+                        <label>Cine Speed: <span id="fps">{frameRate}</span></label>
                         <input type="range" id="cineSlider" min="1" max="90" value="{{framerate}}"/>
                     </div>
                 </div>
@@ -126,3 +128,11 @@ export default class CineDialog extends Component {
         )
     }
 }
+
+CineDialog.propTypes = {
+    frameRate: React.PropTypes.number.isRequired
+};
+
+CineDialog.defaultProps = {
+    frameRate: 24
+};

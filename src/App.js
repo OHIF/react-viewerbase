@@ -5,6 +5,7 @@ import RemovableBackdrop from './components/basic/RemovableBackdrop';
 
 import StudyBrowser from './components/studyBrowser/StudyBrowser';
 import GridLayout from './components/viewer/GridLayout';
+import Toolbar from './components/viewer/Toolbar';
 
 var exampleStudies = [
     {
@@ -83,7 +84,15 @@ export default class App extends Component {
                     </div>
 
                     <div style={{width: "80%", height: "100%", display: 'inline-block'}}>
-                        <GridLayout rows={2} columns={2} viewportData={exampleViewportData}/>
+                        <div style={{width: "100%", height: "10%"}}>
+                            <Toolbar />
+                        </div>
+                        <div style={{width: "100%", height: "90%"}}>
+                            <GridLayout studies={exampleStudies}
+                                        rows={2}
+                                        columns={2}
+                                        viewportData={exampleViewportData}/>
+                        </div>
                     </div>
                 </div>
             </div>

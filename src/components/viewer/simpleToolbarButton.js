@@ -12,3 +12,9 @@ export default class SimpleToolbarButton extends Component {
         );
     }
 }
+
+SimpleToolbarButton.propTypes = {
+    iconClasses: React.PropTypes.string,
+    classes: React.PropTypes.string,
+    id: React.PropTypes.string
+};

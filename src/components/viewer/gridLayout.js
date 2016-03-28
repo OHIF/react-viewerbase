@@ -5,7 +5,8 @@ export default class GridLayout extends Component {
     getContainerStyle() {
         return {
             width: 100 / this.props.columns + "%",
-            height: 100 / this.props.rows + "%"
+            height: 100 / this.props.rows + "%",
+            display: 'inline-block'
         };
     }
 
@@ -37,8 +38,10 @@ export default class GridLayout extends Component {
             <div id='imageViewerViewports'>
                 {viewports.map((viewport, i) => {
                     return (
-                        <div key={i} className="viewportContainer" style={this.getContainerStyle()}>
-                            <Viewport viewportData={viewport}/>
+                        <div key={i}
+                             className="viewportContainer"
+                             style={this.getContainerStyle()}>
+                            <Viewport studies={this.props.studies} {...viewport}/>
                         </div>
                     );
                 })}

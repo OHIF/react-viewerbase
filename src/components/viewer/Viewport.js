@@ -4,14 +4,22 @@ var allCornerstoneEvents = 'CornerstoneToolsMouseDown CornerstoneToolsMouseDownA
     'CornerstoneToolsTouchStart CornerstoneToolsTouchStartActive ' +
     'CornerstoneToolsMultiTouchDragStart';
 
+var OHIF = {
+    viewer: {
+        cine: {
+            loop: true,
+            framesPerSecond:24
+        },
+        loadedSeriesData: {}
+    }
+};
+
 /**
  * This function loads a study series into a viewport element.
  *
  * @param data {object} Object containing the study, series, and viewport element to be used
  */
-function loadSeriesIntoViewport(data, templateData) {
-    log.info('imageViewerViewport loadSeriesIntoViewport');
-
+function loadSeriesIntoViewport(data) {
     // Make sure we have all the data required to render the series
     if (!data.study || !data.series || !data.element) {
         return;
@@ -24,13 +32,13 @@ function loadSeriesIntoViewport(data, templateData) {
 
     // Get the contentID of the current worklist tab, if the viewport is running
     // alongside the worklist package
-    var contentId = Session.get('activeContentId');
+    var contentId = ''; //Session.get('activeContentId');
 
     // If the viewer is inside a tab, create an object related to the specified viewport
     // This data will be saved so that the tab can be reloaded to the same state after tabs
     // are switched
     if (contentId) {
-        ViewerData[contentId].loadedSeriesData[viewportIndex] = {};
+        //ViewerData[contentId].loadedSeriesData[viewportIndex] = {};
     }
 
     // Create an empty array to populate with image IDs
@@ -54,17 +62,17 @@ function loadSeriesIntoViewport(data, templateData) {
 
         var numFrames = instance.numFrames;
         if (numFrames > 1) {
-            log.info('Multiframe image detected');
+            console.log('Multiframe image detected');
             for (var i = 0; i < numFrames; i++) {
                 metaData.frame = i;
                 imageId = getImageId(instance, i);
                 imageIds.push(imageId);
-                addMetaData(imageId, metaData);
+                //addMetaData(imageId, metaData);
             }
         } else {
             imageId = getImageId(instance);
             imageIds.push(imageId);
-            addMetaData(imageId, metaData);
+            //addMetaData(imageId, metaData);
         }
     });
 
@@ -103,23 +111,19 @@ function loadSeriesIntoViewport(data, templateData) {
     // Get the current image ID for the stack that will be rendered
     imageId = imageIds[stack.currentImageIdIndex];
 
-    // Save the current image ID inside the template data so it can be
-    // retrieved from the template helpers
-    templateData.imageId = imageId;
-
     // Save the current image ID inside the ViewportLoading object.
     // 
     // The ViewportLoading object relates the viewport elements with whichever
     // image is currently being loaded into them. This is useful so that we can
     // place progress (download %) for each image inside the proper viewports.
-    ViewportLoading[viewportIndex] = imageId;
+    //ViewportLoading[viewportIndex] = imageId;
 
     // Enable Cornerstone for the viewport element
     //
     // NOTE: This uses the experimental WebGL renderer for Cornerstone!
     // If you have problems, replace it with this line instead:
     // cornerstone.enable(element);
-    cornerstone.enable(element, cornerstone.webGL.renderer.render);
+    cornerstone.enable(element);
 
     // Get the handler functions that will run when loading has finished or thrown
     // an error. These are used to show/hide loading / error text boxes on each viewport.
@@ -132,7 +136,7 @@ function loadSeriesIntoViewport(data, templateData) {
         try {
             enabledElement = cornerstone.getEnabledElement(element);
         } catch (error) {
-            log.warn('Viewport destroyed before loaded image could be displayed');
+            console.warn('Viewport destroyed before loaded image could be displayed');
             return;
         }
 
@@ -149,11 +153,11 @@ function loadSeriesIntoViewport(data, templateData) {
 
         // Remove the data for this viewport from the ViewportLoading object
         // This will stop the loading percentage complete from being displayed.
-        delete ViewportLoading[viewportIndex];
+        //delete ViewportLoading[viewportIndex];
 
         // Call the handler function that represents the end of the image loading phase
         // (e.g. hide the progress text box)
-        endLoadingHandler(element);
+        //endLoadingHandler(element);
 
         // Resize the canvas to fit the current viewport element size. Fit the displayed
         // image to the canvas dimensions.
@@ -174,7 +178,7 @@ function loadSeriesIntoViewport(data, templateData) {
         var viewport = cornerstone.getViewport(element);
 
         // Enable orientation markers, if applicable
-        updateOrientationMarkers(element);
+        //updateOrientationMarkers(element);
 
         // Clear any old stack data
         cornerstoneTools.clearToolState(element, 'stack');
@@ -201,23 +205,23 @@ function loadSeriesIntoViewport(data, templateData) {
 
         // Use the tool manager to enable the currently active tool for this
         // newly rendered element
-        var activeTool = toolManager.getActiveTool();
-        toolManager.setActiveTool(activeTool, [ element ]);
+        //var activeTool = toolManager.getActiveTool();
+        //toolManager.setActiveTool(activeTool, [ element ]);
 
         // Define a function to run whenever the Cornerstone viewport is rendered
         // (e.g. following a change of window or zoom)
         function onImageRendered(e, eventData) {
-            log.info('imageViewerViewport onImageRendered');
+            console.log('imageViewerViewport onImageRendered');
 
             // Use Session to trigger reactive updates in the viewportOverlay helper functions
             // This lets the viewport overlay always display correct window / zoom values
-            Session.set('CornerstoneImageRendered' + viewportIndex, Random.id());
+            //Session.set('CornerstoneImageRendered' + viewportIndex, Random.id());
 
             // Save the current viewport into the ViewerData global variable, as well as the
             // Meteor Session. This lets the viewport be saved/reloaded on a hot-code reload
             var viewport = cornerstone.getViewport(element);
-            ViewerData[contentId].loadedSeriesData[viewportIndex].viewport = viewport;
-            Session.set('ViewerData', ViewerData);
+            //ViewerData[contentId].loadedSeriesData[viewportIndex].viewport = viewport;
+            //Session.set('ViewerData', ViewerData);
         }
 
         // Attach the onImageRendered callback to the CornerstoneImageRendered event
@@ -225,17 +229,17 @@ function loadSeriesIntoViewport(data, templateData) {
         $(element).on('CornerstoneImageRendered', onImageRendered);
 
         // Set a random value for the Session variable in order to trigger an overlay update
-        Session.set('CornerstoneImageRendered' + viewportIndex, Random.id());
+        //Session.set('CornerstoneImageRendered' + viewportIndex, Random.id());
 
         // Define a function to run whenever the Cornerstone viewport changes images
         // (e.g. during scrolling)
         function onNewImage(e, eventData) {
-            log.info('imageViewerViewport onNewImage');
+            console.log('imageViewerViewport onNewImage');
 
             // Update the templateData with the new imageId
             // This allows the template helpers to update reactively
-            templateData.imageId = eventData.enabledElement.image.imageId;
-            Session.set('CornerstoneNewImage' + viewportIndex, Random.id());
+            imageId = eventData.enabledElement.image.imageId;
+            //Session.set('CornerstoneNewImage' + viewportIndex, Random.id());
 
             // Get the element and stack data
             var element = e.target;
@@ -255,9 +259,9 @@ function loadSeriesIntoViewport(data, templateData) {
             // index in the stack to the global ViewerData object, as well as the Meteor Session.
             var stack = cornerstoneTools.getToolState(element, 'stack');
             if (stack && stack.data.length && stack.data[0].imageIds.length > 1) {
-                var imageIdIndex = stack.data[0].imageIds.indexOf(templateData.imageId);
-                ViewerData[contentId].loadedSeriesData[viewportIndex].currentImageIdIndex = imageIdIndex;
-                Session.set('ViewerData', ViewerData);
+                var imageIdIndex = stack.data[0].imageIds.indexOf(imageId);
+                //ViewerData[contentId].loadedSeriesData[viewportIndex].currentImageIdIndex = imageIdIndex;
+                //Session.set('ViewerData', ViewerData);
             }
         }
 
@@ -266,7 +270,7 @@ function loadSeriesIntoViewport(data, templateData) {
         $(element).on('CornerstoneNewImage', onNewImage);
 
         // Set a random value for the Session variable in order to trigger an overlay update
-        Session.set('CornerstoneNewImage' + viewportIndex, Random.id());
+        //Session.set('CornerstoneNewImage' + viewportIndex, Random.id());
 
         function OnStackScroll(e, eventData) {
             // Get the element and stack data
@@ -297,7 +301,7 @@ function loadSeriesIntoViewport(data, templateData) {
             // Is the same as the viewport in which the activation event was fired.
             // If it was, no changes are necessary, so stop here.
             var element = eventData.element;
-            var activeViewportIndex = Session.get('activeViewport');
+            var activeViewportIndex = 0; //Session.get('activeViewport');
             var viewportIndex = $('.imageViewerViewport').index(element);
 
             // Reset the focus, even if we don't need to re-enable reference lines or prefetching
@@ -307,7 +311,7 @@ function loadSeriesIntoViewport(data, templateData) {
                 return;
             }
 
-            log.info('imageViewerViewport sendActivationTrigger');
+            console.log('imageViewerViewport sendActivationTrigger');
 
             // Otherwise, trigger an 'ActivateViewport' event to be handled by the Template event
             // handler
@@ -330,7 +334,7 @@ function loadSeriesIntoViewport(data, templateData) {
             currentImageIdIndex: data.currentImageIdIndex,
             viewport: viewport
         };
-        ViewerData[contentId].loadedSeriesData = OHIF.viewer.loadedSeriesData;
+        //ViewerData[contentId].loadedSeriesData = OHIF.viewer.loadedSeriesData;
 
         // Check if image plane (orientation / loction) data is present for the current image
         var imagePlane = cornerstoneTools.metaData.get('imagePlane', image.imageId);
@@ -344,13 +348,13 @@ function loadSeriesIntoViewport(data, templateData) {
         // Set the active viewport based on the Session variable
         // This is done to ensure that the active element has the current
         // focus, so that keyboard events are triggered.
-        if (viewportIndex === Session.get('activeViewport')) {
+        /*if (viewportIndex === Session.get('activeViewport')) {
             setActiveViewport(element);
-        }
+        }*/
 
         // Temporary until we have a real window manager with events for series/study changed
-        log.info('Set NewSeriesLoaded');
-        Session.set('NewSeriesLoaded', Random.id());
+        //console.log('Set NewSeriesLoaded');
+        //Session.set('NewSeriesLoaded', Random.id());
 
         // Run any renderedCallback that exists in the data context
         if (data.renderedCallback && typeof data.renderedCallback === 'function') {
@@ -360,24 +364,24 @@ function loadSeriesIntoViewport(data, templateData) {
         // If something goes wrong while loading the image, fire the error handler.
         errorLoadingHandler(element, imageId, error);
     });
+
+    return imageId;
 }
 
 /**
  * This function sets series for the study and calls LoadSeriesIntoViewport function
  *
  * @param data includes study data
- * @param seriesInstanceUid series information which is loaded in Template
- * @param templateData currentData of Template
  *
  */
-function setSeries(data, seriesInstanceUid, templateData) {
+function setSeries(data) {
     var study = data.study;
     if (!study || !study.seriesList) {
         return;
     }
 
     study.seriesList.every(function(series) {
-        if (series.seriesInstanceUid === seriesInstanceUid) {
+        if (series.seriesInstanceUid === data.seriesInstanceUid) {
             data.series = series;
             return false;
         }
@@ -391,7 +395,7 @@ function setSeries(data, seriesInstanceUid, templateData) {
     }
 
     // Otherwise, load pass the data object into loadSeriesIntoViewport
-    loadSeriesIntoViewport(data, templateData);
+    return loadSeriesIntoViewport(data);
 }
 
 /**
@@ -438,81 +442,9 @@ function getKeysByValue(object, value) {
     cornerstoneTools.magnify.setConfiguration(config);
 });
 
-Template.imageViewerViewport.onCreated(function() {
-   log.info('imageViewerViewport onCreated');
-});
-
-Template.imageViewerViewport.onRendered(function() {
-    var templateData = Template.currentData();
-    log.info('imageViewerViewport onRendered');
-
-    // When the imageViewerViewport template is rendered
-    var element = this.find('.imageViewerViewport');
-
-    // Display the loading indicator for this element
-    $(element).siblings('.imageViewerLoadingIndicator').css('display', 'block');
-
-    // Get the current active viewport index, if this viewport has the same index,
-    // add the CSS 'active' class to highlight this viewport.
-    var activeViewport = Session.get('activeViewport');
-
-    // Create a data object to pass to the series loading function (loadSeriesIntoViewport)
-    var data = {
-        element: element,
-        viewport: this.data.viewport,
-        currentImageIdIndex: this.data.currentImageIdIndex,
-        studyInstanceUid: this.data.studyInstanceUid,
-        seriesInstanceUid: this.data.seriesInstanceUid,
-        renderedCallback: this.data.renderedCallback,
-        activeViewport: activeViewport
-    };
-
-    // If no seriesInstanceUid or studyInstanceUid were supplied, display the drag/drop
-    // instructions and then stop here since we don't know what to display in the viewport.
-    if (!this.data.seriesInstanceUid || !this.data.studyInstanceUid) {
-        element.classList.add('empty');
-        $(element).siblings('.imageViewerLoadingIndicator').css('display', 'none');
-        $(element).siblings('.viewportInstructions').show();
-        return;
-    }
-
-    // Look through the ViewerStudies collection for a
-    // study with this studyInstanceUid
-    var study = ViewerStudies.findOne({
-        studyInstanceUid: this.data.studyInstanceUid
-    });
-    var seriesInstanceUid = this.data.seriesInstanceUid;
-
-    data.study = study;
-    setSeries(data, seriesInstanceUid, templateData);
-});
-
-Template.imageViewerViewport.onDestroyed(function() {
-    log.info('imageViewerViewport onDestroyed');
-
-    // When a viewport element is being destroyed
-    var element = this.find('.imageViewerViewport');
-
-    // Try to stop any currently playing clips
-    // Otherwise the interval will continuously throw errors
-    try {
-        var enabledElement = cornerstone.getEnabledElement(element);
-        if (enabledElement) {
-            cornerstoneTools.stopClip(element);
-        }
-    } catch (error) {
-        log.warn(error);
-    }
-
-    // Disable the viewport element with Cornerstone
-    // This also triggers the removal of the element from all available
-    // synchronizers, such as the one used for reference lines.
-    cornerstone.disable(element);
-});
-
 Template.imageViewerViewport.events({
     'ActivateViewport .imageViewerViewport': function(e) {
-        log.info('imageViewerViewport ActivateViewport');
+        console.log('imageViewerViewport ActivateViewport');
         setActiveViewport(e.currentTarget);
     },
     'click .imageViewerViewport': function(e) {
@@ -526,16 +458,80 @@ import ViewportLoadingIndicator from './ViewportLoadingIndicator';
 import ViewportErrorIndicator from './ViewportErrorIndicator';
 import ViewportOverlay from './ViewportOverlay';
 import ViewportOrientationMarkers from './ViewportOrientationMarkers';
+import getImageId from '../../lib/getImageId'
 
 export default class Viewport extends Component {
     constructor(props) {
         super(props);
 
         this.state = {
-            loading: false,
+            loading: true,
             error: false
         };
     }
+
+    componentDidMount() {
+        var element = this.refs.element;
+
+        // Get the current active viewport index, if this viewport has the same index,
+        // add the CSS 'active' class to highlight this viewport.
+        //var activeViewport = Session.get('activeViewport');
+
+        // Create a data object to pass to the series loading function (loadSeriesIntoViewport)
+        var data = {
+            element: element,
+            //viewport: this.data.viewport,
+            currentImageIdIndex: this.props.currentImageIdIndex,
+            studyInstanceUid: this.props.studyInstanceUid,
+            seriesInstanceUid: this.props.seriesInstanceUid,
+            sopInstanceUid: this.props.sopInstanceUid
+            //activeViewport: activeViewport
+        };
+
+
+        var studies = this.props.studies;
+        if (!studies || !studies.length) {
+            return;
+        }
+
+        studies.every((study) => {
+            if (study.studyInstanceUid === this.props.studyInstanceUid) {
+                data.study = study;
+                return false;
+            }
+
+            return true;
+        });
+
+        // If we didn't find anything, stop here
+        if (!data.study) {
+            return;
+        }
+
+        this.data = {};
+        this.data.imageId = setSeries(data);
+    }
+
+    componentWillUnmount() {
+        var element = this.refs.element;
+
+        // Try to stop any currently playing clips
+        // Otherwise the interval will continuously throw errors
+        try {
+            var enabledElement = cornerstone.getEnabledElement(element);
+            if (enabledElement) {
+                cornerstoneTools.stopClip(element);
+            }
+        } catch(error) {
+            console.warn(error);
+        }
+
+        // Disable the viewport element with Cornerstone
+        // This also triggers the removal of the element from all available
+        // synchronizers, such as the one used for reference lines.
+        cornerstone.disable(element);
+    }
+
     render() {
         var loadingOrError;
         if (this.state.error) {
@@ -543,22 +539,55 @@ export default class Viewport extends Component {
         } else if (this.state.loading) {
             loadingOrError = <ViewportLoadingIndicator percentComplete={this.state.percentComplete}/>;
         }
-        
+
+        var instructionsIfEmpty;
+        if (!this.props.studyInstanceUid ||
+            !this.props.seriesInstanceUid) {
+            instructionsIfEmpty = (<div className='viewportInstructions'>
+                                        Please drag a stack here to view images.
+                                    </div>);
+        }
+
+        var imageId;
+        if (this.data && this.data.imageId) {
+            imageId = this.data.imageId;
+        }
+
+        var rotation;
+        if (this.data &&
+            this.data.viewport &&
+            this.data.viewport.rotation) {
+            rotation = this.data.viewport.rotation;
+        }
+
         return (
             <div>
-                <div className='imageViewerViewport'
+                <div ref="element"
+                     className='imageViewerViewport'
                      oncontextmenu='return false;'
                      unselectable='on'
                      onselectstart='return false;'
                      tabIndex='0'>
                 </div>
-                <div className='viewportInstructions'>
-                    Please drag a stack here to view images.
-                </div>
+                {instructionsIfEmpty}
                 {loadingOrError}
-                <ViewportOverlay />
-                <ViewportOrientationMarkers />
+                <ViewportOverlay imageId={imageId}/>
+                <ViewportOrientationMarkers
+                    imageId={imageId}
+                    rotation={rotation}/>
             </div>
         )
     }
 }
+
+Viewport.propTypes = {
+    currentImageIdIndex: React.PropTypes.number.isRequired,
+    studyInstanceUid: React.PropTypes.string,
+    seriesInstanceUid: React.PropTypes.string,
+    sopInstanceUid: React.PropTypes.string,
+    viewport: React.PropTypes.object
+};
+
+Viewport.defaultProps = {
+    currentImageIdIndex: 0
+};
