@@ -30,17 +30,6 @@ function loadSeriesIntoViewport(data) {
     var element = data.element;
     var viewportIndex = $('.imageViewerViewport').index(element);
 
-    // Get the contentID of the current worklist tab, if the viewport is running
-    // alongside the worklist package
-    var contentId = ''; //Session.get('activeContentId');
-
-    // If the viewer is inside a tab, create an object related to the specified viewport
-    // This data will be saved so that the tab can be reloaded to the same state after tabs
-    // are switched
-    if (contentId) {
-        //ViewerData[contentId].loadedSeriesData[viewportIndex] = {};
-    }
-
     // Create an empty array to populate with image IDs
     var imageIds = [];
 
@@ -82,32 +71,6 @@ function loadSeriesIntoViewport(data) {
         imageIds: imageIds
     };
 
-    // Show or hide the image scrollbar depending
-    // on the number of images in the stack
-    var currentOverlay = $(element).siblings('.imageViewerViewportOverlay');
-    var imageControls = currentOverlay.find('.imageControls');
-    currentOverlay.find('.imageControls').height($(element).height());
-
-    if (stack.imageIds.length === 1) {
-        imageControls.hide();
-        currentOverlay.find('.topright, .bottomright').css('right', '3px');
-    } else {
-        imageControls.show();
-        currentOverlay.find('.topright, .bottomright').css('right', '39px');
-
-        // Update the maximum value of the slider
-        var currentImageSlider = currentOverlay.find('#imageSlider');
-        currentImageSlider.attr('max', stack.imageIds.length);
-        currentImageSlider.val(1);
-
-        // Set it's width to its parent's height
-        // (because webkit is stupid and can't style vertical sliders)
-        var scrollbar = currentOverlay.find('#scrollbar');
-        scrollbar.height(scrollbar.parent().height() - 20);
-        var overlayHeight = currentImageSlider.parent().height();
-        currentImageSlider.width(overlayHeight);
-    }
-
     // Get the current image ID for the stack that will be rendered
     imageId = imageIds[stack.currentImageIdIndex];
 
@@ -124,11 +87,6 @@ function loadSeriesIntoViewport(data) {
     // If you have problems, replace it with this line instead:
     // cornerstone.enable(element);
     cornerstone.enable(element);
-
-    // Get the handler functions that will run when loading has finished or thrown
-    // an error. These are used to show/hide loading / error text boxes on each viewport.
-    var endLoadingHandler = cornerstoneTools.loadHandlerManager.getEndLoadHandler();
-    var errorLoadingHandler = cornerstoneTools.loadHandlerManager.getErrorLoadingHandler();
 
     // Start loading the image.
     cornerstone.loadAndCacheImage(imageId).then(function(image) {
@@ -155,30 +113,15 @@ function loadSeriesIntoViewport(data) {
         // This will stop the loading percentage complete from being displayed.
         //delete ViewportLoading[viewportIndex];
 
-        // Call the handler function that represents the end of the image loading phase
-        // (e.g. hide the progress text box)
-        //endLoadingHandler(element);
-
         // Resize the canvas to fit the current viewport element size. Fit the displayed
         // image to the canvas dimensions.
         cornerstone.resize(element, true);
-
-        // Remove the 'empty' class from the viewport to hide any instruction text
-        element.classList.remove('empty');
-
-        // Hide the viewport instructions (i.e. 'Drag a stack here') and show
-        // the viewport overlay data.
-        $(element).siblings('.viewportInstructions').hide();
-        $(element).siblings('.imageViewerViewportOverlay').show();
 
         // Add stack state managers for the stack tool, CINE tool, and reference lines
         cornerstoneTools.addStackStateManager(element, [ 'stack', 'playClip', 'referenceLines' ]);
 
         // Get the current viewport settings
         var viewport = cornerstone.getViewport(element);
-
-        // Enable orientation markers, if applicable
-        //updateOrientationMarkers(element);
 
         // Clear any old stack data
         cornerstoneTools.clearToolState(element, 'stack');
@@ -205,31 +148,8 @@ function loadSeriesIntoViewport(data) {
 
         // Use the tool manager to enable the currently active tool for this
         // newly rendered element
-        //var activeTool = toolManager.getActiveTool();
-        //toolManager.setActiveTool(activeTool, [ element ]);
-
-        // Define a function to run whenever the Cornerstone viewport is rendered
-        // (e.g. following a change of window or zoom)
-        function onImageRendered(e, eventData) {
-            console.log('imageViewerViewport onImageRendered');
-
-            // Use Session to trigger reactive updates in the viewportOverlay helper functions
-            // This lets the viewport overlay always display correct window / zoom values
-            //Session.set('CornerstoneImageRendered' + viewportIndex, Random.id());
-
-            // Save the current viewport into the ViewerData global variable, as well as the
-            // Meteor Session. This lets the viewport be saved/reloaded on a hot-code reload
-            var viewport = cornerstone.getViewport(element);
-            //ViewerData[contentId].loadedSeriesData[viewportIndex].viewport = viewport;
-            //Session.set('ViewerData', ViewerData);
-        }
-
-        // Attach the onImageRendered callback to the CornerstoneImageRendered event
-        $(element).off('CornerstoneImageRendered', onImageRendered);
-        $(element).on('CornerstoneImageRendered', onImageRendered);
-
-        // Set a random value for the Session variable in order to trigger an overlay update
-        //Session.set('CornerstoneImageRendered' + viewportIndex, Random.id());
+        var activeTool = toolManager.getActiveTool();
+        toolManager.setActiveTool(activeTool, [ element ]);
 
         // Define a function to run whenever the Cornerstone viewport changes images
         // (e.g. during scrolling)
@@ -268,9 +188,6 @@ function loadSeriesIntoViewport(data) {
         // Attach the onNewImage callback to the CornerstoneNewImage event
         $(element).off('CornerstoneNewImage', onNewImage);
         $(element).on('CornerstoneNewImage', onNewImage);
-
-        // Set a random value for the Session variable in order to trigger an overlay update
-        //Session.set('CornerstoneNewImage' + viewportIndex, Random.id());
 
         function OnStackScroll(e, eventData) {
             // Get the element and stack data
@@ -334,7 +251,6 @@ function loadSeriesIntoViewport(data) {
             currentImageIdIndex: data.currentImageIdIndex,
             viewport: viewport
         };
-        //ViewerData[contentId].loadedSeriesData = OHIF.viewer.loadedSeriesData;
 
         // Check if image plane (orientation / loction) data is present for the current image
         var imagePlane = cornerstoneTools.metaData.get('imagePlane', image.imageId);
@@ -351,21 +267,15 @@ function loadSeriesIntoViewport(data) {
         /*if (viewportIndex === Session.get('activeViewport')) {
             setActiveViewport(element);
         }*/
-
-        // Temporary until we have a real window manager with events for series/study changed
-        //console.log('Set NewSeriesLoaded');
-        //Session.set('NewSeriesLoaded', Random.id());
-
-        // Run any renderedCallback that exists in the data context
-        if (data.renderedCallback && typeof data.renderedCallback === 'function') {
-            data.renderedCallback(element);
-        }
     }, function(error) {
         // If something goes wrong while loading the image, fire the error handler.
         errorLoadingHandler(element, imageId, error);
     });
 
-    return imageId;
+    return {
+        stack: stack,
+        imageId: imageId
+    };
 }
 
 /**
@@ -433,31 +343,27 @@ function getKeysByValue(object, value) {
             Session.set('CornerstoneThumbnailLoadProgress' + thumbnailIndex, eventData.percentComplete);
         });
     });
-
-    var config = {
-        magnifySize: 300,
-        magnificationLevel: 3
-    };
-
-    cornerstoneTools.magnify.setConfiguration(config);
-});
-
-Template.imageViewerViewport.events({
-    'ActivateViewport .imageViewerViewport': function(e) {
-        console.log('imageViewerViewport ActivateViewport');
-        setActiveViewport(e.currentTarget);
-    },
-    'click .imageViewerViewport': function(e) {
-        var viewportIndex = $('.imageViewerViewport').index(e.currentTarget);
-        Session.set('activeViewport', viewportIndex);
-    }
 });*/
+
+var config = {
+    magnifySize: 300,
+    magnificationLevel: 3
+};
+
+cornerstoneTools.magnify.setConfiguration(config);
+
+/*'ActivateViewport .imageViewerViewport': function(e) {
+    console.log('imageViewerViewport ActivateViewport');
+    setActiveViewport(e.currentTarget);
+}*/
 
 import React, { Component } from 'react';
 import ViewportLoadingIndicator from './ViewportLoadingIndicator';
 import ViewportErrorIndicator from './ViewportErrorIndicator';
 import ViewportOverlay from './ViewportOverlay';
 import ViewportOrientationMarkers from './ViewportOrientationMarkers';
+import ImageControls from './ImageControls';
+import toolManager from '../../lib/toolManager'
 import getImageId from '../../lib/getImageId'
 
 export default class Viewport extends Component {
@@ -468,6 +374,13 @@ export default class Viewport extends Component {
             loading: true,
             error: false
         };
+    }
+
+    onImageRendered() {
+        var element = this.refs.element;
+        this.setState({
+            viewport: cornerstone.getViewport(element)
+        });
     }
 
     componentDidMount() {
@@ -508,8 +421,23 @@ export default class Viewport extends Component {
             return;
         }
 
-        this.data = {};
-        this.data.imageId = setSeries(data);
+        this.data = setSeries(data);
+
+        if (!this.data) {
+            this.data = {};
+        }
+
+        this.setState({
+            loading: false,
+            error: false,
+            viewport: cornerstone.getViewport(element),
+            stack: this.data.stack,
+            imageId: this.data.imageId
+        });
+
+        $(element).on('CornerstoneImageRendered', () => {
+            this.onImageRendered();
+        });
     }
 
     componentWillUnmount() {
@@ -532,6 +460,15 @@ export default class Viewport extends Component {
         cornerstone.disable(element);
     }
 
+    handleClick(event) {
+        console.log('Viewport HandleClick');
+    }
+
+    returnFalse(event) {
+        event.stopPropagation();
+        event.preventDefault();
+    }
+
     render() {
         var loadingOrError;
         if (this.state.error) {
@@ -548,30 +485,67 @@ export default class Viewport extends Component {
                                     </div>);
         }
 
+        var image;
         var imageId;
         if (this.data && this.data.imageId) {
             imageId = this.data.imageId;
+
+            var enabledElement = cornerstone.getEnabledElement(this.refs.element);
+            image = enabledElement.image;
         }
 
+        var viewport;
         var rotation;
-        if (this.data &&
-            this.data.viewport &&
-            this.data.viewport.rotation) {
-            rotation = this.data.viewport.rotation;
+        if (this.state &&
+            this.state.viewport) {
+            viewport = this.state.viewport;
+            rotation = this.state.viewport.rotation;
+        }
+
+        // Show or hide the image scrollbar depending
+        // on the number of images in the stack
+        var maybeImageControls;
+
+        if (this.state &&
+            this.state.stack) {
+            var stack = this.state.stack;
+
+            if (stack.imageIds.length > 1) {
+                // Update the maximum and current value of the slider
+                maybeImageControls = <ImageControls
+                    max={stack.imageIds.length}
+                    value={stack.currentImageIdIndex + 1}
+                />;
+            }
         }
 
         return (
-            <div>
+            <div className="viewportContainer"
+                 style={this.props.containerStyle}>
                 <div ref="element"
                      className='imageViewerViewport'
-                     oncontextmenu='return false;'
                      unselectable='on'
-                     onselectstart='return false;'
-                     tabIndex='0'>
+                     onContextMenu={this.returnFalse}
+                     onSelectStart={this.returnFalse}
+                     onMouseDown={this.returnFalse}
+                     tabIndex='0'
+                     onClick={this.handleClick}
+                     style={{
+                        position: 'absolute',
+                        top: 0,
+                        left: 0,
+                        width: '100%',
+                        height: '100%'
+                     }}>
                 </div>
                 {instructionsIfEmpty}
                 {loadingOrError}
-                <ViewportOverlay imageId={imageId}/>
+                {maybeImageControls}
+                <ViewportOverlay
+                    imageId={imageId}
+                    viewport={viewport}
+                    image={image}
+                    controlsShown={!!maybeImageControls}/>
                 <ViewportOrientationMarkers
                     imageId={imageId}
                     rotation={rotation}/>
@@ -585,7 +559,8 @@ Viewport.propTypes = {
     studyInstanceUid: React.PropTypes.string,
     seriesInstanceUid: React.PropTypes.string,
     sopInstanceUid: React.PropTypes.string,
-    viewport: React.PropTypes.object
+    viewport: React.PropTypes.object,
+    containerStyle: React.PropTypes.object
 };
 
 Viewport.defaultProps = {

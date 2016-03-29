@@ -69,27 +69,21 @@ var exampleViewportData = [{
 export default class App extends Component {
     render() {
         return (
-            <div>
-                <h1>OHIF Viewerbase Package</h1>
-
-                <h2>Components</h2>
-
-                <h3>Basic</h3>
-                <LoadingText />
-                <RemovableBackdrop />
-
-                <div style={{width: "100%", height: "100%"}}>
-                    <div style={{width: "20%", height: "100%", display: 'inline-block'}}>
+            <div style={{width: "100%", height: "100%"}}>
+                <div style={{width: "100%", height: "100%"}} className="row full-width">
+                    <div className="col-xs-2"
+                         style={{height: "100%"}}>
                         <StudyBrowser studies={exampleStudies}/>
                     </div>
 
-                    <div style={{width: "80%", height: "100%", display: 'inline-block'}}>
+                    <div className="col-xs-10"
+                         style={{height: "100%"}}>
                         <div style={{width: "100%", height: "10%"}}>
                             <Toolbar />
                         </div>
                         <div style={{width: "100%", height: "90%"}}>
                             <GridLayout studies={exampleStudies}
-                                        rows={2}
+                                        rows={1}
                                         columns={2}
                                         viewportData={exampleViewportData}/>
                         </div>

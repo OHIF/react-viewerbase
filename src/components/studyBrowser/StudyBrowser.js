@@ -30,11 +30,14 @@ export default class StudyBrowser extends Component {
     render() {
         var studies = this.props.studies;
         return (
-            <div className="studyBrowser">
-                <div className="scrollableStudyThumbnails">
-                    {studies.map(function(study) {
+            <div className="studyBrowser"
+                 style={{height: '100%'}}>
+                <div className="scrollableStudyThumbnails"
+                     style={{height: '100%',
+                             overflow: 'auto'}}>
+                    {studies.map(study => {
                         var thumbnails = getThumbnailsFromStudy(study);
-                        return thumbnails.map(function(thumb) {
+                        return thumbnails.map(thumb => {
                             return <ThumbnailEntry
                                        key={thumb.id}
                                        imageId={thumb.imageId}

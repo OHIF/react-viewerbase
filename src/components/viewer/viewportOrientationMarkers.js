@@ -59,10 +59,23 @@ export default class ViewportOrientationMarkers extends Component {
     render() {
         return (
             <div className="viewportOrientationMarkers noselect">
-                <div className="topMid orientationMarker">
+                <div className="topMid orientationMarker"
+                    style={{
+                        position: 'absolute',
+                        top: '5px',
+                        left: '50%',
+                        textAlign: 'center'
+                    }}>
                     {this.data.top}
                 </div>
-                <div className="leftMid orientationMarker">
+                <div className="leftMid orientationMarker"
+                     style={{
+                        position: 'absolute',
+                        top: '47%',
+                        left: '5px',
+                        textAlign: 'center',
+                        verticalAlign: 'middle'
+                    }}>
                     {this.data.left}
                 </div>
             </div>

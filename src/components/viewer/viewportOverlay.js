@@ -80,66 +80,8 @@ function getInstance(property) {
     return instance[property];
 }
 
-function getImage(viewportIndex) {
-    var element = getElementIfNotEmpty(viewportIndex);
-    if (!element) {
-        return false;
-    }
-
-    var enabledElement;
-    try {
-        enabledElement = cornerstone.getEnabledElement(element);
-    } catch(error) {
-        return false;
-    }
-
-    if (!enabledElement || !enabledElement.image) {
-        return false;
-    }
-
-    return enabledElement.image;
-}
-
 /*Template.viewportOverlay.helpers({
-    wwwc: function() {
-        //Session.get('CornerstoneImageRendered' + this.viewportIndex);
-        var element = getElementIfNotEmpty(this.viewportIndex);
-        if (!element) {
-            return '';
-        }
-
-        var viewport = cornerstone.getViewport(element);
-        if (!viewport) {
-            return '';
-        }
-
-        return 'W ' + viewport.voi.windowWidth.toFixed(0) + ' L ' + viewport.voi.windowCenter.toFixed(0);
-    },
-    zoom: function() {
-        //Session.get('CornerstoneImageRendered' + this.viewportIndex);
-        var element = getElementIfNotEmpty(this.viewportIndex);
-        if (!element) {
-            return '';
-        }
-
-        var viewport = cornerstone.getViewport(element);
-        if (!viewport) {
-            return '';
-        }
-
-        return (viewport.scale * 100.0);
-    },
-    imageDimensions: function() {
-        //Session.get('CornerstoneNewImage' + this.viewportIndex);
-
-        var image = getImage(this.viewportIndex);
-        if (!image) {
-            return '';
-        }
-
-        return image.width + ' x ' + image.height;
-    },
-    prior: function() {
+    prior() {
         // This helper is updated whenever a new image is displayed in the viewport
         //Session.get('CornerstoneNewImage' + this.viewportIndex);
         if (!this.imageId) {
@@ -170,9 +112,35 @@ function getImage(viewportIndex) {
 });*/
 
 import React, { Component } from 'react';
-import ImageControls from './ImageControls';
 
 export default class ViewportOverlay extends Component {
+    wwwc() {
+        var viewport = this.props.viewport;
+        if (!viewport) {
+            return;
+        }
+        
+        return 'W ' + viewport.voi.windowWidth.toFixed(0) + ' L ' + viewport.voi.windowCenter.toFixed(0);
+    }
+
+    zoom() {
+        var viewport = this.props.viewport;
+        if (!viewport) {
+            return;
+        }
+
+        return (viewport.scale * 100.0).toFixed(2);
+    }
+
+    imageDimensions() {
+        var image = this.props.image;
+        if (!image) {
+            return;
+        }
+
+        return image.width + ' x ' + image.height;
+    }
+    
     patientName() {
         return getPatient.call(this, 'name');
     }
@@ -207,6 +175,10 @@ export default class ViewportOverlay extends Component {
         return frameRate.toFixed(1);
     }
 
+    compression() {
+        return '';
+    }
+
     seriesNumber() {
         return getSeries.call(this, 'seriesNumber');
     }
@@ -231,28 +203,51 @@ export default class ViewportOverlay extends Component {
 
         return (
             <div className="imageViewerViewportOverlay noselect">
-                <div className="topleft dicomTag">
+                <div className="topleft dicomTag"
+                     style={{position: 'absolute',
+                             top: '3px',
+                             left: '3px',
+                             color: 'white',
+                             pointerEvents: 'none'
+                            }}>
                     <div>{this.patientName}</div>
                     <div>{this.patientId}</div>
                     <div className='priorIndicator'>{this.prior}</div>
                 </div>
-                <div className="topright dicomTag">
-                    <div>{this.studyDescription}</div>
-                    <div>{this.studyDate} {this.studyTime}</div>
+                <div className="topright dicomTag"
+                     style={{position: 'absolute',
+                             top: '3px',
+                             right: '3px',
+                             color: 'white',
+                             pointerEvents: 'none'
+                            }}>
+                    <div>{this.studyDescription()}</div>
+                    <div>{this.studyDate()} {this.studyTime()}</div>
                 </div>
-                <div className="bottomright dicomTag">
-                    <div>Zoom: {this.zoom}%</div>
-                    <div>{this.compression}</div>
-                    <div>{this.wwwc}</div>
+                <div className="bottomright dicomTag"
+                     style={{position: 'absolute',
+                             bottom: '3px',
+                             right: '3px',
+                             color: 'white',
+                             pointerEvents: 'none'
+                            }}>
+                    <div>Zoom: {this.zoom()}%</div>
+                    <div>{this.compression()}</div>
+                    <div>{this.wwwc()}</div>
                 </div>
-                <div className="bottomleft dicomTag">
-                    <div>Ser: {this.seriesNumber}</div>
-                    <div>Img: {this.imageNumber} ({this.imageIndex}/{this.numImages})</div>
+                <div className="bottomleft dicomTag"
+                     style={{position: 'absolute',
+                             bottom: '3px',
+                             left: '3px',
+                             color: 'white',
+                             pointerEvents: 'none'
+                            }}>
+                    <div>Ser: {this.seriesNumber()}</div>
+                    <div>Img: {this.imageNumber()} ({this.imageIndex()}/{this.numImages()})</div>
                     <div>{ifFramerate}</div>
-                    <div>{this.imageDimensions}</div>
-                    <div>{this.seriesDescription}</div>
+                    <div>{this.imageDimensions()}</div>
+                    <div>{this.seriesDescription()}</div>
                 </div>
-                <ImageControls />
             </div>
         )
     }

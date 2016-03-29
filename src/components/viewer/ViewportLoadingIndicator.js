@@ -68,8 +68,16 @@ import React, { Component } from 'react';
 export default class ViewportLoadingIndicator extends Component {
     render() {
         return (
-            <div className="loadingIndicator">
-                <p>Loading {this.props.percentComplete}</p>
+            <div className="loadingIndicator"
+                 style={{position: 'absolute',
+                         top: 0,
+                         left: 0,
+                         right: 0,
+                         bottom: 0,
+                         margin: 'auto',
+                         textAlign: 'center',
+                         pointerEvents: 'none'}}>
+                Loading {this.props.percentComplete}
             </div>
         );
     }

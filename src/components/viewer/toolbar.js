@@ -184,7 +184,7 @@ export default class Toolbar extends Component {
         return (
             <div id='toolbar'>
                 <div className="btn-group">
-                    {this.props.buttons.map(function(button, i) {
+                    {this.props.buttons.map((button, i) => {
                         return <SimpleToolbarButton {...button} key={i} />
                     })}
 
