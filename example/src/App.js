@@ -55,13 +55,15 @@ const exampleStudies = [
         seriesDescription: 'Anti-PD-1_Lung',
         active: true,
         seriesNumber: 2,
-        numImageFrames: 512
+        numImageFrames: 512,
+        stackPercentComplete: 30
       }, {
         imageSrc: 'https://raw.githubusercontent.com/crowds-cure/cancer/master/public/screenshots/Anti-PD-1_MELANOMA.jpg',
         seriesDescription: 'Anti-PD-1_MELANOMA',
         seriesNumber: 2,
         instanceNumber: 1,
-        numImageFrames: 256
+        numImageFrames: 256,
+        stackPercentComplete: 70
       }
     ]
   }, {
@@ -71,7 +73,8 @@ const exampleStudies = [
         seriesDescription: 'CPTAC-GBM',
         active: true,
         seriesNumber: 2,
-        numImageFrames: 512
+        numImageFrames: 512,
+        stackPercentComplete: 100
       }, {
         imageSrc: 'https://raw.githubusercontent.com/crowds-cure/cancer/master/public/screenshots/CPTAC-CM.jpg',
         seriesDescription: 'CPTAC-CM',
@@ -94,6 +97,16 @@ const exampleStudies = [
     ]
   }
 ];
+
+function onThumbnailDoubleClick() {
+  console.warn('onThumbnailDoubleClick');
+  console.warn(this);
+}
+
+function onThumbnailClick() {
+  console.warn('onThumbnailClick');
+  console.warn(this);
+}
 
 export default class App extends Component {
   render () {
@@ -136,7 +149,7 @@ export default class App extends Component {
               <p>A simple scrollable list of image sets. Users can drag/drop data from here into a panel in the layout.</p>
             </div>
             <div className='col-xs-12 col-lg-6' style={{height: "512px"}}>
-              <StudyBrowser studies={exampleStudies}/>
+              <StudyBrowser studies={exampleStudies} onThumbnailClick={onThumbnailClick} onThumbnailDoubleClick={onThumbnailDoubleClick}/>
             </div>
           </div>
         </div>

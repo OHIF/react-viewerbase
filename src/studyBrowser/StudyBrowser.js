@@ -5,11 +5,15 @@ import './StudyBrowser.styl';
 
 class StudyBrowser extends Component {
     static defaultProps = {
-        studies: []
+        studies: [],
+        supportsDragAndDrop: true
     }
 
     static propTypes = {
-        studies: PropTypes.array.isRequired
+        studies: PropTypes.array.isRequired,
+        supportsDragAndDrop: PropTypes.bool.isRequired,
+        onThumbnailClick: PropTypes.func,
+        onThumbnailDoubleClick: PropTypes.func
     }
 
     render() {
@@ -19,7 +23,10 @@ class StudyBrowser extends Component {
             return study.thumbnails.map((thumb, index) => (
                 <ThumbnailEntry
                     key={index}
-                    {...thumb}/>
+                    {...thumb}
+                    supportsDragAndDrop={this.props.supportsDragAndDrop}
+                    onClick={this.props.onThumbnailClick}
+                    onDoubleClick={this.props.onThumbnailDoubleClick}/>
             ));
         });
 
