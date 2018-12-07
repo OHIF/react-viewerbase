@@ -217,24 +217,63 @@ Template.thumbnailEntry.events({
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import ImageThumbnail from './ImageThumbnail';
+import './ThumbnailEntry.styl';
 
-export default class ThumbnailEntry extends Component {
+class ThumbnailEntry extends Component {
+    static defaultProps = {
+        imageSrc: '',
+        active: false
+    }
+
+    static propTypes = {
+        imageSrc: PropTypes.string.isRequired,
+        active: PropTypes.bool.isRequired,
+        seriesDescription: PropTypes.string,
+        seriesNumber: PropTypes.number,
+        instanceNumber: PropTypes.number,
+        numImageFrames: PropTypes.number,
+    }
+
     render() {
+        const hasInstanceNumber = this.props.instanceNumber !== undefined;
+
+        let className = "ThumbnailEntry noselect m-t-1 m-b-2"
+
+        if (this.props.active) {
+            className += ' active';
+        }
+
+        const infoOnly = false;
+
         return (
-            <div className="thumbnailEntry">
-                <ImageThumbnail imageId={this.props.imageId}/>
-                <div className='seriesDescription noselect'>{this.props.description}</div>
+            <div className={className}>
+                <div className="p-x-1">
+                    <ImageThumbnail imageSrc={this.props.imageSrc}/>
+                </div>
+                <div className={infoOnly ? "series-details flex-h m-x-1 info-only" : "series-details flex-h m-x-1"}>
+                    <div className="series-description flex-grow">
+                        {this.props.seriesDescription}
+                    </div>
+                    <div className="series-information">
+                        <div className="item item-series clearfix">
+                            <div className="icon">S:</div>
+                            <div className="value">{this.props.seriesNumber}</div>
+                        </div>
+                        {hasInstanceNumber && 
+                            <div className="item item-series clearfix">
+                                <div className="icon">I:</div>
+                                <div className="value">{this.props.instanceNumber}</div>
+                            </div>
+                        }
+                        <div className="item item-frames clearfix">
+                            <div className="icon"><div></div></div>
+                            <div className="value">{this.props.numImageFrames}</div>
+                        </div>
+                    </div>
+                </div>
             </div>
         );
     }
 }
 
-ThumbnailEntry.propTypes = {
-    imageId: PropTypes.string.isRequired,
-    description: PropTypes.string.isRequired
-};
-
-ThumbnailEntry.defaultProps = {
-    imageId: '',
-    description: ''
-};
+export default ThumbnailEntry;

@@ -1,6 +1,3 @@
-@value globals: "../../GlobalStyles.css";
-@value screen-lg, defaultColor from globals;
-
 .ToolbarSection {
   background-color: black;
   height: 60px;

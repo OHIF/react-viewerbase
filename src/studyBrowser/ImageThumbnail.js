@@ -1,60 +1,38 @@
-/*Template.imageThumbnail.helpers({
-    percentComplete: function() {
-        var percentComplete = Session.get('CornerstoneThumbnailLoadProgress' + this.thumbnailIndex);
-        if (percentComplete && percentComplete !== 100) {
-            return percentComplete + '%';
-        }
-    }
-});*/
-
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import ViewportLoadingIndicator from '../viewer/ViewportLoadingIndicator';
 import ViewportErrorIndicator from '../viewer/ViewportErrorIndicator';
+import './ImageThumbnail.styl';
 
 export default class ImageThumbnail extends Component {
-    constructor(props) {
-        super(props);
-
-        this.state = {
-            loading: true,
-            error: false
-        };
+    static propTypes = {
+        imageSrc: PropTypes.string,
+        loading: PropTypes.bool.isRequired,
+        error: PropTypes.bool.isRequired,
+        width: PropTypes.number.isRequired,
+        height: PropTypes.number.isRequired,
     }
 
-    componentDidMount() {
-        var element = this.refs.element;
-        cornerstone.enable(element);
-
-        var self = this;
-        cornerstone.loadAndCacheImage(this.props.imageId).then(function(image) {
-            cornerstone.displayImage(element, image);
-
-            self.setState({
-                loading: false,
-                error: false
-            });
-        }, function() {
-            self.setState({
-                loading: false,
-                error: true
-            });
-        });
-
-    }
-    componentWillUnmount() {
-        cornerstone.disable(this.refs.element);
+    static defaultProps = {
+        loading: false,
+        error: false,
+        width: 193,
+        height: 123
     }
 
     render() {
-        var loadingOrError;
-        if (this.state.error) {
+        let loadingOrError;
+        if (this.props.error) {
             loadingOrError = <ViewportErrorIndicator />;
-        } else if (this.state.loading) {
-            loadingOrError = <ViewportLoadingIndicator percentComplete={this.state.percentComplete}/>;
+        } else if (this.props.loading || !this.props.imageSrc) {
+            loadingOrError = <ViewportLoadingIndicator/>;
         }
 
         return (
-            <div ref="element" className="imageThumbnail">
+            <div className="ImageThumbnail">
+                <div className="image-thumbnail-canvas">
+                    <img className="static-image" src={this.props.imageSrc} width={this.props.width} height={this.props.height}/>
+                </div>
                 {loadingOrError}
             </div>
         );

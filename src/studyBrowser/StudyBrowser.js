@@ -1,59 +1,36 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import ThumbnailEntry from './ThumbnailEntry';
-import createStacks from '../../lib/createStacks';
-import getImageId from '../../lib/getImageId';
+import './StudyBrowser.styl';
 
-function getThumbnailsFromStudy(study) {
-    var stacks = createStacks(study);
+class StudyBrowser extends Component {
+    static defaultProps = {
+        studies: []
+    }
 
-    var array = [];
-    stacks.forEach(function(stack) {
-        var instance = stack.instances[0];
-        if (!instance) {
-            return;
-        }
+    static propTypes = {
+        studies: PropTypes.array.isRequired
+    }
 
-        var imageId = getImageId(instance);
-        var description = stack.seriesDescription;
-
-        array.push({
-            imageId: imageId,
-            description: description
-        });
-    });
-
-    return array;
-}
-
-export default class StudyBrowser extends Component {
     render() {
         var studies = this.props.studies;
+
+        const thumbnails = studies.map(study => {
+            return study.thumbnails.map((thumb, index) => (
+                <ThumbnailEntry
+                    key={index}
+                    {...thumb}/>
+            ));
+        });
+
         return (
-            <div className="studyBrowser"
-                 style={{height: '100%'}}>
-                <div className="scrollableStudyThumbnails"
-                     style={{height: '100%',
-                             overflow: 'auto'}}>
-                    {studies.map(study => {
-                        var thumbnails = getThumbnailsFromStudy(study);
-                        return thumbnails.map(thumb => {
-                            return <ThumbnailEntry
-                                       key={thumb.id}
-                                       imageId={thumb.imageId}
-                                       description={thumb.description}/>;
-                        });
-                    })}
+            <div className="StudyBrowser">
+                <div className="scrollable-study-thumbnails">
+                    {thumbnails}
                 </div>
             </div>
         );
     }
-}
-
-StudyBrowser.propTypes = {
-    studies: PropTypes.array.isRequired
 };
 
-StudyBrowser.defaultProps = {
-    studies: []
-};
+export default StudyBrowser;

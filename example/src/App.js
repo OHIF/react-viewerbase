@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './initCornerstone';
-import { LayoutButton, ToolbarSection } from 'react-viewerbase';
+import { LayoutButton, ToolbarSection, StudyBrowser } from 'react-viewerbase';
 
 const exampleButtons = [
   {
@@ -47,6 +47,26 @@ const exampleButtons = [
   },
 ];
 
+const exampleStudies = [
+  {
+    thumbnails: [
+      {
+        imageSrc: 'https://raw.githubusercontent.com/crowds-cure/cancer/master/public/screenshots/Anti-PD-1_Lung.jpg',
+        seriesDescription: 'Anti-PD-1_Lung',
+        seriesNumber: 2,
+        instanceNumber: 1,
+        numImageFrames: 512
+      }, {
+        imageSrc: 'https://raw.githubusercontent.com/crowds-cure/cancer/master/public/screenshots/Anti-PD-1_MELANOMA.jpg',
+        seriesDescription: 'Anti-PD-1_MELANOMA',
+        seriesNumber: 2,
+        instanceNumber: 1,
+        numImageFrames: 256
+      }
+    ]
+  }
+];
+
 export default class App extends Component {
   render () {
     return (
@@ -63,10 +83,10 @@ export default class App extends Component {
           <hr></hr>
         </div>
         <div className="row">
-          <h3>Examples</h3>
+          <h2>Examples</h2>
           <div className="row">
             <div className='col-xs-12 col-lg-6'>
-              <h2>Layout Button</h2>
+              <h3>Layout Button</h3>
               <p>Used to choose which layout to place the viewer into.</p>
             </div>
             <div className='col-xs-12 col-lg-6'>
@@ -75,11 +95,20 @@ export default class App extends Component {
           </div>
           <div className="row">
             <div className='col-xs-12 col-lg-6'>
-              <h2>Toolbar Section</h2>
+              <h3>Toolbar Section</h3>
               <p>A basic row of buttons for a toolbar.</p>
             </div>
             <div className='col-xs-12 col-lg-6'>
               <ToolbarSection buttons={exampleButtons} setToolActive={() => console.log('setToolActive')}/>
+            </div>
+          </div>
+          <div className="row">
+            <div className='col-xs-12 col-lg-6'>
+              <h3>Study Browser</h3>
+              <p>A simple scrollable list of image sets. Users can drag/drop data from here into a panel in the layout.</p>
+            </div>
+            <div className='col-xs-12 col-lg-6'>
+              <StudyBrowser studies={exampleStudies}/>
             </div>
           </div>
         </div>
