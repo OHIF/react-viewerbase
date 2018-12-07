@@ -13,7 +13,9 @@ class StudyBrowser extends Component {
         studies: PropTypes.array.isRequired,
         supportsDragAndDrop: PropTypes.bool.isRequired,
         onThumbnailClick: PropTypes.func,
-        onThumbnailDoubleClick: PropTypes.func
+        onThumbnailDoubleClick: PropTypes.func,
+        onThumbnailDrag: PropTypes.func,
+        onThumbnailDrop: PropTypes.func
     }
 
     render() {
@@ -26,7 +28,10 @@ class StudyBrowser extends Component {
                     {...thumb}
                     supportsDragAndDrop={this.props.supportsDragAndDrop}
                     onClick={this.props.onThumbnailClick}
-                    onDoubleClick={this.props.onThumbnailDoubleClick}/>
+                    onDoubleClick={this.props.onThumbnailDoubleClick}
+                    onThumbnailDrag={this.props.onThumbnailDrag}
+                    onThumbnailDrop={this.props.onThumbnailDrop}
+                    />
             ));
         });
 
