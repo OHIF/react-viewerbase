@@ -237,7 +237,7 @@ class ThumbnailEntry extends Component {
     render() {
         const hasInstanceNumber = this.props.instanceNumber !== undefined;
 
-        let className = "ThumbnailEntry noselect m-t-1 m-b-2"
+        let className = "ThumbnailEntry noselect"
 
         if (this.props.active) {
             className += ' active';
@@ -250,8 +250,8 @@ class ThumbnailEntry extends Component {
                 <div className="p-x-1">
                     <ImageThumbnail imageSrc={this.props.imageSrc}/>
                 </div>
-                <div className={infoOnly ? "series-details flex-h m-x-1 info-only" : "series-details flex-h m-x-1"}>
-                    <div className="series-description flex-grow">
+                <div className={infoOnly ? "series-details info-only" : "series-details"}>
+                    <div className="series-description">
                         {this.props.seriesDescription}
                     </div>
                     <div className="series-information">

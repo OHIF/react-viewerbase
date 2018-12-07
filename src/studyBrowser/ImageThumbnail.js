@@ -16,7 +16,7 @@ export default class ImageThumbnail extends Component {
     static defaultProps = {
         loading: false,
         error: false,
-        width: 193,
+        width: undefined,
         height: 123
     }
 
