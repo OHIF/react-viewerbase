@@ -1,0 +1,56 @@
+:root {
+  --default-color: #9CCEF9;
+  --active-color: #20A5D6;
+  --hover-color: #ffffff;
+}
+
+.ToolbarButton {
+  height: 48px;
+  color: var(--default-color);
+  float: left;
+  text-align: center;
+  padding: 0 5px;
+  cursor: pointer;
+
+  -webkit-touch-callout: none; /* iOS Safari */
+  -webkit-user-select: none; /* Safari */
+  -khtml-user-select: none; /* Konqueror HTML */
+  -moz-user-select: none; /* Firefox */
+  -ms-user-select: none; /* Internet Explorer/Edge */
+  user-select: none; /* Non-prefixed version, currently
+                                  supported by Chrome and Opera */
+}
+
+.ToolbarButton svg {
+  height: 30px;
+  width: 48px;
+  fill: var(--default-color);
+  stroke: var(--default-color);
+}
+
+.ToolbarButton:hover {
+  color: var(--hover-color);
+}
+
+.ToolbarButton:hover svg {
+  fill: var(--hover-color);
+  stroke: var(--hover-color);
+}
+
+.ToolbarButton.active,
+.ToolbarButton:active {
+  color: var(--active-color);
+}
+
+.ToolbarButton.active svg,
+.ToolbarButton:active svg {
+  fill: var(--active-color);
+  stroke: var(--active-color);
+}
+
+.ToolbarButton span {
+  font-size: 14px;
+  width: 100%;
+  text-align: center;
+  display: block;
+}

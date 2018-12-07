@@ -1,6 +1,51 @@
 import React, { Component } from 'react';
 import './initCornerstone';
-import { LayoutButton } from 'react-viewerbase';
+import { LayoutButton, ToolbarSection } from 'react-viewerbase';
+
+const exampleButtons = [
+  {
+    command: 'Pan',
+    type: 'tool',
+    text: 'Pan',
+    svgUrl: '/icons.svg#icon-tools-pan',
+    active: false
+  },
+  {
+    command: 'Zoom',
+    type: 'tool',
+    text: 'Zoom',
+    svgUrl: '/icons.svg#icon-tools-zoom',
+    active: false
+  },
+  {
+    command: 'Bidirectional',
+    type: 'tool',
+    text: 'Bidirectional',
+    svgUrl: '/icons.svg#icon-tools-measure-target',
+    active: true
+  },
+  {
+    command: 'StackScroll',
+    type: 'tool',
+    text: 'Stack Scroll',
+    svgUrl: '/icons.svg#icon-tools-stack-scroll',
+    active: false
+  },
+  {
+    command: 'reset',
+    type: 'command',
+    text: 'Reset',
+    svgUrl: '/icons.svg#icon-tools-reset',
+    active: false
+  },
+  {
+    command: 'Wwwc',
+    type: 'tool',
+    text: 'Manual',
+    svgUrl: '/icons.svg#icon-tools-levels',
+    active: false
+  },
+];
 
 export default class App extends Component {
   render () {
@@ -19,12 +64,23 @@ export default class App extends Component {
         </div>
         <div className="row">
           <h3>Examples</h3>
-          <div className='col-xs-12 col-lg-6'>
-            <h2>Layout Button</h2>
-            <p>Used to choose which layout to place the viewer into.</p>
+          <div className="row">
+            <div className='col-xs-12 col-lg-6'>
+              <h2>Layout Button</h2>
+              <p>Used to choose which layout to place the viewer into.</p>
+            </div>
+            <div className='col-xs-12 col-lg-6'>
+              <LayoutButton/>
+            </div>
           </div>
-          <div className='col-xs-12 col-lg-6'>
-            <LayoutButton/>
+          <div className="row">
+            <div className='col-xs-12 col-lg-6'>
+              <h2>Toolbar Section</h2>
+              <p>A basic row of buttons for a toolbar.</p>
+            </div>
+            <div className='col-xs-12 col-lg-6'>
+              <ToolbarSection buttons={exampleButtons} setToolActive={() => console.log('setToolActive')}/>
+            </div>
           </div>
         </div>
       </div>
