@@ -16,7 +16,7 @@
     "react": "^16.4.1",
     "react-dom": "^16.4.1",
     "react-scripts": "^2.1.1",
-    "react-viewerbase": "git+https://github.com/OHIF/react-viewerbase.git"
+    "react-viewerbase": "file:../"
   },
   "scripts": {
     "copy:webworkers": "cp node_modules/cornerstone-wado-image-loader/dist/*.min.js* public",
