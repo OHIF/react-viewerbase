@@ -1,5 +1,5 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import App from './App';
+import LayoutButton from './viewer/LayoutButton.js';
 
-ReactDOM.render(<App />, document.getElementById('root'));
+export {
+    LayoutButton
+};
