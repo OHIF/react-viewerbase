@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import LayoutChooser from './LayoutChooser';
 
-export default class LayoutButton extends Component {
+export class LayoutButton extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -47,3 +47,4 @@ export default class LayoutButton extends Component {
     );
   }
 }
+export default LayoutButton;
