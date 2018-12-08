@@ -7,7 +7,7 @@ class ToolbarButton extends Component {
   render() {
     return (
       <div
-        className={`ToolbarButton ${this.props.active ? ' active' : ''}`}
+        className={`ToolbarButton ${this.props.active && ' active'}`}
         onClick={this.onClick}
       >
         <svg>
@@ -18,17 +18,18 @@ class ToolbarButton extends Component {
     );
   }
   onClick = event => {
-    const command = this.props.command;
     if (this.props.setToolActive) {
-      this.props.setToolActive(command);
+      this.props.setToolActive(this.props.command);
     }
-    if (this.props.onClick) {
-      this.props.onClick(command);
-    } else {
-      console.log(`Tool ${command} does not have an onClick event`);
-    }
+    this.props.onClick(this.props.command);
   };
 }
+ToolbarButton.defaultProps = {
+  command: 'ToolbarButton',
+  onClick: function() {
+    console.log(`ToolbarButton does not have an onClick event`);
+  }
+};
 
 ToolbarButton.propTypes = {
   text: PropTypes.string.isRequired,

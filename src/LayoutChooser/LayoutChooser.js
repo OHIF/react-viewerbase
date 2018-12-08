@@ -53,7 +53,7 @@ import PropTypes from 'prop-types';
     }
 });*/
 
-export default class LayoutChooser extends Component {
+export class LayoutChooser extends Component {
   static defaultProps = {
     rows: 4,
     columns: 4,
@@ -65,7 +65,7 @@ export default class LayoutChooser extends Component {
     rows: PropTypes.number.isRequired,
     columns: PropTypes.number.isRequired,
     visible: PropTypes.bool.isRequired,
-    cellSize: PropTypes.string.isRequired,
+    boxSize: PropTypes.number.isRequired,
     cellBorder: PropTypes.number.isRequired
   };
   render() {
@@ -108,3 +108,4 @@ export default class LayoutChooser extends Component {
     );
   }
 }
+export default LayoutChooser;

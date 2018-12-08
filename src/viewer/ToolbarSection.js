@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
-import ToolbarButton from './ToolbarButton.js';
+import ToolbarButton from './ToolbarButton';
 import './ToolbarSection.css';
 import PropTypes from 'prop-types';
-import { debug } from 'util';
 
 class ToolbarSection extends Component {
   constructor(props) {

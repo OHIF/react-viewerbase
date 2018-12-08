@@ -54,7 +54,7 @@ Template.playClipButton.events({
     }
 });*/
 
-export default class PlayClipButton extends Component {
+export class PlayClipButton extends Component {
   render() {
     let playClass = 'fa-stop';
     if (this.props.isPlaying) {
@@ -96,3 +96,5 @@ PlayClipButton.propTypes = {
 PlayClipButton.defaultProps = {
   isPlaying: false
 };
+
+export default PlayClipButton;
