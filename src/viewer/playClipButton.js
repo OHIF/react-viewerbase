@@ -56,11 +56,10 @@ Template.playClipButton.events({
 
 export default class PlayClipButton extends Component {
   render() {
-    /*var playClass = 'fa-stop';
-        if (this.props.isPlaying) {
-            playClass = 'fa-play';
-        }*/
-
+    let playClass = 'fa-stop';
+    if (this.props.isPlaying) {
+      playClass = 'fa-play';
+    }
     return (
       <div className="btn-group">
         <button
@@ -72,7 +71,11 @@ export default class PlayClipButton extends Component {
           data-placement="bottom"
           title="Play/Stop Clip"
         >
+<<<<<<< HEAD
           <span className="fa {playClass}" />
+=======
+          <span className={`fa ${playClass}`} />
+>>>>>>> active tool  implementation. create a generic button
         </button>
         <button
           id="toggleCineDialog"

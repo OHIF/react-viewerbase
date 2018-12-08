@@ -9,7 +9,8 @@ const exampleButtons = [
     type: 'tool',
     text: 'Pan',
     svgUrl: '/icons.svg#icon-tools-pan',
-    active: false
+    active: false,
+    onClick: function () { console.log('I have a onclick function') }    
   },
   {
     command: 'Zoom',
@@ -158,10 +159,10 @@ export default class App extends Component {
     super(props);
 
     this.state = {
-      studyBrowserDropResults: ''
-    }
-  }
-
+      studyBrowserDropResults: '',
+      buttons: exampleButtons
+    }    
+  }  
   onThumbnailDrop = (event, data) => {
     const targetClass = 'study-drop-area';
     const hoverClass = 'hovered';
@@ -221,7 +222,7 @@ export default class App extends Component {
               <p>A basic row of buttons for a toolbar.</p>
             </div>
             <div className='col-xs-12 col-lg-6'>
-              <ToolbarSection buttons={exampleButtons} setToolActive={() => console.log('setToolActive')}/>
+              <ToolbarSection buttons={this.state.buttons}/>
             </div>
           </div>
           <div className="row">
