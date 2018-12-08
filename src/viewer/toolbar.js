@@ -10,106 +10,106 @@ function getDefaultButtonData() {
   buttonData.push({
     id: 'wwwc',
     title: 'WW/WC',
-    classes: 'imageViewerTool',
-    iconClasses: 'fa fa-sun-o'
+    className: 'imageViewerTool',
+    iconClassName: 'fa fa-sun-o'
   });
 
   buttonData.push({
     id: 'wwwcRegion',
     title: 'Window by Region',
-    classes: 'imageViewerTool',
-    iconClasses: 'fa fa-square'
+    className: 'imageViewerTool',
+    iconClassName: 'fa fa-square'
   });
 
   buttonData.push({
     id: 'magnify',
     title: 'Magnify',
-    classes: 'imageViewerTool',
-    iconClasses: 'fa fa-circle'
+    className: 'imageViewerTool',
+    iconClassName: 'fa fa-circle'
   });
 
   buttonData.push({
     id: 'annotate',
     title: 'Annotation',
-    classes: 'imageViewerTool',
-    iconClasses: 'fa fa-arrows-h'
+    className: 'imageViewerTool',
+    iconClassName: 'fa fa-arrows-h'
   });
 
   buttonData.push({
     id: 'invert',
     title: 'Invert',
-    classes: 'imageViewerCommand',
-    iconClasses: 'fa fa-adjust'
+    className: 'imageViewerCommand',
+    iconClassName: 'fa fa-adjust'
   });
 
   buttonData.push({
     id: 'zoom',
     title: 'Zoom',
-    classes: 'imageViewerTool',
-    iconClasses: 'fa fa-search'
+    className: 'imageViewerTool',
+    iconClassName: 'fa fa-search'
   });
 
   buttonData.push({
     id: 'pan',
     title: 'Pan',
-    classes: 'imageViewerTool',
-    iconClasses: 'fa fa-arrows'
+    className: 'imageViewerTool',
+    iconClassName: 'fa fa-arrows'
   });
 
   buttonData.push({
     id: 'stackScroll',
     title: 'Stack Scroll',
-    classes: 'imageViewerTool',
-    iconClasses: 'fa fa-bars'
+    className: 'imageViewerTool',
+    iconClassName: 'fa fa-bars'
   });
 
   buttonData.push({
     id: 'length',
     title: 'Length Measurement',
-    classes: 'imageViewerTool',
-    iconClasses: 'fa fa-arrows-v'
+    className: 'imageViewerTool',
+    iconClassName: 'fa fa-arrows-v'
   });
 
   buttonData.push({
     id: 'angle',
     title: 'Angle Measurement',
-    classes: 'imageViewerTool',
-    iconClasses: 'fa fa-angle-left'
+    className: 'imageViewerTool',
+    iconClassName: 'fa fa-angle-left'
   });
 
   buttonData.push({
     id: 'dragProbe',
     title: 'Pixel Probe',
-    classes: 'imageViewerTool',
-    iconClasses: 'fa fa-dot-circle-o'
+    className: 'imageViewerTool',
+    iconClassName: 'fa fa-dot-circle-o'
   });
 
   buttonData.push({
     id: 'ellipticalRoi',
     title: 'Elliptical ROI',
-    classes: 'imageViewerTool',
-    iconClasses: 'fa fa-circle-o'
+    className: 'imageViewerTool',
+    iconClassName: 'fa fa-circle-o'
   });
 
   buttonData.push({
     id: 'rectangleRoi',
     title: 'Rectangle ROI',
-    classes: 'imageViewerTool',
-    iconClasses: 'fa fa-square-o'
+    className: 'imageViewerTool',
+    iconClassName: 'fa fa-square-o'
   });
 
   buttonData.push({
     id: 'resetViewport',
     title: 'Reset Viewport',
-    classes: 'imageViewerCommand',
-    iconClasses: 'fa fa-undo'
+    className: 'imageViewerCommand',
+    iconClassName: 'fa fa-undo'
   });
 
   buttonData.push({
     id: 'clearTools',
     title: 'Clear tools',
-    classes: 'imageViewerCommand',
-    iconClasses: 'fa fa-trash'
+    className: 'imageViewerCommand',
+    iconClassName: 'fa fa-trash'
   });
   return buttonData;
 }
@@ -188,7 +188,6 @@ export class Toolbar extends Component {
           {this.props.buttons.map((button, i) => {
             return <SimpleToolbarButton {...button} key={i} />;
           })}
-
           {maybePlayClipButton}
           {maybeLayoutButton}
         </div>

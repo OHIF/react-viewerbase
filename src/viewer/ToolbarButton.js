@@ -1,41 +1,40 @@
-import { Component } from 'react';
 import React from 'react';
 import PropTypes from 'prop-types';
 import './ToolbarButton.css';
+import classnames from 'classnames';
 
-class ToolbarButton extends Component {
-  render() {
-    return (
-      <div
-        className={`ToolbarButton ${this.props.active && ' active'}`}
-        onClick={this.onClick}
-      >
-        <svg>
-          <use xlinkHref={this.props.svgUrl} />
-        </svg>
-        <span>{this.props.text}</span>
-      </div>
-    );
-  }
-  onClick = event => {
-    if (this.props.setToolActive) {
-      this.props.setToolActive(this.props.command);
+export function ToolbarButton(props) {
+  let onClick = event => {
+    if (props.setToolActive) {
+      props.setToolActive(props.command);
     }
-    this.props.onClick(this.props.command);
+    props.onClick(props.command);
   };
+  let className = classnames(props.className, { active: props.active });
+  return (
+    <div className={className} onClick={onClick}>
+      <svg>
+        <use xlinkHref={props.svgUrl} />
+      </svg>
+      <span>{props.text}</span>
+    </div>
+  );
 }
+
 ToolbarButton.defaultProps = {
   command: 'ToolbarButton',
   onClick: function() {
     console.log(`ToolbarButton does not have an onClick event`);
-  }
+  },
+  className: 'ToolbarButton'
 };
 
 ToolbarButton.propTypes = {
   text: PropTypes.string.isRequired,
   svgUrl: PropTypes.string.isRequired,
   active: PropTypes.bool.isRequired,
-  onClick: PropTypes.func.isRequired
+  onClick: PropTypes.func.isRequired,
+  className: PropTypes.string.isRequired
 };
 
 export default ToolbarButton;
