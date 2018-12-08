@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './initCornerstone';
-import { LayoutButton, ToolbarSection, StudyBrowser, ThumbnailEntry } from 'react-viewerbase';
+import { LayoutChooser, LayoutButton, ToolbarSection, StudyBrowser, ThumbnailEntry } from 'react-viewerbase';
 import './App.css';
 
 const exampleButtons = [
@@ -207,15 +207,21 @@ export default class App extends Component {
         </div>
         <div className="row">
           <h2>Examples</h2>
-          <div className="row">
+          <div className="row" style={{height: "150px"}}>
             <div className='col-xs-12 col-lg-6'>
               <h3>Layout Button</h3>
               <p>Used to choose which layout to place the viewer into.</p>
             </div>
-            <div className='col-xs-12 col-lg-6'>
-              <LayoutButton/>
-            </div>
-          </div>
+            <div className="row">
+              <div className='col-xs-2 col-lg-6'>
+                <LayoutButton/>
+              </div>
+              <div className='col-xs-10 col-lg-6'>
+                <LayoutChooser rows={3} columns={3}/>
+              </div>                            
+              </div> 
+          </div>                     
+      
           <div className="row">
             <div className='col-xs-12 col-lg-6'>
               <h3>Toolbar Section</h3>
