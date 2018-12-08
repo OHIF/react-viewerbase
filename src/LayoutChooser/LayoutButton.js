@@ -9,13 +9,16 @@ export class LayoutButton extends Component {
       dropdownVisible: props.dropdownVisible
     };
     this.onClick = this.onClick.bind(this);
+    this.onChange = this.onChange.bind(this);
   }
-  onClick(event) {
+  onClick() {
     this.setState({
       dropdownVisible: !this.state.dropdownVisible
     });
-    if (this.props.onClick) {
-      this.props.onClick(event);
+  }
+  onChange(selectedCell) {
+    if (this.props.onChange) {
+      this.props.onChange(selectedCell);
     }
   }
   static defaultProps = {
@@ -42,7 +45,11 @@ export class LayoutButton extends Component {
         >
           <span className="fa fa-th-large" />
         </button>
-        <LayoutChooser cellSize={20} visible={this.state.dropdownVisible} />
+        <LayoutChooser
+          cellSize={20}
+          visible={this.state.dropdownVisible}
+          onChange={this.onChange}
+        />
       </div>
     );
   }
