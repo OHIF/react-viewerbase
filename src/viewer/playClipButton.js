@@ -55,30 +55,44 @@ Template.playClipButton.events({
 });*/
 
 export default class PlayClipButton extends Component {
-    render() {
-        /*var playClass = 'fa-stop';
-        if (this.props.isPlaying) {
-            playClass = 'fa-play';
-        }*/
-
-        return (
-            <div className="btn-group">
-                <button id="playClip" type="button" className="imageViewerCommand btn btn-sm btn-default"
-                        data-container="body" data-toggle="tooltip" data-placement="bottom" title="Play/Stop Clip">
-                    <span className="fa {playClass}"></span>
-                </button>
-                <button id="toggleCineDialog" type="button" className="imageViewerCommand btn btn-sm btn-default" data-container="body" data-toggle="tooltip" data-placement="bottom" title="Toggle CINE Dialog">
-                    <span className="fa fa-youtube-play"></span>
-                </button>
-            </div>
-        );
+  render() {
+    let playClass = 'fa-stop';
+    if (this.props.isPlaying) {
+      playClass = 'fa-play';
     }
+    return (
+      <div className="btn-group">
+        <button
+          id="playClip"
+          type="button"
+          className="imageViewerCommand btn btn-sm btn-default"
+          data-container="body"
+          data-toggle="tooltip"
+          data-placement="bottom"
+          title="Play/Stop Clip"
+        >
+          <span className={`fa ${playClass}`} />
+        </button>
+        <button
+          id="toggleCineDialog"
+          type="button"
+          className="imageViewerCommand btn btn-sm btn-default"
+          data-container="body"
+          data-toggle="tooltip"
+          data-placement="bottom"
+          title="Toggle CINE Dialog"
+        >
+          <span className="fa fa-youtube-play" />
+        </button>
+      </div>
+    );
+  }
 }
 
 PlayClipButton.propTypes = {
-    isPlaying: PropTypes.bool.isRequired
+  isPlaying: PropTypes.bool.isRequired
 };
 
 PlayClipButton.defaultProps = {
-    isPlaying: false
+  isPlaying: false
 };

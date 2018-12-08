@@ -42,24 +42,22 @@ class PresetToggle extends Component {
     });
 
     return (
-        <div className="PresetToggle">
-            <div className="wlPresets">{wlPresetItems}</div>
-            <div className="tools">{toolItems}</div>
-            <span className="presetSelected">
-            LEVELS:
-            {selectedButton ? selectedButton.text : 'Manual'}
-            </span>
-        </div>
+      <div className="PresetToggle">
+        <div className="wlPresets">{wlPresetItems}</div>
+        <div className="tools">{toolItems}</div>
+        <span className="presetSelected">
+          LEVELS:
+          {selectedButton ? selectedButton.text : 'Manual'}
+        </span>
+      </div>
     );
   }
 
   onClick = id => {
     const buttonItem = this.props.buttons.find(item => item.command === id);
-
     console.log(`clicked: ${id}`);
-
     this.setState({
-        selected: buttonItem.id
+      selected: buttonItem.id
     });
   };
 }

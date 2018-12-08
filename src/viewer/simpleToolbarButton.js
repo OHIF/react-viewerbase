@@ -1,21 +1,26 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-export default class SimpleToolbarButton extends Component {
-    render() {
-        return (
-            <button id={this.props.id} type="button"
-                    className="{this.props.classes} btn btn-sm btn-default"
-                    data-container="body" data-toggle="tooltip"
-                    data-placement="bottom" title={this.props.title}>
-                <span className={this.props.iconClasses}></span>
-            </button>
-        );
-    }
+export function SimpleToolbarButton(props) {
+  return (
+    <button
+      id={props.id}
+      type="button"
+      className={`${props.classes} btn btn-sm btn-default`}
+      data-container="body"
+      data-toggle="tooltip"
+      data-placement="bottom"
+      title={props.title}
+    >
+      <span className={props.iconClasses} />
+    </button>
+  );
 }
 
 SimpleToolbarButton.propTypes = {
-    iconClasses: PropTypes.string,
-    classes: PropTypes.string,
-    id: PropTypes.string
+  iconClasses: PropTypes.string,
+  classes: PropTypes.string,
+  id: PropTypes.string,
+  onClick: PropTypes.func
 };
+export default SimpleToolbarButton;
