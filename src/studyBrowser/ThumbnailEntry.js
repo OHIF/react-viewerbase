@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import ImageThumbnail from './ImageThumbnail';
 import './ThumbnailEntry.styl';
 import styleProperty from '../utils/styleProperty.js';
+import classnames from 'classnames';
 
 // Force to hardware acceleration to move element
 // if browser supports translate property
@@ -108,33 +109,23 @@ class ThumbnailEntry extends Component {
 
   componentDidMount() {
     const node = this.element.current;
-
     // Note: There is no other way to add non-passive event listeners yet.
     // See https://github.com/facebook/react/issues/6436
     node.addEventListener('touchstart', this.onTouchStart, { passive: false });
   }
-
   componentWillUnmount() {
     const node = this.element.current;
-
     node.removeEventListener('touchstart', this.onTouchStart);
   }
-
   render() {
     const hasInstanceNumber = this.props.instanceNumber !== undefined;
 
-    let className = 'ThumbnailEntry noselect';
-
-    if (this.props.active) {
-      className += ' active';
-    }
-
-    if (this.props.supportsDragAndDrop) {
-      className += ' draggable';
-    }
-
+    let className = classnames(
+      'ThumbnailEntry noselect',
+      { active: this.props.active },
+      { draggable: this.props.supportsDragAndDrop }
+    );
     const infoOnly = false;
-
     let draggableStyle;
     if (supportsTransform) {
       draggableStyle = {

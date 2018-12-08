@@ -1,25 +1,27 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import classnames from 'classnames';
 
 export function SimpleToolbarButton(props) {
+  let className = classnames(props.className, 'btn btn-sm btn-default');
   return (
     <button
       id={props.id}
       type="button"
-      className={`${props.classes} btn btn-sm btn-default`}
+      className={className}
       data-container="body"
       data-toggle="tooltip"
       data-placement="bottom"
       title={props.title}
     >
-      <span className={props.iconClasses} />
+      <span className={props.iconClassName} />
     </button>
   );
 }
 
 SimpleToolbarButton.propTypes = {
-  iconClasses: PropTypes.string,
-  classes: PropTypes.string,
+  iconClassName: PropTypes.string,
+  className: PropTypes.string,
   id: PropTypes.string,
   onClick: PropTypes.func
 };
