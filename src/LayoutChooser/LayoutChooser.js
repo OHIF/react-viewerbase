@@ -1,101 +1,94 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import './LayoutChooser.styl';
 
 /**
  * Adds the 'hover' class to cells above and to the left of the current cell
  * This is used to "fill in" the grid that the user will change the layout to,
  * if they click on a specific table cell.
- *
- * @param currentCell
- */
-/*function highlightCells(currentCell) {
-    var cells = $('.layoutChooser table td');
-    cells.removeClass('hover');
-
-    currentCell = $(currentCell);
-    var table = currentCell.parents('.layoutChooser table').get(0);
-    var rowIndex = currentCell.closest('tr').index();
-    var columnIndex = currentCell.index();
-
-    // Loop through the table row by row
-    // and cell by cell to apply the highlighting
-    for (var i = 0; i < table.rows.length; i++) {
-        row = table.rows[i];
-        if (i <= rowIndex) {
-           for (var j = 0; j < row.cells.length; j++) {
-                if (j <= columnIndex) {
-                    cell = row.cells[j];
-                    cell.classList.add('hover');
-                }
-           }
-        }
-    }
-}*/
-
-/*Template.layoutChooser.events({
-    'touchstart .layoutChooser table td, mouseenter .layoutChooser table td': function(evt) {
-        highlightCells(evt.currentTarget);
-    },
-    'click .layoutChooser table td': function(evt) {
-        var currentCell = $(evt.currentTarget);
-        var rowIndex = currentCell.closest('tr').index();
-        var columnIndex = currentCell.index();
-
-        // Add 1 because the indices start from zero
-        var layoutProps = {
-            rows: rowIndex + 1,
-            columns: columnIndex + 1
-        };
-
-        layoutManager.layoutTemplateName = 'gridLayout';
-        layoutManager.layoutProps = layoutProps;
-        layoutManager.updateViewports();
-    }
-});*/
+ **/
 
 export class LayoutChooser extends Component {
-  static defaultProps = {
-    rows: 4,
-    columns: 4,
-    visible: true,
-    boxSize: 20,
-    cellBorder: 1
-  };
-  static propTypes = {
-    rows: PropTypes.number.isRequired,
-    columns: PropTypes.number.isRequired,
-    visible: PropTypes.bool.isRequired,
-    boxSize: PropTypes.number.isRequired,
-    cellBorder: PropTypes.number.isRequired
-  };
+  constructor(props) {
+    super(props);
+    this.emptyCell = { row: -1, col: -1 };
+    this.state = {
+      table: [[]],
+      selectedCell: this.emptyCell
+    };
+    this.highlightCells = this.highlightCells.bind(this);
+    this.isRange = this.isRange.bind(this);
+  }
+  componentDidMount() {
+    this.highlightCells(this.emptyCell);
+  }
+  onClick(currentCell) {
+    this.setState({
+      selectedCell: currentCell
+    });
+    this.highlightCells(currentCell);
+    if (this.props.onClick) {
+      this.props.onClick(currentCell);
+    }
+    if (this.props.onChange) {
+      this.props.onChange(currentCell);
+    }
+  }
+  isRange(cell, parentCell) {
+    return cell.row <= parentCell.row && cell.col <= parentCell.col;
+  }
+  highlightCells(currentCell) {
+    let table = [];
+    for (let row = 0; row < this.props.rows; row++) {
+      let newRow = [];
+      for (let col = 0; col < this.props.columns; col++) {
+        let cell = { row: row, col: col };
+        if (this.isRange(cell, currentCell)) {
+          cell.className = 'hover';
+        } else if (
+          this.isRange(currentCell, this.emptyCell) &&
+          this.isRange(cell, this.state.selectedCell)
+        ) {
+          cell.className = 'selectedBefore';
+        }
+        newRow.push(cell);
+      }
+      table.push(newRow);
+    }
+    this.setState({ table: table });
+  }
+
   render() {
-    let rows = this.props.rows;
     let columns = this.props.columns;
     const style = {
       display: this.props.visible ? 'block' : 'none',
       minWidth:
-        columns * this.props.boxSize + (columns + 1) * this.props.cellBorder
+        columns * this.props.boxSize + (columns + 5) * this.props.cellBorder
     };
     return (
       <div
-        className="LayoutChooser pull-left dropdown-menu"
+        className="layoutChooser pull-left dropdown-menu"
         role="menu"
         style={style}
       >
         <table>
           <tbody>
-            {[...Array(rows)].map((row, i) => {
+            {this.state.table.map((row, i) => {
               return (
                 <tr key={i}>
-                  {[...Array(columns)].map((column, j) => {
+                  {row.map((cell, j) => {
                     return (
                       <td
+                        className={cell.className}
                         style={{
                           width: this.props.boxSize,
                           height: this.props.boxSize,
                           border: 'solid 1px black'
                         }}
                         key={j}
+                        onMouseEnter={() => this.highlightCells(cell)}
+                        onMouseLeave={() => this.highlightCells(this.emptyCell)}
+                        onClick={() => this.onClick(cell)}
                       />
                     );
                   })}
@@ -108,4 +101,18 @@ export class LayoutChooser extends Component {
     );
   }
 }
+LayoutChooser.defaultProps = {
+  rows: 4,
+  columns: 4,
+  visible: true,
+  boxSize: 20,
+  cellBorder: 1
+};
+LayoutChooser.propTypes = {
+  rows: PropTypes.number.isRequired,
+  columns: PropTypes.number.isRequired,
+  visible: PropTypes.bool.isRequired,
+  boxSize: PropTypes.number.isRequired,
+  cellBorder: PropTypes.number.isRequired
+};
 export default LayoutChooser;

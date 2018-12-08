@@ -112,6 +112,7 @@ export default class App extends Component {
     this.onThumbnailClick = this.onThumbnailClick.bind(this);
     this.onThumbnailDrag = this.onThumbnailDrag.bind(this);
     this.resetDragEffects = this.resetDragEffects.bind(this);
+    this.ChangeLayout = this.ChangeLayout.bind(this);
   }  
   resetDragEffects() {
     const targetClass = 'study-drop-area';
@@ -185,6 +186,11 @@ export default class App extends Component {
       })
     }
   }
+  ChangeLayout(currentCell) {    
+      this.setState({
+        currentCell
+      });    
+  }
 
   render () {
     return (
@@ -204,15 +210,15 @@ export default class App extends Component {
           <h2>Examples</h2>
           <div className="row" style={{height: "150px"}}>
             <div className='col-xs-12 col-lg-6'>
-              <h3>Layout Button</h3>
+              <h3>Layout Button {this.state.currentCell && ` I changed layout to ${this.state.currentCell.row+1} to ${this.state.currentCell.col+1}`}</h3>
               <p>Used to choose which layout to place the viewer into.</p>
             </div>
             <div className="row">
               <div className='col-xs-2 col-lg-6'>
-                <LayoutButton/>
+                <LayoutButton onChange={this.ChangeLayout}/>
               </div>
               <div className='col-xs-10 col-lg-6'>
-                <LayoutChooser rows={3} columns={3}/>
+                <LayoutChooser rows={3} columns={3} onChange={this.ChangeLayout}/>
               </div>                            
               </div> 
           </div>                     
