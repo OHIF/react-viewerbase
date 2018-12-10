@@ -29,7 +29,8 @@ cornerstoneTools.store.state.touchProximity = 40;
 const config = {
   maxWebWorkers: navigator.hardwareConcurrency || 1,
   startWebWorkersOnDemand: false,
-  webWorkerPath: window.location + '/cornerstoneWADOImageLoaderWebWorker.min.js',
+  webWorkerPath:
+    window.location + '/cornerstoneWADOImageLoaderWebWorker.min.js',
   webWorkerTaskPaths: [],
   taskConfiguration: {
     decodeTask: {

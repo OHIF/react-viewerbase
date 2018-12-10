@@ -8,26 +8,38 @@ export class LayoutButton extends Component {
     this.state = {
       dropdownVisible: props.dropdownVisible
     };
-    this.onClick = this.onClick.bind(this);
-    this.onChange = this.onChange.bind(this);
   }
-  onClick() {
-    this.setState({
-      dropdownVisible: !this.state.dropdownVisible
-    });
-  }
-  onChange(selectedCell) {
-    if (this.props.onChange) {
-      this.props.onChange(selectedCell);
-    }
-  }
+
   static defaultProps = {
     dropdownVisible: false
   };
+
   static propTypes = {
     dropdownVisible: PropTypes.bool.isRequired,
-    onClick: PropTypes.func
+    onChange: PropTypes.func,
+    selectedCell: PropTypes.object
   };
+
+  componentDidUpdate(prevProps) {
+    if (this.props.dropdownVisible !== prevProps.dropdownVisible) {
+      this.setState({
+        dropdownVisible: this.props.dropdownVisible
+      });
+    }
+  }
+
+  onClick = () => {
+    this.setState({
+      dropdownVisible: !this.state.dropdownVisible
+    });
+  };
+
+  onChange = selectedCell => {
+    if (this.props.onChange) {
+      this.props.onChange(selectedCell);
+    }
+  };
+
   render() {
     return (
       <div className="btn-group">
@@ -46,9 +58,9 @@ export class LayoutButton extends Component {
           <span className="fa fa-th-large" />
         </button>
         <LayoutChooser
-          cellSize={20}
           visible={this.state.dropdownVisible}
           onChange={this.onChange}
+          selectedCell={this.props.selectedCell}
         />
       </div>
     );

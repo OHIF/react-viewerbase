@@ -342,11 +342,7 @@ class ThumbnailEntry extends Component {
     }
   }
 
-<<<<<<< HEAD
   dragEndHandler(event) {
-=======
-  dragEndHandler() {
->>>>>>>  layout choser as independent component
     this.setState({
       diff: {
         x: 0,

@@ -71,11 +71,7 @@ export class PlayClipButton extends Component {
           data-placement="bottom"
           title="Play/Stop Clip"
         >
-<<<<<<< HEAD
-          <span className="fa {playClass}" />
-=======
           <span className={`fa ${playClass}`} />
->>>>>>> active tool  implementation. create a generic button
         </button>
         <button
           id="toggleCineDialog"

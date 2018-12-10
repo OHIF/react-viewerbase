@@ -25,6 +25,7 @@
     "details": "npm run version && npm run sha",
     "prep": "npm run details && npm run copy:webworkers",
     "start": "npm run prep && react-scripts start",
+    "lint": "eslint -c .eslintrc --fix src && prettier --single-quote --write src/**/*.{js,jsx,json,css}",
     "build": "npm run prep && react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"

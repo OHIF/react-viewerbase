@@ -11,10 +11,14 @@ import './LayoutChooser.styl';
 export class LayoutChooser extends Component {
   constructor(props) {
     super(props);
-    this.emptyCell = { row: -1, col: -1 };
+    this.emptyCell = {
+      row: -1,
+      column: -1
+    };
+
     this.state = {
       table: [[]],
-      selectedCell: this.emptyCell
+      selectedCell: this.props.selectedCell
     };
     this.highlightCells = this.highlightCells.bind(this);
     this.isRange = this.isRange.bind(this);
@@ -106,12 +110,17 @@ LayoutChooser.defaultProps = {
   columns: 3,
   visible: true,
   boxSize: 20,
-  cellBorder: 1
+  cellBorder: 1,
+  selectedCell: {
+    row: -1,
+    col: -1
+  }
 };
 LayoutChooser.propTypes = {
   rows: PropTypes.number.isRequired,
   columns: PropTypes.number.isRequired,
   visible: PropTypes.bool.isRequired,
+  selectedCell: PropTypes.object,
   boxSize: PropTypes.number.isRequired,
   cellBorder: PropTypes.number.isRequired
 };

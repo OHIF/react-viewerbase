@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Table } from 'react-bootstrap';
 
 export class LayoutManager extends Component {
   constructor(props) {
@@ -13,10 +12,7 @@ export class LayoutManager extends Component {
     let columns = Array.from(new Array(this.props.columns + 1), (col, i) => i);
 
     return (
-      <Table
-        responsive={this.props.responsive}
-        className={this.props.className}
-      >
+      <table className={this.props.className}>
         <tbody>
           {rows.map((row, rowIndex) => {
             return (
@@ -28,20 +24,18 @@ export class LayoutManager extends Component {
             );
           })}
         </tbody>
-      </Table>
+      </table>
     );
   }
 }
 LayoutManager.defaultProps = {
   columns: 1,
   rows: 1,
-  responsive: true,
-  className: ''
+  className: 'GridLayout'
 };
 LayoutManager.propTypes = {
   rows: PropTypes.number.isRequired,
   columns: PropTypes.number.isRequired,
-  responsive: PropTypes.bool.isRequired,
   className: PropTypes.string.isRequired
 };
 

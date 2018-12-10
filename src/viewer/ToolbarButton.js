@@ -32,9 +32,7 @@ ToolbarButton.propTypes = {
   text: PropTypes.string.isRequired,
   svgUrl: PropTypes.string.isRequired,
   active: PropTypes.bool.isRequired,
-  className: PropTypes.string.isRequired,
-  mouseButtonMask: PropTypes.number.isRequired,
-  setToolActive: PropTypes.func.isRequired
+  className: PropTypes.string.isRequired
 };
 
 export default ToolbarButton;
