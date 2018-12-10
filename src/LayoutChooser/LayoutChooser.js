@@ -102,8 +102,8 @@ export class LayoutChooser extends Component {
   }
 }
 LayoutChooser.defaultProps = {
-  rows: 4,
-  columns: 4,
+  rows: 3,
+  columns: 3,
   visible: true,
   boxSize: 20,
   cellBorder: 1
