@@ -19,9 +19,9 @@ class PresetToggle extends Component {
     };
   }
   render() {
-    const items = this.props.buttons.map((item, index) => {
+    /*const items = this.props.buttons.map((item, index) => {
       return <ToolbarButton key={index} {...item} click={this.onClick} />;
-    });
+    });*/
 
     const wlPresetItems = this.props.buttons.map((item, index) => {
       if (wLPresetIDs.includes(item.command)) {
@@ -42,14 +42,14 @@ class PresetToggle extends Component {
     });
 
     return (
-        <div className="PresetToggle">
-            <div className="wlPresets">{wlPresetItems}</div>
-            <div className="tools">{toolItems}</div>
-            <span className="presetSelected">
-            LEVELS:
-            {selectedButton ? selectedButton.text : 'Manual'}
-            </span>
-        </div>
+      <div className="PresetToggle">
+        <div className="wlPresets">{wlPresetItems}</div>
+        <div className="tools">{toolItems}</div>
+        <span className="presetSelected">
+          LEVELS:
+          {selectedButton ? selectedButton.text : 'Manual'}
+        </span>
+      </div>
     );
   }
 
@@ -59,7 +59,7 @@ class PresetToggle extends Component {
     console.log(`clicked: ${id}`);
 
     this.setState({
-        selected: buttonItem.id
+      selected: buttonItem.id
     });
   };
 }

@@ -1,117 +1,117 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import SimpleToolbarButton from './SimpleToolbarButton'
-import PlayClipButton from './PlayClipButton'
-import LayoutButton from './LayoutButton'
+import SimpleToolbarButton from './SimpleToolbarButton';
+import PlayClipButton from './PlayClipButton';
+import LayoutButton from './LayoutButton';
 
 function getDefaultButtonData() {
-    var buttonData = [];
+  var buttonData = [];
 
-    buttonData.push({
-        id: 'wwwc',
-        title: 'WW/WC',
-        classes: 'imageViewerTool',
-        iconClasses: 'fa fa-sun-o'
-    });
+  buttonData.push({
+    id: 'wwwc',
+    title: 'WW/WC',
+    classes: 'imageViewerTool',
+    iconClasses: 'fa fa-sun-o'
+  });
 
-    buttonData.push({
-        id: 'wwwcRegion',
-        title: 'Window by Region',
-        classes: 'imageViewerTool',
-        iconClasses: 'fa fa-square'
-    });
+  buttonData.push({
+    id: 'wwwcRegion',
+    title: 'Window by Region',
+    classes: 'imageViewerTool',
+    iconClasses: 'fa fa-square'
+  });
 
-    buttonData.push({
-        id: 'magnify',
-        title: 'Magnify',
-        classes: 'imageViewerTool',
-        iconClasses: 'fa fa-circle'
-    });
+  buttonData.push({
+    id: 'magnify',
+    title: 'Magnify',
+    classes: 'imageViewerTool',
+    iconClasses: 'fa fa-circle'
+  });
 
-    buttonData.push({
-        id: 'annotate',
-        title: 'Annotation',
-        classes: 'imageViewerTool',
-        iconClasses: 'fa fa-arrows-h'
-    });
+  buttonData.push({
+    id: 'annotate',
+    title: 'Annotation',
+    classes: 'imageViewerTool',
+    iconClasses: 'fa fa-arrows-h'
+  });
 
-    buttonData.push({
-        id: 'invert',
-        title: 'Invert',
-        classes: 'imageViewerCommand',
-        iconClasses: 'fa fa-adjust'
-    });
+  buttonData.push({
+    id: 'invert',
+    title: 'Invert',
+    classes: 'imageViewerCommand',
+    iconClasses: 'fa fa-adjust'
+  });
 
-    buttonData.push({
-        id: 'zoom',
-        title: 'Zoom',
-        classes: 'imageViewerTool',
-        iconClasses: 'fa fa-search'
-    });
+  buttonData.push({
+    id: 'zoom',
+    title: 'Zoom',
+    classes: 'imageViewerTool',
+    iconClasses: 'fa fa-search'
+  });
 
-    buttonData.push({
-        id: 'pan',
-        title: 'Pan',
-        classes: 'imageViewerTool',
-        iconClasses: 'fa fa-arrows'
-    });
+  buttonData.push({
+    id: 'pan',
+    title: 'Pan',
+    classes: 'imageViewerTool',
+    iconClasses: 'fa fa-arrows'
+  });
 
-    buttonData.push({
-        id: 'stackScroll',
-        title: 'Stack Scroll',
-        classes: 'imageViewerTool',
-        iconClasses: 'fa fa-bars'
-    });
+  buttonData.push({
+    id: 'stackScroll',
+    title: 'Stack Scroll',
+    classes: 'imageViewerTool',
+    iconClasses: 'fa fa-bars'
+  });
 
-    buttonData.push({
-        id: 'length',
-        title: 'Length Measurement',
-        classes: 'imageViewerTool',
-        iconClasses: 'fa fa-arrows-v'
-    });
+  buttonData.push({
+    id: 'length',
+    title: 'Length Measurement',
+    classes: 'imageViewerTool',
+    iconClasses: 'fa fa-arrows-v'
+  });
 
-    buttonData.push({
-        id: 'angle',
-        title: 'Angle Measurement',
-        classes: 'imageViewerTool',
-        iconClasses: 'fa fa-angle-left'
-    });
+  buttonData.push({
+    id: 'angle',
+    title: 'Angle Measurement',
+    classes: 'imageViewerTool',
+    iconClasses: 'fa fa-angle-left'
+  });
 
-    buttonData.push({
-        id: 'dragProbe',
-        title: 'Pixel Probe',
-        classes: 'imageViewerTool',
-        iconClasses: 'fa fa-dot-circle-o'
-    });
+  buttonData.push({
+    id: 'dragProbe',
+    title: 'Pixel Probe',
+    classes: 'imageViewerTool',
+    iconClasses: 'fa fa-dot-circle-o'
+  });
 
-    buttonData.push({
-        id: 'ellipticalRoi',
-        title: 'Elliptical ROI',
-        classes: 'imageViewerTool',
-        iconClasses: 'fa fa-circle-o'
-    });
+  buttonData.push({
+    id: 'ellipticalRoi',
+    title: 'Elliptical ROI',
+    classes: 'imageViewerTool',
+    iconClasses: 'fa fa-circle-o'
+  });
 
-    buttonData.push({
-        id: 'rectangleRoi',
-        title: 'Rectangle ROI',
-        classes: 'imageViewerTool',
-        iconClasses: 'fa fa-square-o'
-    });
+  buttonData.push({
+    id: 'rectangleRoi',
+    title: 'Rectangle ROI',
+    classes: 'imageViewerTool',
+    iconClasses: 'fa fa-square-o'
+  });
 
-    buttonData.push({
-        id: 'resetViewport',
-        title: 'Reset Viewport',
-        classes: 'imageViewerCommand',
-        iconClasses: 'fa fa-undo'
-    });
+  buttonData.push({
+    id: 'resetViewport',
+    title: 'Reset Viewport',
+    classes: 'imageViewerCommand',
+    iconClasses: 'fa fa-undo'
+  });
 
-    buttonData.push({
-        id: 'clearTools',
-        title: 'Clear tools',
-        classes: 'imageViewerCommand',
-        iconClasses: 'fa fa-trash'
-    });
-    return buttonData;
+  buttonData.push({
+    id: 'clearTools',
+    title: 'Clear tools',
+    classes: 'imageViewerCommand',
+    iconClasses: 'fa fa-trash'
+  });
+  return buttonData;
 }
 
 /*Template.toolbar.events({
@@ -171,40 +171,40 @@ Template.toolbar.onRendered(function() {
 });*/
 
 export default class Toolbar extends Component {
-    render() {
-        var maybePlayClipButton;
-        if (this.props.includePlayClipButton) {
-            maybePlayClipButton = <PlayClipButton />;
-        }
-
-        var maybeLayoutButton;
-        if (this.props.includeLayoutButton) {
-            maybeLayoutButton = <LayoutButton />;
-        }
-
-        return (
-            <div id='toolbar'>
-                <div className="btn-group">
-                    {this.props.buttons.map((button, i) => {
-                        return <SimpleToolbarButton {...button} key={i} />
-                    })}
-
-                    {maybePlayClipButton}
-                    {maybeLayoutButton}
-                </div>
-            </div>
-        );
+  render() {
+    var maybePlayClipButton;
+    if (this.props.includePlayClipButton) {
+      maybePlayClipButton = <PlayClipButton />;
     }
+
+    var maybeLayoutButton;
+    if (this.props.includeLayoutButton) {
+      maybeLayoutButton = <LayoutButton />;
+    }
+
+    return (
+      <div id="toolbar">
+        <div className="btn-group">
+          {this.props.buttons.map((button, i) => {
+            return <SimpleToolbarButton {...button} key={i} />;
+          })}
+
+          {maybePlayClipButton}
+          {maybeLayoutButton}
+        </div>
+      </div>
+    );
+  }
 }
 
 Toolbar.propTypes = {
-    buttons: PropTypes.array.isRequired,
-    includeLayoutButton: PropTypes.bool.isRequired,
-    includePlayClipButton: PropTypes.bool.isRequired
+  buttons: PropTypes.array.isRequired,
+  includeLayoutButton: PropTypes.bool.isRequired,
+  includePlayClipButton: PropTypes.bool.isRequired
 };
 
 Toolbar.defaultProps = {
-    buttons: getDefaultButtonData(),
-    includeLayoutButton: true,
-    includePlayClipButton: true
+  buttons: getDefaultButtonData(),
+  includeLayoutButton: true,
+  includePlayClipButton: true
 };

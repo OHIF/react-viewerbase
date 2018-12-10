@@ -9,9 +9,7 @@ class ToolbarSection extends Component {
       return <ToolbarButton key={index} {...item} click={this.onClick} />;
     });
 
-    return (
-      <div className={'ToolbarSection'}>{items}</div>
-    );
+    return <div className={'ToolbarSection'}>{items}</div>;
   }
 
   onClick = id => {

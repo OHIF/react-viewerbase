@@ -53,48 +53,55 @@ import PropTypes from 'prop-types';
     }
 });*/
 
-
 export default class LayoutChooser extends Component {
-    static defaultProps = {
-        rows: 4,
-        columns: 4,
-        visible: false,
-    }
+  static defaultProps = {
+    rows: 4,
+    columns: 4,
+    visible: false
+  };
 
-    static propTypes = {
-        rows: PropTypes.number.isRequired,
-        columns: PropTypes.number.isRequired,
-        visible: PropTypes.bool.isRequired
-    }
+  static propTypes = {
+    rows: PropTypes.number.isRequired,
+    columns: PropTypes.number.isRequired,
+    visible: PropTypes.bool.isRequired
+  };
 
-    render() {
-        var rows = this.props.rows;
-        var columns = this.props.columns;
-        const style = {
-            display: this.props.visible ? 'block' : 'none'
-        };
+  render() {
+    var rows = this.props.rows;
+    var columns = this.props.columns;
+    const style = {
+      display: this.props.visible ? 'block' : 'none'
+    };
 
-        return (
-            <div className="LayoutChooser pull-left dropdown-menu" role="menu" style={style}>
-                <table>
-                    <tbody>
-                    {[...Array(rows)].map(function(row, i) {
-                        return (
-                            <tr key={i}>
-                                {[...Array(columns)].map(function(column, j) {
-                                    return <td style={{width: '20px',
-                                                       height: '20px',
-                                                       border: 'solid 1px black'
-                                                       }}
-                                               key={j}></td>;
-                                })}
-                            </tr>
-                        );
-                    })}
-                    </tbody>
-                </table>
-            </div>
-        )
-    }
+    return (
+      <div
+        className="LayoutChooser pull-left dropdown-menu"
+        role="menu"
+        style={style}
+      >
+        <table>
+          <tbody>
+            {[...Array(rows)].map(function(row, i) {
+              return (
+                <tr key={i}>
+                  {[...Array(columns)].map(function(column, j) {
+                    return (
+                      <td
+                        style={{
+                          width: '20px',
+                          height: '20px',
+                          border: 'solid 1px black'
+                        }}
+                        key={j}
+                      />
+                    );
+                  })}
+                </tr>
+              );
+            })}
+          </tbody>
+        </table>
+      </div>
+    );
+  }
 }
-
