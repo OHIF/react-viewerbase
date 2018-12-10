@@ -8,7 +8,6 @@ import Hammer from 'hammerjs';
 cornerstoneTools.external.cornerstone = cornerstone;
 cornerstoneTools.external.Hammer = Hammer;
 cornerstoneTools.external.cornerstoneMath = cornerstoneMath;
-
 cornerstoneTools.init();
 
 // Set the tool font and font size
@@ -19,7 +18,6 @@ cornerstoneTools.textStyle.setFont(`16px ${fontFamily}`);
 
 // Set the tool width
 cornerstoneTools.toolStyle.setToolWidth(2);
-
 // Set color for inactive tools
 cornerstoneTools.toolColors.setToolColor('rgb(255, 255, 0)');
 
@@ -43,8 +41,6 @@ const config = {
     }
   }
 };
-
 cornerstoneWADOImageLoader.webWorkerManager.initialize(config);
-
 cornerstoneWADOImageLoader.external.cornerstone = cornerstone;
 cornerstoneWADOImageLoader.external.dicomParser = dicomParser;

@@ -1,53 +1,15 @@
+import dicomParser from 'dicom-parser';
+import cornerstone from 'cornerstone-core';
+import cornerstoneWADOImageLoader from 'cornerstone-wado-image-loader';
+import cornerstoneMath from 'cornerstone-math';
+import cornerstoneTools from 'cornerstone-tools';
+import Hammer from 'hammerjs';
 import React, { Component } from 'react';
-import './initCornerstone';
-import { Toolbar, LayoutChooser, LayoutButton, ToolbarSection, StudyBrowser, ThumbnailEntry } from 'react-viewerbase';
+//import './initCornerstone';
+import { LayoutManager, Toolbar, LayoutChooser, LayoutButton, ToolbarSection, StudyBrowser, ThumbnailEntry } from 'react-viewerbase';
 import './App.css';
 
-const exampleButtons = [
-  {
-    command: 'Pan',
-    type: 'tool',
-    text: 'Pan',
-    svgUrl: '/icons.svg#icon-tools-pan',
-    active: false,
-    onClick: function () { console.log('I have a onclick function') }    
-  },
-  {
-    command: 'Zoom',
-    type: 'tool',
-    text: 'Zoom',
-    svgUrl: '/icons.svg#icon-tools-zoom',
-    active: false
-  },
-  {
-    command: 'Bidirectional',
-    type: 'tool',
-    text: 'Bidirectional',
-    svgUrl: '/icons.svg#icon-tools-measure-target',
-    active: true
-  },
-  {
-    command: 'StackScroll',
-    type: 'tool',
-    text: 'Stack Scroll',
-    svgUrl: '/icons.svg#icon-tools-stack-scroll',
-    active: false
-  },
-  {
-    command: 'reset',
-    type: 'command',
-    text: 'Reset',
-    svgUrl: '/icons.svg#icon-tools-reset',
-    active: false
-  },
-  {
-    command: 'Wwwc',
-    type: 'tool',
-    text: 'Manual',
-    svgUrl: '/icons.svg#icon-tools-levels',
-    active: false
-  },
-];
+
 
 const exampleStudies = [
   {
@@ -104,16 +66,185 @@ export default class App extends Component {
   constructor(props) {
     super(props);
 
-    this.state = {
-      studyBrowserDropResults: '',
-      buttons: exampleButtons
-    }    
     this.onThumbnailDoubleClick = this.onThumbnailDoubleClick.bind(this);
     this.onThumbnailClick = this.onThumbnailClick.bind(this);
     this.onThumbnailDrag = this.onThumbnailDrag.bind(this);
     this.resetDragEffects = this.resetDragEffects.bind(this);
     this.ChangeLayout = this.ChangeLayout.bind(this);
-  }  
+    //cornerstonejs constructions
+    this.initCornerstone = this.initCornerstone.bind(this);
+    this.dicomImage = null;
+    this.loadImage = this.loadImage.bind(this);
+    this.enableTool = this.enableTool.bind(this);
+    this.disableAllTools = this.disableAllTools.bind(this);  
+    this.dicomImageRef = this.dicomImageRef.bind(this);
+
+    //cornerstoneTools.setToolActiveForElement(element, "WwwcTool", 1);
+    //cornerstoneTools.setToolActiveForElement(element, "PanTool", 2);
+    //cornerstoneTools.setToolActiveForElement(element, "ZoomTool", 4);
+
+    this.exampleButtons = [
+      {
+        command: 'PanTool',
+        type: 'tool',
+        text: 'Pan',
+        svgUrl: '/icons.svg#icon-tools-pan',        
+        onClick: function () { console.log('I have a onclick function') },        
+        mouseButtonMask: 2,
+        setToolActive: this.enableTool
+      },
+      {
+        command: 'ZoomTool',
+        type: 'tool',
+        text: 'Zoom',
+        svgUrl: '/icons.svg#icon-tools-zoom',        
+        mouseButtonMask: 4,
+        setToolActive: this.enableTool
+      },
+      {
+        command: 'Bidirectional',
+        type: 'tool',
+        text: 'Bidirectional',
+        svgUrl: '/icons.svg#icon-tools-measure-target',        
+        mouseButtonMask: 1,
+        setToolActive: this.enableTool
+      },
+      {
+        command: 'StackScroll',
+        type: 'tool',
+        text: 'Stack Scroll',
+        svgUrl: '/icons.svg#icon-tools-stack-scroll',        
+        mouseButtonMask: 1,
+        setToolActive: this.enableTool
+      },
+      {
+        command: 'reset',
+        type: 'command',
+        text: 'Reset',
+        svgUrl: '/icons.svg#icon-tools-reset',
+        mouseButtonMask: 1,
+        setToolActive: this.enableTool
+      },
+      {
+        command: 'WwwcTool',
+        type: 'tool',
+        text: 'Manual',
+        svgUrl: '/icons.svg#icon-tools-levels',
+        mouseButtonMask: 1,
+        setToolActive: this.enableTool
+      },
+    ];
+
+    this.state = {
+      studyBrowserDropResults: '',
+      buttons: this.exampleButtons,
+      currentCell: {
+        row: 2,
+        col: 2
+      }
+    }        
+  }    
+  //CORNORSTONEJS EXAMPLE
+
+  initCornerstone() {    
+    cornerstoneTools.external.cornerstone = cornerstone;
+    cornerstoneTools.external.Hammer = Hammer;
+    cornerstoneTools.external.cornerstoneMath = cornerstoneMath;
+    cornerstoneTools.init();
+    // Set the tool font and font size
+    // context.font = "[style] [variant] [weight] [size]/[line height] [font family]";
+    const fontFamily =
+      'Work Sans, Roboto, OpenSans, HelveticaNeue-Light, Helvetica Neue Light, Helvetica Neue, Helvetica, Arial, Lucida Grande, sans-serif';
+    cornerstoneTools.textStyle.setFont(`16px ${fontFamily}`);
+    // Set the tool width
+    cornerstoneTools.toolStyle.setToolWidth(2);
+    // Set color for inactive tools
+    cornerstoneTools.toolColors.setToolColor('rgb(255, 255, 0)');
+    // Set color for active tools
+    cornerstoneTools.toolColors.setActiveColor('rgb(0, 255, 0)');
+    cornerstoneTools.store.state.touchProximity = 40;
+    const config = {
+      maxWebWorkers: navigator.hardwareConcurrency || 1,
+      startWebWorkersOnDemand: false,
+      webWorkerPath: window.location + '/cornerstoneWADOImageLoaderWebWorker.min.js',
+      webWorkerTaskPaths: [],
+      taskConfiguration: {
+        decodeTask: {
+          loadCodecsOnStartup: true,
+          initializeCodecsOnStartup: false,
+          codecsPath: window.location + '/cornerstoneWADOImageLoaderCodecs.min.js',
+          usePDFJS: false,
+          strict: false
+        }
+      }
+    };
+    cornerstoneWADOImageLoader.webWorkerManager.initialize(config);
+    cornerstoneWADOImageLoader.external.cornerstone = cornerstone;
+    cornerstoneWADOImageLoader.external.dicomParser = dicomParser;
+    console.log(cornerstoneTools);
+  }
+  
+  loadImage() {
+    const element = this.dicomImage;
+    // Listen for changes to the viewport so we can update the text overlays in the corner
+    function onImageRendered(e) {
+      const viewport = cornerstone.getViewport(e.target);
+      document.getElementById(
+        "mrbottomleft"
+      ).textContent = `WW/WC: ${Math.round(
+        viewport.voi.windowWidth
+      )}/${Math.round(viewport.voi.windowCenter)}`;
+      document.getElementById(
+        "mrbottomright"
+      ).textContent = `Zoom: ${viewport.scale.toFixed(2)}`;
+    }
+    element.addEventListener("cornerstoneimagerendered", onImageRendered);    
+    const exampleStudy = {
+      "stack": {
+        "currentImageIdIndex": 0,
+        "imageIds": [
+          "dicomweb://localhost:3000/1.2.840.113619.2.5.1762583153.215519.978957063.80.dcm",
+          "dicomweb://localhost:3000/1.2.840.113619.2.5.1762583153.215519.978957063.81.dcm"
+        ]
+      }
+    };
+    const imageId = exampleStudy["stack"]["imageIds"][0];
+
+    cornerstone.enable(element);
+    cornerstone.loadImage(imageId).then(image => {
+      cornerstone.displayImage(element, image);           
+      cornerstoneTools.addTool(cornerstoneTools.WwwcTool);
+      cornerstoneTools.addTool(cornerstoneTools.PanTool);
+      cornerstoneTools.addTool(cornerstoneTools.ZoomTool);            
+    });
+  };
+  enableTool = ({command, mouseButtonMask}) => {    
+  // this.disableAllTools();
+    const element = this.dicomImage;
+    debugger;
+    cornerstoneTools.setToolActive(command, {mouseButtonMask: mouseButtonMask});
+    this.setState({
+      activeCommand: command
+    })
+  };
+  // helper function used by the tool button handlers to disable the active tool
+  // before making a new tool active
+  disableAllTools() {    
+    for (let i=0;i<this.state.buttons.length;i++) {
+      cornerstoneTools.setToolDisabledForElement(this.dicomImage, this.state.buttons[i].command,{mouseButtonNumber: this.state.buttons[i].mouseButtonNumber});
+    }
+  };
+  dicomImageRef(el) {
+    this.dicomImage = el;
+  };
+  componentWillMount() {
+    this.initCornerstone();
+  }
+  componentDidMount() {    
+    //this.loadImage();
+  }
+
+  //////////////////END OF CORNORSTONE EXAMPLE
   resetDragEffects() {
     const targetClass = 'study-drop-area';
     const hoverClass = 'hovered';
@@ -205,33 +336,57 @@ export default class App extends Component {
             </p>
           </div>
           <hr></hr>
-        </div>
+        </div>       
+
         <div className="row">
           <h2>Examples</h2>
-          <div className="row" style={{height: "150px"}}>
-            <div className='col-xs-12 col-lg-6'>
-              <h3>Layout Button {this.state.currentCell && ` I changed layout to ${this.state.currentCell.row+1} to ${this.state.currentCell.col+1}`}</h3>
-              <p>Used to choose which layout to place the viewer into.</p>
-            </div>
-            <div className="row">
-              <div className='col-xs-2 col-lg-6'>
-                <LayoutButton onChange={this.ChangeLayout}/>
-              </div>
-              <div className='col-xs-10 col-lg-6'>
-                <LayoutChooser rows={3} columns={3} onChange={this.ChangeLayout}/>
-              </div>                            
-              </div> 
-          </div>                     
       
           <div className="row">
-            <div className='col-xs-12 col-lg-6'>
+            <div className='col-xs-12 col-lg-12'>
               <h3>Toolbar Section</h3>
               <p>A basic row of buttons for a toolbar.</p>
             </div>
             <div className='col-xs-12 col-lg-6'>
-              <ToolbarSection buttons={this.state.buttons}/>
+              <ToolbarSection buttons={this.state.buttons} activeCommand={this.state.activeCommand} />                
+            </div>
+            <div className='col-xs-12 col-lg-6'>
+              
+            </div>
+          </div>      
+          </div>           
+          
+        
+          <div className="row" style={{height: "150px"}}>
+            <div className='col-xs-12 col-lg-12'>
+              <h3>Layout Button {this.state.currentCell && ` I changed layout to ${this.state.currentCell.row+1} to ${this.state.currentCell.col+1}`}</h3>
+              <p>Used to choose which layout to place the viewer into.</p>
             </div>
           </div>
+            <div className="row">
+              <div className='col-xs-2 col-lg-2'>
+                <LayoutButton onChange={this.ChangeLayout}/>
+              </div>
+              <div className='col-xs-10 col-lg-10'>
+                <LayoutChooser rows={3} columns={3} onChange={this.ChangeLayout}/>
+              </div>                            
+              </div> 
+              <br/>
+              <br/>
+              <br/>
+          
+          <div className="row">
+            <div className='col-xs-12 col-lg-12'>
+              <LayoutManager rows={this.state.currentCell.row} columns={this.state.currentCell.col}>
+                <ThumbnailEntry                    
+                    {...exampleStudies[0].thumbnails[0]}                    
+                  />
+              </LayoutManager>
+            </div>            
+          </div>
+
+
+
+
           <div className="row">
             <div className='col-xs-12 col-lg-6'>
               <h3>Study Browser</h3>
@@ -253,18 +408,18 @@ export default class App extends Component {
           </div>
           <div className="row">
             <div className='col-xs-12 col-lg-6'>
-              <h3>Toolbar</h3>
+              <h3>Simple Toolbar</h3>
               <p>A basic row of buttons for a toolbar.</p>
             </div>
             <div className='col-xs-12 col-lg-6'>
               <Toolbar buttons={this.state.buttons}/>
             </div>
           </div>
-          <div className="row">
-            <div className='col-xs-12 col-lg-6'>
-            </div>
-            </div>
-        </div>
+          
+         
+        
+
+        
       </div>
     )
   }

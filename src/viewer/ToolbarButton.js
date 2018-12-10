@@ -6,9 +6,8 @@ import classnames from 'classnames';
 export function ToolbarButton(props) {
   let onClick = event => {
     if (props.setToolActive) {
-      props.setToolActive(props.command);
+      props.setToolActive(props);
     }
-    props.onClick(props.command);
   };
   let className = classnames(props.className, { active: props.active });
   return (
@@ -33,8 +32,9 @@ ToolbarButton.propTypes = {
   text: PropTypes.string.isRequired,
   svgUrl: PropTypes.string.isRequired,
   active: PropTypes.bool.isRequired,
-  onClick: PropTypes.func.isRequired,
-  className: PropTypes.string.isRequired
+  className: PropTypes.string.isRequired,
+  mouseButtonMask: PropTypes.number.isRequired,
+  setToolActive: PropTypes.func.isRequired
 };
 
 export default ToolbarButton;

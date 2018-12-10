@@ -1,3 +1,4 @@
+import LayoutManager from './LayoutChooser/LayoutManager.js';
 import LayoutChooser from './LayoutChooser/LayoutChooser.js';
 import LayoutButton from './LayoutChooser/LayoutButton.js';
 import ToolbarSection from './viewer/ToolbarSection.js';
@@ -13,6 +14,7 @@ export {
   StudyBrowser,
   ThumbnailEntry,
   Toolbar,
-  PlayClipButton
+  PlayClipButton,
+  LayoutManager
 };
 //
