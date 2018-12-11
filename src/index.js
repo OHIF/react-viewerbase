@@ -6,6 +6,7 @@ import StudyBrowser from './studyBrowser/StudyBrowser.js';
 import ThumbnailEntry from './studyBrowser/ThumbnailEntry.js';
 import Toolbar from './viewer/Toolbar.js';
 import PlayClipButton from './viewer/PlayClipButton.js';
+import CineDialog from './viewer/CineDialog.js';
 
 export {
   LayoutChooser,
@@ -15,6 +16,6 @@ export {
   ThumbnailEntry,
   Toolbar,
   PlayClipButton,
-  LayoutManager
+  LayoutManager,
+  CineDialog
 };
-//

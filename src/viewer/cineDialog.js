@@ -1,170 +1,176 @@
-/*toggleCinePlay = function() {
-    var element = getActiveViewportElement();
-    var playClipToolData = cornerstoneTools.getToolState(element, 'playClip');
-
-    if (isPlaying()) {
-        cornerstoneTools.stopClip(element);
-    } else {
-        cornerstoneTools.playClip(element);
-    }
-};
-
-function updateFramerate(rate) {
-    OHIF.viewer.cine.framesPerSecond = rate;
-
-    // Update playClip toolData for this imageId
-    var element = getActiveViewportElement();
-    var playClipToolData = cornerstoneTools.getToolState(element, 'playClip');
-    playClipToolData.data[0].framesPerSecond = OHIF.viewer.cine.framesPerSecond;
-
-    // If the movie is playing, stop/start to update the framerate
-    if (isPlaying()) {
-        cornerstoneTools.stopClip(element);
-        cornerstoneTools.playClip(element);
-    }
-
-    Session.set('UpdateCine', Random.id());
-}
-
-Template.cineDialog.helpers({
-    isPlaying: function() {
-        return isPlaying();
-    },
-    framerate: function() {
-        Session.get('UpdateCine');
-        return ;
-    }
-});
-
-Template.cineDialog.events({
-    'click #cineFirstButton': function() {
-        switchToImageByIndex(0);
-    },
-    'click #cineBackButton': function() {
-        switchToImageRelative(-1);
-    },
-    'click #cineSlowPlaybackButton': function() {
-        updateFramerate(OHIF.viewer.cine.framesPerSecond - 1);
-    },
-    'click #cinePlayButton': function() {
-        toggleCinePlay();
-    },
-    'click #cineNextButton': function() {
-        switchToImageRelative(1);
-    },
-    'click #cineFastForwardButton': function() {
-        updateFramerate(OHIF.viewer.cine.framesPerSecond + 1);
-    },
-    'click #cineLastButton': function() {
-        switchToImageByIndex(-1);
-    },
-    'change #cineLoopCheckbox': function(e) {
-        var element = getActiveViewportElement();
-        var playClipToolData = cornerstoneTools.getToolState(element, 'playClip');
-        playClipToolData.data[0].loop = $(e.currentTarget).is(':checked');
-        OHIF.viewer.cine.loop = playClipToolData.data[0].loop;
-    },
-    'input #cineSlider': function(e) {
-        // Update the FPS text onscreen
-        var rate = parseFloat($(e.currentTarget).val());
-        updateFramerate(rate);
-    }
-});
-
-Template.cineDialog.onRendered(function() {
-    var dialog = $('#cineDialog');
-    dialog.draggable();
-});*/
-
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import './CineDialog.styl';
 
-export default class CineDialog extends Component {
+class CineDialog extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      cineFrameRate: props.cineFrameRate,
+      isPlaying: props.isPlaying
+    };
+  }
+
+  static propTypes = {
+    cineMinFrameRate: PropTypes.number.isRequired,
+    cineMaxFrameRate: PropTypes.number.isRequired,
+    cineStepFrameRate: PropTypes.number.isRequired,
+    cineFrameRate: PropTypes.number.isRequired,
+    isPlaying: PropTypes.bool.isRequired,
+    onPlayPauseChanged: PropTypes.func,
+    onFrameRateChanged: PropTypes.func,
+    onClickNextButton: PropTypes.func,
+    onClickBackButton: PropTypes.func,
+    onClickSkipToStart: PropTypes.func,
+    onClickSkipToEnd: PropTypes.func
+  };
+
+  static defaultProps = {
+    cineMinFrameRate: 1,
+    cineMaxFrameRate: 90,
+    cineStepFrameRate: 1,
+    cineFrameRate: 24,
+    isPlaying: false
+  };
+
+  handleInputChange = event => {
+    const target = event.target;
+
+    let value = target.value;
+    if (target.type === 'checkbox') {
+      value = target.checked;
+    } else if (target.type === 'range') {
+      value = parseFloat(target.value);
+    }
+
+    const name = target.name;
+
+    this.setState({
+      [name]: value
+    });
+
+    if (name === 'cineFrameRate' && this.props.onFrameRateChanged) {
+      this.props.onFrameRateChanged(parseFloat(value));
+    }
+  };
+
+  onClickPlayPause = () => {
+    const value = !this.state.isPlaying;
+
+    this.setState({
+      isPlaying: value
+    });
+
+    if (this.props.onPlayPauseChanged) {
+      this.props.onPlayPauseChanged(value);
+    }
+  };
+
+  onClickNextButton = event => {
+    if (this.props.onClickNextButton) {
+      this.props.onClickNextButton(event);
+    }
+  };
+
+  onClickBackButton = event => {
+    if (this.props.onClickBackButton) {
+      this.props.onClickBackButton(event);
+    }
+  };
+
+  onClickSkipToStart = event => {
+    if (this.props.onClickSkipToStart) {
+      this.props.onClickSkipToStart(event);
+    }
+  };
+
+  onClickSkipToEnd = event => {
+    if (this.props.onClickSkipToEnd) {
+      this.props.onClickSkipToEnd(event);
+    }
+  };
+
+  // TODO:
+  // - Add next / previous display set buttons which just call
+  // onClickNextDisplaySet and onClickPreviousDisplaySet which are passed in as props.
+  // See https://github.com/OHIF/Viewers/blob/master/Packages/ohif-viewerbase/client/components/viewer/cineDialog/cineDialog.html#L38
+  // - Add 'isEnabled' prop: https://github.com/OHIF/Viewers/blob/master/Packages/ohif-viewerbase/client/components/viewer/cineDialog/cineDialog.js#L301
   render() {
-    /*var playClass = 'fa-play';
-        if (isPlaying()) {
-            playClass = 'fa-pause';
-        }*/
-
-    var frameRate = this.props.frameRate.toFixed(1);
-
     return (
-      <div id="cineDialog">
-        <h5>Cine Controls</h5>
-        <div id="cineButtons">
-          <button
-            id="cineFirstButton"
-            title="Skip to first image"
-            className="cineButton"
-            data-toggle="tooltip"
-          >
-            <i className="fa fa-lg fa-fast-backward" />
-          </button>
-          <button
-            id="cineBackButton"
-            title="Previous image"
-            className="cineButton"
-            data-toggle="tooltip"
-          >
-            <i className="fa fa-lg fa-step-backward" />
-          </button>
-          <button
-            id="cineSlowPlaybackButton"
-            title="Slow playback"
-            className="cineButton"
-            data-toggle="tooltip"
-          >
-            <i className="fa fa-lg fa-backward" />
-          </button>
-          <button
-            id="cinePlayButton"
-            title="Play / Pause"
-            className="cineButton"
-            data-toggle="tooltip"
-          >
-            <i className="fa fa-lg {playClass}" />
-          </button>
-          <button
-            id="cineFastForwardButton"
-            title="Increase playback speed"
-            className="cineButton"
-            data-toggle="tooltip"
-          >
-            <i className="fa fa-lg fa-forward" />
-          </button>
-          <button
-            id="cineNextButton"
-            title="Next image"
-            className="cineButton"
-            data-toggle="tooltip"
-          >
-            <i className="fa fa-lg fa-step-forward" />
-          </button>
-          <button
-            id="cineLastButton"
-            title="Skip to last image"
-            className="cineButton"
-            data-toggle="tooltip"
-          >
-            <i className="fa fa-lg fa-fast-forward" />
-          </button>
-        </div>
-        <div id="cineOptions">
-          <div id="loopSection">
-            <label>Loop?</label>
-            <input type="checkbox" checked id="cineLoopCheckbox" />
+      <div className="CineDialog">
+        <div className="noselect double-row-style">
+          <div className="cine-controls">
+            <div className="btn-group">
+              <button
+                id="cineFirstButton"
+                title="Skip to first image"
+                className="btn"
+                data-toggle="tooltip"
+                onClick={this.onClickSkipToStart}
+              >
+                <i className="fa fa-lg fa-fast-backward" />
+              </button>
+              <button
+                id="cineBackButton"
+                title="Previous image"
+                className="btn"
+                data-toggle="tooltip"
+                onClick={this.onClickBackButton}
+              >
+                <i className="fa fa-lg fa-step-backward" />
+              </button>
+              <button
+                id="cinePlayButton"
+                title="Play / Stop"
+                className="btn"
+                data-toggle="tooltip"
+                onClick={this.onClickPlayPause}
+              >
+                <i
+                  className={
+                    this.state.isPlaying
+                      ? 'fa fa-lg fa-stop'
+                      : 'fa fa-lg fa-play'
+                  }
+                />
+              </button>
+              <button
+                id="cineNextButton"
+                title="Next image"
+                className="btn"
+                data-toggle="tooltip"
+                onClick={this.onClickNextButton}
+              >
+                <i className="fa fa-lg fa-step-forward" />
+              </button>
+              <button
+                id="cineLastButton"
+                title="Skip to last image"
+                className="btn"
+                data-toggle="tooltip"
+                onClick={this.onClickSkipToEnd}
+              >
+                <i className="fa fa-lg fa-fast-forward" />
+              </button>
+            </div>
           </div>
-          <div id="fpsSection">
-            <label>
-              Cine Speed: <span id="fps">{frameRate}</span>
-            </label>
-            <input
-              type="range"
-              id="cineSlider"
-              min="1"
-              max="90"
-              value="{{framerate}}"
-            />
+          <div className="cine-options">
+            <div className="fps-section">
+              <input
+                type="range"
+                name="cineFrameRate"
+                id="cineSlider"
+                min={this.props.cineMinFrameRate}
+                max={this.props.cineMaxFrameRate}
+                step={this.props.cineStepFrameRate}
+                value={this.state.cineFrameRate}
+                onChange={this.handleInputChange}
+              />
+            </div>
+            <span className="fps">
+              {this.state.cineFrameRate.toFixed(1)} fps
+            </span>
           </div>
         </div>
       </div>
@@ -172,10 +178,4 @@ export default class CineDialog extends Component {
   }
 }
 
-CineDialog.propTypes = {
-  frameRate: PropTypes.number.isRequired
-};
-
-CineDialog.defaultProps = {
-  frameRate: 24
-};
+export default CineDialog;
