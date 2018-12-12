@@ -28,6 +28,10 @@ class Example extends Component {
 }
 ```
 
+## To run locally
+
+Run `yarn start` at the top level then run `yarn start` in the example page.
+
 ## License
 
 MIT © [OHIF](https://github.com/OHIF)
