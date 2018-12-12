@@ -29,8 +29,14 @@ class Example extends Component {
 ```
 
 ## To run locally
-
-Run `yarn start` at the top level then run `yarn start` in the example page.
+1. Clone this repository
+1. `cd react-viewerbase`
+1. `yarn i`
+1. `yarn start`
+1. in new termainal
+1. `cd example`
+1. `yarn i`
+1. `yarn start`
 
 ## License
 
