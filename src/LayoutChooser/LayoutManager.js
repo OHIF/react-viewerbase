@@ -2,14 +2,27 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
 export class LayoutManager extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {};
-  }
+  static defaultProps = {
+    columns: 1,
+    rows: 1,
+    className: 'GridLayout'
+  };
+
+  static propTypes = {
+    rows: PropTypes.number.isRequired,
+    columns: PropTypes.number.isRequired,
+    className: PropTypes.string.isRequired,
+    children: PropTypes.array
+  };
 
   render() {
-    let rows = Array.from(new Array(this.props.rows + 1), (row, i) => i);
-    let columns = Array.from(new Array(this.props.columns + 1), (col, i) => i);
+    const rows = Array.from(new Array(this.props.rows), (row, i) => i);
+    const columns = Array.from(new Array(this.props.columns), (col, i) => i);
+    const numColumns = columns.length;
+
+    if (!this.props.children) {
+      return '';
+    }
 
     return (
       <table className={this.props.className}>
@@ -18,7 +31,10 @@ export class LayoutManager extends Component {
             return (
               <tr key={rowIndex}>
                 {columns.map((col, colIndex) => {
-                  return <td key={colIndex}>{this.props.children}</td>;
+                  const viewportIndex = rowIndex * numColumns + colIndex;
+                  return (
+                    <td key={colIndex}>{this.props.children[viewportIndex]}</td>
+                  );
                 })}
               </tr>
             );
@@ -28,15 +44,5 @@ export class LayoutManager extends Component {
     );
   }
 }
-LayoutManager.defaultProps = {
-  columns: 1,
-  rows: 1,
-  className: 'GridLayout'
-};
-LayoutManager.propTypes = {
-  rows: PropTypes.number.isRequired,
-  columns: PropTypes.number.isRequired,
-  className: PropTypes.string.isRequired
-};
 
 export default LayoutManager;

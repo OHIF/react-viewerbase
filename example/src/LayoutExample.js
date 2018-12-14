@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { LayoutButton } from 'react-viewerbase';
+import { LayoutButton, LayoutManager } from 'react-viewerbase';
+import './LayoutExample.css';
 
 class LayoutExample extends Component {
     constructor(props) {
@@ -27,6 +28,16 @@ class LayoutExample extends Component {
       columns: this.state.currentLayout.column + 1
     };
 
+    const children = [];
+    const numViewports = layout.rows * layout.columns;
+    for (let i=0; i < numViewports; i++) {
+      children.push((
+        <div key={i}>
+          <p>Viewport {i}</p>
+        </div>
+      ));
+    }
+
     return (
       <div className="row">
         <div className="col-xs-12 col-lg-6">
@@ -37,9 +48,12 @@ class LayoutExample extends Component {
         <div className="col-xs-2 col-lg-6">
           <LayoutButton onChange={this.changeLayout} selectedCell={this.state.currentLayout} />
         </div>
-        {/*<div className="col-xs-10 col-lg-4">
-          <LayoutChooser rows={3} columns={3} onChange={this.changeLayout} selectedCell={this.state.currentLayout}/>
-        </div>*/}
+        {<div className="col-xs-10 col-lg-4">
+          <LayoutManager
+            {...layout}
+            children={children} />
+        </div>
+        }
       </div>
     );
   }
