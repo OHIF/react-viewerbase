@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import StudyListRow from './StudyListRow';
 import './StudyList.styl';
+import StudylistToolbar from './StudyListToolbar';
 
 class StudyList extends Component {
   render() {
@@ -11,7 +12,15 @@ class StudyList extends Component {
           <div className="studyCount pull-right">
             {this.props.numberOfStudies}
           </div>
-          <div className="pull-right">{/* TODO {>  studylistToolbar}*/}</div>
+          <div className="pull-right">
+            {
+              <StudylistToolbar
+                importSupported={this.props.importSupported}
+                studyListFunctionsEnabled={this.props.studyListFunctionsEnabled}
+                importStudyFunction={this.props.importStudyFunction}
+              />
+            }
+          </div>
         </div>
         <div className="theadBackground" />
         <div id="studyListContainer">

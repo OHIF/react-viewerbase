@@ -1,6 +1,4 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-// import './CineDialog.styl';
 
 class StudyListRow extends Component {
   render() {

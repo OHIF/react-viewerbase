@@ -25,6 +25,7 @@ $tableHoverColor = #2c363f
 $tableTextPrimaryColor = white
 $tableTextSecondaryColor = #91b9cd
 $tablePadding = 0px
+$hoverColor: #ffffff
 
 $inputBackgroundColor = #2c363f
 $inputPlaceholderColor = lightgray
@@ -226,6 +227,31 @@ $bodyCellHeight = 40px
             &:last-child
               padding-right: $tablePadding
 
+.studylistToolbar
+  .addNewStudy
+    margin: 0 10px
+
+    label
+      font-weight: 400
+      cursor: pointer
+
+      *
+        pointer-events: none
+
+      &:hover
+        color: $hoverColor
+
+      &:active
+        color: activeColor
+
+    input
+      width: 0.1px;
+      height: 0.1px
+      opacity: 0
+      overflow: hidden
+      position: absolute
+      z-index: -1
+
 @media only screen and (max-width: 1161px)
   $tablePadding = 3%
 
@@ -289,3 +315,4 @@ $bodyCellHeight = 40px
 @media only screen and (max-width: 1069px)
   .studylist-pagination > .row
     margin-right: 0;
+

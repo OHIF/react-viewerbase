@@ -25,6 +25,10 @@ class StudyListExample extends Component {
         }];
     }
 
+    importStudyFunction(event) {
+        alert('Import study mock ' + event);
+    }
+
     render() {
         return (
             <div>
@@ -37,10 +41,10 @@ class StudyListExample extends Component {
                 </div>
                 <div className="row" style={
                     /* This style settings is just to wrap the component and set a dark background (like on OHIF) */
-                    { 'background-color': '#000', 'height': '500px' }
+                    { backgroundColor: '#000', height: '500px' }
                 }>
                     <div className="col-xs-12" style={{ padding: 0 }}>
-                        <StudyList studies={this.studies} />
+                        <StudyList studies={this.studies} studyListFunctionsEnabled={true} importSupported={true} importStudyFunction={this.importStudyFunction} />
                     </div>
                 </div>
             </div >
