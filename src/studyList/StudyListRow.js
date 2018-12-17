@@ -5,18 +5,18 @@ import PropTypes from 'prop-types';
 class StudyListRow extends Component {
   render() {
     return (
-      <div className="studylistStudy">
-        <tr class="studylistStudy noselect {{#if this.selected}}active{{/if}}">
-          <td class="patientName {{#unless patientName}}emptyValue{{/unless}}">
-            {this.props.study.patientName}
-          </td>
-          <td class="patientId">{this.props.study.patientId}</td>
-          <td class="accessionNumber">{this.props.study.accessionNumber}</td>
-          <td class="studyDate">{this.props.study.studyDate}</td>
-          <td class="modalities">{this.props.study.modalities}</td>
-          <td class="studyDescription">{this.props.study.studyDescription}</td>
-        </tr>
-      </div>
+      <tr className="studylistStudy noselect {{#if this.selected}}active{{/if}}">
+        <td className="patientName {{#unless patientName}}emptyValue{{/unless}}">
+          {this.props.study.patientName}
+        </td>
+        <td className="patientId">{this.props.study.patientId}</td>
+        <td className="accessionNumber">{this.props.study.accessionNumber}</td>
+        <td className="studyDate">{this.props.study.studyDate}</td>
+        <td className="modalities">{this.props.study.modalities}</td>
+        <td className="studyDescription">
+          {this.props.study.studyDescription}
+        </td>
+      </tr>
     );
   }
 }

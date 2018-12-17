@@ -1,94 +1,93 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
 import StudyListRow from './StudyListRow';
-// import './CineDialog.styl';
+import './StudyList.styl';
 
 class StudyList extends Component {
-  constructor(props) {
-    super(props);
-  }
-
   render() {
     return (
       <div className="StudyList">
-        <div class="studyListToolbar clearfix">
-          <div class="header pull-left">Study List</div>
-          <div class="studyCount pull-right">{this.props.numberOfStudies}</div>
-          <div class="pull-right">{/* TODO {>  studylistToolbar}*/}</div>
+        <div className="studyListToolbar clearfix">
+          <div className="header pull-left">Study List</div>
+          <div className="studyCount pull-right">
+            {this.props.numberOfStudies}
+          </div>
+          <div className="pull-right">{/* TODO {>  studylistToolbar}*/}</div>
         </div>
-        <div class="theadBackground" />
+        <div className="theadBackground" />
         <div id="studyListContainer">
-          <table id="tblStudyList" class="studylistResult table noselect">
+          <table id="tblStudyList" className="studylistResult table noselect">
             <thead>
               <tr>
-                <th class="patientName">
-                  <div id="_patientName" class="sortingCell">
+                <th className="patientName">
+                  <div id="_patientName" className="sortingCell">
                     <span>Patient Name</span>
-                    <i class="{{sortingColumnsIcons.patientName}}">&nbsp;</i>
-                  </div>
-                  <input
-                    type="text"
-                    class="form-control studylist-search"
-                    id="patientName"
-                  />
-                </th>
-                <th class="patientId">
-                  <div id="_patientId" class="sortingCell">
-                    <span>MRN</span>
-                    <i class="{{sortingColumnsIcons.patientId}}">&nbsp;</i>
-                  </div>
-                  <input
-                    type="text"
-                    class="form-control studylist-search"
-                    id="patientId"
-                  />
-                </th>
-                <th class="accessionNumber">
-                  <div id="_accessionNumber" class="sortingCell ">
-                    <span>Accession #</span>
-                    <i class="{{sortingColumnsIcons.accessionNumber}}">
+                    <i className="{{sortingColumnsIcons.patientName}}">
                       &nbsp;
                     </i>
                   </div>
                   <input
                     type="text"
-                    class="form-control studylist-search"
-                    id="accessionNumber"
+                    className="form-control studylist-search"
+                    id="patientName"
                   />
                 </th>
-                <th class="studyDate">
-                  <div id="_studyDate" class="sortingCell">
-                    <span>Study Date</span>
-                    <i class="{{sortingColumnsIcons.studyDate}}">&nbsp;</i>
+                <th className="patientId">
+                  <div id="_patientId" className="sortingCell">
+                    <span>MRN</span>
+                    <i className="{{sortingColumnsIcons.patientId}}">&nbsp;</i>
                   </div>
                   <input
                     type="text"
-                    class="form-control studylist-search"
+                    className="form-control studylist-search"
+                    id="patientId"
+                  />
+                </th>
+                <th className="accessionNumber">
+                  <div id="_accessionNumber" className="sortingCell ">
+                    <span>Accession #</span>
+                    <i className="{{sortingColumnsIcons.accessionNumber}}">
+                      &nbsp;
+                    </i>
+                  </div>
+                  <input
+                    type="text"
+                    className="form-control studylist-search"
+                    id="accessionNumber"
+                  />
+                </th>
+                <th className="studyDate">
+                  <div id="_studyDate" className="sortingCell">
+                    <span>Study Date</span>
+                    <i className="{{sortingColumnsIcons.studyDate}}">&nbsp;</i>
+                  </div>
+                  <input
+                    type="text"
+                    className="form-control studylist-search"
                     name="daterange"
                     id="studyDate"
                   />
                 </th>
-                <th class="modalities">
-                  <div id="_modalities" class="sortingCell">
+                <th className="modalities">
+                  <div id="_modalities" className="sortingCell">
                     <span>Modality</span>
-                    <i class="{{sortingColumnsIcons.modalities}}">&nbsp;</i>
+                    <i className="{{sortingColumnsIcons.modalities}}">&nbsp;</i>
                   </div>
                   <input
                     type="text"
-                    class="form-control studylist-search"
+                    className="form-control studylist-search"
                     id="modality"
                   />
                 </th>
-                <th class="studyDescription">
-                  <div id="_studyDescription" class="sortingCell">
+                <th className="studyDescription">
+                  <div id="_studyDescription" className="sortingCell">
                     <span>Study Description</span>
-                    <i class="{{sortingColumnsIcons.studyDescription}}">
+                    <i className="{{sortingColumnsIcons.studyDescription}}">
                       &nbsp;
                     </i>
                   </div>
                   <input
                     type="text"
-                    class="form-control studylist-search"
+                    className="form-control studylist-search"
                     id="studyDescription"
                   />
                 </th>
@@ -96,7 +95,9 @@ class StudyList extends Component {
             </thead>
             <tbody id="studyListData">
               {this.props.studies.map(study => {
-                return <StudyListRow study={study} />;
+                return (
+                  <StudyListRow key={study.studyInstanceUID} study={study} />
+                );
               })}
             </tbody>
           </table>
@@ -105,10 +106,10 @@ class StudyList extends Component {
           {/*{>loadingText}*/}
           {/*{else}*/}
           {/*{#if session "serverError"}*/}
-          <div class="notFound">There was an error fetching studies</div>
+          <div className="notFound">There was an error fetching studies</div>
           {/*{else}*/}
           {/*{#unless numberOfStudies}*/}
-          <div class="notFound">No matching results</div>
+          <div className="notFound">No matching results</div>
           {/*{/unless}*/}
           {/*{/if}*/}
           {/*{/if}*/}
