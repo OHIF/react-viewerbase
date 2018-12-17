@@ -23,10 +23,16 @@ class StudyListExample extends Component {
             modalities: 'CT',
             studyDescription: 'PET CT STANDARD',
         }];
+
+        this.recordsPerPage = 10;
     }
 
-    importStudyFunction(event) {
+    onImport(event) {
         alert('Import study mock ' + event);
+    }
+
+    onSearch(searchData) {
+        alert('search data: ' + JSON.stringify(searchData) + ' - Now you can request your PACS');
     }
 
     render() {
@@ -35,8 +41,8 @@ class StudyListExample extends Component {
                 <div className="row">
                     <div className="col-md-12">
                         <h3>Study List</h3>
-                        <p>Used to control a playing CINE clip inside a viewport</p>
-                        <p>State changed to {JSON.stringify(this.state, null, 2)}</p>
+                        <p>Used to list the studies retrieved from PACS</p>
+                        <p>Search filters {JSON.stringify(this.state, null, 2)}</p>
                     </div>
                 </div>
                 <div className="row" style={
@@ -44,7 +50,10 @@ class StudyListExample extends Component {
                     { backgroundColor: '#000', height: '500px' }
                 }>
                     <div className="col-xs-12" style={{ padding: 0 }}>
-                        <StudyList studies={this.studies} studyListFunctionsEnabled={true} importSupported={true} importStudyFunction={this.importStudyFunction} />
+                        <StudyList studies={this.studies}
+                            studyListFunctionsEnabled={true}
+                            onImport={this.onImport}
+                            onSearch={this.onSearch} />
                     </div>
                 </div>
             </div >

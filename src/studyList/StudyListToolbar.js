@@ -6,7 +6,7 @@ class StudylistToolbar extends Component {
   }
 
   getImportTool() {
-    if (this.props.importSupported && this.props.studyListFunctionsEnabled) {
+    if (this.props.onImport && this.props.studyListFunctionsEnabled) {
       return (
         <div className="addNewStudy btn-file">
           <label htmlFor="btnImport">
@@ -15,7 +15,7 @@ class StudylistToolbar extends Component {
           </label>
           <input
             id="btnImport"
-            onChange={this.props.importStudyFunction}
+            onChange={this.props.onImport}
             onClick={this.clear}
             className="js-import-files"
             type="file"

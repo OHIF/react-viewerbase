@@ -4,6 +4,29 @@ import './StudyList.styl';
 import StudylistToolbar from './StudyListToolbar';
 
 class StudyList extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {};
+
+    this.getChangeHandler = this.getChangeHandler.bind(this);
+  }
+
+  getChangeHandler(key) {
+    return event => {
+      const obj = {};
+      obj[key] = event.target.value;
+      this.setState(obj);
+    };
+  }
+
+  onInputKeydown(event) {
+    if (event.key === 'Enter') {
+      event.preventDefault();
+      event.stopPropagation();
+      this.props.onSearch(this.state);
+    }
+  }
+
   render() {
     return (
       <div className="StudyList">
@@ -15,9 +38,8 @@ class StudyList extends Component {
           <div className="pull-right">
             {
               <StudylistToolbar
-                importSupported={this.props.importSupported}
                 studyListFunctionsEnabled={this.props.studyListFunctionsEnabled}
-                importStudyFunction={this.props.importStudyFunction}
+                onImport={this.props.onImport}
               />
             }
           </div>
@@ -38,6 +60,9 @@ class StudyList extends Component {
                     type="text"
                     className="form-control studylist-search"
                     id="patientName"
+                    value={this.state.patientName}
+                    onKeyDown={this.onInputKeydown.bind(this)}
+                    onChange={this.getChangeHandler('patientName')}
                   />
                 </th>
                 <th className="patientId">
@@ -49,6 +74,9 @@ class StudyList extends Component {
                     type="text"
                     className="form-control studylist-search"
                     id="patientId"
+                    value={this.state.patientId}
+                    onKeyDown={this.onInputKeydown.bind(this)}
+                    onChange={this.getChangeHandler('patientId')}
                   />
                 </th>
                 <th className="accessionNumber">
@@ -62,6 +90,9 @@ class StudyList extends Component {
                     type="text"
                     className="form-control studylist-search"
                     id="accessionNumber"
+                    value={this.state.accessionNumber}
+                    onKeyDown={this.onInputKeydown.bind(this)}
+                    onChange={this.getChangeHandler('accessionNumber')}
                   />
                 </th>
                 <th className="studyDate">
@@ -74,6 +105,8 @@ class StudyList extends Component {
                     className="form-control studylist-search"
                     name="daterange"
                     id="studyDate"
+                    value={this.state.studyDateRange}
+                    onChange={this.getChangeHandler('studyDateRange')}
                   />
                 </th>
                 <th className="modalities">
@@ -85,6 +118,9 @@ class StudyList extends Component {
                     type="text"
                     className="form-control studylist-search"
                     id="modality"
+                    onKeyDown={this.onInputKeydown.bind(this)}
+                    value={this.state.modality}
+                    onChange={this.getChangeHandler('modality')}
                   />
                 </th>
                 <th className="studyDescription">
@@ -98,6 +134,9 @@ class StudyList extends Component {
                     type="text"
                     className="form-control studylist-search"
                     id="studyDescription"
+                    onKeyDown={this.onInputKeydown.bind(this)}
+                    value={this.state.studyDescription}
+                    onChange={this.getChangeHandler('studyDescription')}
                   />
                 </th>
               </tr>
