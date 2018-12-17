@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-export function ViewportErrorIndicator() {
+export function ViewportErrorIndicator(props) {
   return (
     <div
       className="loadingIndicator"
@@ -18,7 +18,7 @@ export function ViewportErrorIndicator() {
     >
       <p>Error</p>
       <p className="description">An error has occurred.</p>
-      <p className="details">{this.props.details}</p>
+      <p className="details">{props.details}</p>
     </div>
   );
 }
