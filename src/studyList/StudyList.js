@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
+
 import StudyListRow from './StudyListRow';
 import './StudyList.styl';
 import StudylistToolbar from './StudyListToolbar';
 import LoadingText from '../basic/LoadingText';
+import PaginationArea from '../basic/PaginationArea';
 
 class StudyList extends Component {
   constructor(props) {
@@ -14,6 +16,12 @@ class StudyList extends Component {
     this.sortingColumns = {};
     this.getChangeHandler = this.getChangeHandler.bind(this);
     this.onInputKeydown = this.onInputKeydown.bind(this);
+  }
+
+  numberOfPages() {
+    const entriesPerPage = 1; // TODO: use a select
+    const entries = this.props.studies.length;
+    return entries ? entries / entriesPerPage : 1;
   }
 
   getChangeHandler(key) {
@@ -63,6 +71,10 @@ class StudyList extends Component {
         </div>
       );
     }
+  }
+
+  handlePageClick() {
+    alert('page click');
   }
 
   render() {
@@ -187,7 +199,13 @@ class StudyList extends Component {
               })}
             </tbody>
           </table>
+
           {/*{>paginationArea instance.paginationData}*/}
+          <PaginationArea
+            pageCount={this.numberOfPages()}
+            handlePageClick={this.handlePageClick}
+          />
+
           {this.isLoading()}
           {this.hasError()}
           {this.noMachingResults()}
