@@ -8,7 +8,9 @@ class StudyList extends Component {
     super(props);
     this.state = {};
 
+    this.sortingColumns = {};
     this.getChangeHandler = this.getChangeHandler.bind(this);
+    this.onInputKeydown = this.onInputKeydown.bind(this);
   }
 
   getChangeHandler(key) {
@@ -19,11 +21,31 @@ class StudyList extends Component {
     };
   }
 
-  onInputKeydown(event) {
+  async onInputKeydown(event) {
     if (event.key === 'Enter') {
       event.preventDefault();
       event.stopPropagation();
-      this.props.onSearch(this.state);
+
+      try {
+        await this.props.onSearch(this.state);
+        this.error = false;
+      } catch (e) {
+        this.error = true;
+      }
+    }
+  }
+
+  noMachingResults() {
+    if (!this.props.studies.length && !this.error) {
+      return <div className="notFound">No matching results</div>;
+    }
+  }
+
+  hasError() {
+    if (this.error) {
+      return (
+        <div className="notFound">There was an error fetching studies</div>
+      );
     }
   }
 
@@ -61,7 +83,7 @@ class StudyList extends Component {
                     className="form-control studylist-search"
                     id="patientName"
                     value={this.state.patientName}
-                    onKeyDown={this.onInputKeydown.bind(this)}
+                    onKeyDown={this.onInputKeydown}
                     onChange={this.getChangeHandler('patientName')}
                   />
                 </th>
@@ -75,7 +97,7 @@ class StudyList extends Component {
                     className="form-control studylist-search"
                     id="patientId"
                     value={this.state.patientId}
-                    onKeyDown={this.onInputKeydown.bind(this)}
+                    onKeyDown={this.onInputKeydown}
                     onChange={this.getChangeHandler('patientId')}
                   />
                 </th>
@@ -91,7 +113,7 @@ class StudyList extends Component {
                     className="form-control studylist-search"
                     id="accessionNumber"
                     value={this.state.accessionNumber}
-                    onKeyDown={this.onInputKeydown.bind(this)}
+                    onKeyDown={this.onInputKeydown}
                     onChange={this.getChangeHandler('accessionNumber')}
                   />
                 </th>
@@ -118,7 +140,7 @@ class StudyList extends Component {
                     type="text"
                     className="form-control studylist-search"
                     id="modality"
-                    onKeyDown={this.onInputKeydown.bind(this)}
+                    onKeyDown={this.onInputKeydown}
                     value={this.state.modality}
                     onChange={this.getChangeHandler('modality')}
                   />
@@ -134,7 +156,7 @@ class StudyList extends Component {
                     type="text"
                     className="form-control studylist-search"
                     id="studyDescription"
-                    onKeyDown={this.onInputKeydown.bind(this)}
+                    onKeyDown={this.onInputKeydown}
                     value={this.state.studyDescription}
                     onChange={this.getChangeHandler('studyDescription')}
                   />
@@ -150,17 +172,10 @@ class StudyList extends Component {
             </tbody>
           </table>
           {/*{>paginationArea instance.paginationData}*/}
-          {/*{#if session "showLoadingText"}*/}
+
           {/*{>loadingText}*/}
-          {/*{else}*/}
-          {/*{#if session "serverError"}*/}
-          <div className="notFound">There was an error fetching studies</div>
-          {/*{else}*/}
-          {/*{#unless numberOfStudies}*/}
-          <div className="notFound">No matching results</div>
-          {/*{/unless}*/}
-          {/*{/if}*/}
-          {/*{/if}*/}
+          {this.hasError()}
+          {this.noMachingResults()}
         </div>
       </div>
     );

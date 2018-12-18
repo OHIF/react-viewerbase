@@ -5,7 +5,7 @@ class StudyListExample extends Component {
     constructor(props) {
         super(props)
 
-        this.studies = [{
+        this.defaultStudies = [{
             studyInstanceUID: '11111.111111.111111.11111',
             patientName: 'John Doe',
             patientId: '1',
@@ -24,6 +24,12 @@ class StudyListExample extends Component {
             studyDescription: 'PET CT STANDARD',
         }];
 
+        this.state = {
+            studies: this.defaultStudies,
+        }
+
+        this.onSearch = this.onSearch.bind(this);
+
         this.recordsPerPage = 10;
     }
 
@@ -33,6 +39,25 @@ class StudyListExample extends Component {
 
     onSearch(searchData) {
         alert('search data: ' + JSON.stringify(searchData) + ' - Now you can request your PACS');
+
+        const filter = (key, searchData, study) => {
+            if (searchData[key] && !study[key].includes(searchData[key])) {
+                return false;
+            } else {
+                return true;
+            }
+        };
+
+        // just a sample of local filtering
+        const filteredStudies = this.defaultStudies.filter(function (study) {
+            const all = ['patientName', 'patientId', 'accessionNumber', 'modalities', 'studyDescription'].every(key => {
+                return filter(key, searchData, study);
+            });
+
+            return all;
+        });
+
+        this.setState({ studies: filteredStudies });
     }
 
     render() {
@@ -50,7 +75,7 @@ class StudyListExample extends Component {
                     { backgroundColor: '#000', height: '500px' }
                 }>
                     <div className="col-xs-12" style={{ padding: 0 }}>
-                        <StudyList studies={this.studies}
+                        <StudyList studies={this.state.studies}
                             studyListFunctionsEnabled={true}
                             onImport={this.onImport}
                             onSearch={this.onSearch} />
