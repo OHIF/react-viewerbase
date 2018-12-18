@@ -2,11 +2,14 @@ import React, { Component } from 'react';
 import StudyListRow from './StudyListRow';
 import './StudyList.styl';
 import StudylistToolbar from './StudyListToolbar';
+import LoadingText from '../basic/LoadingText';
 
 class StudyList extends Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      loading: false
+    };
 
     this.sortingColumns = {};
     this.getChangeHandler = this.getChangeHandler.bind(this);
@@ -27,10 +30,13 @@ class StudyList extends Component {
       event.stopPropagation();
 
       try {
+        this.setState({ loading: true });
         await this.props.onSearch(this.state);
         this.error = false;
       } catch (e) {
         this.error = true;
+      } finally {
+        this.setState({ loading: false });
       }
     }
   }
@@ -45,6 +51,16 @@ class StudyList extends Component {
     if (this.error) {
       return (
         <div className="notFound">There was an error fetching studies</div>
+      );
+    }
+  }
+
+  isLoading() {
+    if (this.state.loading) {
+      return (
+        <div className="loading">
+          <LoadingText />
+        </div>
       );
     }
   }
@@ -172,8 +188,7 @@ class StudyList extends Component {
             </tbody>
           </table>
           {/*{>paginationArea instance.paginationData}*/}
-
-          {/*{>loadingText}*/}
+          {this.isLoading()}
           {this.hasError()}
           {this.noMachingResults()}
         </div>
