@@ -4,6 +4,7 @@ import StudyBrowserExample from './StudyBrowserExample.js';
 import ToolbarExample from './ToolbarExample.js';
 import LayoutExample from './LayoutExample.js';
 import CineDialogExample from './CineDialogExample.js';
+import RoundedButtonGroupExample from './RoundedButtonGroupExample.js';
 import './App.css';
 
 export default class App extends Component {
@@ -51,14 +52,15 @@ export default class App extends Component {
         {/*<div className="row">
           <div className='col-xs-12 col-lg-12'>
             <LayoutManager rows={this.state.currentCell.row} columns={this.state.currentCell.col}>
-              <ThumbnailEntry                    
-                  {...exampleStudies[0].thumbnails[0]}                    
+              <ThumbnailEntry
+                  {...exampleStudies[0].thumbnails[0]}
                 />
             </LayoutManager>
-          </div>            
+          </div>
         </div>*/}
         <StudyBrowserExample />
         <CineDialogExample />
+        <RoundedButtonGroupExample />
         {/*<div className="row">
           <div className='col-xs-12 col-lg-6'>
             <h3>Simple Toolbar</h3>
