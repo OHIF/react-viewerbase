@@ -37,12 +37,17 @@ class RoundedButtonGroup extends Component {
   onClickOption = value => {
     console.log('onClickOption', value);
 
+    let newValue = value;
+    if (this.state.value === value) {
+      newValue = null;
+    }
+
     this.setState({
-      value
+      value: newValue
     });
 
     if (this.props.onValueChanged) {
-      this.props.onValueChanged(value);
+      this.props.onValueChanged(newValue);
     }
   };
 
