@@ -70,8 +70,8 @@ class StudyListExample extends Component {
         alert('Import study mock ' + event);
     }
 
-    onSelectItem(sopInstanceUid) {
-        alert(sopInstanceUid + ' selected!');
+    onSelectItem(studyInstanceUID) {
+        alert(studyInstanceUID + ' has selected!');
     }
 
     onSearch(searchData) {

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
-import StudyListRow from './StudyListRow';
 import './StudyList.styl';
+
 import StudylistToolbar from './StudyListToolbar';
 import LoadingText from '../basic/LoadingText';
 import PaginationArea from '../basic/paginationArea/PaginationArea';
@@ -36,7 +36,8 @@ class StudyList extends Component {
         sortData,
         currentPage: this.props.currentPage || 0,
         pageSize: this.props.pageSize || 10
-      }
+      },
+      highlightedItem: ''
     };
 
     this.getChangeHandler = this.getChangeHandler.bind(this);
@@ -133,6 +134,35 @@ class StudyList extends Component {
         this.setSearchData('sortData', { field: key, order }, this.search);
       });
     };
+  }
+
+  onHighlightItem(studyItemUid) {
+    this.setState({ highlightedItem: studyItemUid });
+  }
+
+  renderTableRow(study) {
+    return (
+      <tr
+        className={
+          this.state.highlightedItem === study.studyInstanceUID
+            ? 'studylistStudy noselect active'
+            : 'studylistStudy noselect'
+        }
+        onClick={() => {
+          this.onHighlightItem(study.studyInstanceUID);
+        }}
+        onDoubleClick={() => {
+          this.props.onSelectItem(study.studyInstanceUID);
+        }}
+      >
+        <td className="patientName">{study.patientName}</td>
+        <td className="patientId">{study.patientId}</td>
+        <td className="accessionNumber">{study.accessionNumber}</td>
+        <td className="studyDate">{study.studyDate}</td>
+        <td className="modalities">{study.modalities}</td>
+        <td className="studyDescription">{study.studyDescription}</td>
+      </tr>
+    );
   }
 
   render() {
@@ -273,14 +303,11 @@ class StudyList extends Component {
             </thead>
             <tbody id="studyListData">
               {this.props.studies.map(study => {
-                return (
-                  <StudyListRow key={study.studyInstanceUID} study={study} />
-                );
+                return this.renderTableRow(study);
               })}
             </tbody>
           </table>
 
-          {/*{>paginationArea instance.paginationData}*/}
           <PaginationArea
             currentPage={this.state.searchData.currentPage}
             nextPageFunc={this.onPageChange}
