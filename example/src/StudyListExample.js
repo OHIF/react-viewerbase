@@ -22,6 +22,39 @@ class StudyListExample extends Component {
             studyDate: 'Dec 13, 2018',
             modalities: 'CT',
             studyDescription: 'PET CT STANDARD',
+        },
+        {
+            studyInstanceUID: '3333.333333.33333.33333',
+            patientName: 'Antônio Jefferson',
+            patientId: '3',
+            accessionNumber: '732311',
+            studyDate: 'Dec 12, 2018',
+            modalities: 'US',
+            studyDescription: '0',
+        },{
+            studyInstanceUID: '444444.44444.44444.4444',
+            patientName: 'Antonio da Silva',
+            patientId: '4',
+            accessionNumber: '732311',
+            studyDate: 'Dec 12, 2018',
+            modalities: 'US',
+            studyDescription: '0',
+        },{
+            studyInstanceUID: '55555.55555.55555.55555',
+            patientName: 'Bezerra Souza',
+            patientId: '5',
+            accessionNumber: '5134543',
+            studyDate: 'Dec 22, 2018',
+            modalities: 'US',
+            studyDescription: '0',
+        },{
+            studyInstanceUID: '66666.66666.66666.6666',
+            patientName: 'Geraldo Roger',
+            patientId: '6',
+            accessionNumber: '5315135',
+            studyDate: 'Dec 12, 2016',
+            modalities: 'US',
+            studyDescription: 'US',
         }];
 
         this.state = {

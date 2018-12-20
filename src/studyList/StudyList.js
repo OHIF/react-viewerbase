@@ -4,48 +4,53 @@ import StudyListRow from './StudyListRow';
 import './StudyList.styl';
 import StudylistToolbar from './StudyListToolbar';
 import LoadingText from '../basic/LoadingText';
-import PaginationArea from '../basic/PaginationArea';
+import PaginationArea from '../basic/paginationArea/PaginationArea';
 
 class StudyList extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      loading: false
+      loading: false,
+      searchData: {
+        currentPage: 0
+      }
     };
 
     this.sortingColumns = {};
     this.getChangeHandler = this.getChangeHandler.bind(this);
     this.onInputKeydown = this.onInputKeydown.bind(this);
-  }
-
-  numberOfPages() {
-    const entriesPerPage = 1; // TODO: use a select
-    const entries = this.props.studies.length;
-    return entries ? entries / entriesPerPage : 1;
+    this.onPageChange = this.onPageChange.bind(this);
   }
 
   getChangeHandler(key) {
     return event => {
-      const obj = {};
-      obj[key] = event.target.value;
-      this.setState(obj);
+      this.setSearchData(key, event.target.value);
     };
+  }
+
+  setSearchData(key, value, callback) {
+    const searchData = this.state.searchData;
+    searchData[key] = value;
+    this.setState({ searchData }, callback);
   }
 
   async onInputKeydown(event) {
     if (event.key === 'Enter') {
       event.preventDefault();
       event.stopPropagation();
+      this.search();
+    }
+  }
 
-      try {
-        this.setState({ loading: true });
-        await this.props.onSearch(this.state);
-        this.error = false;
-      } catch (e) {
-        this.error = true;
-      } finally {
-        this.setState({ loading: false });
-      }
+  async search() {
+    try {
+      this.setState({ loading: true });
+      await this.props.onSearch(this.state.searchData);
+      this.error = false;
+    } catch (e) {
+      this.error = true;
+    } finally {
+      this.setState({ loading: false });
     }
   }
 
@@ -73,8 +78,8 @@ class StudyList extends Component {
     }
   }
 
-  handlePageClick() {
-    alert('page click');
+  onPageChange(currentPage) {
+    this.setSearchData('currentPage', currentPage, this.search);
   }
 
   render() {
@@ -202,8 +207,9 @@ class StudyList extends Component {
 
           {/*{>paginationArea instance.paginationData}*/}
           <PaginationArea
-            pageCount={this.numberOfPages()}
-            handlePageClick={this.handlePageClick}
+            currentPage={this.state.currentPage}
+            nextPageFunc={this.onPageChange}
+            prevPageFunc={this.onPageChange}
           />
 
           {this.isLoading()}
