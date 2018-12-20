@@ -5,14 +5,15 @@ export class LayoutManager extends Component {
   static defaultProps = {
     columns: 1,
     rows: 1,
-    className: 'GridLayout'
+    className: 'GridLayout',
+    viewportData: []
   };
 
   static propTypes = {
     rows: PropTypes.number.isRequired,
     columns: PropTypes.number.isRequired,
     className: PropTypes.string.isRequired,
-    children: PropTypes.array
+    viewportData: PropTypes.array.isRequired
   };
 
   render() {
@@ -20,7 +21,7 @@ export class LayoutManager extends Component {
     const columns = Array.from(new Array(this.props.columns), (col, i) => i);
     const numColumns = columns.length;
 
-    if (!this.props.children) {
+    if (!this.props.viewportData.length) {
       return '';
     }
 
@@ -33,7 +34,9 @@ export class LayoutManager extends Component {
                 {columns.map((col, colIndex) => {
                   const viewportIndex = rowIndex * numColumns + colIndex;
                   return (
-                    <td key={colIndex}>{this.props.children[viewportIndex]}</td>
+                    <td key={colIndex}>
+                      {this.props.viewportData[viewportIndex]}
+                    </td>
                   );
                 })}
               </tr>
