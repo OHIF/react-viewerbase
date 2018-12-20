@@ -9,19 +9,41 @@ import PaginationArea from '../basic/paginationArea/PaginationArea';
 class StudyList extends Component {
   constructor(props) {
     super(props);
+
+    const sortData = {};
+    const sortClasses = {
+      patientName: 'fa fa-fw fa-sort',
+      patientId: 'fa fa-fw fa-sort',
+      accessionNumber: 'fa fa-fw fa-sort',
+      studyDate: 'fa fa-fw fa-sort',
+      modality: 'fa fa-fw fa-sort',
+      studyDescription: 'fa fa-fw fa-sort'
+    };
+
+    if (props.defaultSort) {
+      sortData.field = props.defaultSort.field;
+      sortData.order = props.defaultSort.order;
+      sortClasses[props.defaultSort.field] =
+        props.defaultSort.order === 'desc'
+          ? 'fa fa-fw fa-sort-desc'
+          : 'fa fa-fw fa-sort-asc';
+    }
+
     this.state = {
       loading: false,
+      sortClasses,
       searchData: {
+        sortData,
         currentPage: this.props.currentPage || 0,
         pageSize: this.props.pageSize || 10
       }
     };
 
-    this.sortingColumns = {};
     this.getChangeHandler = this.getChangeHandler.bind(this);
     this.onInputKeydown = this.onInputKeydown.bind(this);
     this.onPageChange = this.onPageChange.bind(this);
     this.onPageSizeChange = this.onPageSizeChange.bind(this);
+    this.onSortClick = this.onSortClick.bind(this);
   }
 
   getChangeHandler(key) {
@@ -56,13 +78,13 @@ class StudyList extends Component {
     }
   }
 
-  noMachingResults() {
+  renderNoMachingResults() {
     if (!this.props.studies.length && !this.error) {
       return <div className="notFound">No matching results</div>;
     }
   }
 
-  hasError() {
+  renderHasError() {
     if (this.error) {
       return (
         <div className="notFound">There was an error fetching studies</div>
@@ -70,7 +92,7 @@ class StudyList extends Component {
     }
   }
 
-  isLoading() {
+  renderIsLoading() {
     if (this.state.loading) {
       return (
         <div className="loading">
@@ -86,6 +108,31 @@ class StudyList extends Component {
 
   onPageSizeChange(pageSize) {
     this.setSearchData('pageSize', pageSize, this.search);
+  }
+
+  onSortClick(key) {
+    return () => {
+      const sortClasses = this.state.sortClasses;
+      let order;
+
+      if (sortClasses[key].includes('sort-asc')) {
+        sortClasses[key] = 'fa fa-fw fa-sort-desc';
+        order = 'desc';
+      } else {
+        sortClasses[key] = 'fa fa-fw fa-sort-asc';
+        order = 'asc';
+      }
+
+      Object.keys(sortClasses).forEach(sortClassKey => {
+        if (sortClassKey !== key) {
+          sortClasses[sortClassKey] = 'fa fa-fw fa-sort';
+        }
+      });
+
+      this.setState({ sortClasses }, () => {
+        this.setSearchData('sortData', { field: key, order }, this.search);
+      });
+    };
   }
 
   render() {
@@ -111,11 +158,13 @@ class StudyList extends Component {
             <thead>
               <tr>
                 <th className="patientName">
-                  <div id="_patientName" className="sortingCell">
+                  <div
+                    id="_patientName"
+                    className="sortingCell"
+                    onClick={this.onSortClick('patientName')}
+                  >
                     <span>Patient Name</span>
-                    <i className="{{sortingColumnsIcons.patientName}}">
-                      &nbsp;
-                    </i>
+                    <i className={this.state.sortClasses.patientName}>&nbsp;</i>
                   </div>
                   <input
                     type="text"
@@ -127,9 +176,13 @@ class StudyList extends Component {
                   />
                 </th>
                 <th className="patientId">
-                  <div id="_patientId" className="sortingCell">
+                  <div
+                    id="_patientId"
+                    className="sortingCell"
+                    onClick={this.onSortClick('patientId')}
+                  >
                     <span>MRN</span>
-                    <i className="{{sortingColumnsIcons.patientId}}">&nbsp;</i>
+                    <i className={this.state.sortClasses.patientId}>&nbsp;</i>
                   </div>
                   <input
                     type="text"
@@ -141,9 +194,13 @@ class StudyList extends Component {
                   />
                 </th>
                 <th className="accessionNumber">
-                  <div id="_accessionNumber" className="sortingCell ">
+                  <div
+                    id="_accessionNumber"
+                    className="sortingCell"
+                    onClick={this.onSortClick('accessionNumber')}
+                  >
                     <span>Accession #</span>
-                    <i className="{{sortingColumnsIcons.accessionNumber}}">
+                    <i className={this.state.sortClasses.accessionNumber}>
                       &nbsp;
                     </i>
                   </div>
@@ -157,9 +214,13 @@ class StudyList extends Component {
                   />
                 </th>
                 <th className="studyDate">
-                  <div id="_studyDate" className="sortingCell">
+                  <div
+                    id="_studyDate"
+                    className="sortingCell"
+                    onClick={this.onSortClick('studyDate')}
+                  >
                     <span>Study Date</span>
-                    <i className="{{sortingColumnsIcons.studyDate}}">&nbsp;</i>
+                    <i className={this.state.sortClasses.studyDate}>&nbsp;</i>
                   </div>
                   <input
                     type="text"
@@ -170,10 +231,14 @@ class StudyList extends Component {
                     onChange={this.getChangeHandler('studyDateRange')}
                   />
                 </th>
-                <th className="modalities">
-                  <div id="_modalities" className="sortingCell">
+                <th className="modality">
+                  <div
+                    id="_modality"
+                    className="sortingCell"
+                    onClick={this.onSortClick('modality')}
+                  >
                     <span>Modality</span>
-                    <i className="{{sortingColumnsIcons.modalities}}">&nbsp;</i>
+                    <i className={this.state.sortClasses.modality}>&nbsp;</i>
                   </div>
                   <input
                     type="text"
@@ -185,9 +250,13 @@ class StudyList extends Component {
                   />
                 </th>
                 <th className="studyDescription">
-                  <div id="_studyDescription" className="sortingCell">
+                  <div
+                    id="_studyDescription"
+                    className="sortingCell"
+                    onClick={this.onSortClick('studyDescription')}
+                  >
                     <span>Study Description</span>
-                    <i className="{{sortingColumnsIcons.studyDescription}}">
+                    <i className={this.state.sortClasses.studyDescription}>
                       &nbsp;
                     </i>
                   </div>
@@ -220,9 +289,9 @@ class StudyList extends Component {
             pageSize={this.state.searchData.pageSize}
           />
 
-          {this.isLoading()}
-          {this.hasError()}
-          {this.noMachingResults()}
+          {this.renderIsLoading()}
+          {this.renderHasError()}
+          {this.renderNoMachingResults()}
         </div>
       </div>
     );

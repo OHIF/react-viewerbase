@@ -31,7 +31,7 @@ class StudyListExample extends Component {
             studyDate: 'Dec 12, 2018',
             modalities: 'US',
             studyDescription: '0',
-        },{
+        }, {
             studyInstanceUID: '444444.44444.44444.4444',
             patientName: 'Antonio da Silva',
             patientId: '4',
@@ -39,7 +39,7 @@ class StudyListExample extends Component {
             studyDate: 'Dec 12, 2018',
             modalities: 'US',
             studyDescription: '0',
-        },{
+        }, {
             studyInstanceUID: '55555.55555.55555.55555',
             patientName: 'Bezerra Souza',
             patientId: '5',
@@ -47,7 +47,7 @@ class StudyListExample extends Component {
             studyDate: 'Dec 22, 2018',
             modalities: 'US',
             studyDescription: '0',
-        },{
+        }, {
             studyInstanceUID: '66666.66666.66666.6666',
             patientName: 'Geraldo Roger',
             patientId: '6',
@@ -68,6 +68,10 @@ class StudyListExample extends Component {
 
     onImport(event) {
         alert('Import study mock ' + event);
+    }
+
+    onSelectItem(sopInstanceUid) {
+        alert(sopInstanceUid + ' selected!');
     }
 
     onSearch(searchData) {
@@ -111,6 +115,8 @@ class StudyListExample extends Component {
                         <StudyList studies={this.state.studies}
                             studyListFunctionsEnabled={true}
                             onImport={this.onImport}
+                            onSelectItem={this.onSelectItem}
+                            defaultSort={{ field: 'patientName', sort: 'desc', }}
                             onSearch={this.onSearch} />
                     </div>
                 </div>
