@@ -12,7 +12,8 @@ class StudyList extends Component {
     this.state = {
       loading: false,
       searchData: {
-        currentPage: 0
+        currentPage: this.props.currentPage || 0,
+        pageSize: this.props.pageSize || 10
       }
     };
 
@@ -20,6 +21,7 @@ class StudyList extends Component {
     this.getChangeHandler = this.getChangeHandler.bind(this);
     this.onInputKeydown = this.onInputKeydown.bind(this);
     this.onPageChange = this.onPageChange.bind(this);
+    this.onPageSizeChange = this.onPageSizeChange.bind(this);
   }
 
   getChangeHandler(key) {
@@ -80,6 +82,10 @@ class StudyList extends Component {
 
   onPageChange(currentPage) {
     this.setSearchData('currentPage', currentPage, this.search);
+  }
+
+  onPageSizeChange(pageSize) {
+    this.setSearchData('pageSize', pageSize, this.search);
   }
 
   render() {
@@ -207,9 +213,11 @@ class StudyList extends Component {
 
           {/*{>paginationArea instance.paginationData}*/}
           <PaginationArea
-            currentPage={this.state.currentPage}
+            currentPage={this.state.searchData.currentPage}
             nextPageFunc={this.onPageChange}
             prevPageFunc={this.onPageChange}
+            onPageSizeChange={this.onPageSizeChange}
+            pageSize={this.state.searchData.pageSize}
           />
 
           {this.isLoading()}

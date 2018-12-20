@@ -5,9 +5,11 @@ class PaginationArea extends Component {
   constructor(props) {
     super(props);
     this.currentPage = this.props.currentPage || 0;
-
+    this.pageOptions = this.props.pageOptions || [1, 2, 3, 5, 8];
+    this.pageSize = this.props.pageSize || 10;
     this.nextPage = this.nextPage.bind(this);
     this.prevPage = this.prevPage.bind(this);
+    this.onPageSizeChange = this.onPageSizeChange.bind(this);
   }
 
   nextPage() {
@@ -20,7 +22,11 @@ class PaginationArea extends Component {
     this.props.nextPageFunc(this.currentPage);
   }
 
-  paginationButtons() {
+  onPageSizeChange(event) {
+    this.props.onPageSizeChange(event.target.value);
+  }
+
+  renderPaginationButtons() {
     // TODO : paginationButtonsEnabled
     return (
       <div className="col-xs-8 col-sm-9 col-md-9">
@@ -28,14 +34,12 @@ class PaginationArea extends Component {
           <label>
             <ul className="pagination-control no-margins">
               <li className="page-item prev">
-                {' '}
                 {/* TODO disabled */}
                 <button onClick={this.prevPage} className="btn page-link">
                   Previous
                 </button>
               </li>
               <li className="page-item next">
-                {' '}
                 {/*  TODO disabled */}
                 <button onClick={this.nextPage} className="btn page-link">
                   Next
@@ -48,22 +52,31 @@ class PaginationArea extends Component {
     );
   }
 
+  renderPageSizeDropdown() {
+    return (
+      <div className="form-inline form-group rows-per-page">
+        <span>Show</span>
+        <select onChange={this.onPageSizeChange}>
+          {this.pageOptions.map(pageNumber => {
+            return <option value={pageNumber}>{pageNumber}</option>;
+          })}
+        </select>
+        <span>rows per page</span>
+      </div>
+    );
+  }
+
   render() {
     return (
       <div name="paginationArea">
         <div className="pagination-area">
           <div className="row">
             <div className="col-xs-4 col-sm-3 col-md-3">
-              <div className="form-inline form-group rows-per-page">
-                <span>Show</span>
-                TODO - We will use select2 like in OHIF?
-                {/*{> inputSelect class ='select-small' key='rowsPerPage' hideSearch=true}*/}
-                <span>rows per page</span>
-              </div>
+              {this.renderPageSizeDropdown()}
             </div>
             <div className="col-xs-8 col-sm-9 col-md-9">
               <div className="form-inline form-group page-number pull-right">
-                {this.paginationButtons()}
+                {this.renderPaginationButtons()}
               </div>
             </div>
           </div>

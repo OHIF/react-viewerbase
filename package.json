@@ -79,7 +79,6 @@
     "dist"
   ],
   "dependencies": {
-    "classnames": "^2.2.6",
-    "react-paginate": "^6.0.0"
+    "classnames": "^2.2.6"
   }
 }
