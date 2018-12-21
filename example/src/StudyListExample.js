@@ -120,7 +120,7 @@ class StudyListExample extends Component {
                 last = last >= filteredStudies.length ? filteredStudies.length : last;
                 this.setState({ studies: filteredStudies.slice(first, last) });
                 resolve();
-            }, 1500);
+            }, 500);
         });
     }
 

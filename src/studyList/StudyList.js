@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 import './StudyList.styl';
 
@@ -6,22 +7,37 @@ import StudylistToolbar from './StudyListToolbar';
 import LoadingText from '../basic/LoadingText';
 import PaginationArea from '../basic/paginationArea/PaginationArea';
 
-const DEFAULT_SORTABLE_ICON_CLS = 'fa fa-fw fa-sort';
-const DESC_SORT_ICON_CLS = 'fa fa-fw fa-sort-desc';
-const ASC_SORT_ICON_CLS = 'fa fa-fw fa-sort-asc';
+export default class StudyList extends Component {
+  static propTypes = {
+    studies: PropTypes.array.isRequired,
+    onSelectItem: PropTypes.func.isRequired,
+    onSearch: PropTypes.func.isRequired,
+    studyCount: PropTypes.number.isRequired,
+    currentPage: PropTypes.number,
+    pageSize: PropTypes.number,
+    studyListFunctionsEnabled: PropTypes.bool,
+    defaultSort: PropTypes.shape({
+      field: PropTypes.string.isRequired,
+      order: PropTypes.oneOf(['desc', 'asc']).isRequired
+    }),
+    onImport: PropTypes.func
+  };
 
-class StudyList extends Component {
+  static DEFAULT_SORTABLE_ICON_CLS = 'fa fa-fw fa-sort';
+  static DESC_SORT_ICON_CLS = 'fa fa-fw fa-sort-desc';
+  static ASC_SORT_ICON_CLS = 'fa fa-fw fa-sort-asc';
+
   constructor(props) {
     super(props);
 
     const sortData = {};
     const sortClasses = {
-      patientName: DEFAULT_SORTABLE_ICON_CLS,
-      patientId: DEFAULT_SORTABLE_ICON_CLS,
-      accessionNumber: DEFAULT_SORTABLE_ICON_CLS,
-      studyDate: DEFAULT_SORTABLE_ICON_CLS,
-      modality: DEFAULT_SORTABLE_ICON_CLS,
-      studyDescription: DEFAULT_SORTABLE_ICON_CLS
+      patientName: StudyList.DEFAULT_SORTABLE_ICON_CLS,
+      patientId: StudyList.DEFAULT_SORTABLE_ICON_CLS,
+      accessionNumber: StudyList.DEFAULT_SORTABLE_ICON_CLS,
+      studyDate: StudyList.DEFAULT_SORTABLE_ICON_CLS,
+      modality: StudyList.DEFAULT_SORTABLE_ICON_CLS,
+      studyDescription: StudyList.DEFAULT_SORTABLE_ICON_CLS
     };
 
     if (props.defaultSort) {
@@ -29,8 +45,8 @@ class StudyList extends Component {
       sortData.order = props.defaultSort.order;
       sortClasses[props.defaultSort.field] =
         props.defaultSort.order === 'desc'
-          ? DESC_SORT_ICON_CLS
-          : ASC_SORT_ICON_CLS;
+          ? StudyList.DESC_SORT_ICON_CLS
+          : StudyList.ASC_SORT_ICON_CLS;
     }
 
     this.state = {
@@ -128,17 +144,17 @@ class StudyList extends Component {
       const sortClasses = this.state.sortClasses;
       let order;
 
-      if (sortClasses[key] === ASC_SORT_ICON_CLS) {
-        sortClasses[key] = DESC_SORT_ICON_CLS;
+      if (sortClasses[key] === StudyList.ASC_SORT_ICON_CLS) {
+        sortClasses[key] = StudyList.DESC_SORT_ICON_CLS;
         order = 'desc';
       } else {
-        sortClasses[key] = ASC_SORT_ICON_CLS;
+        sortClasses[key] = StudyList.ASC_SORT_ICON_CLS;
         order = 'asc';
       }
 
       Object.keys(sortClasses).forEach(sortClassKey => {
         if (sortClassKey !== key) {
-          sortClasses[sortClassKey] = DEFAULT_SORTABLE_ICON_CLS;
+          sortClasses[sortClassKey] = StudyList.DEFAULT_SORTABLE_ICON_CLS;
         }
       });
 
@@ -261,6 +277,9 @@ class StudyList extends Component {
                   />
                 </th>
                 <th className="studyDate">
+                  {/* TODO: should we use some date range component?
+                  OHIF nowadays uses this: http://www.daterangepicker.com/
+                  */}
                   <div
                     id="_studyDate"
                     className="sortingCell"
@@ -344,5 +363,3 @@ class StudyList extends Component {
     );
   }
 }
-
-export default StudyList;
