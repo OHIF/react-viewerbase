@@ -109,10 +109,11 @@ class StudyListExample extends Component {
                 </div>
                 <div className="row" style={
                     /* This style settings is just to wrap the component and set a dark background (like on OHIF) */
-                    { backgroundColor: '#000', height: '500px' }
+                    { backgroundColor: '#000', height: '650px' }
                 }>
                     <div className="col-xs-12" style={{ padding: 0 }}>
                         <StudyList studies={this.state.studies}
+                            studyCount={this.defaultStudies.length}
                             studyListFunctionsEnabled={true}
                             onImport={this.onImport}
                             onSelectItem={this.onSelectItem}

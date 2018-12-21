@@ -3,45 +3,39 @@
   --default-color: #9ccef9;
   --active-color: #20a5d6;
   --hover-color: #ffffff;
+  --ui-gray: #263340;
+  --ui-gray-dark: #16202B;
   --ui-gray-darkest: #14202A;
   --ui-gray-darker: #151A1F;
   --ui-gray-light:  #516873;
+  --primary-background-color: #000000;
+  --table-hover-color: #2c363f;
+  --table-text-primary-color: #ffffff;
+  --table-text-secondary-color: #91b9cd;
+  --input-background-color: #2c363f;
+  --input-placeholder-color: lightgray;
+  --study-list-toolbar-height: 75px;
+  --body-cell-height : 40px;
+  --study-list-padding: 8%;
+  --large-numbers-color:#6FBDE2;
 }
 
-.StudyList
-  background: var(--ui-gray-darkest);
-  color: var(--text-secondary-color);
-  margin: 2px auto 0
-  height: calc(100% - 91px)
-  position: relative
-  width: 100%
-
-  .loadingTextDiv
-    color: var(--text-secondary-color);
-    font-size: 30px
-
-$studyListPadding = 8%
-$tableHoverColor = #2c363f
-$tableTextPrimaryColor = white
-$tableTextSecondaryColor = #91b9cd
-$tablePadding = 0px
-$hoverColor: #ffffff
-
-$inputBackgroundColor = #2c363f
-$inputPlaceholderColor = lightgray
-$activeColor = #20A5D6
-
-$studyListToolbarHeight = 75px
-$bodyCellHeight = 40px
-
-.studylistStudy
-  cursor: pointer
+// TODO: move this to a common mixin files
+placeholder-color(c)
+  &::-webkit-input-placeholder
+    color: c
+  &:-moz-placeholder
+    color: c
+  &::-moz-placeholder
+    color: c
+  &:-ms-input-placeholder
+    color: c
 
 .studyListToolbar
-  background: var(--ui-gray-darkest);
-  height: $studyListToolbarHeight
+  background-color: var(--ui-gray-darker)
+  height: var(--study-list-toolbar-height)
   margin-bottom: 2px
-  padding: 0 $studyListPadding
+  padding: 0 var(--study-list-padding)
 
   &>div
     display: inline-block
@@ -49,19 +43,18 @@ $bodyCellHeight = 40px
   .header
     font-size: 22px
     font-weight: 300
-    color: $tableTextSecondaryColor
-    line-height: $studyListToolbarHeight
+    color: var(--table-text-secondary-color)
+    line-height: var(--study-list-toolbar-height)
 
   .studylistToolbar
-    height: $studyListToolbarHeight
-    line-height: $studyListToolbarHeight
+    height: var(--study-list-toolbar-height)
+    line-height: var(--study-list-toolbar-height)
 
   .studyCount
-    // theme('color', '$largeNumbersColor')
-    color: #6FBDE2;
+    color: var(--large-numbers-color)
     font-size: 40px
     font-weight: 100
-    line-height: $studyListToolbarHeight
+    line-height: var(--study-list-toolbar-height)
 
 .theadBackground
   height: 121px
@@ -76,35 +69,31 @@ $bodyCellHeight = 40px
     width: 100%
 
   &:before
-    background: var(--ui-gray-darkest);
+    background-color: var(--ui-gray-darker)
     height: 100%
     top: 0
     z-index: 1
 
   &:after
-    // theme('background-color', '$largeNumbersColor')
-    color: #6FBDE2;
+    background-color: var(--large-numbers-color)
     bottom: -1px
     height: 1px
     z-index: 3
 
 #studyListContainer
   width: 100%
-  padding: 0 $studyListPadding
+  padding: 0 var(--study-list-padding)
   position: absolute
   z-index: 2
 
   .loadingTextDiv
-    color: $tableTextSecondaryColor
+    color: var(--table-text-secondary-color)
     font-size: 30px
 
   .notFound
-    color: $tableTextSecondaryColor
+    color: var(--table-text-secondary-color)
     font-size: 30px
     font-weight: 200
-    text-align: center
-  
-  .loading
     text-align: center
 
   table#tblStudyList
@@ -123,19 +112,13 @@ $bodyCellHeight = 40px
           &.studyDate
             min-width: 230px
 
-          &:first-child
-            padding-left: $tablePadding
-
-          &:last-child
-            padding-right: $tablePadding
-
           div.sortingCell
             display: inline-block
             cursor: pointer
             width: 100%
             min-width: 95px
             margin: 0 auto
-            color: $tableTextPrimaryColor
+            color: var(--table-text-primary-color)
             font-weight: 400
             padding: 20px
 
@@ -147,12 +130,10 @@ $bodyCellHeight = 40px
               margin: 0 5px
 
             &:hover
-              color: $activeColor
-              // theme('color', '$activeColor')
+              color: var(--active-color)
 
             &.active, &:active
-              color: $activeColor
-              // theme('color', '$activeColor')
+              color: var(--active-color)
 
           input.studylist-search
             height: 40px
@@ -160,8 +141,8 @@ $bodyCellHeight = 40px
             padding: 0 20px
             cursor: pointer
             border: none
-            background-color: $inputBackgroundColor
-            color: $inputPlaceholderColor
+            background-color: var(--input-background-color)
+            color: var(--input-placeholder-color)
             font-size: 10pt
             font-weight: normal
             width: calc(100% - 10px)
@@ -169,13 +150,13 @@ $bodyCellHeight = 40px
             box-sizing: border-box
 
             transition(all 0.15s ease)
-            placeholder-color($inputPlaceholderColor)
+            placeholder-color(var(--input-placeholder-color))
 
             &.invisible
               visibility: hidden
 
             &:active, &:hover
-              background-color: $inputBackgroundColor
+              background-color: var(--input-background-color)
 
       ::-webkit-datetime-edit-year-field:not([aria-valuenow]),
       ::-webkit-datetime-edit-month-field:not([aria-valuenow]),
@@ -188,13 +169,12 @@ $bodyCellHeight = 40px
         background-color: black
 
         &:nth-child(even)
-          // theme('background-color', '$uiGrayDarker')
-          background: var(--ui-gray-darker);
+          background-color: var(--ui-gray-darker)
 
         td
-          height: $bodyCellHeight
-          line-height: $bodyCellHeight
-          color: $tableTextPrimaryColor
+          height: var(--body-cell-height)
+          line-height: var(--body-cell-height)
+          color: var(--table-text-primary-color)
           font-weight: 300
           border-top: 1px solid #436270
           border-bottom: 1px solid #436270
@@ -202,24 +182,23 @@ $bodyCellHeight = 40px
           transition(all 0.1s ease)
 
           &.emptyValue
-            // theme('color', '$uiGrayLight')
             color: var(--ui-gray-light)
 
         &:hover, &:active, &.active
-          background-color: $tableHoverColor
-          color: white
+          background-color: var(--table-hover-color)
+          color: #ffffff
 
           td
             // This selector is necessary to override bootstrap's 'table' class
             border-top: 1px solid #436270
             border-bottom: 1px solid #436270
-            background-color: $tableHoverColor
+            background-color: var(--table-hover-color)
 
 @media only screen and (max-width: 1362px)
-  $tablePadding = 5%
+  $table-padding = 5%
 
   #studyListContainer
-    padding: 0 $tablePadding
+    padding: 0 $table-padding
 
     table#tblStudyList
       thead,
@@ -232,31 +211,6 @@ $bodyCellHeight = 40px
 
             &:last-child
               padding-right: $tablePadding
-
-.studylistToolbar
-  .addNewStudy
-    margin: 0 10px
-
-    label
-      font-weight: 400
-      cursor: pointer
-
-      *
-        pointer-events: none
-
-      &:hover
-        color: $hoverColor
-
-      &:active
-        color: activeColor
-
-    input
-      width: 0.1px;
-      height: 0.1px
-      opacity: 0
-      overflow: hidden
-      position: absolute
-      z-index: -1
 
 @media only screen and (max-width: 1161px)
   $tablePadding = 3%
@@ -321,4 +275,3 @@ $bodyCellHeight = 40px
 @media only screen and (max-width: 1069px)
   .studylist-pagination > .row
     margin-right: 0;
-

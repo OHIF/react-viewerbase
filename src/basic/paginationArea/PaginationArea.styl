@@ -53,7 +53,7 @@
             color: white
             text-decoration: none
 
-            &:hover
+            &:hover:enabled
               color: var(--active-color)
 
           .active
@@ -61,20 +61,3 @@
               background-color: var(--ui-gray)
               border-color: #ddd
               color: white
-
-        .disabled
-          cursor: not-allowed
-
-          button, button:hover, button:focus, button:active
-            background-color: var(--ui-gray-darkest)
-            border-color: var(--ui-gray)
-            color: var(--ui-gray-light)
-            pointer-events: none
-
-          &:not(.disabled):hover button
-            background-color: var(--ui-gray-dark)
-            color: var(--active-color)
-
-          &.active button
-            background-color: var(--ui-gray-dark)
-            color: var(--active-color)

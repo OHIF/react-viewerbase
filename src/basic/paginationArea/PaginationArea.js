@@ -13,6 +13,7 @@ class PaginationArea extends Component {
   }
 
   nextPage() {
+    alert(this.props.numberOfPages);
     this.currentPage = this.currentPage + 1;
     this.props.nextPageFunc(this.currentPage);
   }
@@ -27,21 +28,26 @@ class PaginationArea extends Component {
   }
 
   renderPaginationButtons() {
-    // TODO : paginationButtonsEnabled
     return (
       <div className="col-xs-8 col-sm-9 col-md-9">
         <div className="form-inline form-group page-buttons noselect">
           <label>
             <ul className="pagination-control no-margins">
               <li className="page-item prev">
-                {/* TODO disabled */}
-                <button onClick={this.prevPage} className="btn page-link">
+                <button
+                  onClick={this.prevPage}
+                  disabled={this.currentPage === 0}
+                  className="btn page-link"
+                >
                   Previous
                 </button>
               </li>
               <li className="page-item next">
-                {/*  TODO disabled */}
-                <button onClick={this.nextPage} className="btn page-link">
+                <button
+                  onClick={this.nextPage}
+                  disabled={this.currentPage === this.props.numberOfPages - 1}
+                  className="btn page-link"
+                >
                   Next
                 </button>
               </li>
@@ -58,7 +64,11 @@ class PaginationArea extends Component {
         <span>Show</span>
         <select onChange={this.onPageSizeChange}>
           {this.pageOptions.map(pageNumber => {
-            return <option value={pageNumber}>{pageNumber}</option>;
+            return (
+              <option key={pageNumber} value={pageNumber}>
+                {pageNumber}
+              </option>
+            );
           })}
         </select>
         <span>rows per page</span>

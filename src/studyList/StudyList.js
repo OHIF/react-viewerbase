@@ -143,6 +143,7 @@ class StudyList extends Component {
   renderTableRow(study) {
     return (
       <tr
+        key={study.studyInstanceUID}
         className={
           this.state.highlightedItem === study.studyInstanceUID
             ? 'studylistStudy noselect active'
@@ -170,9 +171,7 @@ class StudyList extends Component {
       <div className="StudyList">
         <div className="studyListToolbar clearfix">
           <div className="header pull-left">Study List</div>
-          <div className="studyCount pull-right">
-            {this.props.numberOfStudies}
-          </div>
+          <div className="studyCount pull-right">{this.props.studyCount}</div>
           <div className="pull-right">
             {
               <StudylistToolbar
@@ -314,6 +313,9 @@ class StudyList extends Component {
             prevPageFunc={this.onPageChange}
             onPageSizeChange={this.onPageSizeChange}
             pageSize={this.state.searchData.pageSize}
+            numberOfPages={
+              this.props.studyCount / this.state.searchData.pageSize
+            }
           />
 
           {this.renderIsLoading()}

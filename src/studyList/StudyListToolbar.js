@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 
+import './StudyListToolbar.styl';
+
 class StudylistToolbar extends Component {
   clear(e) {
     e.target.value = null;
