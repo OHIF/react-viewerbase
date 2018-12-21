@@ -130,13 +130,13 @@ class StudyListExample extends Component {
                 <div className="row">
                     <div className="col-md-12">
                         <h3>Study List</h3>
-                        <p>Used to list the studies retrieved from PACS</p>
+                        <p>Used to search and list studies.</p>
                         <p>Search filters {JSON.stringify(this.state.searchData, null, 2)}</p>
                     </div>
                 </div>
                 <div className="row" style={
                     /* This style settings is just to wrap the component and set a dark background (like on OHIF) */
-                    { backgroundColor: '#000', height: '650px' }
+                    { backgroundColor: '#000', height: '600px' }
                 }>
                     <div className="col-xs-12" style={{ padding: 0 }}>
                         <StudyList studies={this.state.studies}

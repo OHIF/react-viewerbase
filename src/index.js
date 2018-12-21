@@ -1,3 +1,4 @@
+import RoundedButtonGroup from './basic/RoundedButtonGroup.js';
 import LayoutManager from './LayoutChooser/LayoutManager.js';
 import LayoutChooser from './LayoutChooser/LayoutChooser.js';
 import LayoutButton from './LayoutChooser/LayoutButton.js';
@@ -10,6 +11,7 @@ import CineDialog from './viewer/CineDialog.js';
 import StudyList from './studyList/StudyList.js';
 
 export {
+  RoundedButtonGroup,
   LayoutChooser,
   LayoutButton,
   ToolbarSection,
