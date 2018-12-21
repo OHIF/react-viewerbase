@@ -1,0 +1,63 @@
+:root {
+  --text-secondary-color: #91B9CD;
+  --default-color: #9ccef9;
+  --active-color: #20a5d6;
+  --hover-color: #ffffff;
+  --ui-gray: #263340;
+  --ui-gray-dark: #16202B;
+  --ui-gray-darkest: #14202A;
+  --ui-gray-darker: #151A1F;
+  --ui-gray-light:  #516873;
+  --primary-background-color: #000000;
+}
+
+.pagination-area
+    font-size: 13px
+    font-weight: normal !important
+
+    label
+        font-weight: normal
+
+    select
+        margin: 5px
+        background-color: var(--primary-background-color)
+        color: white
+
+  .rows-per-page label.wrapperLabel
+    display: inline-table !important
+    margin: 0 4px
+
+    select
+      margin: 0px 4px 0px 4px
+      width: 42px
+
+  .page-buttons
+    margin: 0
+    text-align: right
+
+    label
+      font-weight: normal
+
+      ul.pagination-control
+        margin: 0
+
+        li
+          display: table-cell
+          padding: 5px 2px
+
+          button
+            padding: 4px 8px
+            background-color: var(--primary-background-color)
+            border-color: var(--ui-gray)
+            color: var(--ui-gray-darkest)
+            color: white
+            text-decoration: none
+
+            &:hover:enabled
+              color: var(--active-color)
+
+          .active
+            button
+              background-color: var(--ui-gray)
+              border-color: #ddd
+              color: white
