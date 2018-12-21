@@ -46,7 +46,8 @@ class StudyList extends Component {
 
     this.getChangeHandler = this.getChangeHandler.bind(this);
     this.onInputKeydown = this.onInputKeydown.bind(this);
-    this.onPageChange = this.onPageChange.bind(this);
+    this.nextPage = this.nextPage.bind(this);
+    this.prevPage = this.prevPage.bind(this);
     this.onPageSizeChange = this.onPageSizeChange.bind(this);
   }
 
@@ -66,7 +67,9 @@ class StudyList extends Component {
     if (event.key === 'Enter') {
       event.preventDefault();
       event.stopPropagation();
-      this.search();
+
+      // reset the page because user is doing a new search
+      this.setSearchData('currentPage', 0, this.search);
     }
   }
 
@@ -106,7 +109,13 @@ class StudyList extends Component {
     }
   }
 
-  onPageChange(currentPage) {
+  nextPage(currentPage) {
+    currentPage = currentPage + 1;
+    this.setSearchData('currentPage', currentPage, this.search);
+  }
+
+  prevPage(currentPage) {
+    currentPage = currentPage - 1;
     this.setSearchData('currentPage', currentPage, this.search);
   }
 
@@ -316,20 +325,20 @@ class StudyList extends Component {
             </tbody>
           </table>
 
-          <PaginationArea
-            currentPage={this.state.searchData.currentPage}
-            nextPageFunc={this.onPageChange}
-            prevPageFunc={this.onPageChange}
-            onPageSizeChange={this.onPageSizeChange}
-            pageSize={this.state.searchData.pageSize}
-            numberOfPages={
-              this.props.studyCount / this.state.searchData.pageSize
-            }
-          />
-
           {this.renderIsLoading()}
           {this.renderHasError()}
           {this.renderNoMachingResults()}
+
+          <PaginationArea
+            currentPage={this.state.searchData.currentPage}
+            nextPageFunc={this.nextPage}
+            prevPageFunc={this.prevPage}
+            onPageSizeChange={this.onPageSizeChange}
+            pageSize={this.state.searchData.pageSize}
+            numberOfPages={Math.ceil(
+              this.props.studyCount / this.state.searchData.pageSize
+            )}
+          />
         </div>
       </div>
     );

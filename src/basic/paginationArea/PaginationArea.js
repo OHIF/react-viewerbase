@@ -4,7 +4,6 @@ import './PaginationArea.styl';
 class PaginationArea extends Component {
   constructor(props) {
     super(props);
-    this.currentPage = this.props.currentPage || 0;
     this.pageOptions = this.props.pageOptions || [5, 10, 25, 50, 100];
     this.pageSize = this.props.pageSize || 10;
     this.nextPage = this.nextPage.bind(this);
@@ -13,13 +12,11 @@ class PaginationArea extends Component {
   }
 
   nextPage() {
-    this.currentPage = this.currentPage + 1;
-    this.props.nextPageFunc(this.currentPage);
+    this.props.nextPageFunc(this.props.currentPage);
   }
 
   prevPage() {
-    this.currentPage = this.currentPage - 1;
-    this.props.nextPageFunc(this.currentPage);
+    this.props.prevPageFunc(this.props.currentPage);
   }
 
   onPageSizeChange(event) {
@@ -35,7 +32,7 @@ class PaginationArea extends Component {
               <li className="page-item prev">
                 <button
                   onClick={this.prevPage}
-                  disabled={this.currentPage === 0}
+                  disabled={this.props.currentPage === 0}
                   className="btn page-link"
                 >
                   Previous
@@ -44,7 +41,9 @@ class PaginationArea extends Component {
               <li className="page-item next">
                 <button
                   onClick={this.nextPage}
-                  disabled={this.currentPage === this.props.numberOfPages - 1}
+                  disabled={
+                    this.props.currentPage === this.props.numberOfPages - 1
+                  }
                   className="btn page-link"
                 >
                   Next
@@ -61,7 +60,10 @@ class PaginationArea extends Component {
     return (
       <div className="form-inline form-group rows-per-page">
         <span>Show</span>
-        <select onChange={this.onPageSizeChange}>
+        <select
+          onChange={this.onPageSizeChange}
+          defaultValue={this.props.pageSize}
+        >
           {this.pageOptions.map(pageNumber => {
             return (
               <option key={pageNumber} value={pageNumber}>

@@ -55,15 +55,21 @@ class StudyListExample extends Component {
             studyDate: 'Dec 12, 2016',
             modalities: 'US',
             studyDescription: 'US',
-        }];
+        }].sort(function (a, b) {
+            if (a.patientName < b.patientName) { return -1; }
+            if (a.patientName > b.patientName) { return 1; }
+            return 0;
+        });
+
+        this.pageSize = 5;
+        this.defaultSort = { field: 'patientName', order: 'desc', };
 
         this.state = {
-            studies: this.defaultStudies,
+            searchData: {},
+            studies: this.defaultStudies.slice(0, this.pageSize),
         }
 
         this.onSearch = this.onSearch.bind(this);
-
-        this.recordsPerPage = 10;
     }
 
     onImport(event) {
@@ -71,11 +77,11 @@ class StudyListExample extends Component {
     }
 
     onSelectItem(studyInstanceUID) {
-        alert(studyInstanceUID + ' has selected!');
+        alert(studyInstanceUID + ' has selected! Now you can open your study.');
     }
 
     onSearch(searchData) {
-        alert('search data: ' + JSON.stringify(searchData) + ' - Now you can request your PACS');
+        this.setState({searchData});
 
         const filter = (key, searchData, study) => {
             if (searchData[key] && !study[key].includes(searchData[key])) {
@@ -85,16 +91,37 @@ class StudyListExample extends Component {
             }
         };
 
-        // just a sample of local filtering
-        const filteredStudies = this.defaultStudies.filter(function (study) {
+        const { field, order } = searchData.sortData;
+
+        // just a example of local filtering
+        let filteredStudies = this.defaultStudies.filter(function (study) {
             const all = ['patientName', 'patientId', 'accessionNumber', 'modalities', 'studyDescription'].every(key => {
                 return filter(key, searchData, study);
             });
 
             return all;
+        }).sort(function (a, b) {
+            if (order === 'desc') {
+                if (a[field] < b[field]) { return -1; }
+                if (a[field] > b[field]) { return 1; }
+                return 0;
+            } else {
+                if (a[field] > b[field]) { return -1; }
+                if (a[field] < b[field]) { return 1; }
+                return 0;
+            }
         });
 
-        this.setState({ studies: filteredStudies });
+        // User can notice the loading icon
+        return new Promise((resolve) => {
+            setTimeout(() => {
+                const first = searchData.currentPage * searchData.pageSize;
+                let last = searchData.currentPage * searchData.pageSize + searchData.pageSize;
+                last = last >= filteredStudies.length ? filteredStudies.length : last;
+                this.setState({ studies: filteredStudies.slice(first, last) });
+                resolve();
+            }, 1500);
+        });
     }
 
     render() {
@@ -104,7 +131,7 @@ class StudyListExample extends Component {
                     <div className="col-md-12">
                         <h3>Study List</h3>
                         <p>Used to list the studies retrieved from PACS</p>
-                        <p>Search filters {JSON.stringify(this.state, null, 2)}</p>
+                        <p>Search filters {JSON.stringify(this.state.searchData, null, 2)}</p>
                     </div>
                 </div>
                 <div className="row" style={
@@ -117,7 +144,8 @@ class StudyListExample extends Component {
                             studyListFunctionsEnabled={true}
                             onImport={this.onImport}
                             onSelectItem={this.onSelectItem}
-                            defaultSort={{ field: 'patientName', sort: 'desc', }}
+                            pageSize={this.pageSize}
+                            defaultSort={this.defaultSort}
                             onSearch={this.onSearch} />
                     </div>
                 </div>
