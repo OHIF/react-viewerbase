@@ -5,7 +5,7 @@ class PaginationArea extends Component {
   constructor(props) {
     super(props);
     this.currentPage = this.props.currentPage || 0;
-    this.pageOptions = this.props.pageOptions || [1, 2, 3, 5, 8];
+    this.pageOptions = this.props.pageOptions || [5, 10, 25, 50, 100];
     this.pageSize = this.props.pageSize || 10;
     this.nextPage = this.nextPage.bind(this);
     this.prevPage = this.prevPage.bind(this);
@@ -13,7 +13,6 @@ class PaginationArea extends Component {
   }
 
   nextPage() {
-    alert(this.props.numberOfPages);
     this.currentPage = this.currentPage + 1;
     this.props.nextPageFunc(this.currentPage);
   }

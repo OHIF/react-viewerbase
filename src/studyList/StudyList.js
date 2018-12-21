@@ -6,18 +6,22 @@ import StudylistToolbar from './StudyListToolbar';
 import LoadingText from '../basic/LoadingText';
 import PaginationArea from '../basic/paginationArea/PaginationArea';
 
+const DEFAULT_SORTABLE_ICON_CLS = 'fa fa-fw fa-sort';
+const DESC_SORT_ICON_CLS = 'fa fa-fw fa-sort-desc';
+const ASC_SORT_ICON_CLS = 'fa fa-fw fa-sort-asc';
+
 class StudyList extends Component {
   constructor(props) {
     super(props);
 
     const sortData = {};
     const sortClasses = {
-      patientName: 'fa fa-fw fa-sort',
-      patientId: 'fa fa-fw fa-sort',
-      accessionNumber: 'fa fa-fw fa-sort',
-      studyDate: 'fa fa-fw fa-sort',
-      modality: 'fa fa-fw fa-sort',
-      studyDescription: 'fa fa-fw fa-sort'
+      patientName: DEFAULT_SORTABLE_ICON_CLS,
+      patientId: DEFAULT_SORTABLE_ICON_CLS,
+      accessionNumber: DEFAULT_SORTABLE_ICON_CLS,
+      studyDate: DEFAULT_SORTABLE_ICON_CLS,
+      modality: DEFAULT_SORTABLE_ICON_CLS,
+      studyDescription: DEFAULT_SORTABLE_ICON_CLS
     };
 
     if (props.defaultSort) {
@@ -25,8 +29,8 @@ class StudyList extends Component {
       sortData.order = props.defaultSort.order;
       sortClasses[props.defaultSort.field] =
         props.defaultSort.order === 'desc'
-          ? 'fa fa-fw fa-sort-desc'
-          : 'fa fa-fw fa-sort-asc';
+          ? DESC_SORT_ICON_CLS
+          : ASC_SORT_ICON_CLS;
     }
 
     this.state = {
@@ -44,7 +48,6 @@ class StudyList extends Component {
     this.onInputKeydown = this.onInputKeydown.bind(this);
     this.onPageChange = this.onPageChange.bind(this);
     this.onPageSizeChange = this.onPageSizeChange.bind(this);
-    this.onSortClick = this.onSortClick.bind(this);
   }
 
   getChangeHandler(key) {
@@ -116,17 +119,17 @@ class StudyList extends Component {
       const sortClasses = this.state.sortClasses;
       let order;
 
-      if (sortClasses[key].includes('sort-asc')) {
-        sortClasses[key] = 'fa fa-fw fa-sort-desc';
+      if (sortClasses[key] === ASC_SORT_ICON_CLS) {
+        sortClasses[key] = DESC_SORT_ICON_CLS;
         order = 'desc';
       } else {
-        sortClasses[key] = 'fa fa-fw fa-sort-asc';
+        sortClasses[key] = ASC_SORT_ICON_CLS;
         order = 'asc';
       }
 
       Object.keys(sortClasses).forEach(sortClassKey => {
         if (sortClassKey !== key) {
-          sortClasses[sortClassKey] = 'fa fa-fw fa-sort';
+          sortClasses[sortClassKey] = DEFAULT_SORTABLE_ICON_CLS;
         }
       });
 
@@ -151,6 +154,12 @@ class StudyList extends Component {
         }
         onClick={() => {
           this.onHighlightItem(study.studyInstanceUID);
+        }}
+        onMouseDown={event => {
+          // middle/wheel click
+          if (event.button === 1) {
+            this.props.onSelectItem(study.studyInstanceUID);
+          }
         }}
         onDoubleClick={() => {
           this.props.onSelectItem(study.studyInstanceUID);
