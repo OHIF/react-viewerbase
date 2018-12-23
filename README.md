@@ -31,11 +31,11 @@ class Example extends Component {
 ## To run locally
 1. Clone this repository
 1. `cd react-viewerbase`
-1. `yarn i`
+1. `yarn install`
 1. `yarn start`
 1. in new termainal
 1. `cd example`
-1. `yarn i`
+1. `yarn instll`
 1. `yarn start`
 
 ## License
