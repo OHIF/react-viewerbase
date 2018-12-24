@@ -9,6 +9,8 @@ import Toolbar from './viewer/Toolbar.js';
 import PlayClipButton from './viewer/PlayClipButton.js';
 import CineDialog from './viewer/CineDialog.js';
 import StudyList from './studyList/StudyList.js';
+import UserPreferences from './userPreferences/UserPreferences';
+import UserPreferencesModal from './userPreferences/UserPreferencesModal';
 
 export {
   RoundedButtonGroup,
@@ -21,5 +23,7 @@ export {
   PlayClipButton,
   LayoutManager,
   CineDialog,
-  StudyList
+  StudyList,
+  UserPreferences,
+  UserPreferencesModal
 };
