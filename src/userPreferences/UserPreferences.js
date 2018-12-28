@@ -28,7 +28,13 @@ export default class UserPreferences extends Component {
   }
 
   renderWindowLevelTab() {
-    return <WindowLevelPreferences />;
+    return (
+      <form className="form-themed themed">
+        <div className="form-content">
+          <WindowLevelPreferences />
+        </div>
+      </form>
+    );
   }
 
   renderTabs(tabIndex) {
