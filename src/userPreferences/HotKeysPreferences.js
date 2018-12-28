@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import './HotKeysPreferences.styl';
 
 export default class HotKeysPreferences extends Component {
   static range = (start, end) => {
@@ -161,7 +162,9 @@ export default class HotKeysPreferences extends Component {
         WLPreset7: '8',
         WLPreset8: '9',
         WLPreset9: '0'
-      }
+      },
+
+      errorMessages: {}
     };
 
     this.onInputKeyDown = this.onInputKeyDown.bind(this);
@@ -193,8 +196,6 @@ export default class HotKeysPreferences extends Component {
   }
 
   updateInputText(command, event, displayPressedKey = false) {
-    const hotKeys = this.state.hotKeys;
-
     const pressedKeys = this.getKeysPressedArray(event);
 
     if (displayPressedKey) {
@@ -204,12 +205,23 @@ export default class HotKeysPreferences extends Component {
       pressedKeys.push(keyName.toUpperCase());
     }
 
-    hotKeys[command] = pressedKeys.join('+');
-    this.setState(hotKeys, () => {
+    this.updateHotKeysState(command, pressedKeys.join('+'), () => {
       if (displayPressedKey) {
-        this.onChange(command);
+        this.onChange(event, command);
       }
     });
+  }
+
+  updateHotKeysState(command, combination, callback = () => {}) {
+    const hotKeys = this.state.hotKeys;
+    hotKeys[command] = combination;
+    this.setState(hotKeys, callback);
+  }
+
+  updateErrorsState(command, errorMessage, callback = () => {}) {
+    const errorMessages = this.state.errorMessages;
+    errorMessages[command] = errorMessage;
+    this.setState(errorMessages, callback);
   }
 
   onInputKeyDown(event, command) {
@@ -219,8 +231,6 @@ export default class HotKeysPreferences extends Component {
       return;
     }
 
-    debugger;
-    console.log(HotKeysPreferences.allowedKeys);
     if (HotKeysPreferences.allowedKeys.includes(event.keyCode)) {
       this.updateInputText(command, event, true);
     } else {
@@ -230,37 +240,56 @@ export default class HotKeysPreferences extends Component {
     event.preventDefault();
   }
 
-  onChange(command) {
+  onChange(event, command) {
     const combination = this.state.hotKeys[command];
     const pressedKeys = combination.split('+');
     const lastPressedKey = pressedKeys[pressedKeys.length - 1].toUpperCase();
-    const isModifier = ['CTRL', 'ALT', 'SHIFT'].includes(lastPressedKey);
 
+    /*
+     * Check if it has a valid modifier
+     */
+    const isModifier = ['CTRL', 'ALT', 'SHIFT'].includes(lastPressedKey);
     if (isModifier) {
-      // TODO: set error
-      alert(
+      // TODO: save state at the same time
+      this.updateHotKeysState(command, '');
+      this.updateErrorsState(
+        command,
         "It's not possible to define only modifier keys (CTRL, ALT and SHIFT) as a shortcut"
       );
       return;
     }
 
-    debugger;
+    /*
+     * Check if it has some conflict
+     */
     const conflictedCommand = this.getConflictingCommand(command, combination);
     if (conflictedCommand) {
-      // TODO: set error
-      alert('conflicted command ' + JSON.stringify(conflictedCommand));
+      // alert('conflicted command ' + JSON.stringify(conflictedCommand));
+      // TODO: popover w/ confirmation
+      this.updateErrorsState(command, 'Conflicted');
+
       return;
     }
 
+    /*
+     * Check if is a valid combination
+     */
     const modifierCombination = pressedKeys
-      .slice(0, pressedKeys.length - 2)
+      .slice(0, pressedKeys.length - 1)
       .join('+')
       .toUpperCase();
+
     const hasDisallowedCombinations = HotKeysPreferences.disallowedCombinations[
       modifierCombination
     ].includes(lastPressedKey);
+
     if (hasDisallowedCombinations) {
-      alert(`The "${combination}" shortcut combination is not allowed`);
+      // TODO: save state at the same time
+      this.updateHotKeysState(command, '');
+      this.updateErrorsState(
+        command,
+        "It's not possible to define only modifier keys (CTRL, ALT and SHIFT) as a shortcut"
+      );
       return;
     }
   }
@@ -270,12 +299,24 @@ export default class HotKeysPreferences extends Component {
       <tr key={command}>
         <td className="text-right p-r-1">{command}</td>
         <td width="200">
-          <input
-            value={combination}
-            onKeyDown={event => this.onInputKeyDown(event, command)}
-            onChange={event => this.onChange(event, command)}
-          />
+          <label
+            className={`wrapperLabel  ${
+              this.state.errorMessages[command] ? 'state-error' : ''
+            }`}
+            data-key="defaultTool"
+          >
+            <input
+              readOnly={true}
+              type="text"
+              value={combination}
+              vali="true"
+              className="form-control hotkey text-center"
+              onKeyDown={event => this.onInputKeyDown(event, command)}
+            />
+            <span className="wrapperText" />
+          </label>
         </td>
+        {/* <td>{this.state.errorMessages[command]}</td> */}
       </tr>
     );
   }

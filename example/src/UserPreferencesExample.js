@@ -16,9 +16,9 @@ export default class UserPreferencesExample extends Component {
                     <div className="col-md-6">
                         <h3>User preferences</h3>
                         <p>Used to set the user preferences.</p>
-                        <p>Values from forms {() => { return 'TODO' }}</p>
+                        {/* <p>Values from forms {() => { return 'TODO' }}</p> */}
                     </div>
-                    <div className="col-md-6">
+                    <div style={{backgroundColor: 'black'}} className="col-md-6">
                         <UserPreferences />
                     </div>
                 </div>
