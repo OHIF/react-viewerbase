@@ -210,9 +210,7 @@ export default class HotKeysPreferences extends Component {
     }
 
     this.updateHotKeysState(toolKey, pressedKeys.join('+'), () => {
-      if (displayPressedKey) {
-        this.onChange(event, toolKey);
-      }
+      this.onChange(event, toolKey);
     });
   }
 
@@ -247,12 +245,13 @@ export default class HotKeysPreferences extends Component {
     event.preventDefault();
   }
 
+  onInputKeyUp() {}
+
   onChange(event, toolKey) {
     const hotKey = this.state.hotKeys[toolKey];
     const command = hotKey.command;
     const pressedKeys = command.split('+');
     const lastPressedKey = pressedKeys[pressedKeys.length - 1].toUpperCase();
-
     /*
      * Check if it has a valid modifier
      */
@@ -300,6 +299,9 @@ export default class HotKeysPreferences extends Component {
       );
       return;
     }
+
+    // remove error if everything is ok
+    this.updateErrorsState(toolKey, '');
   }
 
   renderRow(toolKey, hotKey) {
