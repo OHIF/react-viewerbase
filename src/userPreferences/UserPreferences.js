@@ -53,7 +53,6 @@ export default class UserPreferences extends Component {
     return (
       <div>
         <ul className="nav nav-tabs">
-          {/** TODO: make the tabs customizable. Client would be able to add more panels inside the tabs or hide some default panels */}
           <li
             onClick={() => {
               this.tabClick(0);

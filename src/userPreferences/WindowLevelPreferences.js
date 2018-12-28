@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import './WindowLevelPreferences.styl';
 
 export default class WindowLevelPreferences extends Component {
   constructor() {
@@ -100,7 +101,7 @@ export default class WindowLevelPreferences extends Component {
       <table class="full-width">
         <thead>
           <tr>
-            <th class="p-x-1 text-center">Preset</th>
+            <th class="p-x-1 text-center presetIndex">Preset</th>
             <th class="p-x-1">Description</th>
             <th class="p-x-1">Window</th>
             <th class="p-x-1">Level</th>

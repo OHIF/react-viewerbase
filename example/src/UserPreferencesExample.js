@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { UserPreferences } from 'react-viewerbase';
+import { UserPreferences, UserPreferencesModal } from 'react-viewerbase';
 
 export default class UserPreferencesExample extends Component {
 
@@ -18,8 +18,8 @@ export default class UserPreferencesExample extends Component {
                         <p>Used to set the user preferences.</p>
                         {/* <p>Values from forms {() => { return 'TODO' }}</p> */}
                     </div>
-                    <div style={{backgroundColor: 'black'}} className="col-md-6">
-                        <UserPreferences />
+                    <div style={{ backgroundColor: 'black' }} className="col-md-6">
+                        <UserPreferencesModal />
                     </div>
                 </div>
             </div>)

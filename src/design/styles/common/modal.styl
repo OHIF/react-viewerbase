@@ -1,0 +1,91 @@
+:root {
+  --default-color: #9ccef9;
+  --active-color: #20a5d6;
+  --hover-color: #ffffff;
+  --ui-gray: #263340;
+  --ui-gray-dark: #16202B;
+  --ui-gray-darkest: #14202A;
+  --ui-gray-darker: #151A1F;
+  --ui-gray-light:  #516873;
+  --text-primary-color: #ffffff;
+  --text-secondary-color: #91B9CD;
+  --ui-border-color: #44626F;
+}
+
+.modal-dialog
+  .modal-content
+    background-color: var(--ui-gray-darker)
+    border-color: var(--ui-border-color)
+    color: var(--text-secondary-color)
+    border-radius(6px)
+    border: 0
+
+    .modal-header, .modal-footer
+      border-color: var(--ui-border-color)
+
+    .dialog-separator,
+    .dialog-separator-before,
+    .dialog-separator-after
+      position: relative
+
+    .dialog-separator:before,
+    .dialog-separator:after,
+    .dialog-separator-before:before,
+    .dialog-separator-after:after
+      background-color: #000000
+      box-shadow(-50px 0 0 #000000\, 50px 0 0 #000000)
+      content: ' '
+      display: block
+      height: 3px
+      left: 0
+      position: absolute
+      width: 100%
+
+    .dialog-separator:before,
+    .dialog-separator-before:before
+      top: -3px
+
+    .dialog-separator:after,
+    .dialog-separator-after:after
+      bottom: -3px
+
+    .modal-body
+      color: var(--text-primary-color)
+      padding: 16px 22px 25px
+      position: relative
+
+    .modal-header
+      border-bottom-width: 3px
+      border-bottom-style: solid
+      border-bottom-color: #000000
+      padding: 19px 22px 17px
+      position: relative
+
+      h4
+        color: var(--text-secondary-color)
+        font-size: 20px
+        font-weight: 500
+        line-height: 24px
+        padding-right: 24px
+
+    .modal-footer
+      border-top: 0
+
+  .card-round
+    background-color: var(--ui-gray-dark)
+    border-radius(5px)
+    padding: 10px
+
+  .modal-header
+    position: relative
+
+.button-close, .modal-dialog button.close
+  color: var(--text-secondary-color)
+  height: 25px
+  opacity: 1
+  overflow: hidden
+  text-align: center
+  text-shadow: none
+  width: 25px
+  font-size:25px
+  font-weight: lighter
