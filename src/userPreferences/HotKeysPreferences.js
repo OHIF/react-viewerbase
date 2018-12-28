@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import './HotKeysPreferences.styl';
 
 export default class HotKeysPreferences extends Component {
   static range = (start, end) => {

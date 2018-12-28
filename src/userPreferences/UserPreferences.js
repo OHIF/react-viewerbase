@@ -45,6 +45,10 @@ export default class UserPreferences extends Component {
     }
   }
 
+  getTabClass(tabIndex) {
+    return tabIndex === this.state.tabIndex ? 'nav-link active' : 'nav-link';
+  }
+
   render() {
     return (
       <div>
@@ -54,17 +58,17 @@ export default class UserPreferences extends Component {
             onClick={() => {
               this.tabClick(0);
             }}
-            className="nav-item"
+            className={this.getTabClass(0)}
           >
-            <a className="nav-link active">Hotkeys</a>
+            <a className="nav-link">Hotkeys</a>
           </li>
           <li
             onClick={() => {
               this.tabClick(1);
             }}
-            className="nav-item"
+            className={this.getTabClass(1)}
           >
-            <a className="nav-link">Window Level</a>
+            <a className={this.getTabClass(0)}>Window Level</a>
           </li>
         </ul>
         {this.renderTabs(this.state.tabIndex)}
