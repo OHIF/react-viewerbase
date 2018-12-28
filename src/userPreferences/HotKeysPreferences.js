@@ -110,58 +110,63 @@ export default class HotKeysPreferences extends Component {
     this.state = {
       // TODO: make this configurable
       hotKeys: {
-        defaultTool: 'ESC',
-        zoom: 'Z',
-        wwwc: 'W',
-        pan: 'P',
-        angle: 'A',
-        stackScroll: 'S',
-        magnify: 'M',
-        length: '',
-        annotate: '',
-        dragProbe: '',
-        ellipticalRoi: '',
-        rectangleRoi: '',
+        defaultTool: { label: 'Default Tool', command: 'ESC' },
+        zoom: { label: 'Zoom', command: 'Z' },
+        wwwc: { label: 'W/L', command: 'W' },
+        pan: { label: 'Pan', command: 'P' },
+        angle: { label: 'Angle measurement', command: 'A' },
+        stackScroll: { label: 'Scroll stack', command: 'S' },
+        magnify: { label: 'Magnify', command: 'M' },
+        length: { label: 'Length measurement', command: '' },
+        annotate: { label: 'Annotate', command: '' },
+        dragProbe: { label: 'Pixel probe', command: '' },
+        ellipticalRoi: { label: 'Elliptical ROI', command: '' },
+        rectangleRoi: { label: 'Rectangle ROI', command: '' },
 
         // Viewport hotkeys
-        flipH: 'H',
-        flipV: 'V',
-        rotateR: 'R',
-        rotateL: 'L',
-        invert: 'I',
-        zoomIn: '',
-        zoomOut: '',
-        zoomToFit: '',
-        resetViewport: '',
-        clearTools: '',
+        flipH: { label: 'Flip Horizontally', command: 'H' },
+        flipV: { label: 'Flip Vertically', command: 'V' },
+        rotateR: { label: 'Rotate Right', command: 'R' },
+        rotateL: { label: 'Rotate Left', command: 'L' },
+        invert: { label: 'Invert', command: 'I' },
+        zoomIn: { label: 'Zoom In', command: '' },
+        zoomOut: { label: 'Zoom Out', command: '' },
+        zoomToFit: { label: 'Zoom to Fit', command: '' },
+        resetViewport: { label: 'Reset', command: '' },
+        clearTools: { label: 'Clear Tools', command: '' },
+
+        // 2nd column
 
         // Viewport navigation hotkeys
-        scrollDown: 'DOWN',
-        scrollUp: 'UP',
-        scrollLastImage: 'END',
-        scrollFirstImage: 'HOME',
-        previousDisplaySet: 'PAGEUP',
-        nextDisplaySet: 'PAGEDOWN',
-        nextPanel: 'RIGHT',
-        previousPanel: 'LEFT',
+        scrollDown: { label: 'Scroll Down', command: 'DOWN' },
+        scrollUp: { label: 'Scroll Up', command: 'UP' },
+        scrollLastImage: { label: 'Scroll to Last Image', command: 'END' },
+        scrollFirstImage: { label: 'Scroll to First Image', command: 'HOME' },
+        previousDisplaySet: { label: 'Previous Series', command: 'PAGEUP' },
+        nextDisplaySet: { label: 'Next Series', command: 'PAGEDOWN' },
+        nextPanel: { label: 'Next Image Viewport', command: 'RIGHT' },
+        previousPanel: { label: 'Previous Image Viewport', command: 'LEFT' },
 
         // Miscellaneous hotkeys
-        toggleOverlayTags: 'O',
-        toggleCinePlay: 'SPACE',
-        toggleCineDialog: '',
-        toggleDownloadDialog: '',
+        toggleOverlayTags: { label: 'Toggle Image Info Overlay', command: 'O' },
+        toggleCinePlay: { label: 'Play/Pause Cine', command: 'SPACE' },
+        toggleCineDialog: { label: 'Show/Hide Cine Controls', command: '' },
+        toggleDownloadDialog: {
+          label: 'Show/Hide Download Dialog',
+          command: ''
+        },
 
         // Preset hotkeys
-        WLPreset0: '1',
-        WLPreset1: '2',
-        WLPreset2: '3',
-        WLPreset3: '4',
-        WLPreset4: '5',
-        WLPreset5: '6',
-        WLPreset6: '7',
-        WLPreset7: '8',
-        WLPreset8: '9',
-        WLPreset9: '0'
+        WLPreset0: { label: 'W/L Preset 0  (Soft Tissue)', command: '1' },
+        WLPreset1: { label: 'W/L Preset 1 (Lung)', command: '2' },
+        WLPreset2: { label: 'W/L Preset 2 (Liver)', command: '3' },
+        WLPreset3: { label: 'W/L Preset 3 (Bone)', command: '4' },
+        WLPreset4: { label: 'W/L Preset 4 (Brain)', command: '5' },
+        WLPreset5: { label: 'W/L Preset 5', command: '6' },
+        WLPreset6: { label: 'W/L Preset 6', command: '7' },
+        WLPreset7: { label: 'W/L Preset 7', command: '8' },
+        WLPreset8: { label: 'W/L Preset 8', command: '9' },
+        WLPreset9: { label: 'W/L Preset 0', command: '0' }
       },
 
       errorMessages: {}
@@ -188,14 +193,14 @@ export default class HotKeysPreferences extends Component {
     return keysPressedArray;
   }
 
-  getConflictingCommand(currentCommand, currentValue) {
-    return Object.keys(this.state.hotKeys).find(command => {
-      const value = this.state.hotKeys[command];
-      return value && value === currentValue && command !== currentCommand;
+  getConflictingCommand(currentToolKey, hotKeyCommand) {
+    return Object.keys(this.state.hotKeys).find(tool => {
+      const value = this.state.hotKeys[tool].command;
+      return value && value === hotKeyCommand && tool !== currentToolKey;
     });
   }
 
-  updateInputText(command, event, displayPressedKey = false) {
+  updateInputText(toolKey, event, displayPressedKey = false) {
     const pressedKeys = this.getKeysPressedArray(event);
 
     if (displayPressedKey) {
@@ -205,26 +210,29 @@ export default class HotKeysPreferences extends Component {
       pressedKeys.push(keyName.toUpperCase());
     }
 
-    this.updateHotKeysState(command, pressedKeys.join('+'), () => {
+    this.updateHotKeysState(toolKey, pressedKeys.join('+'), () => {
       if (displayPressedKey) {
-        this.onChange(event, command);
+        this.onChange(event, toolKey);
       }
     });
   }
 
-  updateHotKeysState(command, combination, callback = () => {}) {
+  updateHotKeysState(toolKey, command, callback = () => {}) {
     const hotKeys = this.state.hotKeys;
-    hotKeys[command] = combination;
+    if (!hotKeys[toolKey]) {
+      debugger;
+    }
+    hotKeys[toolKey].command = command;
     this.setState(hotKeys, callback);
   }
 
-  updateErrorsState(command, errorMessage, callback = () => {}) {
+  updateErrorsState(toolKey, errorMessage, callback = () => {}) {
     const errorMessages = this.state.errorMessages;
-    errorMessages[command] = errorMessage;
+    errorMessages[toolKey] = errorMessage;
     this.setState(errorMessages, callback);
   }
 
-  onInputKeyDown(event, command) {
+  onInputKeyDown(event, toolKey) {
     // Prevent ESC key from propagating and closing the modal
     if (event.key === 'Escape') {
       event.stopPropagation();
@@ -232,17 +240,18 @@ export default class HotKeysPreferences extends Component {
     }
 
     if (HotKeysPreferences.allowedKeys.includes(event.keyCode)) {
-      this.updateInputText(command, event, true);
+      this.updateInputText(toolKey, event, true);
     } else {
-      this.updateInputText(command, event, false);
+      this.updateInputText(toolKey, event, false);
     }
 
     event.preventDefault();
   }
 
-  onChange(event, command) {
-    const combination = this.state.hotKeys[command];
-    const pressedKeys = combination.split('+');
+  onChange(event, toolKey) {
+    const hotKey = this.state.hotKeys[toolKey];
+    const command = hotKey.command;
+    const pressedKeys = command.split('+');
     const lastPressedKey = pressedKeys[pressedKeys.length - 1].toUpperCase();
 
     /*
@@ -251,9 +260,9 @@ export default class HotKeysPreferences extends Component {
     const isModifier = ['CTRL', 'ALT', 'SHIFT'].includes(lastPressedKey);
     if (isModifier) {
       // TODO: save state at the same time
-      this.updateHotKeysState(command, '');
+      this.updateHotKeysState(toolKey, '');
       this.updateErrorsState(
-        command,
+        toolKey,
         "It's not possible to define only modifier keys (CTRL, ALT and SHIFT) as a shortcut"
       );
       return;
@@ -262,11 +271,11 @@ export default class HotKeysPreferences extends Component {
     /*
      * Check if it has some conflict
      */
-    const conflictedCommand = this.getConflictingCommand(command, combination);
+    const conflictedCommand = this.getConflictingCommand(toolKey, command);
     if (conflictedCommand) {
       // alert('conflicted command ' + JSON.stringify(conflictedCommand));
       // TODO: popover w/ confirmation
-      this.updateErrorsState(command, 'Conflicted');
+      this.updateErrorsState(toolKey, 'Conflicted');
 
       return;
     }
@@ -274,49 +283,48 @@ export default class HotKeysPreferences extends Component {
     /*
      * Check if is a valid combination
      */
-    const modifierCombination = pressedKeys
+    const modifierCommand = pressedKeys
       .slice(0, pressedKeys.length - 1)
       .join('+')
       .toUpperCase();
 
     const hasDisallowedCombinations = HotKeysPreferences.disallowedCombinations[
-      modifierCombination
+      modifierCommand
     ].includes(lastPressedKey);
 
     if (hasDisallowedCombinations) {
       // TODO: save state at the same time
-      this.updateHotKeysState(command, '');
+      this.updateHotKeysState(toolKey, '');
       this.updateErrorsState(
-        command,
+        toolKey,
         "It's not possible to define only modifier keys (CTRL, ALT and SHIFT) as a shortcut"
       );
       return;
     }
   }
 
-  renderRow(command, combination) {
+  renderRow(toolKey, hotKey) {
     return (
-      <tr key={command}>
-        <td className="text-right p-r-1">{command}</td>
+      <tr key={toolKey}>
+        <td className="text-right p-r-1">{hotKey.label}</td>
         <td width="200">
           <label
-            className={`wrapperLabel  ${
-              this.state.errorMessages[command] ? 'state-error' : ''
-            }`}
+            className={`wrapperLabel  
+              ${this.state.errorMessages[toolKey] ? 'state-error' : ''}`}
             data-key="defaultTool"
           >
             <input
               readOnly={true}
               type="text"
-              value={combination}
+              value={hotKey.command}
               vali="true"
               className="form-control hotkey text-center"
-              onKeyDown={event => this.onInputKeyDown(event, command)}
+              onKeyDown={event => this.onInputKeyDown(event, toolKey)}
             />
             <span className="wrapperText" />
           </label>
         </td>
-        {/* <td>{this.state.errorMessages[command]}</td> */}
+        {/* <td>{this.state.errorMessages[tool]}</td> */}
       </tr>
     );
   }
