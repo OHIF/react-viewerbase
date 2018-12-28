@@ -35,7 +35,7 @@ class Example extends Component {
 1. `yarn start`
 1. in new termainal
 1. `cd example`
-1. `yarn instll`
+1. `yarn install`
 1. `yarn start`
 
 ## License
