@@ -7,11 +7,18 @@ import UserPreferences from './UserPreferences';
 import '../design/styles/common/modal.styl';
 
 export default class UserPreferencesModal extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
+
+    this.windowLevelDefault = JSON.parse(
+      JSON.stringify(this.props.windowLevelData)
+    );
+    this.hotKeysDefault = JSON.parse(JSON.stringify(this.props.hotKeysData));
 
     this.state = {
-      isOpen: false
+      tabIndex: 0,
+      windowLevelData: this.props.windowLevelData,
+      hotKeysData: this.props.hotKeysData
     };
   }
 
@@ -27,47 +34,50 @@ export default class UserPreferencesModal extends Component {
     return tabIndex === this.state.tabIndex ? 'nav-link active' : 'nav-link';
   }
 
-  closeModal() {
-    return false;
+  reset() {
+    this.setState(
+      {
+        windowLevel: this.windowLevelDefault,
+        hotKeys: this.hotKeysDefault
+      },
+      () => {
+        this.setState({ state: this.state });
+        // alert('alooww')
+        // this.forceUpdate();
+      }
+    );
   }
-
-  openModal() {
-    this.setState({ open: true });
-  }
-
-  saveAndClose() {}
 
   render() {
     return (
-      <div>
-        <button
-          class="btn btn-primary"
-          type="button"
-          onClick={this.openModal.bind(this)}
-        >
-          Open user preferences
-        </button>
-        <Modal
-          show={this.state.open}
-          onHide={this.closeModal}
-          aria-labelledby="ModalHeader"
-          className="modal fade themed in"
-        >
-          <Modal.Header closeButton>
-            <Modal.Title>User preferences</Modal.Title>
-          </Modal.Header>
-          <Modal.Body>
-            <UserPreferences />
-          </Modal.Body>
-          <Modal.Footer>
-            <button class="btn btn-danger pull-left">Reset to Defaults</button>
-            <Modal.Dismiss className="btn btn-default">Cancel</Modal.Dismiss>
-            <button className="btn btn-primary" onClick={this.saveAndClose}>
-              Save
-            </button>
-          </Modal.Footer>
-        </Modal>
-      </div>
+      <Modal
+        show={this.props.isOpen}
+        onHide={this.props.onHideModal}
+        aria-labelledby="ModalHeader"
+        className="modal fade themed in"
+      >
+        <Modal.Header closeButton>
+          <Modal.Title>User preferences</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <UserPreferences
+            windowLevelData={this.props.windowLevelData}
+            hotKeysData={this.props.hotKeysData}
+          />
+        </Modal.Body>
+        <Modal.Footer>
+          <button
+            class="btn btn-danger pull-left"
+            onClick={this.reset.bind(this)}
+          >
+            Reset to Defaults
+          </button>
+          <Modal.Dismiss className="btn btn-default">Cancel</Modal.Dismiss>
+          <button className="btn btn-primary" onClick={this.props.onSave}>
+            Save
+          </button>
+        </Modal.Footer>
+      </Modal>
     );
   }
 }

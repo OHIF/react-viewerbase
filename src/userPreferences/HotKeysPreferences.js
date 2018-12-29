@@ -106,68 +106,9 @@ export default class HotKeysPreferences extends Component {
   constructor(props) {
     super(props);
 
+    debugger;
     this.state = {
-      // TODO: make this configurable
-      hotKeys: {
-        defaultTool: { label: 'Default Tool', command: 'ESC' },
-        zoom: { label: 'Zoom', command: 'Z' },
-        wwwc: { label: 'W/L', command: 'W' },
-        pan: { label: 'Pan', command: 'P' },
-        angle: { label: 'Angle measurement', command: 'A' },
-        stackScroll: { label: 'Scroll stack', command: 'S' },
-        magnify: { label: 'Magnify', command: 'M' },
-        length: { label: 'Length measurement', command: '' },
-        annotate: { label: 'Annotate', command: '' },
-        dragProbe: { label: 'Pixel probe', command: '' },
-        ellipticalRoi: { label: 'Elliptical ROI', command: '' },
-        rectangleRoi: { label: 'Rectangle ROI', command: '' },
-
-        // Viewport hotkeys
-        flipH: { label: 'Flip Horizontally', command: 'H' },
-        flipV: { label: 'Flip Vertically', command: 'V' },
-        rotateR: { label: 'Rotate Right', command: 'R' },
-        rotateL: { label: 'Rotate Left', command: 'L' },
-        invert: { label: 'Invert', command: 'I' },
-        zoomIn: { label: 'Zoom In', command: '' },
-        zoomOut: { label: 'Zoom Out', command: '' },
-        zoomToFit: { label: 'Zoom to Fit', command: '' },
-        resetViewport: { label: 'Reset', command: '' },
-        clearTools: { label: 'Clear Tools', command: '' },
-
-        // 2nd column
-
-        // Viewport navigation hotkeys
-        scrollDown: { label: 'Scroll Down', command: 'DOWN' },
-        scrollUp: { label: 'Scroll Up', command: 'UP' },
-        scrollLastImage: { label: 'Scroll to Last Image', command: 'END' },
-        scrollFirstImage: { label: 'Scroll to First Image', command: 'HOME' },
-        previousDisplaySet: { label: 'Previous Series', command: 'PAGEUP' },
-        nextDisplaySet: { label: 'Next Series', command: 'PAGEDOWN' },
-        nextPanel: { label: 'Next Image Viewport', command: 'RIGHT' },
-        previousPanel: { label: 'Previous Image Viewport', command: 'LEFT' },
-
-        // Miscellaneous hotkeys
-        toggleOverlayTags: { label: 'Toggle Image Info Overlay', command: 'O' },
-        toggleCinePlay: { label: 'Play/Pause Cine', command: 'SPACE' },
-        toggleCineDialog: { label: 'Show/Hide Cine Controls', command: '' },
-        toggleDownloadDialog: {
-          label: 'Show/Hide Download Dialog',
-          command: ''
-        },
-
-        // Preset hotkeys
-        WLPreset0: { label: 'W/L Preset 0  (Soft Tissue)', command: '1' },
-        WLPreset1: { label: 'W/L Preset 1 (Lung)', command: '2' },
-        WLPreset2: { label: 'W/L Preset 2 (Liver)', command: '3' },
-        WLPreset3: { label: 'W/L Preset 3 (Bone)', command: '4' },
-        WLPreset4: { label: 'W/L Preset 4 (Brain)', command: '5' },
-        WLPreset5: { label: 'W/L Preset 5', command: '6' },
-        WLPreset6: { label: 'W/L Preset 6', command: '7' },
-        WLPreset7: { label: 'W/L Preset 7', command: '8' },
-        WLPreset8: { label: 'W/L Preset 8', command: '9' },
-        WLPreset9: { label: 'W/L Preset 0', command: '0' }
-      },
-
+      hotKeys: this.props.hotKeysData,
       errorMessages: {}
     };
 
@@ -216,9 +157,6 @@ export default class HotKeysPreferences extends Component {
 
   updateHotKeysState(toolKey, command, callback = () => {}) {
     const hotKeys = this.state.hotKeys;
-    if (!hotKeys[toolKey]) {
-      debugger;
-    }
     hotKeys[toolKey].command = command;
     this.setState(hotKeys, callback);
   }
@@ -244,8 +182,6 @@ export default class HotKeysPreferences extends Component {
 
     event.preventDefault();
   }
-
-  onInputKeyUp() {}
 
   onChange(event, toolKey) {
     const hotKey = this.state.hotKeys[toolKey];

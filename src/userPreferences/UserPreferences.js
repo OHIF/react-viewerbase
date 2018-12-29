@@ -5,8 +5,8 @@ import WindowLevelPreferences from './WindowLevelPreferences';
 import './UserPreferences.styl';
 
 export default class UserPreferences extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
 
     this.state = {
       tabIndex: 0
@@ -21,20 +21,24 @@ export default class UserPreferences extends Component {
     return (
       <form className="form-themed themed">
         <div className="form-content">
-          <HotKeysPreferences />
+          <HotKeysPreferences hotKeysData={this.props.hotKeysData} />
         </div>
       </form>
     );
   }
 
   renderWindowLevelTab() {
-    return (
-      <form className="form-themed themed">
-        <div className="form-content">
-          <WindowLevelPreferences />
-        </div>
-      </form>
-    );
+    if (this.props.windowLevelData) {
+      return (
+        <form className="form-themed themed">
+          <div className="form-content">
+            <WindowLevelPreferences
+              windowLevelData={this.props.windowLevelData}
+            />
+          </div>
+        </form>
+      );
+    }
   }
 
   renderTabs(tabIndex) {
