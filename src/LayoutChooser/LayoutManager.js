@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import './LayoutManager.css';
 
 export class LayoutManager extends Component {
   static defaultProps = {
@@ -17,34 +18,26 @@ export class LayoutManager extends Component {
   };
 
   render() {
-    const rows = Array.from(new Array(this.props.rows), (row, i) => i);
-    const columns = Array.from(new Array(this.props.columns), (col, i) => i);
-    const numColumns = columns.length;
-
     if (!this.props.viewportData.length) {
       return '';
     }
 
-    return (
-      <table className={this.props.className}>
-        <tbody>
-          {rows.map((row, rowIndex) => {
-            return (
-              <tr key={rowIndex}>
-                {columns.map((col, colIndex) => {
-                  const viewportIndex = rowIndex * numColumns + colIndex;
-                  return (
-                    <td key={colIndex}>
-                      {this.props.viewportData[viewportIndex]}
-                    </td>
-                  );
-                })}
-              </tr>
-            );
-          })}
-        </tbody>
-      </table>
+    const viewportElements = this.props.viewportData.map(
+      (viewportComponent, viewportIndex) => {
+        const style = {
+          height: `${100 / this.props.rows}%`,
+          width: `${100 / this.props.columns}%`
+        };
+
+        return (
+          <div key={viewportIndex} className="viewport-container" style={style}>
+            {viewportComponent}
+          </div>
+        );
+      }
     );
+
+    return <div className={this.props.className}>{viewportElements}</div>;
   }
 }
 

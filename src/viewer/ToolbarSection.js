@@ -7,7 +7,6 @@ class ToolbarSection extends Component {
   constructor(props) {
     super(props);
     this.state = {};
-    //this.setToolActive = this.setToolActive.bind(this);
   }
   componentDidMount() {}
   render() {
@@ -17,6 +16,7 @@ class ToolbarSection extends Component {
           key={index}
           {...item}
           active={item.command === this.props.activeCommand}
+          setToolActive={this.props.setToolActive}
         />
       );
     });
@@ -25,6 +25,8 @@ class ToolbarSection extends Component {
   }
 }
 ToolbarSection.propTypes = {
-  buttons: PropTypes.array.isRequired
+  buttons: PropTypes.array.isRequired,
+  activeCommand: PropTypes.string,
+  setToolActive: PropTypes.func
 };
 export default ToolbarSection;
