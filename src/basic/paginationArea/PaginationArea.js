@@ -5,10 +5,10 @@ class PaginationArea extends Component {
   constructor(props) {
     super(props);
     this.pageOptions = this.props.pageOptions || [5, 10, 25, 50, 100];
-    this.pageSize = this.props.pageSize || 10;
+    this.rowsPerPage = this.props.rowsPerPage || 10;
     this.nextPage = this.nextPage.bind(this);
     this.prevPage = this.prevPage.bind(this);
-    this.onPageSizeChange = this.onPageSizeChange.bind(this);
+    this.onRowsPerPageChange = this.onRowsPerPageChange.bind(this);
   }
 
   nextPage() {
@@ -19,8 +19,8 @@ class PaginationArea extends Component {
     this.props.prevPageFunc(this.props.currentPage);
   }
 
-  onPageSizeChange(event) {
-    this.props.onPageSizeChange(event.target.value);
+  onRowsPerPageChange(event) {
+    this.props.onRowsPerPageChange(parseInt(event.target.value));
   }
 
   renderPaginationButtons() {
@@ -56,13 +56,13 @@ class PaginationArea extends Component {
     );
   }
 
-  renderPageSizeDropdown() {
+  renderRowsPerPageDropdown() {
     return (
       <div className="form-inline form-group rows-per-page">
         <span>Show</span>
         <select
-          onChange={this.onPageSizeChange}
-          defaultValue={this.props.pageSize}
+          onChange={this.onRowsPerPageChange}
+          defaultValue={this.props.rowsPerPage}
         >
           {this.pageOptions.map(pageNumber => {
             return (
@@ -83,7 +83,7 @@ class PaginationArea extends Component {
         <div className="pagination-area">
           <div className="row">
             <div className="col-xs-4 col-sm-3 col-md-3">
-              {this.renderPageSizeDropdown()}
+              {this.renderRowsPerPageDropdown()}
             </div>
             <div className="col-xs-8 col-sm-9 col-md-9">
               <div className="form-inline form-group page-number pull-right">

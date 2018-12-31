@@ -61,12 +61,12 @@ class StudyListExample extends Component {
             return 0;
         });
 
-        this.pageSize = 5;
+        this.rowsPerPage = 5;
         this.defaultSort = { field: 'patientName', order: 'desc', };
 
         this.state = {
             searchData: {},
-            studies: this.defaultStudies.slice(0, this.pageSize),
+            studies: this.defaultStudies.slice(0, this.rowsPerPage),
         }
 
         this.onSearch = this.onSearch.bind(this);
@@ -115,8 +115,8 @@ class StudyListExample extends Component {
         // User can notice the loading icon
         return new Promise((resolve) => {
             setTimeout(() => {
-                const first = searchData.currentPage * searchData.pageSize;
-                let last = searchData.currentPage * searchData.pageSize + searchData.pageSize;
+                const first = searchData.currentPage * searchData.rowsPerPage;
+                let last = searchData.currentPage * searchData.rowsPerPage + searchData.rowsPerPage;
                 last = last >= filteredStudies.length ? filteredStudies.length : last;
                 this.setState({ studies: filteredStudies.slice(first, last) });
                 resolve();
@@ -144,7 +144,7 @@ class StudyListExample extends Component {
                             studyListFunctionsEnabled={true}
                             onImport={this.onImport}
                             onSelectItem={this.onSelectItem}
-                            pageSize={this.pageSize}
+                            rowsPerPage={this.rowsPerPage}
                             defaultSort={this.defaultSort}
                             onSearch={this.onSearch} />
                     </div>
