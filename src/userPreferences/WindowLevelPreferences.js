@@ -12,9 +12,10 @@ export default class WindowLevelPreferences extends Component {
   }
 
   onChange(event, key, field) {
-    const entry = this.state.data[key];
+    const data = this.state.data;
+    const entry = data[key];
     entry[field] = event.target.value;
-    this.setState({ key: entry[field] });
+    this.setState({ data });
   }
 
   getWLPreferencesRows(key) {

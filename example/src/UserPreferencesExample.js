@@ -12,12 +12,12 @@ export default class UserPreferencesExample extends Component {
             2: { description: 'Liver', window: 150, level: 90 },
             3: { description: 'Bone', window: 2500, level: 480 },
             4: { description: 'Brain', window: 80, level: 40 },
-            5: { description: undefined, window: undefined, level: undefined },
-            6: { description: undefined, window: undefined, level: undefined },
-            7: { description: undefined, window: undefined, level: undefined },
-            8: { description: undefined, window: undefined, level: undefined },
-            9: { description: undefined, window: undefined, level: undefined },
-            10: { description: undefined, window: undefined, level: undefined }
+            5: { description: '', window: '', level: '' },
+            6: { description: '', window: '', level: '' },
+            7: { description: '', window: '', level: '' },
+            8: { description: '', window: '', level: '' },
+            9: { description: '', window: '', level: '' },
+            10: { description: '', window: '', level: '' }
         };
 
         this.hotKeysDefault = {
@@ -80,39 +80,67 @@ export default class UserPreferencesExample extends Component {
             WLPreset9: { label: 'W/L Preset 0', command: '0' },
         };
 
+        this.database = {
+            windowLevelData: { ...this.windowLevelDefault }, // cloning it
+            hotKeysData: { ...this.hotKeysDefault }, // cloning it
+        };
+
         this.state = {
             modalOpened: false,
-            windowLevel: JSON.parse(JSON.stringify(this.windowLevelDefault)),
-            hotKeys: JSON.parse(JSON.stringify(this.hotKeysDefault)),
+            windowLevelData: { ...this.database.windowLevelData }, // cloning it
+            hotKeysData: { ...this.database.hotKeysData }, // cloning it
         };
     }
 
     openModal() {
-        this.setState({ modalOpened: true });
+        this.setState({ modalOpened: true, });
+
+        // Persist the latest state version into database
+        this.database.hotKeysData = { ...this.state.hotKeysData };
+        this.database.windowLevelData = { ...this.state.windowLevelData };
     }
 
-    hideModal() {
-        this.setState({ modalOpened: false });
+    onCancel() {
+        // close the modal and put the last data saved.
+        this.setState({
+            modalOpened: false,
+            hotKeysData: { ...this.database.hotKeysData }, // cloning obj
+            windowLevelData: { ...this.database.windowLevelData }, // cloning obj
+        });
     }
 
     save() {
-        alert('save button was clicked. closing modal');
+        // the windowLevelData and hotKeysData states have been changed already
+        // now we just need to close the modal
         this.setState({ modalOpened: false });
     }
 
-    resetDefaults() {
-
+    resetToDefaults() {
+        // Reset to the system's defaults.
+        this.setState({
+            modalOpened: true,
+            hotKeysData: { ...this.hotKeysDefault }, // cloning obj
+            windowLevelData: { ...this.windowLevelDefault }, // cloning obj
+        });
     }
 
     render() {
         return (
             <div>
                 <div className="row">
-                    <div className="col-md-6">
+                    <div className="col-md-6" style={{ maxHeight: '200px', overflowX: 'auto' }}>
                         <h3>User preferences</h3>
                         <p>Used to set the user preferences.</p>
-                        <p><b>Values from window/level form:</b><br />{JSON.stringify(this.state.windowLevel)}</p>
-                        <p><b>Values from hotkey form:</b><br />{JSON.stringify(this.state.hotKeys)}</p>
+                        <p><b>Values from window/level form:</b><br />
+                            <pre>
+                                {JSON.stringify(this.state.windowLevelData, null, 4)}
+                            </pre>
+                        </p>
+                        <p><b>Values from hotkey form:</b><br />
+                            <pre>{
+                                JSON.stringify(this.state.hotKeysData, null, 2)}
+                            </pre>
+                        </p>
                     </div>
                     <div className="col-md-6">
                         <button
@@ -123,11 +151,11 @@ export default class UserPreferencesExample extends Component {
                         </button>
                         <UserPreferencesModal
                             isOpen={this.state.modalOpened}
-                            onHideModal={this.hideModal.bind(this)}
+                            onCancel={this.onCancel.bind(this)}
                             onSave={this.save.bind(this)}
-                            onResetDefaults={this.resetDefaults.bind(this)}
-                            windowLevelData={this.state.windowLevel}
-                            hotKeysData={this.state.hotKeys}
+                            onResetToDefaults={this.resetToDefaults.bind(this)}
+                            windowLevelData={this.state.windowLevelData}
+                            hotKeysData={this.state.hotKeysData}
                         />
                     </div>
                 </div>

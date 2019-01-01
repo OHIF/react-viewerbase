@@ -10,16 +10,12 @@ export default class UserPreferencesModal extends Component {
   constructor(props) {
     super(props);
 
-    this.windowLevelDefault = JSON.parse(
-      JSON.stringify(this.props.windowLevelData)
-    );
-    this.hotKeysDefault = JSON.parse(JSON.stringify(this.props.hotKeysData));
-
     this.state = {
-      tabIndex: 0,
-      windowLevelData: this.props.windowLevelData,
-      hotKeysData: this.props.hotKeysData
+      tabIndex: 0
     };
+
+    this.resetToDefaults = this.resetToDefaults.bind(this);
+    this.cancel = this.cancel.bind(this);
   }
 
   renderTabs(tabIndex) {
@@ -34,25 +30,19 @@ export default class UserPreferencesModal extends Component {
     return tabIndex === this.state.tabIndex ? 'nav-link active' : 'nav-link';
   }
 
-  reset() {
-    this.setState(
-      {
-        windowLevel: this.windowLevelDefault,
-        hotKeys: this.hotKeysDefault
-      },
-      () => {
-        this.setState({ state: this.state });
-        // alert('alooww')
-        // this.forceUpdate();
-      }
-    );
+  resetToDefaults() {
+    this.props.onResetToDefaults();
+  }
+
+  cancel() {
+    this.props.onCancel();
   }
 
   render() {
     return (
       <Modal
         show={this.props.isOpen}
-        onHide={this.props.onHideModal}
+        onHide={this.cancel}
         aria-labelledby="ModalHeader"
         className="modal fade themed in"
       >
@@ -68,7 +58,7 @@ export default class UserPreferencesModal extends Component {
         <Modal.Footer>
           <button
             class="btn btn-danger pull-left"
-            onClick={this.reset.bind(this)}
+            onClick={this.resetToDefaults}
           >
             Reset to Defaults
           </button>
