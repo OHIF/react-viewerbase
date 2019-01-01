@@ -14,8 +14,10 @@
     "moment": "^2.22.2",
     "prop-types": "^15.6.2",
     "react": "^16.4.1",
+    "react-dnd": "^7.0.2",
+    "react-dnd-html5-backend": "^7.0.2",
     "react-dom": "^16.4.1",
-    "react-scripts": "^2.1.1",
+    "react-scripts": "^2.1.2",
     "react-viewerbase": "link:../"
   },
   "scripts": {

@@ -5,8 +5,9 @@ import postcss from 'rollup-plugin-postcss'
 import resolve from 'rollup-plugin-node-resolve'
 import url from 'rollup-plugin-url'
 import svgr from '@svgr/rollup'
-
 import pkg from './package.json'
+// Deal with https://github.com/rollup/rollup-plugin-commonjs/issues/297
+import builtins from 'rollup-plugin-node-builtins';
 
 export default {
   input: 'src/index.js',
@@ -23,6 +24,7 @@ export default {
     }
   ],
   plugins: [
+    builtins(),
     external(),
     postcss({
       modules: false
