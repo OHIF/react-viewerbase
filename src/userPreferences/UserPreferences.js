@@ -56,24 +56,26 @@ export default class UserPreferences extends Component {
   render() {
     return (
       <div>
-        <ul className="nav nav-tabs">
-          <li
-            onClick={() => {
-              this.tabClick(0);
-            }}
-            className={this.getTabClass(0)}
-          >
-            <a className="nav-link">Hotkeys</a>
-          </li>
-          <li
-            onClick={() => {
-              this.tabClick(1);
-            }}
-            className={this.getTabClass(1)}
-          >
-            <a className={this.getTabClass(0)}>Window Level</a>
-          </li>
-        </ul>
+        <div class="dialog-separator-after">
+          <ul className="nav nav-tabs">
+            <li
+              onClick={() => {
+                this.tabClick(0);
+              }}
+              className={this.getTabClass(0)}
+            >
+              <a className="nav-link">Hotkeyss</a>
+            </li>
+            <li
+              onClick={() => {
+                this.tabClick(1);
+              }}
+              className={this.getTabClass(1)}
+            >
+              <a className={this.getTabClass(0)}>Window Level</a>
+            </li>
+          </ul>
+        </div>
         {this.renderTabs(this.state.tabIndex)}
       </div>
     );

@@ -57,7 +57,7 @@ export default class UserPreferencesModal extends Component {
         </Modal.Body>
         <Modal.Footer>
           <button
-            class="btn btn-danger pull-left"
+            className="btn btn-danger pull-left"
             onClick={this.resetToDefaults}
           >
             Reset to Defaults

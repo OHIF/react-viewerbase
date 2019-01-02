@@ -72,13 +72,13 @@ export default class WindowLevelPreferences extends Component {
 
   render() {
     return (
-      <table class="full-width">
+      <table className="full-width">
         <thead>
           <tr>
-            <th class="p-x-1 text-center presetIndex">Preset</th>
-            <th class="p-x-1">Description</th>
-            <th class="p-x-1">Window</th>
-            <th class="p-x-1">Level</th>
+            <th className="p-x-1 text-center presetIndex">Preset</th>
+            <th className="p-x-1">Description</th>
+            <th className="p-x-1">Window</th>
+            <th className="p-x-1">Level</th>
           </tr>
         </thead>
         <tbody>

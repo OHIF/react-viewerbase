@@ -144,7 +144,7 @@ export default class UserPreferencesExample extends Component {
                     </div>
                     <div className="col-md-6">
                         <button
-                            class="btn btn-primary"
+                            className="btn btn-primary"
                             type="button"
                             onClick={this.openModal.bind(this)}>
                             Open user preferences
@@ -161,5 +161,4 @@ export default class UserPreferencesExample extends Component {
                 </div>
             </div>)
     }
-
 }
