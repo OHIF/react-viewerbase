@@ -26,6 +26,7 @@ class StudyBrowser extends Component {
           return (
             <ThumbnailEntryDragSource
               key={`${studyIndex}_${thumbIndex}`}
+              {...study}
               {...thumb}
               id={`${studyIndex}_${thumbIndex}`}
               onClick={this.props.onThumbnailClick}
@@ -37,6 +38,7 @@ class StudyBrowser extends Component {
             <div className="ThumbnailEntryContainer">
               <ThumbnailEntry
                 key={`${studyIndex}_${thumbIndex}`}
+                {...study}
                 {...thumb}
                 id={`${studyIndex}_${thumbIndex}`}
                 onClick={this.props.onThumbnailClick}

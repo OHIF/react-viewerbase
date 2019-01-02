@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StudyBrowser, ViewerbaseDragDropContext, ExampleDropTarget } from 'react-viewerbase';
+import { StudyBrowser, LayoutManager, ViewerbaseDragDropContext, ExampleDropTarget } from 'react-viewerbase';
 
 const exampleStudies = [
   {
@@ -74,6 +74,8 @@ class StudyBrowserExample extends Component {
   }
 
   render() {
+    const viewportData = [null, null, null, null];
+
     return (
       <div className="row">
         <div className="col-xs-12 col-lg-6">
@@ -83,6 +85,9 @@ class StudyBrowserExample extends Component {
             from here into a panel in the layout.
           </p>
           <ExampleDropTarget/>
+          {/*TODO: Switch example to use this with onDrop callback <div>
+            <LayoutManager rows={1} columns={1} viewportData={viewportData}/>
+          </div>*/}
         </div>
         <div className="col-xs-12 col-lg-6" style={{ height: '512px' }}>
           <StudyBrowser

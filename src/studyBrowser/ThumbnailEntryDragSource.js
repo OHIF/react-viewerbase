@@ -15,9 +15,6 @@ const thumbnailSource = {
   },*/
 
   beginDrag(props) {
-    console.log('beginDrag');
-    console.log(props);
-
     return props;
   },
 
@@ -27,6 +24,7 @@ const thumbnailSource = {
 
     if (dropResult) {
       console.log(`You dropped ${item.id} into ${dropResult.id}!`);
+      console.log(item);
     }
   }
 };

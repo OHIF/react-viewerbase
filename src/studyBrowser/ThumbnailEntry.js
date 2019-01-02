@@ -5,15 +5,6 @@ import './ThumbnailEntry.styl';
 import classnames from 'classnames';
 
 class ThumbnailEntry extends Component {
-  constructor(props) {
-    super(props);
-
-    console.log('ThumbnailEntry constructor');
-    console.log(props);
-
-    this.element = React.createRef();
-  }
-
   static defaultProps = {
     imageSrc: '',
     active: false,
@@ -38,8 +29,6 @@ class ThumbnailEntry extends Component {
   };
 
   render() {
-    console.log('ThumbnailEntry render');
-
     const hasInstanceNumber = this.props.instanceNumber !== undefined;
 
     let className = classnames('ThumbnailEntry noselect', {
@@ -53,7 +42,6 @@ class ThumbnailEntry extends Component {
         onClick={this.onClick}
         onDoubleClick={this.onDoubleClick}
         onMouseDown={this.onMouseDown}
-        ref={this.element}
       >
         <div className="p-x-1">
           <ImageThumbnail

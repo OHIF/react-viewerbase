@@ -1,6 +1,7 @@
+import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import { DropTarget } from 'react-dnd';
-import './ExampleDropTarget.css';
+import './LayoutPanelDropTarget.css';
 
 // Drag sources and drop targets only interact
 // if they have the same string type.
@@ -10,38 +11,33 @@ const Types = {
 
 const divTarget = {
   drop(props, monitor, component) {
-    // Note: For this example we use setState, but in
-    // OHIF we will update the redux store instead
     const item = monitor.getItem();
 
-    component.setState({
-      item: {
-        id: item.id,
-        seriesDescription: item.seriesDescription
-      }
-    });
-    return { id: 'ExampleDropTarget' };
+    if (props.onDrop) {
+      props.onDrop({
+        viewportIndex: props.viewportIndex,
+        item
+      });
+    }
+
+    return {
+      id: 'LayoutPanelDropTarget',
+      viewportIndex: props.viewportIndex,
+      item
+    };
   }
 };
 
 // TODO: Find out why we can't move this into the Example app instead.
 // It looks like the context isn't properly shared.
-class ExampleDropTarget extends Component {
-  static className = 'ExampleDropTarget';
-
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      item: null
-    };
-  }
+class LayoutPanelDropTarget extends Component {
+  static className = 'LayoutPanelDropTarget';
 
   render() {
     const { canDrop, isOver, connectDropTarget } = this.props;
     const isActive = canDrop && isOver;
 
-    let className = ExampleDropTarget.className;
+    let className = LayoutPanelDropTarget.className;
 
     if (isActive) {
       className += ' hovered';
@@ -50,16 +46,7 @@ class ExampleDropTarget extends Component {
     }
 
     return connectDropTarget(
-      <div className={className}>
-        <h4>
-          {isActive
-            ? 'Release to drop'
-            : 'Drag / Drop something from the Study Browser here'}
-        </h4>
-        <p className="study-drop-results">
-          {this.state.item && JSON.stringify(this.state.item)}
-        </p>
-      </div>
+      <div className={className}>{this.props.viewportComponent}</div>
     );
   }
 }
@@ -71,5 +58,5 @@ const collect = (connect, monitor) => ({
 });
 
 export default DropTarget(Types.THUMBNAIL, divTarget, collect)(
-  ExampleDropTarget
+  LayoutPanelDropTarget
 );
