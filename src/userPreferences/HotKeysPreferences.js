@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import Popover from 'react-simple-popover';
 
 export default class HotKeysPreferences extends Component {
   static range = (start, end) => {
@@ -220,9 +221,8 @@ export default class HotKeysPreferences extends Component {
      */
     const conflictedCommand = this.getConflictingCommand(toolKey, command);
     if (conflictedCommand) {
-      // TODO: popover w/ confirmation
-      this.updateErrorsState(toolKey, 'Conflicted');
-
+      this.updateErrorsState(toolKey, 'conflict');
+      this.updateErrorsState(conflictedCommand, 'conflict-no-popover');
       return;
     }
 
@@ -260,6 +260,7 @@ export default class HotKeysPreferences extends Component {
           <label
             className={`wrapperLabel
     ${this.state.errorMessages[toolKey] ? 'state-error' : ''} `}
+            ref={input => (this[toolKey] = input)}
             data-key="defaultTool"
           >
             <input
@@ -270,12 +271,37 @@ export default class HotKeysPreferences extends Component {
               className="form-control hotkey text-center"
               onKeyDown={event => this.onInputKeyDown(event, toolKey)}
             />
+            <Popover
+              placement="left"
+              container={this}
+              target={this[toolKey]}
+              show={this.state.errorMessages[toolKey] === 'conflict'}
+            >
+              <p>This shortcut has been used by another tool.</p>
+              <button
+                type="button"
+                onClick={() => {
+                  this.updateHotKeysState(
+                    toolKey,
+                    '',
+                    this.onChange(null, toolKey)
+                  );
+                }}
+              >
+                Hide me
+              </button>
+            </Popover>
+
             <span className="wrapperText" />
           </label>
         </td>
         {/* <td>{this.state.errorMessages[tool]}</td> */}
       </tr>
     );
+  }
+
+  onHide() {
+    alert('hiding');
   }
 
   renderColumn(columnIndex, hotkeysColumn) {
