@@ -66,10 +66,6 @@ export default class WindowLevelPreferences extends Component {
     );
   }
 
-  resetForm() {
-    return 'reset me!!! ';
-  }
-
   render() {
     return (
       <table className="full-width">

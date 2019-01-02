@@ -106,7 +106,20 @@ export default class HotKeysPreferences extends Component {
   constructor(props) {
     super(props);
 
-    debugger;
+    this.columns = {};
+
+    Object.keys(this.props.hotKeysData).forEach(key => {
+      const hotKey = this.props.hotKeysData[key];
+
+      if (this.columns.hasOwnProperty(hotKey.column)) {
+        this.columns[hotKey.column].push(key);
+      } else {
+        this.columns[hotKey.column] = [key];
+      }
+    });
+
+    this.columnClass = `col-md-${12 / Object.keys(this.columns).length || 1}`;
+
     this.state = {
       hotKeys: this.props.hotKeysData,
       errorMessages: {}
@@ -246,8 +259,8 @@ export default class HotKeysPreferences extends Component {
         <td className="text-right p-r-1">{hotKey.label}</td>
         <td width="200">
           <label
-            className={`wrapperLabel  
-              ${this.state.errorMessages[toolKey] ? 'state-error' : ''}`}
+            className={`wrapperLabel
+    ${this.state.errorMessages[toolKey] ? 'state-error' : ''} `}
             data-key="defaultTool"
           >
             <input
@@ -266,21 +279,35 @@ export default class HotKeysPreferences extends Component {
     );
   }
 
+  renderColumn(columnIndex, hotkeysColumn) {
+    return (
+      <div key={columnIndex} className={this.columnClass}>
+        <table className="full-width">
+          <thead>
+            <tr>
+              <th className="text-right p-r-1">Function</th>
+              <th className="text-center">Shortcut</th>
+            </tr>
+          </thead>
+          <tbody>
+            {hotkeysColumn.map(keyTool =>
+              this.renderRow(keyTool, this.state.hotKeys[keyTool])
+            )}
+          </tbody>
+        </table>
+      </div>
+    );
+  }
+
   render() {
     return (
-      <table className="full-width">
-        <thead>
-          <tr>
-            <th className="text-right p-r-1">Function</th>
-            <th className="text-center">Shortcut</th>
-          </tr>
-        </thead>
-        <tbody>
-          {Object.keys(this.state.hotKeys).map(key =>
-            this.renderRow(key, this.state.hotKeys[key])
+      <div className="row">
+        {Object.keys(this.columns)
+          .sort()
+          .map(columnIndex =>
+            this.renderColumn(columnIndex, this.columns[columnIndex])
           )}
-        </tbody>
-      </table>
+      </div>
     );
   }
 }

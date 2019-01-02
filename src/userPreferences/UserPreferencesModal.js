@@ -45,9 +45,11 @@ export default class UserPreferencesModal extends Component {
         onHide={this.cancel}
         aria-labelledby="ModalHeader"
         className="modal fade themed in"
+        backdrop={false}
+        large={true}
       >
         <Modal.Header closeButton>
-          <Modal.Title>User preferences</Modal.Title>
+          <Modal.Title>User Preferences</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <UserPreferences
