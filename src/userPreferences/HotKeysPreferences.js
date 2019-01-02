@@ -220,7 +220,6 @@ export default class HotKeysPreferences extends Component {
      */
     const conflictedCommand = this.getConflictingCommand(toolKey, command);
     if (conflictedCommand) {
-      // alert('conflicted command ' + JSON.stringify(conflictedCommand));
       // TODO: popover w/ confirmation
       this.updateErrorsState(toolKey, 'Conflicted');
 
