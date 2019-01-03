@@ -60,6 +60,7 @@ export class LayoutButton extends Component {
         <LayoutChooser
           visible={this.state.dropdownVisible}
           onChange={this.onChange}
+          onClick={(this.state.dropdownVisible = false)}
           selectedCell={this.props.selectedCell}
         />
       </div>
