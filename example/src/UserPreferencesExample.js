@@ -1,6 +1,10 @@
 import React, { Component } from 'react';
 import { UserPreferencesModal } from 'react-viewerbase';
 
+function deepClone(obj) {
+    return JSON.parse(JSON.stringify(obj));
+}
+
 export default class UserPreferencesExample extends Component {
 
     constructor(props) {
@@ -82,14 +86,14 @@ export default class UserPreferencesExample extends Component {
         };
 
         this.database = {
-            windowLevelData: { ...this.windowLevelDefault }, // cloning it
-            hotKeysData: { ...this.hotKeysDefault }, // cloning it
+            windowLevelData: deepClone(this.windowLevelDefault),
+            hotKeysData: deepClone(this.hotKeysDefault),
         };
 
         this.state = {
             modalOpened: false,
-            windowLevelData: { ...this.database.windowLevelData }, // cloning it
-            hotKeysData: { ...this.database.hotKeysData }, // cloning it
+            windowLevelData: deepClone(this.database.windowLevelData),
+            hotKeysData: deepClone(this.database.hotKeysData),
         };
     }
 
@@ -97,16 +101,16 @@ export default class UserPreferencesExample extends Component {
         this.setState({ modalOpened: true, });
 
         // Persist the latest state version into database
-        this.database.hotKeysData = { ...this.state.hotKeysData };
-        this.database.windowLevelData = { ...this.state.windowLevelData };
+        this.database.hotKeysData = deepClone(this.state.hotKeysData);
+        this.database.windowLevelData = deepClone(this.state.windowLevelData);
     }
 
     onCancel() {
         // close the modal and put the last data saved.
         this.setState({
             modalOpened: false,
-            hotKeysData: { ...this.database.hotKeysData }, // cloning obj
-            windowLevelData: { ...this.database.windowLevelData }, // cloning obj
+            hotKeysData: deepClone(this.database.hotKeysData),
+            windowLevelData: deepClone(this.database.windowLevelData),
         });
     }
 
@@ -119,9 +123,9 @@ export default class UserPreferencesExample extends Component {
     resetToDefaults() {
         // Reset to the system's defaults.
         this.setState({
-            modalOpened: true,
-            hotKeysData: { ...this.hotKeysDefault }, // cloning obj
-            windowLevelData: { ...this.windowLevelDefault }, // cloning obj
+            modalOpened: false,
+            hotKeysData: deepClone(this.hotKeysDefault),
+            windowLevelData: deepClone(this.windowLevelDefault),
         });
     }
 
