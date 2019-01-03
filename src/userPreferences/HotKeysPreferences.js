@@ -41,12 +41,12 @@ export default class HotKeysPreferences extends Component {
   static allowedKeys = [
     ...[8, 13, 27, 32, 46], // BACKSPACE, ENTER, ESCAPE, SPACE, DELETE
     ...[12, 106, 107, 109, 110, 111], // Numpad keys
-    ...HotKeysPreferences.range(219, 221), // [\]
-    ...HotKeysPreferences.range(186, 191), // ;=,-./
-    ...HotKeysPreferences.range(112, 130), // F1-F19
-    ...HotKeysPreferences.range(33, 40), // arrow keys, home/end, pg dn/up
-    ...HotKeysPreferences.range(48, 57), // 0-9
-    ...HotKeysPreferences.range(65, 90) // A-Z
+    ...HotKeysPreferences.range(218, 220), // [\]
+    ...HotKeysPreferences.range(185, 190), // ;=,-./
+    ...HotKeysPreferences.range(111, 131), // F1-F19
+    ...HotKeysPreferences.range(32, 41), // arrow keys, home/end, pg dn/up
+    ...HotKeysPreferences.range(47, 58), // 0-9
+    ...HotKeysPreferences.range(64, 91) // A-Z
   ];
 
   static specialKeys = {
@@ -163,9 +163,7 @@ export default class HotKeysPreferences extends Component {
       pressedKeys.push(keyName.toUpperCase());
     }
 
-    this.updateHotKeysState(toolKey, pressedKeys.join('+'), () => {
-      this.onChange(event, toolKey);
-    });
+    this.updateHotKeysState(toolKey, pressedKeys.join('+'));
   }
 
   updateHotKeysState(toolKey, command, callback = () => {}) {
@@ -177,14 +175,13 @@ export default class HotKeysPreferences extends Component {
   updateErrorsState(toolKey, errorMessage, callback = () => {}) {
     const errorMessages = this.state.errorMessages;
     errorMessages[toolKey] = errorMessage;
-    this.setState(errorMessages, callback);
+    this.setState({ errorMessages }, callback);
   }
 
   onInputKeyDown(event, toolKey) {
     // Prevent ESC key from propagating and closing the modal
     if (event.key === 'Escape') {
       event.stopPropagation();
-      return;
     }
 
     if (HotKeysPreferences.allowedKeys.includes(event.keyCode)) {
@@ -197,58 +194,67 @@ export default class HotKeysPreferences extends Component {
   }
 
   onChange(event, toolKey) {
+    if (event.ctrlKey || event.altKey || event.shiftKey) {
+      return;
+    }
+
     const hotKey = this.state.hotKeys[toolKey];
     const command = hotKey.command;
     const pressedKeys = command.split('+');
     const lastPressedKey = pressedKeys[pressedKeys.length - 1].toUpperCase();
-    /*
-     * Check if it has a valid modifier
-     */
-    const isModifier = ['CTRL', 'ALT', 'SHIFT'].includes(lastPressedKey);
-    if (isModifier) {
-      // TODO: save state at the same time
-      this.updateHotKeysState(toolKey, '');
-      this.updateErrorsState(
-        toolKey,
-        "It's not possible to define only modifier keys (CTRL, ALT and SHIFT) as a shortcut"
-      );
-      return;
-    }
 
-    /*
-     * Check if it has some conflict
-     */
-    const conflictedCommand = this.getConflictingCommand(toolKey, command);
-    if (conflictedCommand) {
-      this.updateErrorsState(toolKey, 'conflict');
-      this.updateErrorsState(conflictedCommand, 'conflict-no-popover');
-      return;
-    }
+    // clear the prior errors
+    this.setState({ errorMessages: {} }, () => {
+      // Check if it has a valid modifier
+      const isModifier = ['CTRL', 'ALT', 'SHIFT'].includes(lastPressedKey);
+      if (isModifier) {
+        this.updateHotKeysState(toolKey, '');
+        this.updateErrorsState(
+          toolKey,
+          "It's not possible to define only modifier keys (CTRL, ALT and SHIFT) as a shortcut"
+        );
+        return;
+      }
 
-    /*
-     * Check if is a valid combination
-     */
-    const modifierCommand = pressedKeys
-      .slice(0, pressedKeys.length - 1)
-      .join('+')
-      .toUpperCase();
+      /*
+       * Check if it has some conflict
+       */
+      const conflictedCommandKey = this.getConflictingCommand(toolKey, command);
+      if (conflictedCommandKey) {
+        const conflictedCommand = this.state.hotKeys[conflictedCommandKey];
 
-    const hasDisallowedCombinations = HotKeysPreferences.disallowedCombinations[
-      modifierCommand
-    ].includes(lastPressedKey);
+        this.updateErrorsState(
+          toolKey,
+          `"${conflictedCommand.label}" is already using the "${
+            conflictedCommand.command
+          }" shortcut.`
+        );
+        this.updateErrorsState(conflictedCommandKey, '');
+        this.updateHotKeysState(toolKey, '');
+        return;
+      }
 
-    if (hasDisallowedCombinations) {
-      // TODO: save state at the same time
-      this.updateHotKeysState(toolKey, '');
-      this.updateErrorsState(
-        toolKey,
-        "It's not possible to define only modifier keys (CTRL, ALT and SHIFT) as a shortcut"
-      );
-      return;
-    }
+      /*
+       * Check if is a valid combination
+       */
+      const modifierCommand = pressedKeys
+        .slice(0, pressedKeys.length - 1)
+        .join('+')
+        .toUpperCase();
 
-    // remove error if everything is ok
-    this.updateErrorsState(toolKey, '');
+      const hasDisallowedCombinations = HotKeysPreferences.disallowedCombinations[
+        modifierCommand
+      ].includes(lastPressedKey);
+
+      if (hasDisallowedCombinations) {
+        this.updateHotKeysState(toolKey, '');
+        this.updateErrorsState(
+          toolKey,
+          "It's not possible to define only modifier keys (CTRL, ALT and SHIFT) as a shortcut"
+        );
+        return;
+      }
+    });
   }
 
   renderRow(toolKey, hotKey) {
@@ -257,8 +263,11 @@ export default class HotKeysPreferences extends Component {
         <td className="text-right p-r-1">{hotKey.label}</td>
         <td width="200">
           <label
-            className={`wrapperLabel
-    ${this.state.errorMessages[toolKey] ? 'state-error' : ''} `}
+            className={`wrapperLabel ${
+              this.state.errorMessages[toolKey] !== undefined
+                ? 'state-error'
+                : ''
+            } `}
             ref={input => (this[toolKey] = input)}
             data-key="defaultTool"
           >
@@ -269,17 +278,16 @@ export default class HotKeysPreferences extends Component {
               vali="true"
               className="form-control hotkey text-center"
               onKeyDown={event => this.onInputKeyDown(event, toolKey)}
+              onKeyUp={event => this.onChange(event, toolKey)}
             />
             <span className="wrapperText" />
+            <span className="errorMessage">
+              {this.state.errorMessages[toolKey]}
+            </span>
           </label>
         </td>
-        {/* <td>{this.state.errorMessages[tool]}</td> */}
       </tr>
     );
-  }
-
-  onHide() {
-    alert('hiding');
   }
 
   renderColumn(columnIndex, hotkeysColumn) {

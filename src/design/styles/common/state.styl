@@ -1,7 +1,7 @@
 :root {
   --state-error: #FFCCCC;
   --state-error-border: #993333;
-  --state-error-text: #661111;
+  --state-error-text: #FFCCCC;
 }
 
 .form-themed .state-error, .state-error
@@ -27,9 +27,5 @@
 
     &:not(.component-group)
         &.form-control, .form-control
-            background-color: var(--state-error-border)
-            border-color: var(--state-error-border)
-
-        .select2-selection
             background-color: var(--state-error-border)
             border-color: var(--state-error-border)

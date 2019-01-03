@@ -47,6 +47,7 @@ export default class UserPreferencesModal extends Component {
         className="modal fade themed in"
         backdrop={false}
         large={true}
+        keyboard={false}
       >
         <Modal.Header closeButton>
           <Modal.Title>User Preferences</Modal.Title>
