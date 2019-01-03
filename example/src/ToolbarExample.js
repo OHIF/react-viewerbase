@@ -52,6 +52,7 @@ class ToolbarExample extends Component {
 
       this.state = {
           buttons: this.exampleButtons,
+          activeCommand: 'WwwcTool',
       };
     }
 
@@ -61,11 +62,17 @@ class ToolbarExample extends Component {
         <div className="col-xs-12 col-lg-6">
           <h3>Toolbar Section</h3>
           <p>A basic row of buttons for a toolbar.</p>
+          <p>Active command is {this.state.activeCommand}</p>
         </div>
         <div className="col-xs-12 col-lg-6">
           <ToolbarSection
             buttons={this.state.buttons}
             activeCommand={this.state.activeCommand}
+            setToolActive={toolProps => {
+              this.setState((state,props) => {
+                return {activeCommand: toolProps.command}
+              })
+            }}
           />
         </div>
       </div>
