@@ -64,7 +64,7 @@ export default class UserPreferences extends Component {
               }}
               className={this.getTabClass(0)}
             >
-              <a className="nav-link">Hotkeyss</a>
+              <a className="nav-link">Hotkeys</a>
             </li>
             <li
               onClick={() => {
