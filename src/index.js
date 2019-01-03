@@ -11,6 +11,9 @@ import CineDialog from './viewer/CineDialog.js';
 import StudyList from './studyList/StudyList.js';
 import UserPreferences from './userPreferences/UserPreferences';
 import UserPreferencesModal from './userPreferences/UserPreferencesModal';
+import ViewerbaseDragDropContext from './utils/ViewerbaseDragDropContext.js';
+import ExampleDropTarget from './studyBrowser/ExampleDropTarget.js';
+import LayoutPanelDropTarget from './LayoutChooser/LayoutPanelDropTarget.js';
 
 export {
   RoundedButtonGroup,
@@ -25,5 +28,8 @@ export {
   CineDialog,
   StudyList,
   UserPreferences,
-  UserPreferencesModal
+  UserPreferencesModal,
+  ViewerbaseDragDropContext,
+  ExampleDropTarget,
+  LayoutPanelDropTarget
 };

@@ -14,7 +14,7 @@ export default class StudyList extends Component {
     onSearch: PropTypes.func.isRequired,
     studyCount: PropTypes.number.isRequired,
     currentPage: PropTypes.number,
-    pageSize: PropTypes.number,
+    rowsPerPage: PropTypes.number,
     studyListFunctionsEnabled: PropTypes.bool,
     defaultSort: PropTypes.shape({
       field: PropTypes.string.isRequired,
@@ -55,7 +55,7 @@ export default class StudyList extends Component {
       searchData: {
         sortData,
         currentPage: this.props.currentPage || 0,
-        pageSize: this.props.pageSize || 10
+        rowsPerPage: this.props.rowsPerPage || 10
       },
       highlightedItem: ''
     };
@@ -64,7 +64,7 @@ export default class StudyList extends Component {
     this.onInputKeydown = this.onInputKeydown.bind(this);
     this.nextPage = this.nextPage.bind(this);
     this.prevPage = this.prevPage.bind(this);
-    this.onPageSizeChange = this.onPageSizeChange.bind(this);
+    this.onRowsPerPageChange = this.onRowsPerPageChange.bind(this);
   }
 
   getChangeHandler(key) {
@@ -76,6 +76,16 @@ export default class StudyList extends Component {
   setSearchData(key, value, callback) {
     const searchData = this.state.searchData;
     searchData[key] = value;
+    this.setState({ searchData }, callback);
+  }
+
+  setSearchDataBatch(keyValues, callback) {
+    const searchData = this.state.searchData;
+
+    Object.keys(keyValues).forEach(key => {
+      searchData[key] = keyValues[key];
+    });
+
     this.setState({ searchData }, callback);
   }
 
@@ -95,6 +105,7 @@ export default class StudyList extends Component {
       await this.props.onSearch(this.state.searchData);
       this.error = false;
     } catch (e) {
+      console.log(e);
       this.error = true;
     } finally {
       this.setState({ loading: false });
@@ -135,8 +146,8 @@ export default class StudyList extends Component {
     this.setSearchData('currentPage', currentPage, this.search);
   }
 
-  onPageSizeChange(pageSize) {
-    this.setSearchData('pageSize', pageSize, this.search);
+  onRowsPerPageChange(rowsPerPage) {
+    this.setSearchDataBatch({ rowsPerPage, currentPage: 0 }, this.search);
   }
 
   onSortClick(key) {
@@ -352,10 +363,10 @@ export default class StudyList extends Component {
             currentPage={this.state.searchData.currentPage}
             nextPageFunc={this.nextPage}
             prevPageFunc={this.prevPage}
-            onPageSizeChange={this.onPageSizeChange}
-            pageSize={this.state.searchData.pageSize}
+            onRowsPerPageChange={this.onRowsPerPageChange}
+            rowsPerPage={this.state.searchData.rowsPerPage}
             numberOfPages={Math.ceil(
-              this.props.studyCount / this.state.searchData.pageSize
+              this.props.studyCount / this.state.searchData.rowsPerPage
             )}
           />
         </div>
