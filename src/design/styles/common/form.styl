@@ -1,0 +1,95 @@
+:root {
+  --text-secondary-color: #91B9CD;
+  --default-color: #9ccef9;
+  --active-color: #20a5d6;
+  --hover-color: #ffffff;
+  --ui-gray: #263340;
+  --ui-gray-dark: #16202B;
+  --ui-gray-darkest: #14202A;
+  --ui-gray-darker: #151A1F;
+  --ui-gray-light:  #516873;
+  --text-primary-color: #ffffff;
+}
+
+.form-themed
+
+  table
+    color: var(--text-primary-color)
+
+    th, td
+      font-size: 15px
+      font-weight: normal
+
+    th
+      line-height: 60px
+
+    td
+      line-height: 18px
+
+  // TODO: imported this from merged-styles.css
+  .p-r-1
+    padding-right: 1rem !important;
+
+  label
+    margin-bottom: 5px
+  // end TODO
+
+  label.wrapperLabel
+    cursor: pointer
+
+  label.wrapperLabel:not(.checkboxLabel)
+    cursor: pointer
+    display: flex
+    flex-direction: column
+
+    .wrapperText
+      display: block
+      order: -1
+      transition(color 0.3s ease)
+
+  .btn, input[type=text], input[type=password], input[type=number]
+    &[disabled], &.disabled
+      &, &:hover, &:active
+        background-color: var(--ui-gray-darker)
+        border-color: var(--ui-gray-light)
+        color: var(--text-primary-color)
+
+        & + .wrapperText
+          color: var(--text-primary-color)
+          cursor: auto
+
+  input[type=text], input[type=password], input[type=number]
+    background-color: var(--ui-gray)
+    border-color: var(--ui-border-color)
+    color: var(--text-primary-color)
+    font-weight: normal
+    transition(background-color 0.3s ease\, border-color 0.3s ease)
+
+    &:active, &:focus
+      background-color: var(--ui-gray-dark)
+      border: 2px solid var(--active-color)
+      box-shadow: none
+
+      & + .wrapperText
+        color: var(--active-color)
+
+  .btn-primary
+    background-color: var(--active-color)
+    border-collapse: var(--ui-border-color-active)
+    color: var(--ui-text-color-active)
+    transition(background-color 0.3s ease\, border-color 0.3s ease)
+
+    &:hover, &:active, &:focus, &:focus:active
+      // TODO: 0.8  opacity
+      background-color: var(--ui-active-color)
+      border-collapse: var(--ui-border-color-active)
+      color: var(--ui-text-color-active)
+
+  .form-control
+    background-color: #FFFFFF
+    border: 0
+    border-radius(2px)
+    font-size: 14px
+    height: 30px
+    line-height: 16px
+    padding: 8px 9px 6px

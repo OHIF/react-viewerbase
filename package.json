@@ -83,6 +83,7 @@
   ],
   "dependencies": {
     "classnames": "^2.2.6",
+    "react-bootstrap-modal": "^4.2.0",
     "react-dnd": "^7.0.2",
     "react-dnd-html5-backend": "^7.0.2"
   }

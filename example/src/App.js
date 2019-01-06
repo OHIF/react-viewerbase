@@ -6,6 +6,7 @@ import CineDialogExample from './CineDialogExample.js';
 import RoundedButtonGroupExample from './RoundedButtonGroupExample.js';
 import './App.css';
 import StudyListExample from './StudyListExample.js';
+import UserPreferencesExample from './UserPreferencesExample.js';
 
 class App extends Component {
   constructor(props) {
@@ -61,6 +62,7 @@ class App extends Component {
           <StudyBrowserExample />
           <CineDialogExample />
           <RoundedButtonGroupExample />
+          <UserPreferencesExample />
           <StudyListExample />
           {/*<div className="row">
             <div className='col-xs-12 col-lg-6'>

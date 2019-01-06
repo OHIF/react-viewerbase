@@ -9,6 +9,8 @@ import Toolbar from './viewer/Toolbar.js';
 import PlayClipButton from './viewer/PlayClipButton.js';
 import CineDialog from './viewer/CineDialog.js';
 import StudyList from './studyList/StudyList.js';
+import UserPreferences from './userPreferences/UserPreferences';
+import UserPreferencesModal from './userPreferences/UserPreferencesModal';
 import ViewerbaseDragDropContext from './utils/ViewerbaseDragDropContext.js';
 import ExampleDropTarget from './studyBrowser/ExampleDropTarget.js';
 import LayoutPanelDropTarget from './LayoutChooser/LayoutPanelDropTarget.js';
@@ -25,6 +27,8 @@ export {
   LayoutManager,
   CineDialog,
   StudyList,
+  UserPreferences,
+  UserPreferencesModal,
   ViewerbaseDragDropContext,
   ExampleDropTarget,
   LayoutPanelDropTarget
