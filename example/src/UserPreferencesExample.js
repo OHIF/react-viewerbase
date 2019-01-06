@@ -131,38 +131,36 @@ export default class UserPreferencesExample extends Component {
 
     render() {
         return (
-            <div>
-                <div className="row">
-                    <div className="col-md-6" style={{ maxHeight: '200px', overflowX: 'auto' }}>
-                        <h3>User preferences</h3>
-                        <p>Used to set the user preferences.</p>
-                        <p><b>Values from window/level form:</b><br /></p>
-                        <pre>
-                            {JSON.stringify(this.state.windowLevelData, null, 4)}
-                        </pre>
+            <div className="row">
+                <div className="col-xs-12 col-md-6">
+                    <h3>User preferences</h3>
+                    <p>Used to set the user preferences.</p>
+                    <p><b>Values from window/level form:</b><br /></p>
+                    <pre style={{ maxHeight: '100px', overflowX: 'auto' }}>
+                        {JSON.stringify(this.state.windowLevelData, null, 4)}
+                    </pre>
 
-                        <p><b>Values from hotkey form:</b><br /></p>
-                        <pre>{
-                            JSON.stringify(this.state.hotKeysData, null, 2)}
-                        </pre>
-                    </div>
-                    <div className="col-md-6">
-                        <button
-                            className="btn btn-primary"
-                            type="button"
-                            onClick={this.openModal.bind(this)}>
-                            Open user preferences
-                        </button>
-                        <UserPreferencesModal
-                            isOpen={this.state.modalOpened}
-                            onCancel={this.onCancel.bind(this)}
-                            onSave={this.save.bind(this)}
-                            onResetToDefaults={this.resetToDefaults.bind(this)}
-                            windowLevelData={this.state.windowLevelData}
-                            hotKeysData={this.state.hotKeysData}
-                        />
-                    </div>
+                    <p><b>Values from hotkey form:</b><br /></p>
+                    <pre style={{ maxHeight: '100px', overflowX: 'auto' }}>{JSON.stringify(this.state.hotKeysData, null, 2)}
+                    </pre>
                 </div>
-            </div>)
+                <div className="col-xs-12 col-md-6">
+                    <button
+                        className="btn btn-primary"
+                        type="button"
+                        onClick={this.openModal.bind(this)}>
+                        Open user preferences
+                    </button>
+                    <UserPreferencesModal
+                        isOpen={this.state.modalOpened}
+                        onCancel={this.onCancel.bind(this)}
+                        onSave={this.save.bind(this)}
+                        onResetToDefaults={this.resetToDefaults.bind(this)}
+                        windowLevelData={this.state.windowLevelData}
+                        hotKeysData={this.state.hotKeysData}
+                    />
+                </div>
+            </div>
+      );
     }
 }

@@ -4,11 +4,6 @@ import './ToolbarSection.css';
 import PropTypes from 'prop-types';
 
 class ToolbarSection extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {};
-  }
-  componentDidMount() {}
   render() {
     const items = this.props.buttons.map((item, index) => {
       return (

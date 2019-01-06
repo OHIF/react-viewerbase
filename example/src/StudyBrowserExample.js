@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StudyBrowser, LayoutManager, ViewerbaseDragDropContext, ExampleDropTarget } from 'react-viewerbase';
+import { StudyBrowser, ViewerbaseDragDropContext, ExampleDropTarget } from 'react-viewerbase';
 
 const exampleStudies = [
   {
@@ -74,7 +74,7 @@ class StudyBrowserExample extends Component {
   }
 
   render() {
-    const viewportData = [null, null, null, null];
+    //const viewportData = [null, null, null, null];
 
     return (
       <div className="row">

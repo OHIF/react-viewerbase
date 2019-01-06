@@ -1,4 +1,5 @@
 .ToolbarSection {
+  float: left;
   background-color: black;
   height: 60px;
   border-radius: 8px;
