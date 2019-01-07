@@ -12,10 +12,13 @@ export function ToolbarButton(props) {
   let className = classnames(props.className, { active: props.active });
   return (
     <div className={className} onClick={onClick}>
-      <svg>
-        <use xlinkHref={props.svgUrl} />
-      </svg>
-      <span>{props.text}</span>
+      {props.svgUrl && (
+        <svg>
+          <use xlinkHref={props.svgUrl} />
+        </svg>
+      )}
+      {props.iconClasses && <i className={props.iconClasses} />}
+      <span className="toolbar-button-label">{props.text}</span>
     </div>
   );
 }
@@ -30,9 +33,10 @@ ToolbarButton.defaultProps = {
 
 ToolbarButton.propTypes = {
   text: PropTypes.string.isRequired,
-  svgUrl: PropTypes.string.isRequired,
   active: PropTypes.bool.isRequired,
-  className: PropTypes.string.isRequired
+  className: PropTypes.string.isRequired,
+  iconClasses: PropTypes.string,
+  svgUrl: PropTypes.string
 };
 
 export default ToolbarButton;

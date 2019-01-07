@@ -9,7 +9,7 @@
   color: var(--default-color);
   float: left;
   text-align: center;
-  padding: 0 5px;
+  padding: 0 1rem;
   cursor: pointer;
 
   -webkit-touch-callout: none; /* iOS Safari */
@@ -22,10 +22,16 @@
 }
 
 .ToolbarButton svg {
-  height: 30px;
-  width: 48px;
+  height: 21px;
+  width: 21px;
+  margin: 2px;
   fill: var(--default-color);
   stroke: var(--default-color);
+}
+
+.ToolbarButton i {
+  font-size: 18px;
+  line-height: 30px;
 }
 
 .ToolbarButton:hover {
@@ -35,6 +41,10 @@
 .ToolbarButton:hover svg {
   fill: var(--hover-color);
   stroke: var(--hover-color);
+}
+
+.ToolbarButton:hover i {
+  color: var(--hover-color);
 }
 
 .ToolbarButton.active,
@@ -48,9 +58,13 @@
   stroke: var(--active-color);
 }
 
-.ToolbarButton span {
-  font-size: 14px;
-  width: 100%;
-  text-align: center;
+.ToolbarButton.active i,
+.ToolbarButton:active i {
+  color: var(--active-color);
+}
+
+.ToolbarButton span.toolbar-button-label {
+  font-size: 12px;
+  font-weight: 500;
   display: block;
 }

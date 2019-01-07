@@ -90,12 +90,8 @@
   z-index: 2;
 }
 
-.roundedButtonWrapper:hover
-  .roundedButton
-  svg
-  .roundedButtonWrapper.active
-  .roundedButton
-  svg {
+.roundedButtonWrapper:hover .roundedButton svg,
+.roundedButtonWrapper.active .roundedButton svg {
   fill: var(--ui-gray-dark);
   stroke: var(--ui-gray-dark);
 }
