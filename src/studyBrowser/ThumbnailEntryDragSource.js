@@ -32,11 +32,13 @@ const thumbnailSource = {
 class ThumbnailEntryDragSource extends Component {
   render() {
     const { isDragging, connectDragSource } = this.props;
+    const dropEffect = 'copy';
 
     return connectDragSource(
       <div className="ThumbnailEntryContainer">
         <ThumbnailEntry {...this.props} />
-      </div>
+      </div>,
+      { dropEffect }
     );
   }
 }

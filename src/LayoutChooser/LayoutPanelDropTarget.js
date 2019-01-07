@@ -21,7 +21,7 @@ const divTarget = {
     }
 
     return {
-      id: 'LayoutPanelDropTarget',
+      id: `LayoutPanelDropTarget-${props.viewportIndex}`,
       viewportIndex: props.viewportIndex,
       item
     };

@@ -1,6 +1,6 @@
 {
   "name": "react-viewerbase",
-  "version": "0.1.8",
+  "version": "0.1.9",
   "description": "Cornerstone medical image viewport component for React",
   "author": "Cornerstone Contributors",
   "license": "MIT",
