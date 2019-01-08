@@ -23,6 +23,11 @@ export default class StudyList extends Component {
     onImport: PropTypes.func
   };
 
+  static defaultProps = {
+    currentPage: 0,
+    rowsPerPage: 25
+  };
+
   static DEFAULT_SORTABLE_ICON_CLS = 'fa fa-fw fa-sort';
   static DESC_SORT_ICON_CLS = 'fa fa-fw fa-sort-desc';
   static ASC_SORT_ICON_CLS = 'fa fa-fw fa-sort-asc';
@@ -51,11 +56,12 @@ export default class StudyList extends Component {
 
     this.state = {
       loading: false,
+      error: false,
       sortClasses,
       searchData: {
         sortData,
-        currentPage: this.props.currentPage || 0,
-        rowsPerPage: this.props.rowsPerPage || 10
+        currentPage: this.props.currentPage,
+        rowsPerPage: this.props.rowsPerPage
       },
       highlightedItem: ''
     };
@@ -101,25 +107,24 @@ export default class StudyList extends Component {
 
   async search() {
     try {
-      this.setState({ loading: true });
+      this.setState({ loading: true, error: false });
       await this.props.onSearch(this.state.searchData);
-      this.error = false;
-    } catch (e) {
-      console.log(e);
-      this.error = true;
+    } catch (error) {
+      this.setState({ error: true });
+      throw new Error(error);
     } finally {
       this.setState({ loading: false });
     }
   }
 
   renderNoMachingResults() {
-    if (!this.props.studies.length && !this.error) {
+    if (!this.props.studies.length && !this.state.error) {
       return <div className="notFound">No matching results</div>;
     }
   }
 
   renderHasError() {
-    if (this.error) {
+    if (this.state.error) {
       return (
         <div className="notFound">There was an error fetching studies</div>
       );

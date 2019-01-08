@@ -1,8 +1,17 @@
-import React, { Component } from 'react';
-
+import React, { PureComponent } from 'react';
+import PropTypes from 'prop-types';
 import './StudyListToolbar.styl';
 
-class StudylistToolbar extends Component {
+class StudylistToolbar extends PureComponent {
+  static propTypes = {
+    studyListFunctionsEnabled: PropTypes.bool.isRequired,
+    onImport: PropTypes.func
+  };
+
+  static defaultProps = {
+    studyListFunctionsEnabled: true
+  };
+
   clear(e) {
     e.target.value = null;
   }

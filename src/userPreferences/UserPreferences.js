@@ -5,13 +5,20 @@ import WindowLevelPreferences from './WindowLevelPreferences';
 import './UserPreferences.styl';
 
 export default class UserPreferences extends Component {
-  constructor(props) {
-    super(props);
+  static defaultProps = {
+    hotKeysData: {},
+    windowLevelData: {}
+  };
 
-    this.state = {
-      tabIndex: 0
-    };
-  }
+  // TODO: Make this more generic. Tabs should not be restricted to these entries
+  static propTypes = {
+    hotKeysData: PropTypes.object.isRequired,
+    windowLevelData: PropTypes.object.isRequired
+  };
+
+  state = {
+    tabIndex: 0
+  };
 
   tabClick(tabIndex) {
     this.setState({ tabIndex });
@@ -64,7 +71,7 @@ export default class UserPreferences extends Component {
               }}
               className={this.getTabClass(0)}
             >
-              <a className="nav-link">Hotkeys</a>
+              <button className="nav-link">Hotkeys</button>
             </li>
             <li
               onClick={() => {
@@ -72,7 +79,7 @@ export default class UserPreferences extends Component {
               }}
               className={this.getTabClass(1)}
             >
-              <a className={this.getTabClass(0)}>Window Level</a>
+              <button className={this.getTabClass(0)}>Window Level</button>
             </li>
           </ul>
         </div>

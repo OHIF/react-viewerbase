@@ -1,9 +1,9 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import ToolbarButton from './ToolbarButton';
 import './ToolbarSection.css';
 import PropTypes from 'prop-types';
 
-class ToolbarSection extends Component {
+class ToolbarSection extends PureComponent {
   render() {
     const items = this.props.buttons.map((item, index) => {
       return (

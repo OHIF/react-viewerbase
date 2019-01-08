@@ -1,7 +1,16 @@
 {
-  "extends": "react-app",
+  "extends": [
+  	"react-app",
+  	"eslint:recommended",
+    "plugin:react/recommended"
+  ],
   "parser": "babel-eslint",
   "env": {
     "jest": true
-  }
+  },
+  "settings": {
+    "react": {
+      "version": "detect",
+    },
+  },
 }

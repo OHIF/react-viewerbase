@@ -55,7 +55,7 @@ class PresetToggle extends Component {
 
   onClick = id => {
     const buttonItem = this.props.buttons.find(item => item.command === id);
-    console.log(`clicked: ${id}`);
+
     this.setState({
       selected: buttonItem.id
     });

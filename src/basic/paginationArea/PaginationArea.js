@@ -1,27 +1,36 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
+import PropTypes from 'prop-types';
 import './PaginationArea.styl';
 
-class PaginationArea extends Component {
-  constructor(props) {
-    super(props);
-    this.pageOptions = this.props.pageOptions || [5, 10, 25, 50, 100];
-    this.rowsPerPage = this.props.rowsPerPage || 10;
-    this.nextPage = this.nextPage.bind(this);
-    this.prevPage = this.prevPage.bind(this);
-    this.onRowsPerPageChange = this.onRowsPerPageChange.bind(this);
-  }
+class PaginationArea extends PureComponent {
+  static defaultProps = {
+    pageOptions: [5, 10, 25, 50, 100],
+    rowsPerPage: 25,
+    currentPage: 0,
+    numberOfPages: 1
+  };
 
-  nextPage() {
+  static propTypes = {
+    pageOptions: PropTypes.array.isRequired,
+    rowsPerPage: PropTypes.number.isRequired,
+    currentPage: PropTypes.number.isRequired,
+    numberOfPages: PropTypes.number.isRequired,
+    nextPageFunc: PropTypes.func,
+    prevPageFunc: PropTypes.func,
+    onRowsPerPageChange: PropTypes.func
+  };
+
+  nextPage = () => {
     this.props.nextPageFunc(this.props.currentPage);
-  }
+  };
 
-  prevPage() {
+  prevPage = () => {
     this.props.prevPageFunc(this.props.currentPage);
-  }
+  };
 
-  onRowsPerPageChange(event) {
+  onRowsPerPageChange = event => {
     this.props.onRowsPerPageChange(parseInt(event.target.value));
-  }
+  };
 
   renderPaginationButtons() {
     return (
@@ -64,7 +73,7 @@ class PaginationArea extends Component {
           onChange={this.onRowsPerPageChange}
           defaultValue={this.props.rowsPerPage}
         >
-          {this.pageOptions.map(pageNumber => {
+          {this.props.pageOptions.map(pageNumber => {
             return (
               <option key={pageNumber} value={pageNumber}>
                 {pageNumber}

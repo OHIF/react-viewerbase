@@ -1,5 +1,6 @@
 import React from 'react';
-export function LoadingText() {
+
+export default function LoadingText() {
   return (
     <div className="loadingTextDiv">
       <h5>
@@ -8,4 +9,3 @@ export function LoadingText() {
     </div>
   );
 }
-export default LoadingText;

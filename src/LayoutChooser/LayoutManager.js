@@ -20,7 +20,7 @@ export class LayoutManager extends Component {
     activeViewportIndex: 0,
     supportsDragAndDrop: true,
     setViewportData: ({ viewportIndex, item }) => {
-      console.log({ viewportIndex, item });
+      //console.log({ viewportIndex, item });
     }
   };
 
@@ -28,7 +28,8 @@ export class LayoutManager extends Component {
     viewportData: PropTypes.array.isRequired,
     supportsDragAndDrop: PropTypes.bool.isRequired,
     activeViewportIndex: PropTypes.number.isRequired,
-    setViewportData: PropTypes.func
+    setViewportData: PropTypes.func,
+    layout: PropTypes.object
   };
 
   onDrop = ({ viewportIndex, item }) => {

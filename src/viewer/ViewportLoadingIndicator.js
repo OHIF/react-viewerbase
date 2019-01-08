@@ -1,14 +1,6 @@
-/*Template.loadingIndicator.helpers({
-    'percentComplete': function(e) {
-        var percentComplete = Session.get('CornerstoneLoadProgress' + this.viewportIndex);
-        if (percentComplete && percentComplete !== 100) {
-            return percentComplete + '%';
-        }
-    }
-});*/
-
 import React from 'react';
 import PropTypes from 'prop-types';
+
 export function ViewportLoadingIndicator(props) {
   return (
     <div

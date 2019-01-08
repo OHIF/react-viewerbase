@@ -1,8 +1,8 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import './CineDialog.styl';
 
-class CineDialog extends Component {
+class CineDialog extends PureComponent {
   constructor(props) {
     super(props);
 

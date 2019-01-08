@@ -11,6 +11,10 @@ export default class WindowLevelPreferences extends Component {
     };
   }
 
+  static propTypes = {
+    windowLevelData: PropTypes.object.isRequired
+  };
+
   onChange(event, key, field) {
     const data = this.state.data;
     const entry = data[key];
@@ -28,7 +32,6 @@ export default class WindowLevelPreferences extends Component {
             <input
               value={entry.description}
               type="text"
-              vali="true"
               className="form-control"
               onChange={event => {
                 this.onChange(event, key, 'description');
@@ -41,7 +44,6 @@ export default class WindowLevelPreferences extends Component {
             <input
               value={entry.window}
               type="number"
-              vali="true"
               className="form-control"
               onChange={event => {
                 this.onChange(event, key, 'window');
@@ -54,7 +56,6 @@ export default class WindowLevelPreferences extends Component {
             <input
               value={entry.level}
               type="number"
-              vali="true"
               className="form-control"
               onChange={event => {
                 this.onChange(event, key, 'level');

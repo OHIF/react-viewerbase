@@ -103,6 +103,10 @@ export default class HotKeysPreferences extends Component {
     224: 'meta'
   };
 
+  static propTypes = {
+    hotKeysData: PropTypes.object.isRequired
+  };
+
   constructor(props) {
     super(props);
 

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { DropTarget } from 'react-dnd';
+import PropTypes from 'prop-types';
 import './ExampleDropTarget.css';
 
 // Drag sources and drop targets only interact
@@ -29,13 +30,19 @@ const divTarget = {
 class ExampleDropTarget extends Component {
   static className = 'ExampleDropTarget';
 
-  constructor(props) {
-    super(props);
+  state = {
+    item: null
+  };
 
-    this.state = {
-      item: null
-    };
-  }
+  static defaultProps = {
+    isOver: false
+  };
+
+  static propTypes = {
+    connectDropTarget: PropTypes.func.isRequired,
+    canDrop: PropTypes.func.isRequired,
+    isOver: PropTypes.bool.isRequired
+  };
 
   render() {
     const { canDrop, isOver, connectDropTarget } = this.props;

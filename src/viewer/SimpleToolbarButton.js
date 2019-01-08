@@ -21,6 +21,7 @@ export function SimpleToolbarButton(props) {
 
 SimpleToolbarButton.propTypes = {
   iconClassName: PropTypes.string,
+  title: PropTypes.string,
   className: PropTypes.string,
   id: PropTypes.string,
   onClick: PropTypes.func

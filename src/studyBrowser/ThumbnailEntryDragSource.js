@@ -19,19 +19,28 @@ const thumbnailSource = {
   },
 
   endDrag(props, monitor) {
-    const item = monitor.getItem();
+    //const item = monitor.getItem();
     const dropResult = monitor.getDropResult();
 
     if (dropResult) {
-      console.log(`You dropped ${item.id} into ${dropResult.id}!`);
-      console.log(item);
+      //console.log(`You dropped ${item.id} into ${dropResult.id}!`);
+      //console.log(item);
     }
   }
 };
 
 class ThumbnailEntryDragSource extends Component {
+  static propTypes = {
+    connectDragSource: PropTypes.func.isRequired,
+    isDragging: PropTypes.bool.isRequired
+  };
+
+  static defaultProps = {
+    isDragging: false
+  };
+
   render() {
-    const { isDragging, connectDragSource } = this.props;
+    const { connectDragSource } = this.props;
     const dropEffect = 'copy';
 
     return connectDragSource(

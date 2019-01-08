@@ -7,42 +7,25 @@ import UserPreferences from './UserPreferences';
 import '../design/styles/common/modal.styl';
 
 export default class UserPreferencesModal extends Component {
-  constructor(props) {
-    super(props);
+  // TODO: Make this component more generic to allow things other than W/L and hotkeys...
+  static propTypes = {
+    isOpen: PropTypes.bool.isRequired,
+    onCancel: PropTypes.func,
+    onSave: PropTypes.func,
+    onResetToDefaults: PropTypes.func,
+    windowLevelData: PropTypes.object,
+    hotKeysData: PropTypes.object
+  };
 
-    this.state = {
-      tabIndex: 0
-    };
-
-    this.resetToDefaults = this.resetToDefaults.bind(this);
-    this.cancel = this.cancel.bind(this);
-  }
-
-  renderTabs(tabIndex) {
-    if (tabIndex === 0) {
-      return this.renderHotkeysTab();
-    } else {
-      return this.renderWindowLevelTab();
-    }
-  }
-
-  getTabClass(tabIndex) {
-    return tabIndex === this.state.tabIndex ? 'nav-link active' : 'nav-link';
-  }
-
-  resetToDefaults() {
-    this.props.onResetToDefaults();
-  }
-
-  cancel() {
-    this.props.onCancel();
-  }
+  static defaultProps = {
+    isOpen: false
+  };
 
   render() {
     return (
       <Modal
         show={this.props.isOpen}
-        onHide={this.cancel}
+        onHide={this.props.onCancel}
         aria-labelledby="ModalHeader"
         className="modal fade themed in"
         backdrop={false}
@@ -61,7 +44,7 @@ export default class UserPreferencesModal extends Component {
         <Modal.Footer>
           <button
             className="btn btn-danger pull-left"
-            onClick={this.resetToDefaults}
+            onClick={this.props.onResetToDefaults}
           >
             Reset to Defaults
           </button>

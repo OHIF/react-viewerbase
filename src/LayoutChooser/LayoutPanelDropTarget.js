@@ -33,6 +33,18 @@ const divTarget = {
 class LayoutPanelDropTarget extends Component {
   static className = 'LayoutPanelDropTarget';
 
+  static defaultProps = {
+    isOver: false,
+    canDrop: false
+  };
+
+  static propTypes = {
+    connectDropTarget: PropTypes.func.isRequired,
+    canDrop: PropTypes.bool.isRequired,
+    isOver: PropTypes.bool.isRequired,
+    viewportComponent: PropTypes.object
+  };
+
   render() {
     const { canDrop, isOver, connectDropTarget } = this.props;
     const isActive = canDrop && isOver;
@@ -53,8 +65,8 @@ class LayoutPanelDropTarget extends Component {
 
 const collect = (connect, monitor) => ({
   connectDropTarget: connect.dropTarget(),
-  isOver: monitor.isOver(),
-  canDrop: monitor.canDrop()
+  canDrop: monitor.canDrop(),
+  isOver: monitor.isOver()
 });
 
 export default DropTarget(Types.THUMBNAIL, divTarget, collect)(
