@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import './LayoutChooser.styl';
 
@@ -8,20 +8,17 @@ import './LayoutChooser.styl';
  * if they click on a specific table cell.
  **/
 
-export class LayoutChooser extends Component {
+export class LayoutChooser extends PureComponent {
   constructor(props) {
     super(props);
     this.emptyCell = {
       row: -1,
       column: -1
     };
-
     this.state = {
       table: [[]],
       selectedCell: this.props.selectedCell
     };
-    this.highlightCells = this.highlightCells.bind(this);
-    this.isRange = this.isRange.bind(this);
   }
   componentDidMount() {
     this.highlightCells(this.emptyCell);
@@ -38,10 +35,10 @@ export class LayoutChooser extends Component {
       this.props.onChange(currentCell);
     }
   }
-  isRange(cell, parentCell) {
+  isRange = (cell, parentCell) => {
     return cell.row <= parentCell.row && cell.col <= parentCell.col;
   }
-  highlightCells(currentCell) {
+  highlightCells = (currentCell) => {
     let table = [];
     for (let row = 0; row < this.props.rows; row++) {
       let newRow = [];

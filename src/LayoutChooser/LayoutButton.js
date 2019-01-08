@@ -1,23 +1,10 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import LayoutChooser from './LayoutChooser';
 
-export class LayoutButton extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      dropdownVisible: props.dropdownVisible
-    };
-  }
-
-  static defaultProps = {
-    dropdownVisible: false
-  };
-
-  static propTypes = {
-    dropdownVisible: PropTypes.bool.isRequired,
-    onChange: PropTypes.func,
-    selectedCell: PropTypes.object
+export class LayoutButton extends PureComponent {
+  state = {
+    dropdownVisible: this.props.dropdownVisible
   };
 
   componentDidUpdate(prevProps) {
@@ -60,11 +47,22 @@ export class LayoutButton extends Component {
         <LayoutChooser
           visible={this.state.dropdownVisible}
           onChange={this.onChange}
-          onClick={(this.state.dropdownVisible = false)}
+          onClick={this.onClick}
           selectedCell={this.props.selectedCell}
         />
       </div>
     );
   }
 }
+
+LayoutButton.defaultProps = {
+  dropdownVisible: false
+}
+
+LayoutButton.propTypes = {
+  dropdownVisible: PropTypes.bool.isRequired,
+  onChange: PropTypes.func,
+  selectedCell: PropTypes.object
+}
+
 export default LayoutButton;
