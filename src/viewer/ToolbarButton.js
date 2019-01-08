@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import './ToolbarButton.css';
+import './ToolbarButton.styl';
 import classnames from 'classnames';
 
 export function ToolbarButton(props) {

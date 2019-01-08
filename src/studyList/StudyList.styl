@@ -1,24 +1,10 @@
-:root {
-  --text-secondary-color: #91B9CD;
-  --default-color: #9ccef9;
-  --active-color: #20a5d6;
-  --hover-color: #ffffff;
-  --ui-gray: #263340;
-  --ui-gray-dark: #16202B;
-  --ui-gray-darkest: #14202A;
-  --ui-gray-darker: #151A1F;
-  --ui-gray-light:  #516873;
-  --primary-background-color: #000000;
-  --table-hover-color: #2c363f;
-  --table-text-primary-color: #ffffff;
-  --table-text-secondary-color: #91b9cd;
-  --input-background-color: #2c363f;
-  --input-placeholder-color: lightgray;
-  --study-list-toolbar-height: 75px;
-  --body-cell-height : 40px;
-  --study-list-padding: 8%;
-  --large-numbers-color:#6FBDE2;
-}
+$study-list-padding = 8%;
+$study-list-toolbar-height = 75px;
+$body-cell-height = 40px;
+
+$tablePaddingMediumScreen = 5px
+$tablePaddingBigScreen = 3%
+$tablePaddingLargeScreen = 5%
 
 // TODO: move this to a common mixin files
 placeholder-color(c)
@@ -33,9 +19,9 @@ placeholder-color(c)
 
 .studyListToolbar
   background-color: var(--ui-gray-darker)
-  height: var(--study-list-toolbar-height)
+  height: $study-list-toolbar-height
   margin-bottom: 2px
-  padding: 0 var(--study-list-padding)
+  padding: 0 $study-list-padding
 
   &>div
     display: inline-block
@@ -44,17 +30,17 @@ placeholder-color(c)
     font-size: 22px
     font-weight: 300
     color: var(--table-text-secondary-color)
-    line-height: var(--study-list-toolbar-height)
+    line-height: $study-list-toolbar-height
 
   .studylistToolbar
-    height: var(--study-list-toolbar-height)
-    line-height: var(--study-list-toolbar-height)
+    height: $study-list-toolbar-height
+    line-height: $study-list-toolbar-height
 
   .studyCount
     color: var(--large-numbers-color)
     font-size: 40px
     font-weight: 100
-    line-height: var(--study-list-toolbar-height)
+    line-height: $study-list-toolbar-height
 
 .theadBackground
   height: 121px
@@ -82,7 +68,7 @@ placeholder-color(c)
 
 #studyListContainer
   width: 100%
-  padding: 0 var(--study-list-padding)
+  padding: 0 $study-list-padding
   position: absolute
   z-index: 2
 
@@ -106,7 +92,7 @@ placeholder-color(c)
       tr
         th
           padding: 0
-          border-bottom: solid 1px #6fbde2
+          border-bottom: solid 1px var(--ui-border-color-active)
           width: 100%
 
           &.studyDate
@@ -172,12 +158,12 @@ placeholder-color(c)
           background-color: var(--ui-gray-darker)
 
         td
-          height: var(--body-cell-height)
-          line-height: var(--body-cell-height)
+          height: $body-cell-height
+          line-height: $body-cell-height
           color: var(--table-text-primary-color)
           font-weight: 300
-          border-top: 1px solid #436270
-          border-bottom: 1px solid #436270
+          border-top: 1px solid var(--ui-border-color-active)
+          border-bottom: 1px solid var(--ui-border-color-active)
           white-space: nowrap
           transition(all 0.1s ease)
 
@@ -186,19 +172,17 @@ placeholder-color(c)
 
         &:hover, &:active, &.active
           background-color: var(--table-hover-color)
-          color: #ffffff
+          color: var(--text-primary-color)
 
           td
             // This selector is necessary to override bootstrap's 'table' class
-            border-top: 1px solid #436270
-            border-bottom: 1px solid #436270
+            border-top: 1px solid var(--ui-border-color-active)
+            border-bottom: 1px solid var(--ui-border-color-active)
             background-color: var(--table-hover-color)
 
 @media only screen and (max-width: 1362px)
-  $table-padding = 5%
-
   #studyListContainer
-    padding: 0 $table-padding
+    padding: 0 $tablePaddingLargeScreen
 
     table#tblStudyList
       thead,
@@ -207,16 +191,14 @@ placeholder-color(c)
           th,
           td
             &:first-child
-              padding-left: $tablePadding
+              padding-left: $tablePaddingLargeScreen
 
             &:last-child
-              padding-right: $tablePadding
+              padding-right: $tablePaddingLargeScreen
 
 @media only screen and (max-width: 1161px)
-  $tablePadding = 3%
-
   #studyListContainer
-    padding: 0 $tablePadding
+    padding: 0 $tablePaddingBigWidth
 
     table#tblStudyList
       thead,
@@ -225,16 +207,17 @@ placeholder-color(c)
           th,
           td
             &:first-child
-              padding-left: $tablePadding
+              padding-left: $tablePaddingBigScreen
 
             &:last-child
-              padding-right: $tablePadding
+              padding-right: $tablePaddingBigScreen
 
 @media only screen and (max-width: 1069px)
-  $tablePaddingMediumScreen = 5px
-
   .theadBackground
     height: 101px
+  
+  .studylist-pagination > .row
+    margin-right: 0;
 
   .studyListToolbar
     padding: 0 $tablePaddingMediumScreen
@@ -271,7 +254,3 @@ placeholder-color(c)
       .row
         margin-left: 0
         margin-right: 0
-
-@media only screen and (max-width: 1069px)
-  .studylist-pagination > .row
-    margin-right: 0;

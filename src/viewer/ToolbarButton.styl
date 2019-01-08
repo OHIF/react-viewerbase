@@ -1,0 +1,52 @@
+.ToolbarButton
+  height: 48px;
+  color: var(--default-color);
+  float: left;
+  text-align: center;
+  padding: 0 1rem;
+  cursor: pointer;
+
+  -webkit-touch-callout: none; /* iOS Safari */
+  -webkit-user-select: none; /* Safari */
+  -khtml-user-select: none; /* Konqueror HTML */
+  -moz-user-select: none; /* Firefox */
+  -ms-user-select: none; /* Internet Explorer/Edge */
+  user-select: none; /* Non-prefixed version, currently
+                                  supported by Chrome and Opera */
+
+
+  svg
+    height: 21px;
+    width: 21px;
+    margin: 2px;
+    fill: var(--default-color);
+    stroke: var(--default-color);
+
+  i
+    font-size: 18px;
+    line-height: 30px;
+
+  &:hover
+    color: var(--hover-color);
+
+  &:hover svg
+    fill: var(--hover-color);
+    stroke: var(--hover-color);
+
+  &:hover i
+    color: var(--hover-color);
+
+  &.active, &:active
+    color: var(--active-color);
+
+    svg
+      fill: var(--active-color);
+      stroke: var(--active-color);
+
+    i
+      color: var(--active-color);
+
+  span.toolbar-button-label
+    font-size: 12px;
+    font-weight: 500;
+    display: block;
