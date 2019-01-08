@@ -4,9 +4,10 @@ import ToolbarExample from './ToolbarExample.js';
 import LayoutExample from './LayoutExample.js';
 import CineDialogExample from './CineDialogExample.js';
 import RoundedButtonGroupExample from './RoundedButtonGroupExample.js';
-import './App.css';
+import './App.styl';
 import StudyListExample from './StudyListExample.js';
 import UserPreferencesExample from './UserPreferencesExample.js';
+import SimpleDialogExample from './SimpleDialogExample.js';
 
 class App extends Component {
   constructor(props) {
@@ -64,6 +65,7 @@ class App extends Component {
           <RoundedButtonGroupExample />
           <UserPreferencesExample />
           <StudyListExample />
+          <SimpleDialogExample />
           {/*<div className="row">
             <div className='col-xs-12 col-lg-6'>
               <h3>Simple Toolbar</h3>
