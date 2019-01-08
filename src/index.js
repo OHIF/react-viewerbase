@@ -1,35 +1,37 @@
-import RoundedButtonGroup from './basic/RoundedButtonGroup.js';
-import LayoutManager from './LayoutChooser/LayoutManager.js';
-import LayoutChooser from './LayoutChooser/LayoutChooser.js';
+import CineDialog from './viewer/CineDialog.js';
+import ExampleDropTarget from './studyBrowser/ExampleDropTarget.js';
 import LayoutButton from './LayoutChooser/LayoutButton.js';
-import ToolbarSection from './viewer/ToolbarSection.js';
+import LayoutChooser from './LayoutChooser/LayoutChooser.js';
+import LayoutManager from './LayoutChooser/LayoutManager.js';
+import LayoutPanelDropTarget from './LayoutChooser/LayoutPanelDropTarget.js';
+import PlayClipButton from './viewer/PlayClipButton.js';
+import RoundedButtonGroup from './basic/RoundedButtonGroup.js';
+import SimpleDialog from './SimpleDialog/SimpleDialog.js';
 import StudyBrowser from './studyBrowser/StudyBrowser.js';
+import StudyList from './studyList/StudyList.js';
 import ThumbnailEntry from './studyBrowser/ThumbnailEntry.js';
 import Toolbar from './viewer/Toolbar.js';
-import PlayClipButton from './viewer/PlayClipButton.js';
-import CineDialog from './viewer/CineDialog.js';
-import StudyList from './studyList/StudyList.js';
+import ToolbarSection from './viewer/ToolbarSection.js';
 import UserPreferences from './userPreferences/UserPreferences';
 import UserPreferencesModal from './userPreferences/UserPreferencesModal';
 import ViewerbaseDragDropContext from './utils/ViewerbaseDragDropContext.js';
-import ExampleDropTarget from './studyBrowser/ExampleDropTarget.js';
-import LayoutPanelDropTarget from './LayoutChooser/LayoutPanelDropTarget.js';
 
 export {
-  RoundedButtonGroup,
-  LayoutChooser,
+  CineDialog,
+  ExampleDropTarget,
   LayoutButton,
-  ToolbarSection,
+  LayoutChooser,
+  LayoutManager,
+  LayoutPanelDropTarget,
+  PlayClipButton,
+  RoundedButtonGroup,
+  SimpleDialog,
   StudyBrowser,
+  StudyList,
   ThumbnailEntry,
   Toolbar,
-  PlayClipButton,
-  LayoutManager,
-  CineDialog,
-  StudyList,
+  ToolbarSection,
   UserPreferences,
   UserPreferencesModal,
-  ViewerbaseDragDropContext,
-  ExampleDropTarget,
-  LayoutPanelDropTarget
+  ViewerbaseDragDropContext
 };
