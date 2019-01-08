@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react';
 import ToolbarButton from './ToolbarButton';
-import './ToolbarSection.css';
+import './ToolbarSection.styl';
 import PropTypes from 'prop-types';
 
 class ToolbarSection extends PureComponent {
