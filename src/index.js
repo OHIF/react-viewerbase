@@ -6,6 +6,7 @@ import LayoutManager from './LayoutChooser/LayoutManager.js';
 import LayoutPanelDropTarget from './LayoutChooser/LayoutPanelDropTarget.js';
 import PlayClipButton from './viewer/PlayClipButton.js';
 import RoundedButtonGroup from './basic/RoundedButtonGroup.js';
+import SelectTree from './SelectTree/SelectTree.js';
 import SimpleDialog from './SimpleDialog/SimpleDialog.js';
 import StudyBrowser from './studyBrowser/StudyBrowser.js';
 import StudyList from './studyList/StudyList.js';
@@ -25,6 +26,7 @@ export {
   LayoutPanelDropTarget,
   PlayClipButton,
   RoundedButtonGroup,
+  SelectTree,
   SimpleDialog,
   StudyBrowser,
   StudyList,

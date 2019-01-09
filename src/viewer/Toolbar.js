@@ -114,62 +114,6 @@ function getDefaultButtonData() {
   return buttonData;
 }
 
-/*Template.toolbar.events({
-    'click .imageViewerTool': function(e) {
-        $(e.currentTarget).tooltip('hide');
-
-        var tool = e.currentTarget.id;
-
-        var elements = $('.imageViewerViewport');
-
-        var activeTool = toolManager.getActiveTool();
-        if (tool === activeTool) {
-            var defaultTool = toolManager.getDefaultTool();
-            console.log('Setting active tool to: ' + defaultTool);
-            toolManager.setActiveTool(defaultTool, elements);
-        } else {
-            console.log('Setting active tool to: ' + tool);
-            toolManager.setActiveTool(tool, elements);
-        }
-    },
-    'click .imageViewerCommand': function(e) {
-        $(e.currentTarget).tooltip('hide');
-
-        var command = e.currentTarget.id;
-        if (!OHIF.viewer.functionList.hasOwnProperty(command)) {
-            return;
-        }
-
-        var activeViewport = Session.get('activeViewport');
-        var element = $('.imageViewerViewport').get(activeViewport);
-        OHIF.viewer.functionList[command](element);
-    }
-});
-
-Template.toolbar.onRendered(function() {
-    var tooltipButtons = $('[data-toggle="tooltip"]');
-    tooltipButtons.tooltip(OHIF.viewer.tooltipConfig);
-
-    // Enable tooltips for the layout button
-    var extraTooltipButtons = $('[rel="tooltip"]');
-    extraTooltipButtons.tooltip(OHIF.viewer.tooltipConfig);
-
-    // Set disabled/enabled tool buttons that are set in toolManager
-    var states = toolManager.getToolDefaultStates();
-    var disabledToolButtons = states.disabledToolButtons;
-    var allToolbarButtons = $('#toolbar').find('button');
-    if (disabledToolButtons.length > 0) {
-        for (var i = 0; i < allToolbarButtons.length; i++) {
-            var toolbarButton = allToolbarButtons[i];
-            $(toolbarButton).prop('disabled', false);
-            var index = disabledToolButtons.indexOf($(toolbarButton).attr('id'));
-            if (index !== -1) {
-                $(toolbarButton).prop('disabled', true);
-            }
-        }
-    }
-});*/
-
 export class Toolbar extends Component {
   render() {
     var maybePlayClipButton;
