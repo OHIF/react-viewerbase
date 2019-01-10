@@ -71,7 +71,7 @@ export default class UserPreferences extends Component {
               }}
               className={this.getTabClass(0)}
             >
-              <button className="nav-link">Hotkeys</button>
+              <button>Hotkeys</button>
             </li>
             <li
               onClick={() => {
@@ -79,7 +79,7 @@ export default class UserPreferences extends Component {
               }}
               className={this.getTabClass(1)}
             >
-              <button className={this.getTabClass(0)}>Window Level</button>
+              <button>Window Level</button>
             </li>
           </ul>
         </div>
