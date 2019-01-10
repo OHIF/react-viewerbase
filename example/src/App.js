@@ -8,6 +8,7 @@ import StudyBrowserExample from './StudyBrowserExample.js';
 import StudyListExample from './StudyListExample.js';
 import ToolbarExample from './ToolbarExample.js';
 import UserPreferencesExample from './UserPreferencesExample.js';
+import TableListExample from './TableListExample.js';
 
 import './App.styl';
 
@@ -69,6 +70,7 @@ class App extends Component {
           <StudyListExample />
           <SimpleDialogExample />
           <SelectTreeExample />
+          <TableListExample />
           {/*<div className="row">
             <div className='col-xs-12 col-lg-6'>
               <h3>Simple Toolbar</h3>
