@@ -1,0 +1,34 @@
+.tableListItem
+  display: flex
+  margin-left: -6px
+  margin-top: 2px
+  padding-left: 6px
+  opacity: 0.7
+  width: calc(100% + 6px)
+
+  &:hover
+    opacity 1
+
+  &.selected
+    opacity 1
+    .itemIndex
+      color: $activeColor
+  
+  .itemIndex
+    background-color: var(--ui-gray)
+    color: var(--text-secondary-color)
+    cursor: pointer
+    flex: 1
+    max-width: 40px
+    transition(all 0.3s ease)
+    font-size: 14px
+    font-weight: 400
+    margin-right: 5px
+    padding: 10px
+    text-align: center
+
+  .itemContent
+    flex: 1
+    color: var(--text-secondary-color)
+    font-weight: 400
+    margin-left: -2px
