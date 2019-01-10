@@ -12,7 +12,8 @@ export default class WindowLevelPreferences extends Component {
   }
 
   static propTypes = {
-    windowLevelData: PropTypes.object.isRequired
+    windowLevelData: PropTypes.object.isRequired,
+    onChange: PropTypes.func
   };
 
   onChange(event, key, field) {
@@ -20,6 +21,10 @@ export default class WindowLevelPreferences extends Component {
     const entry = data[key];
     entry[field] = event.target.value;
     this.setState({ data });
+
+    if (this.props.onChange) {
+      this.props.onChange(data);
+    }
   }
 
   getWLPreferencesRows(key) {

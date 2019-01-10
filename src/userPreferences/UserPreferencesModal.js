@@ -17,8 +17,36 @@ export default class UserPreferencesModal extends Component {
     hotKeysData: PropTypes.object
   };
 
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      windowLevelData: props.windowLevelData,
+      hotKeysData: props.hotKeysData
+    };
+  }
+
   static defaultProps = {
     isOpen: false
+  };
+
+  save = data => {
+    this.props.onSave({
+      windowLevelData: this.state.windowLevelData,
+      hotKeysData: this.state.hotKeysData
+    });
+  };
+
+  onChangeWindowLevelData = () => {
+    this.setState({
+      windowLevelData
+    });
+  };
+
+  onChangeHotKeysData = hotKeysData => {
+    this.setState({
+      hotKeysData
+    });
   };
 
   render() {
@@ -37,8 +65,10 @@ export default class UserPreferencesModal extends Component {
         </Modal.Header>
         <Modal.Body>
           <UserPreferences
-            windowLevelData={this.props.windowLevelData}
-            hotKeysData={this.props.hotKeysData}
+            windowLevelData={this.state.windowLevelData}
+            onChangeWindowLevelData={this.onChangeWindowLevelData}
+            hotKeysData={this.state.hotKeysData}
+            onChangeHotKeysData={this.onChangeHotKeysData}
           />
         </Modal.Body>
         <Modal.Footer>
@@ -49,7 +79,7 @@ export default class UserPreferencesModal extends Component {
             Reset to Defaults
           </button>
           <Modal.Dismiss className="btn btn-default">Cancel</Modal.Dismiss>
-          <button className="btn btn-primary" onClick={this.props.onSave}>
+          <button className="btn btn-primary" onClick={this.save}>
             Save
           </button>
         </Modal.Footer>

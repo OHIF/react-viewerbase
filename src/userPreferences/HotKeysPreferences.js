@@ -104,7 +104,8 @@ export default class HotKeysPreferences extends Component {
   };
 
   static propTypes = {
-    hotKeysData: PropTypes.object.isRequired
+    hotKeysData: PropTypes.object.isRequired,
+    onChange: PropTypes.func
   };
 
   constructor(props) {
@@ -130,6 +131,11 @@ export default class HotKeysPreferences extends Component {
     };
 
     this.onInputKeyDown = this.onInputKeyDown.bind(this);
+  }
+
+  componentDidUpdate(prevProps) {
+    // todo object equal
+    //if (thi.s. )
   }
 
   getKeysPressedArray(event) {
@@ -259,6 +265,10 @@ export default class HotKeysPreferences extends Component {
         return;
       }
     });
+
+    if (this.props.onChange) {
+      this.props.onChange(this.state.hotKeys);
+    }
   }
 
   renderRow(toolKey, hotKey) {

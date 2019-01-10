@@ -13,7 +13,9 @@ export default class UserPreferences extends Component {
   // TODO: Make this more generic. Tabs should not be restricted to these entries
   static propTypes = {
     hotKeysData: PropTypes.object.isRequired,
-    windowLevelData: PropTypes.object.isRequired
+    windowLevelData: PropTypes.object.isRequired,
+    onChangeHotKeysData: PropTypes.func,
+    onChangeWindowLevelData: PropTypes.func
   };
 
   state = {
@@ -28,7 +30,10 @@ export default class UserPreferences extends Component {
     return (
       <form className="form-themed themed">
         <div className="form-content">
-          <HotKeysPreferences hotKeysData={this.props.hotKeysData} />
+          <HotKeysPreferences
+            hotKeysData={this.props.hotKeysData}
+            onChange={this.props.onChangeHotKeysData}
+          />
         </div>
       </form>
     );
@@ -41,6 +46,7 @@ export default class UserPreferences extends Component {
           <div className="form-content">
             <WindowLevelPreferences
               windowLevelData={this.props.windowLevelData}
+              onChange={this.props.onChangeWindowLevelData}
             />
           </div>
         </form>
