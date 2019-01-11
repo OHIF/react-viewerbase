@@ -69,7 +69,7 @@ export default class HotKeysPreferences extends Component {
     if (displayPressedKey) {
       const specialKeyName = specialKeys[event.which];
       const keyName =
-        specialKeyName || String.fromCharCode(event.keyCode) || event.key;
+        specialKeyName || event.key || String.fromCharCode(event.keyCode);
       pressedKeys.push(keyName.toUpperCase());
     }
 
@@ -152,9 +152,11 @@ export default class HotKeysPreferences extends Component {
         .join('+')
         .toUpperCase();
 
-      const hasDisallowedCombinations = disallowedCombinations[
-        modifierCommand
-      ].includes(lastPressedKey);
+      const disallowedCombinations =
+        HotKeysPreferences.disallowedCombinations[modifierCommand];
+      const hasDisallowedCombinations = disallowedCombinations
+        ? disallowedCombinations.includes(lastPressedKey)
+        : false;
 
       if (hasDisallowedCombinations) {
         this.updateHotKeysState(toolKey, '');
