@@ -2,7 +2,13 @@ import { Component } from 'react';
 import React from 'react';
 import PropTypes from 'prop-types';
 
-class SelectTreeBreadcrumb extends Component {
+export default class SelectTreeBreadcrumb extends Component {
+  static propTypes = {
+    label: PropTypes.string.isRequired,
+    value: PropTypes.string.isRequired,
+    onSelected: PropTypes.func.isRequired
+  };
+
   render() {
     return (
       <div className="selectTreeBreadcrumb">
@@ -30,11 +36,3 @@ class SelectTreeBreadcrumb extends Component {
     );
   }
 }
-
-SelectTreeBreadcrumb.propTypes = {
-  label: PropTypes.string.isRequired,
-  value: PropTypes.string.isRequired,
-  onSelected: PropTypes.func.isRequired
-};
-
-export default SelectTreeBreadcrumb;

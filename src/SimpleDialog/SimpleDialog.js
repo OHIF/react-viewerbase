@@ -4,7 +4,18 @@ import PropTypes from 'prop-types';
 
 import './SimpleDialog.styl';
 
-class SimpleDialog extends Component {
+export default class SimpleDialog extends Component {
+  static propTypes = {
+    children: PropTypes.node,
+    componentRef: PropTypes.any,
+    componentStyle: PropTypes.object,
+    rootClass: PropTypes.string,
+    isOpen: PropTypes.bool,
+    headerTitle: PropTypes.string.isRequired,
+    onClose: PropTypes.func.isRequired,
+    onConfirm: PropTypes.func.isRequired
+  };
+
   static defaultProps = {
     isOpen: true,
     componentStyle: {},
@@ -55,11 +66,3 @@ class SimpleDialog extends Component {
     this.props.onConfirm();
   };
 }
-
-SimpleDialog.propTypes = {
-  headerTitle: PropTypes.string.isRequired,
-  onClose: PropTypes.func.isRequired,
-  onConfirm: PropTypes.func.isRequired
-};
-
-export default SimpleDialog;
