@@ -30,14 +30,14 @@ export default class UserPreferencesModal extends Component {
     isOpen: false
   };
 
-  save = data => {
+  save = () => {
     this.props.onSave({
       windowLevelData: this.state.windowLevelData,
       hotKeysData: this.state.hotKeysData
     });
   };
 
-  onChangeWindowLevelData = () => {
+  onChangeWindowLevelData = windowLevelData => {
     this.setState({
       windowLevelData
     });
