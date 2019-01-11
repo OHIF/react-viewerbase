@@ -3,7 +3,14 @@ import PropTypes from 'prop-types';
 
 import './TableList.styl';
 
-class TableList extends Component {
+export default class TableList extends Component {
+  static propTypes = {
+    customHeader: PropTypes.node,
+    defaultItems: PropTypes.object,
+    children: PropTypes.node.isRequired,
+    headerTitle: PropTypes.string
+  };
+
   render() {
     return (
       <div className="tableList">
@@ -28,12 +35,3 @@ class TableList extends Component {
     }
   };
 }
-
-TableList.propTypes = {
-  customHeader: PropTypes.node,
-  defaultItems: PropTypes.object,
-  children: PropTypes.node.isRequired,
-  headerTitle: PropTypes.string.isRequired
-};
-
-export default TableList;

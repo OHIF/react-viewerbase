@@ -4,14 +4,21 @@ import PropTypes from 'prop-types';
 
 import './TableListItem.styl';
 
-class TableListItem extends Component {
+export default class TableListItem extends Component {
+  static propTypes = {
+    children: PropTypes.node,
+    itemClass: PropTypes.string,
+    itemIndex: PropTypes.number,
+    onItemClick: PropTypes.func.isRequired
+  };
+
   render() {
     return (
       <div
         className={`tableListItem ${this.props.itemClass}`}
         onClick={this.onItemClick}
       >
-        <div className="itemIndex">{this.props.itemIndex}</div>
+        <div className="itemIndex">{this.props.itemIndex + 1}</div>
         <div className="itemContent">{this.props.children}</div>
       </div>
     );
@@ -26,12 +33,3 @@ class TableListItem extends Component {
     }
   };
 }
-
-TableListItem.propTypes = {
-  children: PropTypes.node,
-  itemClass: PropTypes.string,
-  itemIndex: PropTypes.number,
-  onItemClick: PropTypes.func.isRequired
-};
-
-export default TableListItem;

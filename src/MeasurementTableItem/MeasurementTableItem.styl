@@ -1,0 +1,40 @@
+.measurementItem
+  .rowActions
+      background-color: var(--ui-gray-darker)
+      height: 0
+      overflow: hidden
+      transition: all 0.3s ease
+      visibility: hidden
+      padding-left: 14px
+
+      .btnAction
+        background-color: transparent;
+        border: none;
+        color: var(--default-color)
+        cursor: pointer
+        line-height: 35px
+        transition: all 0.3s ease
+
+        &:hover, &:active
+          color: var(--text-primary-color)
+
+        i
+          margin-right: 4px;
+  
+  &.selected
+    .rowActions
+      height: 35px
+      visibility: visible
+  
+  .measurementLocation
+    margin-left: 9px;
+    margin-top: 9px;
+
+  .measurementDisplayText
+    display: inline-block;
+    margin-top: 9px;
+    margin-left: 9px;
+    padding-left: 9px;
+    width: 90px;
+    border-left: 1px solid var(--text-secondary-color);
+    color: var(--text-primary-color);
