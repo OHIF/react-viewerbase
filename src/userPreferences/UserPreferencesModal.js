@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Modal from 'react-bootstrap-modal';
 import 'react-bootstrap-modal/lib/css/rbm-patch.css';
-
+import cloneDeep from 'lodash.clonedeep';
+import isEqual from 'lodash.isequal';
 import UserPreferences from './UserPreferences';
 import '../design/styles/common/modal.styl';
 
@@ -21,8 +22,8 @@ export default class UserPreferencesModal extends Component {
     super(props);
 
     this.state = {
-      windowLevelData: props.windowLevelData,
-      hotKeysData: props.hotKeysData
+      windowLevelData: cloneDeep(props.windowLevelData),
+      hotKeysData: cloneDeep(props.hotKeysData)
     };
   }
 
@@ -37,17 +38,21 @@ export default class UserPreferencesModal extends Component {
     });
   };
 
-  onChangeWindowLevelData = windowLevelData => {
-    this.setState({
-      windowLevelData
-    });
-  };
+  componentDidUpdate(prev, next) {
+    const newStateData = {};
 
-  onChangeHotKeysData = hotKeysData => {
-    this.setState({
-      hotKeysData
-    });
-  };
+    if (!isEqual(prev.windowLevelData, next.windowLevelData)) {
+      newStateData.windowLevelData = prev.windowLevelData;
+    }
+
+    if (!isEqual(prev.hotKeysData, next.hotKeysData)) {
+      newStateData.hotKeysData = prev.hotKeysData;
+    }
+
+    if (newStateData.hotKeysData || newStateData.windowLevelData) {
+      this.setState(newStateData);
+    }
+  }
 
   render() {
     return (
@@ -66,9 +71,7 @@ export default class UserPreferencesModal extends Component {
         <Modal.Body>
           <UserPreferences
             windowLevelData={this.state.windowLevelData}
-            onChangeWindowLevelData={this.onChangeWindowLevelData}
             hotKeysData={this.state.hotKeysData}
-            onChangeHotKeysData={this.onChangeHotKeysData}
           />
         </Modal.Body>
         <Modal.Footer>

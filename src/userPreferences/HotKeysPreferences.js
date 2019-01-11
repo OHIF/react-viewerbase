@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+
 import {
   allowedKeys,
   disallowedCombinations,
@@ -35,11 +36,6 @@ export default class HotKeysPreferences extends Component {
     };
 
     this.onInputKeyDown = this.onInputKeyDown.bind(this);
-  }
-
-  componentDidUpdate(prevProps) {
-    // todo object equal
-    //if (thi.s. )
   }
 
   getKeysPressedArray(event) {
@@ -169,10 +165,6 @@ export default class HotKeysPreferences extends Component {
         return;
       }
     });
-
-    if (this.props.onChange) {
-      this.props.onChange(this.state.hotKeys);
-    }
   }
 
   renderRow(toolKey, hotKey) {
