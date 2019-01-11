@@ -9,6 +9,7 @@ import StudyListExample from './StudyListExample.js';
 import ToolbarExample from './ToolbarExample.js';
 import UserPreferencesExample from './UserPreferencesExample.js';
 import TableListExample from './TableListExample.js';
+import MeasurementTableExample from './MeasurementTableExample.js';
 
 import './App.styl';
 
@@ -80,6 +81,7 @@ class App extends Component {
               <Toolbar buttons={this.state.buttons}/>
             </div>
           </div>*/}
+          <MeasurementTableExample/>
         </div>
     );
   }

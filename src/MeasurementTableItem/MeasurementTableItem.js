@@ -6,33 +6,60 @@ import TableListItem from '../TableListItem/TableListItem.js';
 
 import './MeasurementTableItem.styl';
 
-class MeasurementTableItem extends Component {
+export default class MeasurementTableItem extends Component {
+  static propTypes = {
+    measurementData: PropTypes.object.isRequired,
+    onItemClick: PropTypes.func.isRequired,
+    onRelabel: PropTypes.func.isRequired,
+    onDelete: PropTypes.func.isRequired,
+    onEditDescription: PropTypes.func.isRequired,
+    itemKey: PropTypes.string.isRequired,
+    itemClass: PropTypes.string,
+    itemIndex: PropTypes.number
+  };
+
   render() {
     return (
       <TableListItem
-        itemKey
-        itemClass="measurementItem"
+        itemKey={this.props.itemKey}
+        itemClass={`measurementItem ${this.props.itemClass}`}
         itemIndex={this.props.itemIndex}
+        onItemClick={this.props.onItemClick}
       >
         <div>
           <div className="measurementLocation">
-            {this.props.measurenmentData.additionalData}
+            {this.props.measurementData.label}
           </div>
-          <div>{this.props.measurenmentData.displayData}</div>
-          <div className="controlButtons">
-            <button onClick={this.props.onRelabel}>Relabel</button>
-            <button onClick={this.props.onDelete}>Delete</button>
+          <div>{this.getDataDisplayText()}</div>
+          <div className="rowActions">
+            <button className="btnAction" onClick={this.props.onRelabel}>
+              <i className="fa fa-edit" />
+              Relabel
+            </button>
+            <button
+              className="btnAction"
+              onClick={this.props.onEditDescription}
+            >
+              <i className="fa fa-edit" />
+              Description
+            </button>
+            <button className="btnAction" onClick={this.props.onDelete}>
+              <i className="fa fa-trash-o" />
+              Delete
+            </button>
           </div>
         </div>
       </TableListItem>
     );
   }
+
+  getDataDisplayText = () => {
+    return this.props.measurementData.data.map((data, index) => {
+      return (
+        <div key={`displayText_${index}`} className="measurementDisplayText">
+          {data.displayText ? data.displayText : '...'}
+        </div>
+      );
+    });
+  };
 }
-
-MeasurementTableItem.propTypes = {
-  measurementData: PropTypes.object.isRequired,
-  onRelabel: PropTypes.func.isRequired,
-  onDelete: PropTypes.func.isRequired
-};
-
-export default MeasurementTableItem;
