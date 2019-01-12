@@ -40,7 +40,7 @@ class ExampleDropTarget extends Component {
 
   static propTypes = {
     connectDropTarget: PropTypes.func.isRequired,
-    canDrop: PropTypes.func.isRequired,
+    canDrop: PropTypes.bool.isRequired,
     isOver: PropTypes.bool.isRequired
   };
 
