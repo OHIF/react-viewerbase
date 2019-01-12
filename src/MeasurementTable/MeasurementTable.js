@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import TableList from '../TableList/TableList.js';
 import MeasurementTableItem from '../MeasurementTableItem/MeasurementTableItem.js';
+import ScrollableArea from '../ScrollableArea/ScrollableArea.js';
 
 import './MeasurementTable.styl';
 
@@ -25,7 +26,9 @@ export default class MeasurementTable extends Component {
         <div className="measurementTableHeader">
           {this.getTimepointsHeader()}
         </div>
-        <div>{this.getMeasurementsGroups()}</div>
+        <ScrollableArea>
+          <div>{this.getMeasurementsGroups()}</div>
+        </ScrollableArea>
       </div>
     );
   }
