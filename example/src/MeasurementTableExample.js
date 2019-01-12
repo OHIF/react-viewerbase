@@ -94,7 +94,7 @@ export default class MeasurementTableExample extends Component {
             {JSON.stringify(this.state.measurementCollection, null, 4)}
           </pre>
         </div>
-        <div className='col-xs-12 col-sm-6' style={{ marginTop: '65px' }}>
+        <div className='col-xs-12 col-sm-6' style={{ height: '400px', marginTop: '65px' }}>
           <MeasurementTable
             timepoints={this.state.timepoints}
             measurementCollection={this.state.measurementCollection}

@@ -8,6 +8,7 @@ import MeasurementTable from './MeasurementTable/MeasurementTable.js';
 import MeasurementTableItem from './MeasurementTableItem/MeasurementTableItem.js';
 import PlayClipButton from './viewer/PlayClipButton.js';
 import RoundedButtonGroup from './basic/RoundedButtonGroup.js';
+import ScrollableArea from './ScrollableArea/ScrollableArea.js';
 import SelectTree from './SelectTree/SelectTree.js';
 import SimpleDialog from './SimpleDialog/SimpleDialog.js';
 import StudyBrowser from './studyBrowser/StudyBrowser.js';
@@ -32,6 +33,7 @@ export {
   MeasurementTableItem,
   PlayClipButton,
   RoundedButtonGroup,
+  ScrollableArea,
   SelectTree,
   SimpleDialog,
   StudyBrowser,
