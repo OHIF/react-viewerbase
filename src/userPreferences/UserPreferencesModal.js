@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Modal from 'react-bootstrap-modal';
 import 'react-bootstrap-modal/lib/css/rbm-patch.css';
-
+import cloneDeep from 'lodash.clonedeep';
+import isEqual from 'lodash.isequal';
 import UserPreferences from './UserPreferences';
 import '../design/styles/common/modal.styl';
 
@@ -17,9 +18,41 @@ export default class UserPreferencesModal extends Component {
     hotKeysData: PropTypes.object
   };
 
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      windowLevelData: cloneDeep(props.windowLevelData),
+      hotKeysData: cloneDeep(props.hotKeysData)
+    };
+  }
+
   static defaultProps = {
     isOpen: false
   };
+
+  save = () => {
+    this.props.onSave({
+      windowLevelData: this.state.windowLevelData,
+      hotKeysData: this.state.hotKeysData
+    });
+  };
+
+  componentDidUpdate(prev, next) {
+    const newStateData = {};
+
+    if (!isEqual(prev.windowLevelData, next.windowLevelData)) {
+      newStateData.windowLevelData = prev.windowLevelData;
+    }
+
+    if (!isEqual(prev.hotKeysData, next.hotKeysData)) {
+      newStateData.hotKeysData = prev.hotKeysData;
+    }
+
+    if (newStateData.hotKeysData || newStateData.windowLevelData) {
+      this.setState(newStateData);
+    }
+  }
 
   render() {
     return (
@@ -37,8 +70,8 @@ export default class UserPreferencesModal extends Component {
         </Modal.Header>
         <Modal.Body>
           <UserPreferences
-            windowLevelData={this.props.windowLevelData}
-            hotKeysData={this.props.hotKeysData}
+            windowLevelData={this.state.windowLevelData}
+            hotKeysData={this.state.hotKeysData}
           />
         </Modal.Body>
         <Modal.Footer>
@@ -49,7 +82,7 @@ export default class UserPreferencesModal extends Component {
             Reset to Defaults
           </button>
           <Modal.Dismiss className="btn btn-default">Cancel</Modal.Dismiss>
-          <button className="btn btn-primary" onClick={this.props.onSave}>
+          <button className="btn btn-primary" onClick={this.save}>
             Save
           </button>
         </Modal.Footer>

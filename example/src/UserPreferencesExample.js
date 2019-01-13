@@ -114,10 +114,9 @@ export default class UserPreferencesExample extends Component {
         });
     }
 
-    save() {
-        // the windowLevelData and hotKeysData states have been changed already
-        // now we just need to close the modal
-        this.setState({ modalOpened: false });
+    save(componentState) {
+        const { hotKeysData, windowLevelData } = componentState;
+        this.setState({ modalOpened: false, hotKeysData, windowLevelData });
     }
 
     resetToDefaults() {
@@ -161,6 +160,6 @@ export default class UserPreferencesExample extends Component {
                     />
                 </div>
             </div>
-      );
+        );
     }
 }
