@@ -34,13 +34,34 @@ class CineDialog extends PureComponent {
     isPlaying: false
   };
 
+  componentDidUpdate(prevProps) {
+    // TODO: Not sure if we should just switch this to a stateless
+    // fully-controlled component instead
+    if (
+      this.props.isPlaying !== prevProps.isPlaying ||
+      this.props.isPlaying !== this.state.isPlaying
+    ) {
+      this.setState({
+        isPlaying: this.props.isPlaying
+      });
+    }
+
+    if (
+      this.props.cineFrameRate !== prevProps.cineFrameRate ||
+      this.props.cineFrameRate !== this.state.cineFrameRate
+    ) {
+      this.setState({
+        cineFrameRate: this.props.cineFrameRate
+      });
+    }
+  }
+
   handleInputChange = event => {
     const target = event.target;
 
     let value = target.value;
-    if (target.type === 'checkbox') {
-      value = target.checked;
-    } else if (target.type === 'range') {
+
+    if (target.type === 'range') {
       value = parseFloat(target.value);
     }
 

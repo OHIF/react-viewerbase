@@ -6,23 +6,21 @@ import classnames from 'classnames';
 
 class ThumbnailEntry extends Component {
   static defaultProps = {
-    imageSrc: '',
     active: false,
-    loading: false,
     error: false,
-    stackPercentComplete: undefined
+    stackPercentComplete: 0
   };
 
   static propTypes = {
     id: PropTypes.string.isRequired,
-    imageSrc: PropTypes.string.isRequired,
-    loading: PropTypes.bool.isRequired,
+    imageSrc: PropTypes.string,
+    imageId: PropTypes.string,
     error: PropTypes.bool.isRequired,
     active: PropTypes.bool.isRequired,
     stackPercentComplete: PropTypes.number,
     seriesDescription: PropTypes.string,
-    seriesNumber: PropTypes.number,
-    instanceNumber: PropTypes.number,
+    seriesNumber: PropTypes.string,
+    instanceNumber: PropTypes.string,
     numImageFrames: PropTypes.number,
     onDoubleClick: PropTypes.func,
     onClick: PropTypes.func
@@ -46,7 +44,7 @@ class ThumbnailEntry extends Component {
         <div className="p-x-1">
           <ImageThumbnail
             imageSrc={this.props.imageSrc}
-            loading={this.props.loading}
+            imageId={this.props.imageId}
             error={this.props.error}
             stackPercentComplete={this.props.stackPercentComplete}
           />
