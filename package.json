@@ -1,6 +1,6 @@
 {
   "name": "react-viewerbase",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "Cornerstone medical image viewport component for React",
   "author": "Cornerstone Contributors",
   "license": "MIT",
@@ -24,7 +24,6 @@
     "generateStaticSite": "./generateStaticSite.sh"
   },
   "peerDependencies": {
-    "prop-types": "^15.5.4",
     "react": "^15.0.0 || ^16.0.0",
     "react-dom": "^15.0.0 || ^16.0.0"
   },
@@ -32,6 +31,7 @@
     "@babel/core": "^7.2.2",
     "@babel/plugin-external-helpers": "^7.2.0",
     "@babel/plugin-proposal-class-properties": "^7.2.3",
+    "@babel/plugin-transform-runtime": "^7.2.0",
     "@babel/preset-env": "^7.2.3",
     "@babel/preset-react": "^7.0.0",
     "@svgr/rollup": "^4.1.0",
@@ -83,8 +83,10 @@
     "dist"
   ],
   "dependencies": {
+    "@babel/runtime": "^7.2.0",
     "classnames": "^2.2.6",
     "lodash.isequal": "^4.5.0",
+    "prop-types": "^15.6.2",
     "react-bootstrap-modal": "^4.2.0",
     "react-dnd": "^7.0.2",
     "react-dnd-html5-backend": "^7.0.2"

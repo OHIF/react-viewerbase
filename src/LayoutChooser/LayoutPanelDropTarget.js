@@ -58,7 +58,7 @@ class LayoutPanelDropTarget extends Component {
     }
 
     return connectDropTarget(
-      <div className={className}>{this.props.viewportComponent}</div>
+      <div className={className}>{this.props.children}</div>
     );
   }
 }

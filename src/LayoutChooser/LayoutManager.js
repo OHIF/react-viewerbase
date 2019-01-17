@@ -3,6 +3,18 @@ import PropTypes from 'prop-types';
 import './LayoutManager.css';
 import LayoutPanelDropTarget from './LayoutPanelDropTarget.js';
 
+function defaultViewportPlugin(props) {
+  return <div>{JSON.stringify(props)}</div>;
+}
+
+function EmptyViewport() {
+  return (
+    <div className="EmptyViewport">
+      <p>Please drag a stack here to view images.</p>
+    </div>
+  );
+}
+
 export class LayoutManager extends Component {
   static className = 'LayoutManager';
   static defaultProps = {
@@ -19,17 +31,20 @@ export class LayoutManager extends Component {
     },
     activeViewportIndex: 0,
     supportsDragAndDrop: true,
-    setViewportData: ({ viewportIndex, item }) => {
-      //console.log({ viewportIndex, item });
-    }
+    availablePlugins: {
+      defaultViewportPlugin
+    },
+    defaultPlugin: 'defaultViewportPlugin'
   };
 
   static propTypes = {
     viewportData: PropTypes.array.isRequired,
     supportsDragAndDrop: PropTypes.bool.isRequired,
     activeViewportIndex: PropTypes.number.isRequired,
+    layout: PropTypes.object.isRequired,
+    availablePlugins: PropTypes.object.isRequired,
     setViewportData: PropTypes.func,
-    layout: PropTypes.object
+    studies: PropTypes.array
   };
 
   onDrop = ({ viewportIndex, item }) => {
@@ -38,46 +53,85 @@ export class LayoutManager extends Component {
     }
   };
 
+  getPluginComponent = plugin => {
+    const pluginComponent = this.props.availablePlugins[
+      plugin || this.props.defaultPlugin
+    ];
+
+    if (!pluginComponent) {
+      throw new Error(
+        `No Viewport Plugin available for plugin ${plugin}. Available plugins: ${JSON.stringify(
+          this.props.availablePlugins
+        )}`
+      );
+    }
+
+    return pluginComponent;
+  };
+
+  getChildComponent(plugin, data, viewportIndex) {
+    if (data.displaySet) {
+      const PluginComponent = this.getPluginComponent(plugin);
+
+      return (
+        <PluginComponent viewportData={data} viewportIndex={viewportIndex} />
+      );
+    }
+
+    return <EmptyViewport />;
+  }
+
+  getContent(childComponent, supportsDragAndDrop, viewportIndex) {
+    if (supportsDragAndDrop) {
+      return (
+        <LayoutPanelDropTarget
+          onDrop={this.onDrop}
+          viewportIndex={viewportIndex}
+        >
+          {childComponent}
+        </LayoutPanelDropTarget>
+      );
+    }
+
+    return <div className="LayoutPanel">{childComponent}</div>;
+  }
+
   render() {
     if (!this.props.viewportData.length) {
       return '';
     }
 
-    const viewportElements = [];
-    const numViewports = this.props.layout.viewports.length;
-    for (let i = 0; i < numViewports; i++) {
-      const data = this.props.viewportData[i];
-      const layout = this.props.layout.viewports[i];
-
-      const style = {
-        ...layout
+    const { supportsDragAndDrop, studies, viewportData } = this.props;
+    const viewports = this.props.layout.viewports;
+    const viewportElements = viewports.map((layout, viewportIndex) => {
+      const displaySet = viewportData[viewportIndex];
+      const data = {
+        displaySet,
+        studies
       };
 
-      let content;
-      if (this.props.supportsDragAndDrop) {
-        content = (
-          <LayoutPanelDropTarget
-            onDrop={this.onDrop}
-            viewportIndex={i}
-            viewportComponent={data}
-          />
-        );
-      } else {
-        content = <div className="LayoutPanel">{data}</div>;
-      }
+      const childComponent = this.getChildComponent(
+        layout.plugin,
+        data,
+        viewportIndex
+      );
+      const content = this.getContent(
+        childComponent,
+        supportsDragAndDrop,
+        viewportIndex
+      );
 
       let className = 'viewport-container';
-
-      if (this.props.activeViewportIndex === i) {
+      if (this.props.activeViewportIndex === viewportIndex) {
         className += ' active';
       }
 
-      viewportElements.push(
-        <div key={i} className={className} style={style}>
+      return (
+        <div key={viewportIndex} className={className} style={{ ...layout }}>
           {content}
         </div>
       );
-    }
+    });
 
     return <div className={LayoutManager.className}>{viewportElements}</div>;
   }

@@ -8,6 +8,7 @@ import MeasurementTable from './MeasurementTable/MeasurementTable.js';
 import MeasurementTableItem from './MeasurementTableItem/MeasurementTableItem.js';
 import PlayClipButton from './viewer/PlayClipButton.js';
 import RoundedButtonGroup from './basic/RoundedButtonGroup.js';
+import Dropdown from './basic/Dropdown/Dropdown.js';
 import ScrollableArea from './ScrollableArea/ScrollableArea.js';
 import SelectTree from './SelectTree/SelectTree.js';
 import SimpleDialog from './SimpleDialog/SimpleDialog.js';
@@ -45,5 +46,6 @@ export {
   ToolbarSection,
   UserPreferences,
   UserPreferencesModal,
-  ViewerbaseDragDropContext
+  ViewerbaseDragDropContext,
+  Dropdown
 };

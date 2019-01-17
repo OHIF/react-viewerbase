@@ -7,3 +7,11 @@
 .viewport-container.active {
   border: var(--viewport-border-thickness) solid var(--active-color);
 }
+
+.EmptyViewport {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  color: var(--text-secondary-color);
+}
