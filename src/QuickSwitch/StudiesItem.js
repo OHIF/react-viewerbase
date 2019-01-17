@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import Proptypes from 'prop-types';
 
-import './BrowserItem.styl';
+import './StudiesItem.styl';
 
-export default class BrowserItem extends Component {
+export default class StudiesItem extends Component {
   static propTypes = {
     onClick: Proptypes.func.isRequired,
     studyData: Proptypes.object.isRequired

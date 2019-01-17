@@ -12,7 +12,7 @@ $spacerY = 12px
   margin-bottom: 10px;
   position: relative
   // required transformation to make inner fixed elements relative to this one
-  transform(scale(1))
+  transform: scale(1)
 
   &.active
     .studyItemBox
@@ -31,17 +31,17 @@ $spacerY = 12px
 
     .studySeriesContainer
       opacity: 0
-      transform(translateY(-100%))
+      transform: translateY(-100%)
 
   .studyBrowserSeries
     overflow: hidden
-    transition(max-height 0.3s ease)
+    transition: max-height 0.3s ease
 
     .studySeriesContainer
       opacity: 1
-      transition(opacity 0.3s ease\, transform 0.3s ease)
-      transform(translateY(0))
-      transform-origin(50% 0%)
+      transition: opacity 0.3s ease, transform 0.3s ease
+      transform: translateY(0)
+      transform-origin: 50% 0%
 
 .studyItemBox
   border: 3px solid var(--ui-border-color-dark)
@@ -49,7 +49,7 @@ $spacerY = 12px
   cursor: pointer
   padding: $spacerY $spacerX ($spacerY - 1)
   position: relative
-  transition($sidebarTransition)
+  transition: $sidebarTransition
   z-index: 0
 
   &:hover

@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import Proptypes from 'prop-types';
-import BrowserItem from './BrowserItem.js';
+import StudiesItem from './StudiesItem.js';
 
-import './BrowserList.styl';
+import './StudiesList.styl';
 
-export default class BrowserList extends Component {
+export default class StudiesList extends Component {
   static propTypes = {
     class: Proptypes.string,
     studyListData: Proptypes.array.isRequired,
@@ -13,7 +13,7 @@ export default class BrowserList extends Component {
 
   render() {
     return (
-      <div className={`browserList ${this.props.class}`}>
+      <div className={`studiesList ${this.props.class}`}>
         {this.getBrowserItems()}
       </div>
     );
@@ -22,7 +22,7 @@ export default class BrowserList extends Component {
   getBrowserItems = () => {
     return this.props.studyListData.map((studyData, index) => {
       return (
-        <BrowserItem
+        <StudiesItem
           key={index}
           studyData={studyData}
           studyActive={true}
