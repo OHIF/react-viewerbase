@@ -17,15 +17,27 @@ export default class QuickSwitch extends Component {
     super(props);
 
     this.state = {
-      studyListData: this.props.studyListData
+      studyListData: this.props.studyListData,
+      seriesQuickSwitchClass: ''
     };
   }
 
   render() {
     return (
       <div className="quickswitch">
-        <div className="series-quick-switch clearfix noselect">
-          <div className="series-switch">
+        <div
+          className={`series-quick-switch clearfix noselect ${
+            this.state.seriesQuickSwitchClass
+          }`}
+          onMouseLeave={this.hideSeriesSwitch}
+        >
+          <div
+            className="series-switch"
+            onMouseEnter={this.showSeriesSwitch}
+            ref={element => {
+              this.seriesSwitch = element;
+            }}
+          >
             <div className="title-label">Series</div>
             <div className="series-box">
               {this.getSeriesItems()}
@@ -68,6 +80,18 @@ export default class QuickSwitch extends Component {
 
     this.setState({
       studyListData
+    });
+  };
+
+  showSeriesSwitch = () => {
+    this.setState({
+      seriesQuickSwitchClass: 'series-triggered'
+    });
+  };
+
+  hideSeriesSwitch = () => {
+    this.setState({
+      seriesQuickSwitchClass: ''
     });
   };
 }

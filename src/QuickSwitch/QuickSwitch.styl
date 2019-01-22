@@ -43,7 +43,7 @@
       .thumbnails-wrapper
         transform-origin: 0% 0%
 
-      .thumbnailEntry
+      .ThumbnailEntry
         float: left
 
     .series-item
@@ -87,23 +87,23 @@
     max-height: 100vh
     max-width: 720px
     right: 0
-    transform-origin(calc(100% - 1em) calc(1em + 15px))
+    transform-origin: calc(100% - 1em) calc(1em + 15px)
 
     .thumbnails-wrapper
       transition(transform 0.3s ease)
       transform-origin(100% 0%)
 
-    .thumbnailEntry
+    .ThumbnailEntry
       float: right
 
-      .seriesDetails
+      .series-details
         opacity: 0
-        transform(translateY(-100%))
-        transition(transform 0.3s ease\, opacity 0.3s ease)
+        transform: translateY(-100%)
+        transition: transform 0.3s ease, opacity 0.3s ease
 
     .scrollable
       padding-top: 15px
-      transition(padding-bottom 0.3s ease)
+      transition: padding-bottom 0.3s ease
 
   .series-browser,
   .study-browser
@@ -123,7 +123,7 @@
   .study-box
     background-color: var(--ui-gray-dark)
     border: solid 2px var(--ui-border-color-dark)
-    border-radius(11px)
+    border-radius: 11px
 
   .series-item
     background-color: var(--box-background-color)
@@ -170,7 +170,7 @@
     .thumbnails-wrapper
       transform: scale(1) translateY(0)
 
-    .thumbnailEntry .seriesDetails
+    .ThumbnailEntry .series-details
       opacity: 1
       transform: translateY(0)
       transition-delay: 0.3s
