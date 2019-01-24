@@ -16,6 +16,7 @@ const exampleStudies = [
         active: true,
         seriesNumber: "2",
         numImageFrames: 512,
+        seriesUID: '10001-1',
         stackPercentComplete: 30
       },
       {
@@ -25,6 +26,7 @@ const exampleStudies = [
         seriesNumber: "2",
         instanceNumber: "1",
         numImageFrames: 256,
+        seriesUID: '10001-2',
         stackPercentComplete: 70
       }
     ]
@@ -43,6 +45,7 @@ const exampleStudies = [
         active: true,
         seriesNumber: "2",
         numImageFrames: 512,
+        seriesUID: '10002-1',
         stackPercentComplete: 100
       },
       {
@@ -51,6 +54,7 @@ const exampleStudies = [
         seriesDescription: 'CPTAC-CM',
         seriesNumber: "2",
         instanceNumber: "1",
+        seriesUID: '10002-2',
         numImageFrames: 256
       },
       {
@@ -59,6 +63,7 @@ const exampleStudies = [
         seriesDescription: 'CPTAC-HNSCC',
         seriesNumber: "2",
         instanceNumber: "1",
+        seriesUID: '10002-3',
         numImageFrames: 256
       },
       {
@@ -67,6 +72,7 @@ const exampleStudies = [
         seriesDescription: 'CPTAC-LSCC',
         seriesNumber: "2",
         instanceNumber: "1",
+        seriesUID: '10002-4',
         numImageFrames: 256
       }
     ]
@@ -78,7 +84,8 @@ export default class QuickSwitchExample extends Component {
     super();
 
     this.state = {
-      studyListData: exampleStudies
+      studyListData: exampleStudies,
+      showQuickSwitch: false
     }
   }
 
@@ -92,20 +99,51 @@ export default class QuickSwitchExample extends Component {
         <div className='col-xs-12'>
           <h3>Quick Switch</h3>
         </div>
+        <div className='col-xs-12'>
+          <div>QuickSwitch display ON/OFF</div>
+          <label className="switch">
+            <input 
+              type="checkbox"
+              onChange={this.onChangeCheckBox}
+            />
+            <span className="slider"></span>
+          </label>
+        </div>
+        <div className="col-xs-12">
+          {this.getSelectedData()}
+        </div>
         <div className='offset-xs-6 col-xs-6'>
+        { this.state.showQuickSwitch && (
           <QuickSwitch 
             studyListData={this.state.studyListData}
             seriesListData={activeStudy.thumbnails}
             onSeriesSelected={this.onSeriesSelected}
             onStudySelected={this.onStudySelected}
           />
+        )}
         </div>
       </div>
     )
   }
 
+  onChangeCheckBox = () => {
+    this.setState({
+      showQuickSwitch: !this.state.showQuickSwitch
+    });
+  }
+
   onSeriesSelected = seriesDataSelected => {
-    seriesDataSelected.active = true;
+    const { studyListData } = this.state;
+  
+    studyListData.forEach(studyData => {
+      studyData.thumbnails.forEach( seriesData => {
+        seriesData.active = seriesData.seriesUID === seriesDataSelected.seriesUID;
+      });
+    });
+  
+    this.setState({
+      studyListData
+    });
   };
   
   onStudySelected = studyDataSelected => {
@@ -118,5 +156,28 @@ export default class QuickSwitchExample extends Component {
     this.setState({
       studyListData
     });
+  }
+
+  getSelectedData = () => {
+    const { studyListData } = this.state;
+    let activeStudy;
+    let activeSeries;
+
+
+    activeStudy = studyListData.filter(studyData => {
+      return studyData.active;  
+    })[0];
+    debugger;
+    if (activeStudy && activeStudy.thumbnails) {
+      activeSeries = activeStudy.thumbnails.filter( seriesData => {
+        return seriesData.active;
+      })[0];
+    }
+
+    return (
+    <>
+      <div><strong>Study Description:</strong>{activeStudy ? activeStudy.studyDescription : ''}</div>
+      <div><strong>Series Description:</strong>{activeSeries ? activeSeries.seriesDescription : ''}</div>
+    </>);
   }
 }

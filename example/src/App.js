@@ -12,7 +12,7 @@ import TableListExample from './TableListExample.js';
 import MeasurementTableExample from './MeasurementTableExample.js';
 import QuickSwitchExample from './QuickSwitchExample.js';
 
-import './App.styl';
+import './App.css';
 
 class App extends Component {
   constructor(props) {
@@ -54,8 +54,8 @@ class App extends Component {
           <div className="row">
             <h2>Examples</h2>
           </div>
-          {/* <ToolbarExample />
-          <LayoutExample /> */}
+          <ToolbarExample />
+          <LayoutExample />
           {/*<div className="row">
             <div className='col-xs-12 col-lg-12'>
               <LayoutManager rows={this.state.currentCell.row} columns={this.state.currentCell.col}>
@@ -65,14 +65,14 @@ class App extends Component {
               </LayoutManager>
             </div>
           </div>*/}
-          {/* <StudyBrowserExample />
+          <StudyBrowserExample />
           <CineDialogExample />
           <RoundedButtonGroupExample />
           <UserPreferencesExample />
           <StudyListExample />
           <SimpleDialogExample />
           <TableListExample />
-          <SelectTreeExample /> */}
+          <SelectTreeExample />
           <QuickSwitchExample />
           {/*<div className="row">
             <div className='col-xs-12 col-lg-6'>
@@ -83,7 +83,7 @@ class App extends Component {
               <Toolbar buttons={this.state.buttons}/>
             </div>
           </div>*/}
-          {/* <MeasurementTableExample/> */}
+          <MeasurementTableExample/>
         </div>
     );
   }
