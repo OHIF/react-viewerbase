@@ -12,7 +12,7 @@ export default class SeriesList extends Component {
   render() {
     return (
       <>
-        <div className="study-browser-series">
+        <div className="study-browser-series clearfix thumbnails-wrapper">
           <div className="study-series-container">{this.getSeriesItems()}</div>
         </div>
       </>
