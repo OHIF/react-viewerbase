@@ -10,14 +10,15 @@ export default class QuickSwitch extends Component {
   static propTypes = {
     class: Proptypes.string,
     studyListData: Proptypes.array.isRequired,
-    seriesItems: Proptypes.array.isRequired
+    seriesListData: Proptypes.array.isRequired,
+    onSeriesSelected: Proptypes.func.isRequired,
+    onStudySelected: Proptypes.func.isRequired
   };
 
   constructor(props) {
     super(props);
 
     this.state = {
-      studyListData: this.props.studyListData,
       seriesQuickSwitchClass: ''
     };
   }
@@ -43,7 +44,7 @@ export default class QuickSwitch extends Component {
               {this.getSeriesItems()}
               <ScrollableArea scrollStep={201} class="series-browser">
                 <SeriesList
-                  seriesItems={this.props.seriesItems}
+                  seriesItems={this.props.seriesListData}
                   onClick={this.onSeriesClick}
                 />
               </ScrollableArea>
@@ -66,21 +67,20 @@ export default class QuickSwitch extends Component {
   }
 
   getSeriesItems = () => {
-    return this.props.seriesItems.map((seriesItem, index) => {
+    return this.props.seriesListData.map((seriesItem, index) => {
       return <div key={index} className={`series-item ${seriesItem.class}`} />;
     });
   };
 
   onStudyClick = studyDataSelected => {
-    const { studyListData } = this.state;
-
-    studyListData.forEach(studyData => {
-      studyData.studyActive = studyData.studyUID === studyDataSelected.studyUID;
-    });
-
     this.setState({
-      studyListData
+      seriesQuickSwitchClass: 'series-triggered'
     });
+    this.props.onStudySelected(studyDataSelected);
+  };
+
+  onSeriesClick = seriesDataSelected => {
+    this.props.onSeriesSelected(seriesDataSelected);
   };
 
   showSeriesSwitch = () => {

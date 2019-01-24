@@ -15,9 +15,9 @@ export default class StudiesItem extends Component {
       studyDescription,
       modalities,
       studyAvailable,
-      studyActive
+      active
     } = this.props.studyData;
-    const activeClass = studyActive ? ' active' : '';
+    const activeClass = active ? ' active' : '';
     const hasDescriptionAndDate = studyDate && studyDescription;
     return (
       <div

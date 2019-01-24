@@ -6,7 +6,8 @@ import './SeriesList.styl';
 
 export default class SeriesList extends Component {
   static propTypes = {
-    seriesItems: Proptypes.array.isRequired
+    seriesItems: Proptypes.array.isRequired,
+    onClick: Proptypes.func.isRequired
   };
 
   render() {
@@ -21,7 +22,14 @@ export default class SeriesList extends Component {
 
   getSeriesItems = () => {
     return this.props.seriesItems.map((seriesData, index) => {
-      return <ThumbnailEntry key={index} {...seriesData} />;
+      return (
+        <ThumbnailEntry
+          key={index}
+          id={`serie_thumb_${index}`}
+          {...seriesData}
+          onClick={() => this.props.onClick(seriesData)}
+        />
+      );
     });
   };
 }

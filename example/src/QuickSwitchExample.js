@@ -74,9 +74,16 @@ const exampleStudies = [
 ];
 
 export default class QuickSwitchExample extends Component {
+  constructor() {
+    super();
+
+    this.state = {
+      studyListData: exampleStudies
+    }
+  }
+
   render() {
-    const studyListData = exampleStudies;
-    const seriesItems = exampleStudies.find( (study) => {
+    const activeStudy = this.state.studyListData.find( (study) => {
       return !!study.active;
     });
 
@@ -87,11 +94,29 @@ export default class QuickSwitchExample extends Component {
         </div>
         <div className='offset-xs-6 col-xs-6'>
           <QuickSwitch 
-            studyListData={studyListData}
-            seriesItems={seriesItems.thumbnails}
+            studyListData={this.state.studyListData}
+            seriesListData={activeStudy.thumbnails}
+            onSeriesSelected={this.onSeriesSelected}
+            onStudySelected={this.onStudySelected}
           />
         </div>
       </div>
     )
+  }
+
+  onSeriesSelected = seriesDataSelected => {
+    seriesDataSelected.active = true;
+  };
+  
+  onStudySelected = studyDataSelected => {
+    const { studyListData } = this.state;
+  
+    studyListData.forEach(studyData => {
+      studyData.active = studyData.studyUID === studyDataSelected.studyUID;
+    });
+  
+    this.setState({
+      studyListData
+    });
   }
 }

@@ -75,6 +75,11 @@ export default class ScrollableArea extends Component {
     window.addEventListener('resize', this.adjustMargins);
   }
 
+  componentDidUpdate() {
+    this.adjustMargins();
+    this.scrollHandler();
+  }
+
   componentWillUnmount() {
     window.removeEventListener('resize', this.adjustMargins);
   }
@@ -121,9 +126,6 @@ export default class ScrollableArea extends Component {
     } = this.scrollableElement;
     let scrollAreaClasses = '';
 
-    // Stop here if unable to scroll
-    if (scrollHeight <= height) return;
-
     // Check if can scroll up
     if (scrollTop) {
       scrollAreaClasses += 'canScrollUp';
@@ -133,6 +135,15 @@ export default class ScrollableArea extends Component {
     if (scrollTop + height < scrollHeight) {
       scrollAreaClasses += ' canScrollDown';
     }
+
+    console.log(
+      '-- __ --',
+      scrollAreaClasses,
+      '#scrollTop+height=',
+      scrollTop + height,
+      '#scrollHeight=',
+      scrollHeight
+    );
 
     if (this.state.scrollAreaClasses !== scrollAreaClasses) {
       this.setState({

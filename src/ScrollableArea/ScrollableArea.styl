@@ -1,5 +1,3 @@
-$scrollNavSize = 24px
-
 .scrollArea
   overflow: hidden
   position: relative
@@ -8,6 +6,7 @@ $scrollNavSize = 24px
     max-height: inherit
     overflow: hidden
     zoom: 1
+    height: 100vh
 
     &.scrollX
       overflow-x: scroll
@@ -31,7 +30,7 @@ $scrollNavSize = 24px
     background-color: rgba(0, 0, 0, 0.75)
     box-shadow: 0 0 10px 10px rgba(0, 0, 0, 0.75)
     cursor: pointer
-    height: $scrollNavSize
+    height: 24px
     left: 10px
     opacity: 0
     position: absolute
@@ -55,19 +54,19 @@ $scrollNavSize = 24px
         color: var(--hover-color)
 
   .scrollNavUp
-    border-bottom-left-radius: $scrollNavSize / 2
-    border-bottom-right-radius: $scrollNavSize / 2
+    border-bottom-left-radius: 12px
+    border-bottom-right-radius: 12px
     top: 0
-    transform: ranslateY(- $scrollNavSize)
+    transform: translateY(-24px)
 
     &:after
       content: '\f102'
 
   .scrollNavDown
-    border-top-left-radius: $scrollNavSize / 2
-    border-top-right-radius: $scrollNavSize / 2
+    border-top-left-radius: 12px
+    border-top-right-radius: 12px
     bottom: 0
-    transform: translateY($scrollNavSize)
+    transform: translateY(24px)
 
     &:after
       content: '\f103'
