@@ -34,7 +34,8 @@ export default {
     babel({
       exclude: 'node_modules/**',
       plugins: [ '@babel/external-helpers' ],
-      externalHelpers: true
+      externalHelpers: true,
+      runtimeHelpers: true
     }),
     resolve(),
     commonjs()
