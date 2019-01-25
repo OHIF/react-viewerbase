@@ -110,8 +110,9 @@ export class LayoutManager extends Component {
         studies
       };
 
+      const plugin = layout.plugin || displaySet.plugin;
       const childComponent = this.getChildComponent(
-        layout.plugin,
+        plugin,
         data,
         viewportIndex
       );
