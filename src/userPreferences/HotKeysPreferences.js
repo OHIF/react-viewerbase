@@ -152,10 +152,9 @@ export default class HotKeysPreferences extends Component {
         .join('+')
         .toUpperCase();
 
-      const disallowedCombinations =
-        HotKeysPreferences.disallowedCombinations[modifierCommand];
-      const hasDisallowedCombinations = disallowedCombinations
-        ? disallowedCombinations.includes(lastPressedKey)
+      const disallowedCombination = disallowedCombinations[modifierCommand];
+      const hasDisallowedCombinations = disallowedCombination
+        ? disallowedCombination.includes(lastPressedKey)
         : false;
 
       if (hasDisallowedCombinations) {
