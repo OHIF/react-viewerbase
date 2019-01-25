@@ -10,8 +10,9 @@ import ToolbarExample from './ToolbarExample.js';
 import UserPreferencesExample from './UserPreferencesExample.js';
 import TableListExample from './TableListExample.js';
 import MeasurementTableExample from './MeasurementTableExample.js';
+import QuickSwitchExample from './QuickSwitchExample.js';
 
-import './App.styl';
+import './App.css';
 
 class App extends Component {
   constructor(props) {
@@ -70,8 +71,9 @@ class App extends Component {
           <UserPreferencesExample />
           <StudyListExample />
           <SimpleDialogExample />
-          <SelectTreeExample />
           <TableListExample />
+          <SelectTreeExample />
+          <QuickSwitchExample />
           {/*<div className="row">
             <div className='col-xs-12 col-lg-6'>
               <h3>Simple Toolbar</h3>

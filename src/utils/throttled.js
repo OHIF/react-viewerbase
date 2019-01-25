@@ -1,11 +1,26 @@
-export default function throttled(delay, fn) {
-  let lastCall = 0;
-  return function(...args) {
-    const now = new Date().getTime();
-    if (now - lastCall < delay) {
+export default function throttled(delay, callback) {
+  let isThrottled = false,
+    args,
+    context;
+
+  function wrapper() {
+    if (isThrottled) {
+      args = arguments;
+      context = this;
       return;
     }
-    lastCall = now;
-    return fn(...args);
-  };
+
+    isThrottled = true;
+    callback.apply(this, arguments);
+
+    setTimeout(() => {
+      isThrottled = false;
+      if (args) {
+        wrapper.apply(context, args);
+        args = context = null;
+      }
+    }, delay);
+  }
+
+  return wrapper;
 }

@@ -7,6 +7,7 @@ import LayoutPanelDropTarget from './LayoutChooser/LayoutPanelDropTarget.js';
 import MeasurementTable from './MeasurementTable/MeasurementTable.js';
 import MeasurementTableItem from './MeasurementTableItem/MeasurementTableItem.js';
 import PlayClipButton from './viewer/PlayClipButton.js';
+import QuickSwitch from './QuickSwitch/QuickSwitch.js';
 import RoundedButtonGroup from './basic/RoundedButtonGroup.js';
 import Dropdown from './basic/Dropdown/Dropdown.js';
 import ScrollableArea from './ScrollableArea/ScrollableArea.js';
@@ -33,6 +34,7 @@ export {
   MeasurementTable,
   MeasurementTableItem,
   PlayClipButton,
+  QuickSwitch,
   RoundedButtonGroup,
   ScrollableArea,
   SelectTree,
