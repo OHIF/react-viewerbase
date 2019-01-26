@@ -16,7 +16,12 @@ export default {
       file: pkg.main,
       format: 'umd',
       name: 'react-viewerbase',
-      sourcemap: true
+      sourcemap: true,
+      exports: 'named',
+      globals: {
+        'react': 'React',
+        'react-dom': 'ReactDOM'
+      }
     },
     {
       file: pkg.module,
