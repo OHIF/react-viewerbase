@@ -110,7 +110,20 @@ export class LayoutManager extends Component {
         studies
       };
 
-      const plugin = layout.plugin || displaySet.plugin;
+      // Use whichever plugin is currently in use in the panel
+      // unless nothing is specified. If nothing is specified
+      // and the display set has a plugin specified, use that.
+      //
+      // TODO: Change this logic to:
+      // - Plugins define how capable they are of displaying a SopClass
+      // - When updating a panel, ensure that the currently enabled plugin
+      // in the viewport is capable of rendering this display set. If not
+      // then use the most capable available plugin
+      let plugin = layout.plugin;
+      if (!layout.plugin && displaySet && displaySet.plugin) {
+        plugin = displaySet.plugin;
+      }
+
       const childComponent = this.getChildComponent(
         plugin,
         data,

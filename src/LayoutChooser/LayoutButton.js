@@ -1,8 +1,19 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import LayoutChooser from './LayoutChooser';
+import ToolbarButton from '../viewer/ToolbarButton';
 
 export class LayoutButton extends PureComponent {
+  static defaultProps = {
+    dropdownVisible: false
+  };
+
+  static propTypes = {
+    dropdownVisible: PropTypes.bool.isRequired,
+    onChange: PropTypes.func,
+    selectedCell: PropTypes.object
+  };
+
   state = {
     dropdownVisible: this.props.dropdownVisible
   };
@@ -30,20 +41,12 @@ export class LayoutButton extends PureComponent {
   render() {
     return (
       <div className="btn-group">
-        <button
-          id="layout"
-          type="button"
-          className="btn btn-sm btn-default dropdown-toggle"
-          data-container="body"
-          data-toggle="dropdown"
-          aria-expanded="false"
-          data-placement="right"
-          title="Layout"
-          rel="tooltip"
+        <ToolbarButton
+          active={this.state.dropdownVisible}
+          text={'Layout'}
+          iconClasses={'fa fa-th-large'}
           onClick={this.onClick}
-        >
-          <span className="fa fa-th-large" />
-        </button>
+        />
         <LayoutChooser
           visible={this.state.dropdownVisible}
           onChange={this.onChange}
@@ -53,16 +56,6 @@ export class LayoutButton extends PureComponent {
       </div>
     );
   }
-}
-
-LayoutButton.defaultProps = {
-  dropdownVisible: false
-}
-
-LayoutButton.propTypes = {
-  dropdownVisible: PropTypes.bool.isRequired,
-  onChange: PropTypes.func,
-  selectedCell: PropTypes.object
 }
 
 export default LayoutButton;

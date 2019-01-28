@@ -19,6 +19,7 @@ import TableList from './TableList/TableList.js';
 import TableListItem from './TableListItem/TableListItem.js';
 import ThumbnailEntry from './studyBrowser/ThumbnailEntry.js';
 import Toolbar from './viewer/Toolbar.js';
+import ToolbarButton from './viewer/ToolbarButton.js';
 import ToolbarSection from './viewer/ToolbarSection.js';
 import UserPreferences from './userPreferences/UserPreferences';
 import UserPreferencesModal from './userPreferences/UserPreferencesModal';
@@ -45,6 +46,7 @@ export {
   TableListItem,
   ThumbnailEntry,
   Toolbar,
+  ToolbarButton,
   ToolbarSection,
   UserPreferences,
   UserPreferencesModal,

@@ -46,11 +46,9 @@ export function ToolbarButton(props) {
 }
 
 ToolbarButton.defaultProps = {
-  command: 'ToolbarButton',
-  onClick: function() {
-    //console.log(`ToolbarButton does not have an onClick event`);
-  },
-  className: 'ToolbarButton'
+  active: false,
+  className: 'ToolbarButton',
+  command: 'ToolbarButton'
 };
 
 ToolbarButton.propTypes = {

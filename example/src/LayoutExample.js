@@ -45,7 +45,7 @@ class LayoutExample extends Component {
           <p>Used to choose which layout to place the viewer into.</p>
           <p>Layout changed to {JSON.stringify(layout, null, 2)}</p>
         </div>
-        <div className="col-xs-2 col-lg-6">
+        <div className="col-xs-2 col-lg-6 LayoutExample">
           <LayoutButton onChange={this.changeLayout} selectedCell={this.state.currentLayout} />
         </div>
         {<div className="col-xs-10 col-lg-4">
