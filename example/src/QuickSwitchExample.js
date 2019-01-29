@@ -167,7 +167,6 @@ export default class QuickSwitchExample extends Component {
     activeStudy = studyListData.filter(studyData => {
       return studyData.active;  
     })[0];
-    debugger;
     if (activeStudy && activeStudy.thumbnails) {
       activeSeries = activeStudy.thumbnails.filter( seriesData => {
         return seriesData.active;
