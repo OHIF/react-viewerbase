@@ -11,6 +11,7 @@ import './SelectTree.styl';
 class SelectTree extends Component {
   static defaultProps = {
     searchEnabled: true,
+    autoFocus: true,
     selectTreeFirstTitle: 'First Level itens',
     items: []
   };
@@ -124,7 +125,7 @@ class SelectTree extends Component {
               type="text"
               className="searchInput"
               placeholder="Search labels"
-              autoFocus
+              autoFocus={this.props.autoFocus}
               onChange={this.searchLocations}
               value={this.state.searchTerm ? this.state.searchTerm : ''}
             />
@@ -169,6 +170,7 @@ SelectTree.propTypes = {
   selectTreeSecondTitle: PropTypes.string,
   onComponentChange: PropTypes.func,
   items: PropTypes.array.isRequired,
+  autoFocus: PropTypes.bool,
   onSelected: PropTypes.func.isRequired
 };
 
