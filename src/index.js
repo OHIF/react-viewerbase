@@ -1,4 +1,5 @@
 import CineDialog from './viewer/CineDialog.js';
+import Dropdown from './basic/Dropdown/Dropdown.js';
 import ExampleDropTarget from './studyBrowser/ExampleDropTarget.js';
 import LayoutButton from './LayoutChooser/LayoutButton.js';
 import LayoutChooser from './LayoutChooser/LayoutChooser.js';
@@ -6,10 +7,11 @@ import LayoutManager from './LayoutChooser/LayoutManager.js';
 import LayoutPanelDropTarget from './LayoutChooser/LayoutPanelDropTarget.js';
 import MeasurementTable from './MeasurementTable/MeasurementTable.js';
 import MeasurementTableItem from './MeasurementTableItem/MeasurementTableItem.js';
+import Overlay from './basic/Overlay.js';
+import OverlayTrigger from './basic/OverlayTrigger.js';
 import PlayClipButton from './viewer/PlayClipButton.js';
 import QuickSwitch from './QuickSwitch/QuickSwitch.js';
 import RoundedButtonGroup from './basic/RoundedButtonGroup.js';
-import Dropdown from './basic/Dropdown/Dropdown.js';
 import ScrollableArea from './ScrollableArea/ScrollableArea.js';
 import SelectTree from './SelectTree/SelectTree.js';
 import SimpleDialog from './SimpleDialog/SimpleDialog.js';
@@ -27,6 +29,7 @@ import ViewerbaseDragDropContext from './utils/ViewerbaseDragDropContext.js';
 
 export {
   CineDialog,
+  Dropdown,
   ExampleDropTarget,
   LayoutButton,
   LayoutChooser,
@@ -34,6 +37,8 @@ export {
   LayoutPanelDropTarget,
   MeasurementTable,
   MeasurementTableItem,
+  Overlay,
+  OverlayTrigger,
   PlayClipButton,
   QuickSwitch,
   RoundedButtonGroup,
@@ -50,6 +55,5 @@ export {
   ToolbarSection,
   UserPreferences,
   UserPreferencesModal,
-  ViewerbaseDragDropContext,
-  Dropdown
+  ViewerbaseDragDropContext
 };

@@ -136,15 +136,6 @@ export default class ScrollableArea extends Component {
       scrollAreaClasses += ' canScrollDown';
     }
 
-    console.log(
-      '-- __ --',
-      scrollAreaClasses,
-      '#scrollTop+height=',
-      scrollTop + height,
-      '#scrollHeight=',
-      scrollHeight
-    );
-
     if (this.state.scrollAreaClasses !== scrollAreaClasses) {
       this.setState({
         scrollAreaClasses
