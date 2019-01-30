@@ -6,6 +6,12 @@ export default class MeasurementTableExample extends Component {
     super();
 
     this.state = {
+      overwallWarnings: {
+        warningList: [
+          'All measurements should have a location',
+          'Nodal lesions must be >= 15mm short axis AND >= double the acquisition slice thickness by CT and MR'
+        ]
+      },
       timepoints:[
         {
           label: 'Follow-up 2',
@@ -25,6 +31,13 @@ export default class MeasurementTableExample extends Component {
           groupName: 'Targets',
           measurements: [{
               label: 'Chest Wall Posterior',
+              hasWarnings: true,
+              warningTitle: 'Criteria nonconformities',
+              isSplitLesion: false,
+              warningList: [
+                'All measurements should have a location',
+                'Nodal lesions must be >= 15mm short axis AND >= double the acquisition slice thickness by CT and MR'
+              ],
               data: [{
                   displayText: '25.7 x 12.9'
                 },{
@@ -98,6 +111,7 @@ export default class MeasurementTableExample extends Component {
           <MeasurementTable
             timepoints={this.state.timepoints}
             measurementCollection={this.state.measurementCollection}
+            overwallWarnings={this.state.overwallWarnings}
           >
           </MeasurementTable>
         </div>

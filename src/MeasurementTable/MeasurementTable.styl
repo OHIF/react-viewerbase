@@ -34,3 +34,56 @@
       .timepointLabel
         color: var(--text-secondary-color);
         font-size: 12px;
+
+    .warning-status
+      display: block;
+      position: absolute;
+      width: 50px;
+      height: 40px;
+      padding-left: 7px;
+      left: 15px;
+      top: 7px;
+
+      .warning-border
+        display: block;
+        border: 2px solid #e29e4a;
+        border-radius: 36px;
+        padding: 6px 7px;
+        width: 40px;
+        height: 40px;
+
+      svg
+        fill: #e29e4a;
+        width: 22px;
+        height: 20px;
+        pointer-events: inherit;
+
+.tooltip-warning
+  &.in
+    opacity 1;
+
+  .tooltip-inner
+    padding: 0
+
+    .warningTitle
+      text-align: left
+      background-color: var(--ui-gray-darkest);
+      padding: 7px 15px;
+      border-top-left-radius: 7px;
+      border-top-right-radius: 7px;
+
+    .warningContent
+      text-align center
+      background-color: var(--ui-gray);
+      border-bottom-left-radius: 7px;
+      border-bottom-right-radius: 7px;
+
+      ol
+        padding-inline-start: 20px;
+        padding-top: 10px;
+        padding-bottom: 10px;
+        padding-left: 25px;
+        text-align: left;
+
+        li
+          padding-right: 10px;

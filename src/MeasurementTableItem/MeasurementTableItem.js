@@ -1,6 +1,7 @@
-import { Component } from 'react';
-import React from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import OverlayTrigger from '../basic/OverlayTrigger.js';
+import Tooltip from '../basic/Tooltip.js';
 
 import TableListItem from '../TableListItem/TableListItem.js';
 
@@ -19,10 +20,42 @@ export default class MeasurementTableItem extends Component {
   };
 
   render() {
+    const { warningTitle = '', hasWarnings } = this.props.measurementData;
+
+    return (
+      <>
+        {hasWarnings ? (
+          <OverlayTrigger
+            key={this.props.itemIndex}
+            placement="left"
+            overlay={
+              <Tooltip
+                placement="left"
+                className="in tooltip-warning"
+                id="tooltip-left"
+              >
+                <div className="warningTitle">{warningTitle}</div>
+                <div className="warningContent">{this.getWarningContent()}</div>
+              </Tooltip>
+            }
+          >
+            <div>{this.getTableListItem()}</div>
+          </OverlayTrigger>
+        ) : (
+          <>{this.getTableListItem()}</>
+        )}
+      </>
+    );
+  }
+
+  getTableListItem = () => {
+    const hasWarningClass = this.props.measurementData.hasWarnings
+      ? 'hasWarnings'
+      : '';
     return (
       <TableListItem
         itemKey={this.props.itemKey}
-        itemClass={`measurementItem ${this.props.itemClass}`}
+        itemClass={`measurementItem ${this.props.itemClass} ${hasWarningClass}`}
         itemIndex={this.props.itemIndex}
         onItemClick={this.props.onItemClick}
       >
@@ -51,7 +84,7 @@ export default class MeasurementTableItem extends Component {
         </div>
       </TableListItem>
     );
-  }
+  };
 
   getDataDisplayText = () => {
     return this.props.measurementData.data.map((data, index) => {
@@ -61,5 +94,19 @@ export default class MeasurementTableItem extends Component {
         </div>
       );
     });
+  };
+
+  getWarningContent = () => {
+    const { warningList = '' } = this.props.measurementData;
+
+    if (Array.isArray(warningList)) {
+      const listedWarnings = warningList.map((warn, index) => {
+        return <li key={index}>{warn}</li>;
+      });
+
+      return <ol>{listedWarnings}</ol>;
+    } else {
+      return <>{warningList}</>;
+    }
   };
 }
