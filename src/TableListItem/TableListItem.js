@@ -18,7 +18,14 @@ export default class TableListItem extends Component {
         className={`tableListItem ${this.props.itemClass}`}
         onClick={this.onItemClick}
       >
-        <div className="itemIndex">{this.props.itemIndex + 1}</div>
+        <div className="itemIndex">
+          {this.props.itemIndex + 1}
+          <span className="warning-icon">
+            <svg>
+              <use xlinkHref="/icons.svg#icon-ui-warning" />
+            </svg>
+          </span>
+        </div>
         <div className="itemContent">{this.props.children}</div>
       </div>
     );

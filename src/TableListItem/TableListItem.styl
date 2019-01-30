@@ -4,6 +4,7 @@
   margin-top: 2px
   padding-left: 6px
   opacity: 0.7
+  cursor: pointer;
   width: calc(100% + 6px)
 
   &:hover
@@ -14,6 +15,10 @@
     .itemIndex
       color: $activeColor
   
+  &.hasWarning 
+    .warning
+      display: block
+
   .itemIndex
     background-color: var(--ui-gray)
     color: var(--text-secondary-color)
@@ -32,3 +37,6 @@
     color: var(--text-secondary-color)
     font-weight: 400
     margin-left: -2px
+  
+  .warning-icon
+    display: none
