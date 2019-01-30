@@ -84,8 +84,7 @@ export default class QuickSwitchExample extends Component {
     super();
 
     this.state = {
-      studyListData: exampleStudies,
-      showQuickSwitch: false
+      studyListData: exampleStudies
     }
   }
 
@@ -99,37 +98,19 @@ export default class QuickSwitchExample extends Component {
         <div className='col-xs-12'>
           <h3>Quick Switch</h3>
         </div>
-        <div className='col-xs-12'>
-          <div>QuickSwitch display ON/OFF</div>
-          <label className="switch">
-            <input 
-              type="checkbox"
-              onChange={this.onChangeCheckBox}
-            />
-            <span className="slider"></span>
-          </label>
-        </div>
         <div className="col-xs-12">
           {this.getSelectedData()}
         </div>
-        <div className='offset-xs-6 col-xs-6'>
-        { this.state.showQuickSwitch && (
+        <div className='col-xs-12'>
           <QuickSwitch 
             studyListData={this.state.studyListData}
             seriesListData={activeStudy.thumbnails}
             onSeriesSelected={this.onSeriesSelected}
             onStudySelected={this.onStudySelected}
           />
-        )}
         </div>
       </div>
     )
-  }
-
-  onChangeCheckBox = () => {
-    this.setState({
-      showQuickSwitch: !this.state.showQuickSwitch
-    });
   }
 
   onSeriesSelected = seriesDataSelected => {
