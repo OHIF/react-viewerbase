@@ -23,6 +23,7 @@ import ThumbnailEntry from './studyBrowser/ThumbnailEntry.js';
 import Toolbar from './viewer/Toolbar.js';
 import ToolbarButton from './viewer/ToolbarButton.js';
 import ToolbarSection from './viewer/ToolbarSection.js';
+import Tooltip from './basic/Tooltip.js';
 import UserPreferences from './userPreferences/UserPreferences';
 import UserPreferencesModal from './userPreferences/UserPreferencesModal';
 import ViewerbaseDragDropContext from './utils/ViewerbaseDragDropContext.js';
@@ -53,6 +54,7 @@ export {
   Toolbar,
   ToolbarButton,
   ToolbarSection,
+  Tooltip,
   UserPreferences,
   UserPreferencesModal,
   ViewerbaseDragDropContext

@@ -11,6 +11,7 @@ import UserPreferencesExample from './UserPreferencesExample.js';
 import TableListExample from './TableListExample.js';
 import MeasurementTableExample from './MeasurementTableExample.js';
 import QuickSwitchExample from './QuickSwitchExample.js';
+import OverlayTriggerExample from './OverlayTriggerExample.js';
 
 import './App.css';
 
@@ -84,6 +85,7 @@ class App extends Component {
             </div>
           </div>*/}
           <MeasurementTableExample/>
+          <OverlayTriggerExample/>
         </div>
     );
   }

@@ -13,7 +13,6 @@ const exampleStudies = [
         imageSrc:
           'https://raw.githubusercontent.com/crowds-cure/cancer/master/public/screenshots/Anti-PD-1_Lung.jpg',
         seriesDescription: 'Anti-PD-1_Lung',
-        active: true,
         seriesNumber: "2",
         numImageFrames: 512,
         seriesUID: '10001-1',
