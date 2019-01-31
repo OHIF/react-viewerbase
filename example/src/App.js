@@ -12,6 +12,7 @@ import TableListExample from './TableListExample.js';
 import MeasurementTableExample from './MeasurementTableExample.js';
 import QuickSwitchExample from './QuickSwitchExample.js';
 import OverlayTriggerExample from './OverlayTriggerExample.js';
+import ExtendedToolbarMenuExample from './ExtendedToolbarMenuExample.js';
 
 import './App.css';
 
@@ -55,8 +56,6 @@ class App extends Component {
           <div className="row">
             <h2>Examples</h2>
           </div>
-          <ToolbarExample />
-          <LayoutExample />
           {/*<div className="row">
             <div className='col-xs-12 col-lg-12'>
               <LayoutManager rows={this.state.currentCell.row} columns={this.state.currentCell.col}>
@@ -66,6 +65,9 @@ class App extends Component {
               </LayoutManager>
             </div>
           </div>*/}
+          <ToolbarExample />
+          <ExtendedToolbarMenuExample/>
+          <LayoutExample />
           <StudyBrowserExample />
           <CineDialogExample />
           <RoundedButtonGroupExample />
@@ -75,6 +77,8 @@ class App extends Component {
           <TableListExample />
           <SelectTreeExample />
           <QuickSwitchExample />
+          <MeasurementTableExample/>
+          <OverlayTriggerExample/>
           {/*<div className="row">
             <div className='col-xs-12 col-lg-6'>
               <h3>Simple Toolbar</h3>
@@ -84,8 +88,6 @@ class App extends Component {
               <Toolbar buttons={this.state.buttons}/>
             </div>
           </div>*/}
-          <MeasurementTableExample/>
-          <OverlayTriggerExample/>
         </div>
     );
   }
