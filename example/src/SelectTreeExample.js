@@ -59,6 +59,7 @@ export default class SelectTreeExample extends Component {
           onSelected={this.onSelectTreeSelectItemCallback}
           selectTreeFirstTitle="Select Tree Example Header"
           onComponentChange={this.repositionComponent}
+          autoFocus={false}
         />
       </div>
     </div>

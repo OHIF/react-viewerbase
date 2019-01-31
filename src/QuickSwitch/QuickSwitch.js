@@ -9,6 +9,7 @@ import './QuickSwitch.styl';
 export default class QuickSwitch extends Component {
   static propTypes = {
     class: Proptypes.string,
+    side: Proptypes.string,
     studyListData: Proptypes.array.isRequired,
     seriesListData: Proptypes.array.isRequired,
     onSeriesSelected: Proptypes.func.isRequired,
@@ -19,47 +20,46 @@ export default class QuickSwitch extends Component {
     super(props);
 
     this.state = {
-      seriesQuickSwitchClass: ''
+      seriesQuickSwitchClass: '',
+      sideClass: this.props.side || ''
     };
   }
 
   render() {
     return (
-      <div className="quickswitch">
+      <div
+        className={`series-quick-switch clearfix noselect ${
+          this.state.sideClass
+        } ${this.state.seriesQuickSwitchClass}`}
+        onMouseLeave={this.hideSeriesSwitch}
+      >
         <div
-          className={`series-quick-switch clearfix noselect ${
-            this.state.seriesQuickSwitchClass
-          }`}
-          onMouseLeave={this.hideSeriesSwitch}
+          className="series-switch"
+          onMouseEnter={this.showSeriesSwitch}
+          ref={element => {
+            this.seriesSwitch = element;
+          }}
         >
-          <div
-            className="series-switch"
-            onMouseEnter={this.showSeriesSwitch}
-            ref={element => {
-              this.seriesSwitch = element;
-            }}
-          >
-            <div className="title-label">Series</div>
-            <div className="series-box">
-              {this.getSeriesItems()}
-              <ScrollableArea scrollStep={201} class="series-browser">
-                <SeriesList
-                  seriesItems={this.props.seriesListData}
-                  onClick={this.onSeriesClick}
-                />
-              </ScrollableArea>
-            </div>
+          <div className="title-label">Series</div>
+          <div className="series-box">
+            {this.getSeriesItems()}
+            <ScrollableArea scrollStep={201} class="series-browser">
+              <SeriesList
+                seriesItems={this.props.seriesListData}
+                onClick={this.onSeriesClick}
+              />
+            </ScrollableArea>
           </div>
-          <div className="study-switch">
-            <div className="title-label">Study</div>
-            <div className="study-box">
-              <ScrollableArea scrollStep={91} class="study-browser">
-                <StudiesList
-                  studyListData={this.props.studyListData}
-                  onClick={this.onStudyClick}
-                />
-              </ScrollableArea>
-            </div>
+        </div>
+        <div className="study-switch">
+          <div className="title-label">Study</div>
+          <div className="study-box">
+            <ScrollableArea scrollStep={91} class="study-browser">
+              <StudiesList
+                studyListData={this.props.studyListData}
+                onClick={this.onStudyClick}
+              />
+            </ScrollableArea>
           </div>
         </div>
       </div>
