@@ -5,9 +5,9 @@ import Tooltip from '../basic/Tooltip.js';
 import ToolbarSection from '../viewer/ToolbarSection.js';
 import ToolbarButton from '../viewer/ToolbarButton.js';
 
-import './ExtendedToolbarMenu.styl';
+import './ExpandableToolMenu.styl';
 
-class ExtendedToolbarMenu extends React.Component {
+class ExpandableToolMenu extends React.Component {
   static propTypes = {
     buttons: PropTypes.array.isRequired,
     activeCommand: PropTypes.string,
@@ -101,4 +101,4 @@ class ExtendedToolbarMenu extends React.Component {
   }
 }
 
-export default ExtendedToolbarMenu;
+export default ExpandableToolMenu;

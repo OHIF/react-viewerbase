@@ -12,7 +12,7 @@ import TableListExample from './TableListExample.js';
 import MeasurementTableExample from './MeasurementTableExample.js';
 import QuickSwitchExample from './QuickSwitchExample.js';
 import OverlayTriggerExample from './OverlayTriggerExample.js';
-import ExtendedToolbarMenuExample from './ExtendedToolbarMenuExample.js';
+import ExpandableToolMenuExample from './ExpandableToolMenuExample.js';
 
 import './App.css';
 
@@ -66,7 +66,7 @@ class App extends Component {
             </div>
           </div>*/}
           <ToolbarExample />
-          <ExtendedToolbarMenuExample/>
+          <ExpandableToolMenuExample/>
           <LayoutExample />
           <StudyBrowserExample />
           <CineDialogExample />

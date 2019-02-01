@@ -1,5 +1,5 @@
 import React from 'react';
-import { ExtendedToolbarMenu } from 'react-viewerbase';
+import { ExpandableToolMenu } from 'react-viewerbase';
 
 const componentStyle = {
   backgroundColor: 'var(--primary-background-color)',
@@ -53,7 +53,7 @@ const exampleButtons = [
   },
 ];
 
-class ExtendedToolbarMenuExample extends React.Component {
+class ExpandableToolMenuExample extends React.Component {
   constructor(props) {
     super(props);
 
@@ -66,14 +66,14 @@ class ExtendedToolbarMenuExample extends React.Component {
     return (
       <div className="row">
         <div className="col-xs-12">
-          <h3>Toolbar Expandable Menu</h3>
+          <h3>Expandable Tool Menu Button</h3>
         </div>
         <div className="col-xs-12 col-lg-6">
           <p>Active command is: {this.state.activeCommand}</p>
         </div>
         <div className="col-xs-12 col-lg-6">
           <div style={componentStyle}>
-            <ExtendedToolbarMenu
+            <ExpandableToolMenu
               buttons={exampleButtons}
               activeCommand={this.state.activeCommand}
               onToolSelected={(command) => {
@@ -90,4 +90,4 @@ class ExtendedToolbarMenuExample extends React.Component {
   }
 }
 
-export default ExtendedToolbarMenuExample;
+export default ExpandableToolMenuExample;
