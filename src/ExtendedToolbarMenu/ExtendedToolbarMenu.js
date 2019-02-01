@@ -1,21 +1,17 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import OverlayTrigger from '../basic/OverlayTrigger.js';
+import Tooltip from '../basic/Tooltip.js';
 import ToolbarSection from '../viewer/ToolbarSection.js';
 import ToolbarButton from '../viewer/ToolbarButton.js';
 
 import './ExtendedToolbarMenu.styl';
 
-const menuButtonData = {
-  command: 'More',
-  type: 'tool',
-  text: 'More',
-  svgUrl: '/icons.svg#icon-tools-more'
-};
-
 class ExtendedToolbarMenu extends React.Component {
   static propTypes = {
-    buttons: PropTypes.array.isRequired
+    buttons: PropTypes.array.isRequired,
+    activeCommand: PropTypes.string,
+    onToolSelected: PropTypes.func
   };
 
   static defaultProps = {
@@ -24,34 +20,81 @@ class ExtendedToolbarMenu extends React.Component {
 
   constructor(props) {
     super(props);
-
     this.state = {
-      activeCommand: 'length'
+      expanded: false
     };
   }
+
+  toolbarMenuOverlay = () => (
+    <Tooltip
+      placement="bottom"
+      className="tooltip-toolbar-overlay"
+      id="tooltip-bottom"
+    >
+      <ToolbarSection
+        buttons={this.props.buttons}
+        className="toolbarOverlay"
+        activeCommand={this.props.activeCommand}
+        setToolActive={toolProps => {
+          if (this.props.onToolSelected) {
+            this.props.onToolSelected(toolProps.command);
+          }
+        }}
+      />
+    </Tooltip>
+  );
+
+  getMenuSvgUrl = () => {
+    let svgUrl = '/icons.svg#icon-tools-more';
+    if (this.props.activeCommand) {
+      this.props.buttons.forEach(button => {
+        if (this.props.activeCommand === button.command) {
+          svgUrl = button.svgUrl;
+        }
+      });
+    }
+    return svgUrl;
+  };
+
+  isActive = () => {
+    let isActive = false;
+    if (this.props.activeCommand) {
+      this.props.buttons.forEach(button => {
+        if (this.props.activeCommand === button.command) {
+          isActive = true;
+        }
+      });
+    }
+
+    return isActive;
+  };
+
+  onExpandableToolClick = () => {
+    this.setState({
+      expanded: !this.state.expanded
+    });
+  };
 
   render() {
     return (
       <OverlayTrigger
         key="menu-button"
-        placement="bottom"
         trigger="click"
-        overlay={
-          <ToolbarSection
-            buttons={this.props.buttons}
-            activeCommand={this.state.activeCommand}
-            setToolActive={toolProps => {
-              this.setState((state, props) => {
-                return { activeCommand: toolProps.command };
-              });
-            }}
-          />
-        }
+        placement="bottom"
+        rootClose={true}
+        onClick={this.onExpandableToolClick}
+        overlay={this.toolbarMenuOverlay()}
       >
         <ToolbarButton
           key="menu-button"
-          {...menuButtonData}
-          active={menuButtonData.command === this.props.activeCommand}
+          command="More"
+          type="tool"
+          text="More"
+          svgUrl={this.getMenuSvgUrl()}
+          className={'ToolbarButton expandableToolMenu'}
+          active={this.isActive()}
+          expandableButton={true}
+          expanded={this.state.expanded}
         />
       </OverlayTrigger>
     );

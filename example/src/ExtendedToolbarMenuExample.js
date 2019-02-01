@@ -3,9 +3,9 @@ import { ExtendedToolbarMenu } from 'react-viewerbase';
 
 const componentStyle = {
   backgroundColor: 'var(--primary-background-color)',
-  width: '60px',
+  width: '120px',
   height: '60px',
-  padding: '5px', 
+  padding: '5px',
 }
 
 const exampleButtons = [
@@ -54,13 +54,38 @@ const exampleButtons = [
 ];
 
 class ExtendedToolbarMenuExample extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      activeCommand: '<none>'
+    }
+  }
+
   render() {
     return (
-      <div style={componentStyle}>
-        <ExtendedToolbarMenu
-          buttons={exampleButtons}
-        />
+      <div className="row">
+        <div className="col-xs-12">
+          <h3>Toolbar Expandable Menu</h3>
+        </div>
+        <div className="col-xs-12 col-lg-6">
+          <p>Active command is: {this.state.activeCommand}</p>
+        </div>
+        <div className="col-xs-12 col-lg-6">
+          <div style={componentStyle}>
+            <ExtendedToolbarMenu
+              buttons={exampleButtons}
+              activeCommand={this.state.activeCommand}
+              onToolSelected={(command) => {
+                this.setState({
+                  activeCommand: command
+                })
+              }}
+            />
+          </div>
+        </div>
       </div>
+      
     )
   }
 }
