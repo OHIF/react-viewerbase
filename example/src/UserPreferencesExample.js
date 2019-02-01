@@ -131,8 +131,10 @@ export default class UserPreferencesExample extends Component {
     render() {
         return (
             <div className="row">
-                <div className="col-xs-12 col-md-6">
+                <div className='col-xs-12'>
                     <h3>User preferences</h3>
+                </div>
+                <div className="col-xs-12 col-md-6">
                     <p>Used to set the user preferences.</p>
                     <p><b>Values from window/level form:</b><br /></p>
                     <pre style={{ maxHeight: '100px', overflowX: 'auto' }}>

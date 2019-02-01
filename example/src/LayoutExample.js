@@ -40,8 +40,10 @@ class LayoutExample extends Component {
 
     return (
       <div className="row">
-        <div className="col-xs-12 col-lg-6">
+        <div className='col-xs-12'>
           <h3>Layout Button</h3>
+        </div>
+        <div className="col-xs-12 col-lg-6">
           <p>Used to choose which layout to place the viewer into.</p>
           <p>Layout changed to {JSON.stringify(layout, null, 2)}</p>
         </div>

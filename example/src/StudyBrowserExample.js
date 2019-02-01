@@ -78,8 +78,10 @@ class StudyBrowserExample extends Component {
 
     return (
       <div className="row">
-        <div className="col-xs-12 col-lg-6">
+        <div className='col-xs-12'>
           <h3>Study Browser</h3>
+        </div>
+        <div className="col-xs-12 col-lg-6">
           <p>
             A simple scrollable list of image sets. Users can drag/drop data
             from here into a panel in the layout.

@@ -20,17 +20,19 @@ export default class TableListExample extends Component {
     return (
     <>
       <div className="row">
-      <div className="col-xs-12 col-sm-6">
-        <h3>Table List Example</h3>
-        <pre style={{ maxHeight: '135px', overflowX: 'auto' }}>
-          {JSON.stringify(this.state.listItems, null, 4)}
-        </pre>
-      </div>
-      <div className="col-xs-12 col-sm-6" style={{ paddingTop: '55px'}}>
-        <TableList headerTitle='Example Table List Header'>
-          {this.getTableListItems()}
-        </TableList>
-      </div>
+        <div className='col-xs-12'>
+          <h3>Table List Example</h3>
+        </div>
+        <div className="col-xs-12 col-sm-6">
+          <pre style={{ maxHeight: '235px', overflowX: 'auto' }}>
+            {JSON.stringify(this.state.listItems, null, 4)}
+          </pre>
+        </div>
+        <div className="col-xs-12 col-sm-6">
+          <TableList headerTitle='Example Table List Header'>
+            {this.getTableListItems()}
+          </TableList>
+        </div>
       </div>
     </>
     )

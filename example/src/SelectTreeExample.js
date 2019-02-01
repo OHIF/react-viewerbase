@@ -45,15 +45,17 @@ export default class SelectTreeExample extends Component {
     return (
     <>
     <div className='row'>
-      <div className='col-xs-12 col-sm-6'>
+      <div className='col-xs-12'>
         <h3>Select Tree</h3>
+      </div>
+      <div className='col-xs-12 col-sm-6'>
+        <p>Last selected item: {this.state.itemLabelSelected}</p>
         <p>Items data as JSON</p>
         <pre style={{ maxHeight: '135px', overflowX: 'auto' }}>
           {JSON.stringify(this.state.items, null, 4)}
         </pre>
       </div>
       <div className='col-xs-12 col-sm-6'>
-        <p style={{ marginTop: '20px' }}>Last selected item: {this.state.itemLabelSelected}</p>
         <SelectTree
           items={this.state.items}
           onSelected={this.onSelectTreeSelectItemCallback}
