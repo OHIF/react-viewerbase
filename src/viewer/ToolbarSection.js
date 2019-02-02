@@ -1,5 +1,6 @@
 import React, { PureComponent } from 'react';
 import ToolbarButton from './ToolbarButton';
+import classnames from 'classnames';
 import './ToolbarSection.styl';
 import PropTypes from 'prop-types';
 
@@ -16,12 +17,23 @@ class ToolbarSection extends PureComponent {
       );
     });
 
-    return <div className={'ToolbarSection'}>{items}</div>;
+    return (
+      <div className={classnames('ToolbarSection', this.props.className)}>
+        {items}
+      </div>
+    );
   }
 }
+
+ToolbarSection.defaultProps = {
+  className: ''
+};
+
 ToolbarSection.propTypes = {
   buttons: PropTypes.array.isRequired,
+  className: PropTypes.string,
   activeCommand: PropTypes.string,
   setToolActive: PropTypes.func
 };
+
 export default ToolbarSection;

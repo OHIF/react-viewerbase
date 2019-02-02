@@ -32,15 +32,27 @@ export function ToolbarButton(props) {
     label = textActive;
   }
 
+  const arrowClass = props.expanded ? 'fa-caret-up' : 'fa-caret-down';
+
   return (
     <div className={className} onClick={onClick}>
       {svgUrl && (
-        <svg>
-          <use xlinkHref={svgUrl} />
-        </svg>
+        <div className="svgContainer">
+          <svg>
+            <use xlinkHref={svgUrl} />
+          </svg>
+        </div>
       )}
       {iconClasses && <i className={iconClasses} />}
-      <span className="toolbar-button-label">{label}</span>
+      <div className="buttonLabel">
+        <span className="toolbar-button-label">{label}</span>
+        {props.expandableButton && (
+          <i
+            className={classnames('fa', arrowClass, 'expanded-status')}
+            aria-hidden="true"
+          />
+        )}
+      </div>
     </div>
   );
 }
@@ -61,7 +73,9 @@ ToolbarButton.propTypes = {
   svgUrl: PropTypes.string,
   svgUrlActive: PropTypes.string,
   onClick: PropTypes.func,
-  setToolActive: PropTypes.func
+  setToolActive: PropTypes.func,
+  expandableButton: PropTypes.bool,
+  expanded: PropTypes.bool
 };
 
 export default ToolbarButton;
