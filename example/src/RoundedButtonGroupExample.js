@@ -36,8 +36,10 @@ class RoundedButtonGroupExample extends Component {
   render() {
     return (
       <div className="row">
-        <div className="col-xs-12 col-lg-6">
+        <div className='col-xs-12'>
           <h3>Rounded Button Group</h3>
+        </div>
+        <div className="col-xs-12 col-lg-6">
           <p>A basic styled toggle switch</p>
           <p>Value changed to {JSON.stringify(this.state, null, 2)}</p>
         </div>

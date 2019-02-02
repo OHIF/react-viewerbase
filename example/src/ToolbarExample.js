@@ -59,8 +59,10 @@ class ToolbarExample extends Component {
   render() {
     return (
       <div className="row">
-        <div className="col-xs-12 col-lg-6">
+        <div className='col-xs-12'>
           <h3>Toolbar Section</h3>
+        </div>
+        <div className="col-xs-12 col-lg-6">
           <p>A basic row of buttons for a toolbar.</p>
           <p>Active command is {this.state.activeCommand}</p>
         </div>

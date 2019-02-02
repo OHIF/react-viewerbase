@@ -51,8 +51,10 @@ class CineDialogExample extends Component {
   render() {
     return (
       <div className="row">
-        <div className="col-xs-12 col-lg-6">
+        <div className="col-xs-12">
           <h3>CINE Dialog</h3>
+        </div>
+        <div className="col-xs-12 col-lg-6">
           <p>Used to control a playing CINE clip inside a viewport</p>
           <p>State changed to {JSON.stringify(this.state, null, 2)}</p>
         </div>

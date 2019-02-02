@@ -126,10 +126,12 @@ class StudyListExample extends Component {
 
     render() {
         return (
-            <div>
+            <>
                 <div className="row">
-                    <div className="col-md-12">
+                    <div className='col-xs-12'>
                         <h3>Study List</h3>
+                    </div>
+                    <div className="col-md-12">
                         <p>Used to search and list studies.</p>
                         <p>Search filters {JSON.stringify(this.state.searchData, null, 2)}</p>
                     </div>
@@ -149,7 +151,7 @@ class StudyListExample extends Component {
                             onSearch={this.onSearch} />
                     </div>
                 </div>
-            </div >
+            </>
         );
     }
 }

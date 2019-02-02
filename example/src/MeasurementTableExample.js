@@ -96,8 +96,10 @@ export default class MeasurementTableExample extends Component {
   render() {
     return (
       <div className='row'>
-        <div className='col-xs-12 col-sm-6'>
+        <div className="col-xs-12">
           <h3>Measurement Table</h3>
+        </div>
+        <div className='col-xs-12 col-sm-6'>
           <p>Timepoints JSON data</p>
           <pre style={{ maxHeight: '225px', overflowX: 'auto' }}>
             {JSON.stringify(this.state.timepoints, null, 4)}
