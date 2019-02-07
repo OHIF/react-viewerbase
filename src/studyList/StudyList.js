@@ -341,6 +341,14 @@ export default class StudyList extends Component {
                             },
                             this.search
                           );
+                        } else if (!startDate && !endDate) {
+                          this.setSearchDataBatch(
+                            {
+                              studyDateFrom: null,
+                              studyDateTo: null
+                            },
+                            this.search
+                          );
                         }
 
                         this.setState({
