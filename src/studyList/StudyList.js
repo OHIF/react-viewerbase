@@ -1,7 +1,10 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
+import 'react-dates/initialize';
+import 'react-dates/lib/css/_datepicker.css';
 import './StudyList.styl';
+import ReactDates from 'react-dates';
 
 import StudylistToolbar from './StudyListToolbar';
 import LoadingText from '../basic/LoadingText';
@@ -293,9 +296,6 @@ export default class StudyList extends Component {
                   />
                 </th>
                 <th className="studyDate">
-                  {/* TODO: should we use some date range component?
-                  OHIF nowadays uses this: http://www.daterangepicker.com/
-                  */}
                   <div
                     id="_studyDate"
                     className="sortingCell"
@@ -304,14 +304,23 @@ export default class StudyList extends Component {
                     <span>Study Date</span>
                     <i className={this.state.sortClasses.studyDate}>&nbsp;</i>
                   </div>
-                  <input
-                    type="text"
-                    className="form-control studylist-search"
-                    name="daterange"
-                    id="studyDate"
-                    value={this.state.studyDateRange}
-                    onChange={this.getChangeHandler('studyDateRange')}
-                  />
+                  <div style={{ display: 'block' }}>
+                    <ReactDates.DateRangePicker
+                      startDateId="startDate"
+                      endDateId="endDate"
+                      className="form-control studylist-search"
+                      startDate={this.state.startDate}
+                      endDate={this.state.endDate}
+                      hideKeyboardShortcutsPanel={true}
+                      onDatesChange={({ startDate, endDate }) => {
+                        this.setState({ startDate, endDate });
+                      }}
+                      focusedInput={this.state.focusedInput}
+                      onFocusChange={focusedInput => {
+                        this.setState({ focusedInput });
+                      }}
+                    />
+                  </div>
                 </th>
                 <th className="modality">
                   <div

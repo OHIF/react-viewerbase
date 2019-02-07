@@ -1,3 +1,6 @@
+@import '../design/styles/overrides/reactDates.styl'
+
+
 $study-list-padding = 8%;
 $study-list-toolbar-height = 75px;
 $body-cell-height = 40px;
@@ -16,6 +19,13 @@ placeholder-color(c)
     color: c
   &:-ms-input-placeholder
     color: c
+
+.DateRangePicker
+  height: 40px
+  margin: 0 5px 20px 5px
+  cursor: pointer
+  border: none
+  position: block
 
 .studyListToolbar
   background-color: var(--ui-gray-darker)
@@ -83,10 +93,10 @@ placeholder-color(c)
     text-align: center
 
   table#tblStudyList
-    tr
+    > tr
       height: 20px
 
-    thead
+    > thead
       white-space: nowrap
 
       tr
@@ -149,7 +159,7 @@ placeholder-color(c)
       ::-webkit-datetime-edit-day-field:not([aria-valuenow])
         color: transparent
 
-    tbody
+    > tbody
       tr
         padding: 5px
         background-color: black
