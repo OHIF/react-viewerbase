@@ -60,11 +60,11 @@ export default class StudyList extends Component {
           : StudyList.ASC_SORT_ICON_CLS;
     }
 
-    const studyDateFrom = moment();
-    const studyDateTo = moment().subtract(
+    const studyDateFrom = moment().subtract(
       this.props.studyListDateFilterNumDays,
       'days'
     );
+    const studyDateTo = moment();
 
     this.state = {
       loading: false,
@@ -75,7 +75,9 @@ export default class StudyList extends Component {
       searchData: {
         sortData,
         currentPage: this.props.currentPage,
-        rowsPerPage: this.props.rowsPerPage
+        rowsPerPage: this.props.rowsPerPage,
+        studyDateFrom: studyDateFrom.toDate(),
+        studyDateTo: studyDateTo.toDate()
       },
       highlightedItem: ''
     };
@@ -327,7 +329,11 @@ export default class StudyList extends Component {
                         !ReactDates.isInclusivelyBeforeDay(day, moment())
                       }
                       onDatesChange={({ startDate, endDate }) => {
-                        if (startDate && endDate) {
+                        if (
+                          startDate &&
+                          endDate &&
+                          this.state.focusedInput === 'endDate'
+                        ) {
                           this.setSearchDataBatch(
                             {
                               studyDateFrom: startDate.toDate(),

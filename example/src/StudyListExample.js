@@ -29,7 +29,7 @@ class StudyListExample extends Component {
             patientName: 'Antônio Jefferson',
             patientId: '3',
             accessionNumber: '732311',
-            studyDate: '20181212',
+            studyDate: '20190102',
             modalities: 'US',
             studyDescription: '0',
         }, {
@@ -45,7 +45,7 @@ class StudyListExample extends Component {
             patientName: 'Bezerra Souza',
             patientId: '5',
             accessionNumber: '5134543',
-            studyDate: '20190204',
+            studyDate: '20190207',
             modalities: 'US',
             studyDescription: '0',
         }, {
@@ -64,10 +64,14 @@ class StudyListExample extends Component {
 
         this.rowsPerPage = 5;
         this.defaultSort = { field: 'patientName', order: 'desc', };
+        this.studyListDateFilterNumDays = 7;
 
         this.state = {
             searchData: {},
-            studies: this.defaultStudies.slice(0, this.rowsPerPage),
+            studies: this.defaultStudies.slice(0, this.rowsPerPage).filter(study=>{
+                const studyDate = moment(study['studyDate'], 'YYYYMMDD');
+                return studyDate.isBetween(moment().subtract(this.studyListDateFilterNumDays, 'days'), moment(), '[]');
+            }),
         }
 
         this.onSearch = this.onSearch.bind(this);
@@ -88,7 +92,7 @@ class StudyListExample extends Component {
         const filter = (key, searchData, study) => {
             if (key === 'studyDateFrom' && searchData[key] && study['studyDate']) {
                 const studyDate = moment(study['studyDate'], 'YYYYMMDD');
-                return studyDate.isBetween(searchData['studyDateFrom'], searchData['studyDateTo']);
+                return studyDate.isBetween(searchData['studyDateFrom'], searchData['studyDateTo'], '[]');
             } else if (searchData[key] && !study[key].includes(searchData[key])) {
                 return false;
             } else {
@@ -154,6 +158,7 @@ class StudyListExample extends Component {
                             onSelectItem={this.onSelectItem}
                             rowsPerPage={this.rowsPerPage}
                             defaultSort={this.defaultSort}
+                            studyListDateFilterNumDays={this.studyListDateFilterNumDays}
                             onSearch={this.onSearch} />
                     </div>
                 </div>
