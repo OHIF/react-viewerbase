@@ -2,30 +2,36 @@
   background: var(--ui-gray); 
   color: var(--input-placeholder-color); 
   border: 1px solid;
-  border-color: #ccc;
+  border-color: var(--input-placeholder-color);
+}
+
+.CalendarDay__default:hover {
+  color: var(--ui-gray);
 }
 
 .CalendarDay__selected_span:active, .CalendarDay__selected_span:hover {
   background: var(--ui-gray-light);
+  border-color: var(--input-placeholder-color);
+  color: var(--input-placeholder-color);
 }
 
 .CalendarDay__selected {
   background: var(--ui-gray);
   color: var(--input-placeholder-color);
-  border-color: #ccc;
+  border-color: var(--input-placeholder-color);
 }
 
 .CalendarDay__selected:hover {
   background: var(--ui-gray);
   color: var(--input-placeholder-color);
-  border-color: #ccc;
+  border-color: var(--input-placeholder-color);
 }
 
 .CalendarDay__hovered_span:hover,
 .CalendarDay__hovered_span {
   background: var(--ui-gray);
   color: var(--input-placeholder-color);
-  border-color: #ccc;
+  border-color:var(--input-placeholder-color)#ccc;
 }
 
 .DateInput {

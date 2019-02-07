@@ -306,12 +306,12 @@ export default class StudyList extends Component {
                   </div>
                   <div style={{ display: 'block' }}>
                     <ReactDates.DateRangePicker
-                      startDateId="startDate"
-                      endDateId="endDate"
-                      className="form-control studylist-search"
+                      startDateId="studyListStartDate"
+                      endDateId="studyListEndDate"
                       startDate={this.state.startDate}
                       endDate={this.state.endDate}
                       hideKeyboardShortcutsPanel={true}
+                      anchorDirection="left"
                       onDatesChange={({ startDate, endDate }) => {
                         this.setState({ startDate, endDate });
                       }}
