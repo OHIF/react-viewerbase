@@ -11,7 +11,7 @@ class StudyListExample extends Component {
             patientName: 'John Doe',
             patientId: '1',
             accessionNumber: '1234567',
-            studyDate: '19930822',
+            studyDate: '19930201',
             modalities: 'MR',
             studyDescription: 'BRAIN',
         },
@@ -20,7 +20,7 @@ class StudyListExample extends Component {
             patientName: 'José Silva',
             patientId: '2',
             accessionNumber: '7654321',
-            studyDate: '20051030',
+            studyDate:  moment().format('YYYYMMDD'),
             modalities: 'CT',
             studyDescription: 'PET CT STANDARD',
         },
@@ -29,7 +29,7 @@ class StudyListExample extends Component {
             patientName: 'Antônio Jefferson',
             patientId: '3',
             accessionNumber: '732311',
-            studyDate: '20190102',
+            studyDate:  moment().subtract(14, 'days').format('YYYYMMDD'),
             modalities: 'US',
             studyDescription: '0',
         }, {
@@ -37,7 +37,7 @@ class StudyListExample extends Component {
             patientName: 'Antonio da Silva',
             patientId: '4',
             accessionNumber: '732311',
-            studyDate: '20190204',
+            studyDate: moment().subtract(1, 'months').format('YYYYMMDD'),
             modalities: 'US',
             studyDescription: '0',
         }, {
@@ -45,7 +45,7 @@ class StudyListExample extends Component {
             patientName: 'Bezerra Souza',
             patientId: '5',
             accessionNumber: '5134543',
-            studyDate: '20190207',
+            studyDate: moment().subtract(6, 'days').format('YYYYMMDD'),
             modalities: 'US',
             studyDescription: '0',
         }, {
@@ -53,7 +53,7 @@ class StudyListExample extends Component {
             patientName: 'Geraldo Roger',
             patientId: '6',
             accessionNumber: '5315135',
-            studyDate: '20190205',
+            studyDate: moment().subtract(7, 'days').format('YYYYMMDD'),
             modalities: 'US',
             studyDescription: 'US',
         }].sort(function (a, b) {
@@ -70,7 +70,7 @@ class StudyListExample extends Component {
             searchData: {},
             studies: this.defaultStudies.slice(0, this.rowsPerPage).filter(study=>{
                 const studyDate = moment(study['studyDate'], 'YYYYMMDD');
-                return studyDate.isBetween(moment().subtract(this.studyListDateFilterNumDays, 'days'), moment(), '[]');
+                return studyDate.isBetween(moment().subtract(this.studyListDateFilterNumDays, 'days'), moment(), ')(');
             }),
         }
 
@@ -92,7 +92,7 @@ class StudyListExample extends Component {
         const filter = (key, searchData, study) => {
             if (key === 'studyDateFrom' && searchData[key] && study['studyDate']) {
                 const studyDate = moment(study['studyDate'], 'YYYYMMDD');
-                return studyDate.isBetween(searchData['studyDateFrom'], searchData['studyDateTo'], '[]');
+                return studyDate.isBetween(searchData['studyDateFrom'], searchData['studyDateTo'], ')(');
             } else if (searchData[key] && !study[key].includes(searchData[key])) {
                 return false;
             } else {

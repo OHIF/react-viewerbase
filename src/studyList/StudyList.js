@@ -1,15 +1,36 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-import 'react-dates/initialize';
-import 'react-dates/lib/css/_datepicker.css';
 import './StudyList.styl';
 import ReactDates from 'react-dates';
+import CustomDateRangePicker from '../basic/CustomDateRangePicker/CustomDateRangePicker.js';
 
 import StudylistToolbar from './StudyListToolbar';
 import LoadingText from '../basic/LoadingText';
 import PaginationArea from '../basic/paginationArea/PaginationArea';
 import moment from 'moment';
+
+const today = moment();
+const lastWeek = moment().subtract(7, 'day');
+const lastMonth = moment().subtract(1, 'month');
+
+const presets = [
+  {
+    text: 'Today',
+    start: today,
+    end: today
+  },
+  {
+    text: 'Last 7 days',
+    start: lastWeek,
+    end: today
+  },
+  {
+    text: 'Last 30 days',
+    start: lastMonth,
+    end: today
+  }
+];
 
 export default class StudyList extends Component {
   static propTypes = {
@@ -60,24 +81,22 @@ export default class StudyList extends Component {
           : StudyList.ASC_SORT_ICON_CLS;
     }
 
-    const studyDateFrom = moment().subtract(
+    this.defaultStartDate = moment().subtract(
       this.props.studyListDateFilterNumDays,
       'days'
     );
-    const studyDateTo = moment();
+    this.defaultEndDate = moment();
 
     this.state = {
       loading: false,
       error: false,
       sortClasses,
-      studyDateFrom,
-      studyDateTo,
       searchData: {
         sortData,
         currentPage: this.props.currentPage,
         rowsPerPage: this.props.rowsPerPage,
-        studyDateFrom: studyDateFrom.toDate(),
-        studyDateTo: studyDateTo.toDate()
+        studyDateFrom: this.defaultStartDate,
+        studyDateTo: this.defaultEndDate
       },
       highlightedItem: ''
     };
@@ -318,21 +337,27 @@ export default class StudyList extends Component {
                     <i className={this.state.sortClasses.studyDate}>&nbsp;</i>
                   </div>
                   <div style={{ display: 'block' }}>
-                    <ReactDates.DateRangePicker
+                    <CustomDateRangePicker
+                      presets={presets}
+                      showClearDates={true}
                       startDateId="studyListStartDate"
                       endDateId="studyListEndDate"
-                      startDate={this.state.studyDateFrom}
-                      endDate={this.state.studyDateTo}
+                      startDate={this.defaultStartDate}
+                      endDate={this.defaultEndDate}
                       hideKeyboardShortcutsPanel={true}
                       anchorDirection="left"
                       isOutsideRange={day =>
                         !ReactDates.isInclusivelyBeforeDay(day, moment())
                       }
-                      onDatesChange={({ startDate, endDate }) => {
+                      onDatesChange={({
+                        startDate,
+                        endDate,
+                        preset = false
+                      }) => {
                         if (
                           startDate &&
                           endDate &&
-                          this.state.focusedInput === 'endDate'
+                          (this.state.focusedInput === 'endDate' || preset)
                         ) {
                           this.setSearchDataBatch(
                             {
@@ -341,6 +366,7 @@ export default class StudyList extends Component {
                             },
                             this.search
                           );
+                          this.setState({ focusedInput: false });
                         } else if (!startDate && !endDate) {
                           this.setSearchDataBatch(
                             {
@@ -350,11 +376,6 @@ export default class StudyList extends Component {
                             this.search
                           );
                         }
-
-                        this.setState({
-                          studyDateFrom: startDate,
-                          studyDateTo: endDate
-                        });
                       }}
                       focusedInput={this.state.focusedInput}
                       onFocusChange={focusedInput => {

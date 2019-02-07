@@ -52,3 +52,33 @@
   color: var(--input-placeholder-color)
   height: 40px
 }
+
+.PresetDateRangePicker_panel: {
+    padding: 0 22px 11px 22px;
+}
+
+.PresetDateRangePicker_button {
+    position: relative;
+    height: 100%;
+    textAlign: center;
+    background: none;
+    border: 2px solid var(--ui-gray);
+    color: var(--ui-gray);
+    padding: 4px 12px;
+    marginRight: 8;
+    font: inherit;
+    fontWeight: 700;
+    lineHeight: normal;
+    overflow: visible;
+    boxSizing: border-box;
+    cursor: pointer;
+
+    :active: {
+      outline: 0;
+    }
+}
+
+.PresetDateRangePicker_button__selected: {
+  color: var(--input-placeholder-color);
+  background: var(--ui-gray);
+};
