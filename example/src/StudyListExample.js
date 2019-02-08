@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { StudyList } from 'react-viewerbase';
+import moment from 'moment';
 
 class StudyListExample extends Component {
     constructor(props) {
@@ -10,7 +11,7 @@ class StudyListExample extends Component {
             patientName: 'John Doe',
             patientId: '1',
             accessionNumber: '1234567',
-            studyDate: 'Dec 14, 2018',
+            studyDate: '19930201',
             modalities: 'MR',
             studyDescription: 'BRAIN',
         },
@@ -19,7 +20,7 @@ class StudyListExample extends Component {
             patientName: 'José Silva',
             patientId: '2',
             accessionNumber: '7654321',
-            studyDate: 'Dec 13, 2018',
+            studyDate:  moment().format('YYYYMMDD'),
             modalities: 'CT',
             studyDescription: 'PET CT STANDARD',
         },
@@ -28,7 +29,7 @@ class StudyListExample extends Component {
             patientName: 'Antônio Jefferson',
             patientId: '3',
             accessionNumber: '732311',
-            studyDate: 'Dec 12, 2018',
+            studyDate:  moment().subtract(14, 'days').format('YYYYMMDD'),
             modalities: 'US',
             studyDescription: '0',
         }, {
@@ -36,7 +37,7 @@ class StudyListExample extends Component {
             patientName: 'Antonio da Silva',
             patientId: '4',
             accessionNumber: '732311',
-            studyDate: 'Dec 12, 2018',
+            studyDate: moment().subtract(1, 'months').format('YYYYMMDD'),
             modalities: 'US',
             studyDescription: '0',
         }, {
@@ -44,7 +45,7 @@ class StudyListExample extends Component {
             patientName: 'Bezerra Souza',
             patientId: '5',
             accessionNumber: '5134543',
-            studyDate: 'Dec 22, 2018',
+            studyDate: moment().subtract(6, 'days').format('YYYYMMDD'),
             modalities: 'US',
             studyDescription: '0',
         }, {
@@ -52,7 +53,7 @@ class StudyListExample extends Component {
             patientName: 'Geraldo Roger',
             patientId: '6',
             accessionNumber: '5315135',
-            studyDate: 'Dec 12, 2016',
+            studyDate: moment().subtract(7, 'days').format('YYYYMMDD'),
             modalities: 'US',
             studyDescription: 'US',
         }].sort(function (a, b) {
@@ -63,10 +64,14 @@ class StudyListExample extends Component {
 
         this.rowsPerPage = 5;
         this.defaultSort = { field: 'patientName', order: 'desc', };
+        this.studyListDateFilterNumDays = 7;
 
         this.state = {
             searchData: {},
-            studies: this.defaultStudies.slice(0, this.rowsPerPage),
+            studies: this.defaultStudies.slice(0, this.rowsPerPage).filter(study=>{
+                const studyDate = moment(study['studyDate'], 'YYYYMMDD');
+                return studyDate.isBetween(moment().subtract(this.studyListDateFilterNumDays, 'days'), moment(), 'days', '[]');
+            }),
         }
 
         this.onSearch = this.onSearch.bind(this);
@@ -84,7 +89,10 @@ class StudyListExample extends Component {
         this.setState({searchData});
 
         const filter = (key, searchData, study) => {
-            if (searchData[key] && !study[key].includes(searchData[key])) {
+            if (key === 'studyDateFrom' && searchData[key] && study['studyDate']) {
+                const studyDate = moment(study['studyDate'], 'YYYYMMDD');
+                return studyDate.isBetween(searchData['studyDateFrom'], searchData['studyDateTo'], 'days', '[]');
+            } else if (searchData[key] && !study[key].includes(searchData[key])) {
                 return false;
             } else {
                 return true;
@@ -95,7 +103,8 @@ class StudyListExample extends Component {
 
         // just a example of local filtering
         let filteredStudies = this.defaultStudies.filter(function (study) {
-            const all = ['patientName', 'patientId', 'accessionNumber', 'modalities', 'studyDescription'].every(key => {
+            const all = ['patientName', 'patientId', 'accessionNumber', 'modalities', 'studyDescription', 'studyDateFrom',]
+            .every(key => {
                 return filter(key, searchData, study);
             });
 
@@ -148,6 +157,7 @@ class StudyListExample extends Component {
                             onSelectItem={this.onSelectItem}
                             rowsPerPage={this.rowsPerPage}
                             defaultSort={this.defaultSort}
+                            studyListDateFilterNumDays={this.studyListDateFilterNumDays}
                             onSearch={this.onSearch} />
                     </div>
                 </div>

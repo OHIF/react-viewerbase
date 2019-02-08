@@ -2,10 +2,17 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
 import './StudyList.styl';
+import ReactDates from 'react-dates';
+import CustomDateRangePicker from '../basic/CustomDateRangePicker/CustomDateRangePicker.js';
 
 import StudylistToolbar from './StudyListToolbar';
 import LoadingText from '../basic/LoadingText';
 import PaginationArea from '../basic/paginationArea/PaginationArea';
+import moment from 'moment';
+
+const today = moment();
+const lastWeek = moment().subtract(7, 'day');
+const lastMonth = moment().subtract(1, 'month');
 
 export default class StudyList extends Component {
   static propTypes = {
@@ -15,6 +22,7 @@ export default class StudyList extends Component {
     studyCount: PropTypes.number.isRequired,
     currentPage: PropTypes.number,
     rowsPerPage: PropTypes.number,
+    studyListDateFilterNumDays: PropTypes.number,
     studyListFunctionsEnabled: PropTypes.bool,
     defaultSort: PropTypes.shape({
       field: PropTypes.string.isRequired,
@@ -25,12 +33,31 @@ export default class StudyList extends Component {
 
   static defaultProps = {
     currentPage: 0,
-    rowsPerPage: 25
+    rowsPerPage: 25,
+    studyListDateFilterNumDays: 7
   };
 
   static DEFAULT_SORTABLE_ICON_CLS = 'fa fa-fw fa-sort';
   static DESC_SORT_ICON_CLS = 'fa fa-fw fa-sort-desc';
   static ASC_SORT_ICON_CLS = 'fa fa-fw fa-sort-asc';
+
+  static studyDatePresets = [
+    {
+      text: 'Today',
+      start: today,
+      end: today
+    },
+    {
+      text: 'Last 7 days',
+      start: lastWeek,
+      end: today
+    },
+    {
+      text: 'Last 30 days',
+      start: lastMonth,
+      end: today
+    }
+  ];
 
   constructor(props) {
     super(props);
@@ -40,7 +67,7 @@ export default class StudyList extends Component {
       patientName: StudyList.DEFAULT_SORTABLE_ICON_CLS,
       patientId: StudyList.DEFAULT_SORTABLE_ICON_CLS,
       accessionNumber: StudyList.DEFAULT_SORTABLE_ICON_CLS,
-      studyDate: StudyList.DEFAULT_SORTABLE_ICON_CLS,
+      studyDatePresets: StudyList.DEFAULT_SORTABLE_ICON_CLS,
       modality: StudyList.DEFAULT_SORTABLE_ICON_CLS,
       studyDescription: StudyList.DEFAULT_SORTABLE_ICON_CLS
     };
@@ -54,6 +81,12 @@ export default class StudyList extends Component {
           : StudyList.ASC_SORT_ICON_CLS;
     }
 
+    this.defaultStartDate = moment().subtract(
+      this.props.studyListDateFilterNumDays,
+      'days'
+    );
+    this.defaultEndDate = moment();
+
     this.state = {
       loading: false,
       error: false,
@@ -61,7 +94,9 @@ export default class StudyList extends Component {
       searchData: {
         sortData,
         currentPage: this.props.currentPage,
-        rowsPerPage: this.props.rowsPerPage
+        rowsPerPage: this.props.rowsPerPage,
+        studyDateFrom: this.defaultStartDate,
+        studyDateTo: this.defaultEndDate
       },
       highlightedItem: ''
     };
@@ -293,9 +328,6 @@ export default class StudyList extends Component {
                   />
                 </th>
                 <th className="studyDate">
-                  {/* TODO: should we use some date range component?
-                  OHIF nowadays uses this: http://www.daterangepicker.com/
-                  */}
                   <div
                     id="_studyDate"
                     className="sortingCell"
@@ -304,14 +336,53 @@ export default class StudyList extends Component {
                     <span>Study Date</span>
                     <i className={this.state.sortClasses.studyDate}>&nbsp;</i>
                   </div>
-                  <input
-                    type="text"
-                    className="form-control studylist-search"
-                    name="daterange"
-                    id="studyDate"
-                    value={this.state.studyDateRange}
-                    onChange={this.getChangeHandler('studyDateRange')}
-                  />
+                  <div style={{ display: 'block' }}>
+                    <CustomDateRangePicker
+                      presets={StudyList.studyDatePresets}
+                      showClearDates={true}
+                      startDateId="studyListStartDate"
+                      endDateId="studyListEndDate"
+                      startDate={this.defaultStartDate}
+                      endDate={this.defaultEndDate}
+                      hideKeyboardShortcutsPanel={true}
+                      anchorDirection="left"
+                      isOutsideRange={day =>
+                        !ReactDates.isInclusivelyBeforeDay(day, moment())
+                      }
+                      onDatesChange={({
+                        startDate,
+                        endDate,
+                        preset = false
+                      }) => {
+                        if (
+                          startDate &&
+                          endDate &&
+                          (this.state.focusedInput === 'endDate' || preset)
+                        ) {
+                          this.setSearchDataBatch(
+                            {
+                              studyDateFrom: startDate.toDate(),
+                              studyDateTo: endDate.toDate()
+                            },
+                            this.search
+                          );
+                          this.setState({ focusedInput: false });
+                        } else if (!startDate && !endDate) {
+                          this.setSearchDataBatch(
+                            {
+                              studyDateFrom: null,
+                              studyDateTo: null
+                            },
+                            this.search
+                          );
+                        }
+                      }}
+                      focusedInput={this.state.focusedInput}
+                      onFocusChange={focusedInput => {
+                        this.setState({ focusedInput });
+                      }}
+                    />
+                  </div>
                 </th>
                 <th className="modality">
                   <div

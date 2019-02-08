@@ -17,6 +17,13 @@ placeholder-color(c)
   &:-ms-input-placeholder
     color: c
 
+.DateRangePicker
+  height: 40px
+  margin: 0 5px 20px 5px
+  cursor: pointer
+  border: none
+  position: block
+
 .studyListToolbar
   background-color: var(--ui-gray-darker)
   height: $study-list-toolbar-height
@@ -61,10 +68,10 @@ placeholder-color(c)
     z-index: 1
 
   &:after
-    background-color: var(--large-numbers-color)
+    background-color: var(--ui-border-color-active)
     bottom: -1px
     height: 1px
-    z-index: 3
+    z-index: 2
 
 #studyListContainer
   width: 100%
@@ -83,10 +90,10 @@ placeholder-color(c)
     text-align: center
 
   table#tblStudyList
-    tr
+    > tr
       height: 20px
 
-    thead
+    > thead
       white-space: nowrap
 
       tr
@@ -149,7 +156,7 @@ placeholder-color(c)
       ::-webkit-datetime-edit-day-field:not([aria-valuenow])
         color: transparent
 
-    tbody
+    > tbody
       tr
         padding: 5px
         background-color: black
