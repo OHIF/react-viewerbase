@@ -14,24 +14,6 @@ const today = moment();
 const lastWeek = moment().subtract(7, 'day');
 const lastMonth = moment().subtract(1, 'month');
 
-const presets = [
-  {
-    text: 'Today',
-    start: today,
-    end: today
-  },
-  {
-    text: 'Last 7 days',
-    start: lastWeek,
-    end: today
-  },
-  {
-    text: 'Last 30 days',
-    start: lastMonth,
-    end: today
-  }
-];
-
 export default class StudyList extends Component {
   static propTypes = {
     studies: PropTypes.array.isRequired,
@@ -59,6 +41,24 @@ export default class StudyList extends Component {
   static DESC_SORT_ICON_CLS = 'fa fa-fw fa-sort-desc';
   static ASC_SORT_ICON_CLS = 'fa fa-fw fa-sort-asc';
 
+  static studyDatePresets = [
+    {
+      text: 'Today',
+      start: today,
+      end: today
+    },
+    {
+      text: 'Last 7 days',
+      start: lastWeek,
+      end: today
+    },
+    {
+      text: 'Last 30 days',
+      start: lastMonth,
+      end: today
+    }
+  ];
+
   constructor(props) {
     super(props);
 
@@ -67,7 +67,7 @@ export default class StudyList extends Component {
       patientName: StudyList.DEFAULT_SORTABLE_ICON_CLS,
       patientId: StudyList.DEFAULT_SORTABLE_ICON_CLS,
       accessionNumber: StudyList.DEFAULT_SORTABLE_ICON_CLS,
-      studyDate: StudyList.DEFAULT_SORTABLE_ICON_CLS,
+      studyDatePresets: StudyList.DEFAULT_SORTABLE_ICON_CLS,
       modality: StudyList.DEFAULT_SORTABLE_ICON_CLS,
       studyDescription: StudyList.DEFAULT_SORTABLE_ICON_CLS
     };
@@ -338,7 +338,7 @@ export default class StudyList extends Component {
                   </div>
                   <div style={{ display: 'block' }}>
                     <CustomDateRangePicker
-                      presets={presets}
+                      presets={StudyList.studyDatePresets}
                       showClearDates={true}
                       startDateId="studyListStartDate"
                       endDateId="studyListEndDate"

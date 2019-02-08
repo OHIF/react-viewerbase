@@ -24,6 +24,7 @@ export default class CustomDateRangePicker extends React.Component {
       startDate: this.props.startDate,
       endDate: this.props.endDate
     };
+
     this.renderDatePresets = this.renderDatePresets.bind(this);
     this.onDatesChange = this.onDatesChange.bind(this);
   }

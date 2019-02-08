@@ -70,7 +70,7 @@ class StudyListExample extends Component {
             searchData: {},
             studies: this.defaultStudies.slice(0, this.rowsPerPage).filter(study=>{
                 const studyDate = moment(study['studyDate'], 'YYYYMMDD');
-                return studyDate.isBetween(moment().subtract(this.studyListDateFilterNumDays, 'days'), moment(), ')(');
+                return studyDate.isBetween(moment().subtract(this.studyListDateFilterNumDays, 'days'), moment(), 'days', '[]');
             }),
         }
 
@@ -86,13 +86,12 @@ class StudyListExample extends Component {
     }
 
     onSearch(searchData) {
-        debugger;
         this.setState({searchData});
 
         const filter = (key, searchData, study) => {
             if (key === 'studyDateFrom' && searchData[key] && study['studyDate']) {
                 const studyDate = moment(study['studyDate'], 'YYYYMMDD');
-                return studyDate.isBetween(searchData['studyDateFrom'], searchData['studyDateTo'], ')(');
+                return studyDate.isBetween(searchData['studyDateFrom'], searchData['studyDateTo'], 'days', '[]');
             } else if (searchData[key] && !study[key].includes(searchData[key])) {
                 return false;
             } else {

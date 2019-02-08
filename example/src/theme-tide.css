@@ -44,4 +44,9 @@
   --ui-gray-dark: #16202B;
   --ui-gray-darker: #151A1F;
   --ui-gray-darkest: #14202A;
+
+  --calendar-day-color: #d3d3d3;
+  --calendar-day-border-color: #d3d3d3;
+  --calendar-day-active-hover-background-color: #516873;
+  --calendar-main-color: #263340;
 }

@@ -1,37 +1,37 @@
 .CalendarDay__selected_span {
-  background: var(--ui-gray); 
-  color: var(--input-placeholder-color); 
+  background: var(--calendar-main-color); 
+  color: var(--calendar-day-color); 
   border: 1px solid;
-  border-color: var(--input-placeholder-color);
+  border-color: var(--calendar-day-border-color);
 }
 
 .CalendarDay__default:hover {
-  color: var(--ui-gray);
+  color: var(--calendar-main-color);
 }
 
 .CalendarDay__selected_span:active, .CalendarDay__selected_span:hover {
-  background: var(--ui-gray-light);
-  border-color: var(--input-placeholder-color);
-  color: var(--input-placeholder-color);
+  background: var(--calendar-day-active-hover-background-color);
+  border-color: var(--calendar-day-border-color);
+  color: var(--calendar-day-color);
 }
 
 .CalendarDay__selected {
-  background: var(--ui-gray);
-  color: var(--input-placeholder-color);
-  border-color: var(--input-placeholder-color);
+  background: var(--calendar-main-color);
+  color: var(--calendar-day-color);
+  border-color: var(--calendar-day-border-color);
 }
 
 .CalendarDay__selected:hover {
-  background: var(--ui-gray);
-  color: var(--input-placeholder-color);
-  border-color: var(--input-placeholder-color);
+  background: var(--calendar-main-color);
+  color: var(--calendar-day-color);
+  border-color: var(--calendar-day-border-color);
 }
 
 .CalendarDay__hovered_span:hover,
 .CalendarDay__hovered_span {
-  background: var(--ui-gray);
-  color: var(--input-placeholder-color);
-  border-color:var(--input-placeholder-color)#ccc;
+  background: var(--calendar-main-color);
+  color: var(--calendar-day-color);
+  border-color:var(--calendar-day-color);
 }
 
 .DateInput {
@@ -62,8 +62,8 @@
     height: 100%;
     textAlign: center;
     background: none;
-    border: 2px solid var(--ui-gray);
-    color: var(--ui-gray);
+    border: 2px solid var(--calendar-main-color);
+    color: var(--calendar-main-color);
     padding: 4px 12px;
     marginRight: 8;
     font: inherit;
@@ -79,6 +79,6 @@
 }
 
 .PresetDateRangePicker_button__selected: {
-  color: var(--input-placeholder-color);
-  background: var(--ui-gray);
+  color: var(--calendar-day-color);
+  background: var(--calendar-main-color);
 };
