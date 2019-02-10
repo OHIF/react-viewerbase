@@ -19,8 +19,8 @@ class ThumbnailEntry extends Component {
     active: PropTypes.bool.isRequired,
     stackPercentComplete: PropTypes.number,
     seriesDescription: PropTypes.string,
-    seriesNumber: PropTypes.string,
-    instanceNumber: PropTypes.string,
+    seriesNumber: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+    instanceNumber: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
     numImageFrames: PropTypes.number,
     onDoubleClick: PropTypes.func,
     onClick: PropTypes.func
