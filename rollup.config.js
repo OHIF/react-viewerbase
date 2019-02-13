@@ -9,6 +9,11 @@ import pkg from './package.json'
 // Deal with https://github.com/rollup/rollup-plugin-commonjs/issues/297
 import builtins from 'rollup-plugin-node-builtins';
 
+const globals = {
+  'react': 'React',
+  'react-dom': 'ReactDOM'
+};
+
 export default {
   input: 'src/index.js',
   output: [
@@ -18,15 +23,13 @@ export default {
       name: 'react-viewerbase',
       sourcemap: true,
       exports: 'named',
-      globals: {
-        'react': 'React',
-        'react-dom': 'ReactDOM'
-      }
+      globals
     },
     {
       file: pkg.module,
       format: 'es',
-      sourcemap: true
+      sourcemap: true,
+      globals
     }
   ],
   plugins: [
@@ -43,7 +46,9 @@ export default {
       externalHelpers: true,
       runtimeHelpers: true
     }),
-    resolve(),
+    resolve({
+      browser: true
+    }),
     commonjs()
   ]
 }

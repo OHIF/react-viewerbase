@@ -17,7 +17,7 @@
     "react-dnd": "^7.0.2",
     "react-dnd-html5-backend": "^7.0.2",
     "react-dom": "^16.4.1",
-    "react-scripts": "^2.1.2",
+    "react-scripts": "^2.1.5",
     "react-viewerbase": "link:../"
   },
   "scripts": {
