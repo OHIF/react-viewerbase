@@ -12,11 +12,11 @@ export default class MeasurementTable extends Component {
   static propTypes = {
     measurementCollection: PropTypes.array.isRequired,
     timepoints: PropTypes.array.isRequired,
-    overwallWarnings: PropTypes.object
+    overallWarnings: PropTypes.object
   };
 
   static defaultProps = {
-    overwallWarnings: {
+    overallWarnings: {
       warningList: []
     }
   };
@@ -30,11 +30,12 @@ export default class MeasurementTable extends Component {
   }
 
   render() {
-    const hasOverwallWarnings = this.props.overwallWarnings.warningList.length;
+    const hasOverallWarnings =
+      this.props.overallWarnings.warningList.length > 0;
     return (
       <div className="measurementTable">
         <div className="measurementTableHeader">
-          {hasOverwallWarnings && (
+          {hasOverallWarnings && (
             <OverlayTrigger
               key={'overwall-warning'}
               placement="left"
