@@ -6,18 +6,17 @@ class PaginationArea extends PureComponent {
   static defaultProps = {
     pageOptions: [5, 10, 25, 50, 100],
     rowsPerPage: 25,
-    currentPage: 0,
-    numberOfPages: 1
+    currentPage: 0
   };
 
   static propTypes = {
     pageOptions: PropTypes.array.isRequired,
     rowsPerPage: PropTypes.number.isRequired,
     currentPage: PropTypes.number.isRequired,
-    numberOfPages: PropTypes.number.isRequired,
     nextPageFunc: PropTypes.func,
     prevPageFunc: PropTypes.func,
-    onRowsPerPageChange: PropTypes.func
+    onRowsPerPageChange: PropTypes.func,
+    recordCount: PropTypes.number.isRequired
   };
 
   nextPage = () => {
@@ -51,7 +50,8 @@ class PaginationArea extends PureComponent {
                 <button
                   onClick={this.nextPage}
                   disabled={
-                    this.props.currentPage === this.props.numberOfPages - 1
+                    this.props.recordCount === 0 ||
+                    this.props.rowsPerPage > this.props.recordCount
                   }
                   className="btn page-link"
                 >

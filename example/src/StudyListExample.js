@@ -7,7 +7,7 @@ class StudyListExample extends Component {
         super(props)
 
         this.defaultStudies = [{
-            studyInstanceUID: '11111.111111.111111.11111',
+            studyInstanceUid: '11111.111111.111111.11111',
             patientName: 'John Doe',
             patientId: '1',
             accessionNumber: '1234567',
@@ -16,24 +16,24 @@ class StudyListExample extends Component {
             studyDescription: 'BRAIN',
         },
         {
-            studyInstanceUID: '2222.222222.22222.22222',
+            studyInstanceUid: '2222.222222.22222.22222',
             patientName: 'José Silva',
             patientId: '2',
             accessionNumber: '7654321',
-            studyDate:  moment().format('YYYYMMDD'),
+            studyDate: moment().format('YYYYMMDD'),
             modalities: 'CT',
             studyDescription: 'PET CT STANDARD',
         },
         {
-            studyInstanceUID: '3333.333333.33333.33333',
+            studyInstanceUid: '3333.333333.33333.33333',
             patientName: 'Antônio Jefferson',
             patientId: '3',
             accessionNumber: '732311',
-            studyDate:  moment().subtract(14, 'days').format('YYYYMMDD'),
+            studyDate: moment().subtract(14, 'days').format('YYYYMMDD'),
             modalities: 'US',
             studyDescription: '0',
         }, {
-            studyInstanceUID: '444444.44444.44444.4444',
+            studyInstanceUid: '444444.44444.44444.4444',
             patientName: 'Antonio da Silva',
             patientId: '4',
             accessionNumber: '732311',
@@ -41,7 +41,7 @@ class StudyListExample extends Component {
             modalities: 'US',
             studyDescription: '0',
         }, {
-            studyInstanceUID: '55555.55555.55555.55555',
+            studyInstanceUid: '55555.55555.55555.55555',
             patientName: 'Bezerra Souza',
             patientId: '5',
             accessionNumber: '5134543',
@@ -49,7 +49,7 @@ class StudyListExample extends Component {
             modalities: 'US',
             studyDescription: '0',
         }, {
-            studyInstanceUID: '66666.66666.66666.6666',
+            studyInstanceUid: '66666.66666.66666.6666',
             patientName: 'Geraldo Roger',
             patientId: '6',
             accessionNumber: '5315135',
@@ -68,10 +68,12 @@ class StudyListExample extends Component {
 
         this.state = {
             searchData: {},
-            studies: this.defaultStudies.slice(0, this.rowsPerPage).filter(study=>{
+            studies: this.defaultStudies.filter(study => {
                 const studyDate = moment(study['studyDate'], 'YYYYMMDD');
-                return studyDate.isBetween(moment().subtract(this.studyListDateFilterNumDays, 'days'), moment(), 'days', '[]');
-            }),
+                const startDate = moment().subtract(this.studyListDateFilterNumDays, 'days');
+                const endDate = moment();
+                return studyDate.isBetween(startDate, endDate, 'days', '[]');
+            }).slice(0, this.rowsPerPage),
         }
 
         this.onSearch = this.onSearch.bind(this);
@@ -81,12 +83,12 @@ class StudyListExample extends Component {
         alert('Import study mock ' + event);
     }
 
-    onSelectItem(studyInstanceUID) {
-        alert(studyInstanceUID + ' has selected! Now you can open your study.');
+    onSelectItem(studyInstanceUid) {
+        alert(studyInstanceUid + ' has selected! Now you can open your study.');
     }
 
     onSearch(searchData) {
-        this.setState({searchData});
+        this.setState({ searchData });
 
         const filter = (key, searchData, study) => {
             if (key === 'studyDateFrom' && searchData[key] && study['studyDate']) {
@@ -104,9 +106,9 @@ class StudyListExample extends Component {
         // just a example of local filtering
         let filteredStudies = this.defaultStudies.filter(function (study) {
             const all = ['patientName', 'patientId', 'accessionNumber', 'modalities', 'studyDescription', 'studyDateFrom',]
-            .every(key => {
-                return filter(key, searchData, study);
-            });
+                .every(key => {
+                    return filter(key, searchData, study);
+                });
 
             return all;
         }).sort(function (a, b) {
@@ -151,7 +153,7 @@ class StudyListExample extends Component {
                 }>
                     <div className="col-xs-12" style={{ padding: 0 }}>
                         <StudyList studies={this.state.studies}
-                            studyCount={this.defaultStudies.length}
+                            pageOptions={[1, 2, 3, 5, 10, 15, 20, 25, 50, 100]}
                             studyListFunctionsEnabled={true}
                             onImport={this.onImport}
                             onSelectItem={this.onSelectItem}
