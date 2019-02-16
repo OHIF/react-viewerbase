@@ -19,7 +19,6 @@ export default class StudyList extends Component {
     studies: PropTypes.array.isRequired,
     onSelectItem: PropTypes.func.isRequired,
     onSearch: PropTypes.func.isRequired,
-    studyCount: PropTypes.number.isRequired,
     currentPage: PropTypes.number,
     rowsPerPage: PropTypes.number,
     studyListDateFilterNumDays: PropTypes.number,
@@ -28,7 +27,8 @@ export default class StudyList extends Component {
       field: PropTypes.string.isRequired,
       order: PropTypes.oneOf(['desc', 'asc']).isRequired
     }),
-    onImport: PropTypes.func
+    onImport: PropTypes.func,
+    pageOptions: PropTypes.array
   };
 
   static defaultProps = {
@@ -256,7 +256,9 @@ export default class StudyList extends Component {
       <div className="StudyList">
         <div className="studyListToolbar clearfix">
           <div className="header pull-left">Study List</div>
-          <div className="studyCount pull-right">{this.props.studyCount}</div>
+          <div className="studyCount pull-right">
+            {this.props.studies.length}
+          </div>
           <div className="pull-right">
             {
               <StudylistToolbar
@@ -436,14 +438,13 @@ export default class StudyList extends Component {
           {this.renderNoMachingResults()}
 
           <PaginationArea
+            pageOptions={this.props.pageOptions}
             currentPage={this.state.searchData.currentPage}
             nextPageFunc={this.nextPage}
             prevPageFunc={this.prevPage}
             onRowsPerPageChange={this.onRowsPerPageChange}
             rowsPerPage={this.state.searchData.rowsPerPage}
-            numberOfPages={Math.ceil(
-              this.props.studyCount / this.state.searchData.rowsPerPage
-            )}
+            recordCount={this.props.studies.length}
           />
         </div>
       </div>
