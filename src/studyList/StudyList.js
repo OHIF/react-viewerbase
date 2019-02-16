@@ -68,7 +68,7 @@ export default class StudyList extends Component {
       patientId: StudyList.DEFAULT_SORTABLE_ICON_CLS,
       accessionNumber: StudyList.DEFAULT_SORTABLE_ICON_CLS,
       studyDatePresets: StudyList.DEFAULT_SORTABLE_ICON_CLS,
-      modality: StudyList.DEFAULT_SORTABLE_ICON_CLS,
+      modalities: StudyList.DEFAULT_SORTABLE_ICON_CLS,
       studyDescription: StudyList.DEFAULT_SORTABLE_ICON_CLS
     };
 
@@ -222,23 +222,23 @@ export default class StudyList extends Component {
   renderTableRow(study) {
     return (
       <tr
-        key={study.studyInstanceUID}
+        key={study.studyInstanceUid}
         className={
-          this.state.highlightedItem === study.studyInstanceUID
+          this.state.highlightedItem === study.studyInstanceUid
             ? 'studylistStudy noselect active'
             : 'studylistStudy noselect'
         }
         onClick={() => {
-          this.onHighlightItem(study.studyInstanceUID);
+          this.onHighlightItem(study.studyInstanceUid);
         }}
         onMouseDown={event => {
           // middle/wheel click
           if (event.button === 1) {
-            this.props.onSelectItem(study.studyInstanceUID);
+            this.props.onSelectItem(study.studyInstanceUid);
           }
         }}
         onDoubleClick={() => {
-          this.props.onSelectItem(study.studyInstanceUID);
+          this.props.onSelectItem(study.studyInstanceUid);
         }}
       >
         <td className="patientName">{study.patientName}</td>
@@ -386,22 +386,22 @@ export default class StudyList extends Component {
                     />
                   </div>
                 </th>
-                <th className="modality">
+                <th className="modalities">
                   <div
-                    id="_modality"
+                    id="_modalities"
                     className="sortingCell"
-                    onClick={this.onSortClick('modality')}
+                    onClick={this.onSortClick('modalities')}
                   >
                     <span>Modality</span>
-                    <i className={this.state.sortClasses.modality}>&nbsp;</i>
+                    <i className={this.state.sortClasses.modalities}>&nbsp;</i>
                   </div>
                   <input
                     type="text"
                     className="form-control studylist-search"
-                    id="modality"
+                    id="modalities"
                     onKeyDown={this.onInputKeydown}
-                    value={this.state.modality}
-                    onChange={this.getChangeHandler('modality')}
+                    value={this.state.modalities}
+                    onChange={this.getChangeHandler('modalities')}
                   />
                 </th>
                 <th className="studyDescription">
