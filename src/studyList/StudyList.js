@@ -38,8 +38,8 @@ export default class StudyList extends Component {
   };
 
   static DEFAULT_SORTABLE_ICON_CLS = 'fa fa-fw fa-sort';
-  static DESC_SORT_ICON_CLS = 'fa fa-fw fa-sort-desc';
-  static ASC_SORT_ICON_CLS = 'fa fa-fw fa-sort-asc';
+  static DESC_SORT_ICON_CLS = 'fa fa-fw fa-sort-down';
+  static ASC_SORT_ICON_CLS = 'fa fa-fw fa-sort-up';
 
   static studyDatePresets = [
     {
