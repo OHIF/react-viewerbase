@@ -1,14 +1,15 @@
 import React, { Component } from 'react';
-import Proptypes from 'prop-types';
+import PropTypes from 'prop-types';
 import StudiesItem from './StudiesItem.js';
 
 import './StudiesList.styl';
 
 export default class StudiesList extends Component {
   static propTypes = {
-    class: Proptypes.string,
-    studyListData: Proptypes.array.isRequired,
-    onClick: Proptypes.func.isRequired
+    class: PropTypes.string,
+    studyListData: PropTypes.array.isRequired,
+    onClick: PropTypes.func.isRequired,
+    activeStudyInstanceUid: PropTypes.string
   };
 
   render() {
@@ -25,7 +26,9 @@ export default class StudiesList extends Component {
         <StudiesItem
           key={index}
           studyData={studyData}
-          studyActive={true}
+          active={
+            studyData.studyInstanceUid === this.props.activeStudyInstanceUid
+          }
           onClick={event => this.props.onClick(studyData)}
         />
       );

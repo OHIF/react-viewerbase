@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Proptypes from 'prop-types';
+import PropTypes from 'prop-types';
 import StudiesList from './StudiesList.js';
 import ScrollableArea from '../ScrollableArea/ScrollableArea.js';
 import SeriesList from './SeriesList.js';
@@ -8,45 +8,67 @@ import './QuickSwitch.styl';
 
 export default class QuickSwitch extends Component {
   static propTypes = {
-    class: Proptypes.string,
-    side: Proptypes.string,
-    studyListData: Proptypes.array.isRequired,
-    seriesListData: Proptypes.array.isRequired,
-    onSeriesSelected: Proptypes.func.isRequired,
-    onStudySelected: Proptypes.func.isRequired
+    side: PropTypes.string,
+    studyListData: PropTypes.array.isRequired,
+    onSeriesSelected: PropTypes.func.isRequired,
+    seriesListData: PropTypes.array,
+    onStudySelected: PropTypes.func,
+    activeStudyInstanceUid: PropTypes.string,
+    activeDisplaySetInstanceUid: PropTypes.string
   };
 
   constructor(props) {
     super(props);
 
     this.state = {
-      seriesQuickSwitchClass: '',
-      sideClass: this.props.side || ''
+      seriesQuickSwitchOpen: false,
+      sideClass: this.props.side || '',
+      activeStudyInstanceUid: this.props.activeStudyInstanceUid,
+      activeDisplaySetInstanceUid: this.props.activeDisplaySetInstanceUid
     };
   }
 
+  componentDidUpdate(prevProps) {
+    const props = this.props;
+
+    if (props.activeStudyInstanceUid !== prevProps.activeStudyInstanceUid) {
+      this.setState({
+        activeStudyInstanceUid: props.activeStudyInstanceUid
+      });
+    }
+
+    if (
+      props.activeDisplaySetInstanceUid !==
+      prevProps.activeDisplaySetInstanceUid
+    ) {
+      this.setState({
+        activeDisplaySetInstanceUid: props.activeDisplaySetInstanceUid
+      });
+    }
+  }
+
   render() {
+    const quickSwitchClass = this.state.seriesQuickSwitchOpen
+      ? 'series-triggered'
+      : '';
+
     return (
       <div
         className={`series-quick-switch clearfix noselect ${
           this.state.sideClass
-        } ${this.state.seriesQuickSwitchClass}`}
+        } ${quickSwitchClass}`}
         onMouseLeave={this.hideSeriesSwitch}
       >
-        <div
-          className="series-switch"
-          onMouseEnter={this.showSeriesSwitch}
-          ref={element => {
-            this.seriesSwitch = element;
-          }}
-        >
+        <div className="series-switch" onMouseEnter={this.showSeriesSwitch}>
           <div className="title-label">Series</div>
           <div className="series-box">
-            {this.getSeriesItems()}
             <ScrollableArea scrollStep={201} class="series-browser">
               <SeriesList
-                seriesItems={this.props.seriesListData}
+                seriesItems={this.getSeriesItems()}
                 onClick={this.onSeriesClick}
+                activeDisplaySetInstanceUid={
+                  this.state.activeDisplaySetInstanceUid
+                }
               />
             </ScrollableArea>
           </div>
@@ -58,6 +80,7 @@ export default class QuickSwitch extends Component {
               <StudiesList
                 studyListData={this.props.studyListData}
                 onClick={this.onStudyClick}
+                activeStudyInstanceUid={this.state.activeStudyInstanceUid}
               />
             </ScrollableArea>
           </div>
@@ -67,16 +90,34 @@ export default class QuickSwitch extends Component {
   }
 
   getSeriesItems = () => {
-    return this.props.seriesListData.map((seriesItem, index) => {
-      return <div key={index} className={`series-item ${seriesItem.class}`} />;
-    });
+    let seriesListData;
+
+    if (this.props.seriesListData) {
+      seriesListData = this.props.seriesListData;
+    } else if (this.state.activeStudyInstanceUid) {
+      const study = this.props.studyListData.find(
+        study => study.studyInstanceUid === this.state.activeStudyInstanceUid
+      );
+
+      seriesListData = study.thumbnails;
+    } else {
+      seriesListData = this.props.studyListData[0].thumbnails;
+    }
+
+    return seriesListData || [];
   };
 
   onStudyClick = studyDataSelected => {
-    this.setState({
-      seriesQuickSwitchClass: 'series-triggered'
-    });
-    this.props.onStudySelected(studyDataSelected);
+    this.hideSeriesSwitch();
+
+    if (this.props.onStudySelected) {
+      this.props.onStudySelected(studyDataSelected);
+    } else {
+      this.setState({
+        activeStudyInstanceUid: studyDataSelected.studyInstanceUid,
+        seriesQuickSwitchOpen: true
+      });
+    }
   };
 
   onSeriesClick = seriesDataSelected => {
@@ -85,13 +126,13 @@ export default class QuickSwitch extends Component {
 
   showSeriesSwitch = () => {
     this.setState({
-      seriesQuickSwitchClass: 'series-triggered'
+      seriesQuickSwitchOpen: true
     });
   };
 
   hideSeriesSwitch = () => {
     this.setState({
-      seriesQuickSwitchClass: ''
+      seriesQuickSwitchOpen: false
     });
   };
 }

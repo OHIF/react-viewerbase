@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
-import Proptypes from 'prop-types';
+import PropTypes from 'prop-types';
 
 import './StudiesItem.styl';
 
 export default class StudiesItem extends Component {
   static propTypes = {
-    onClick: Proptypes.func.isRequired,
-    studyData: Proptypes.object.isRequired
+    onClick: PropTypes.func.isRequired,
+    studyData: PropTypes.object.isRequired
   };
 
   render() {

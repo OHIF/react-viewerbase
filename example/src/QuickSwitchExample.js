@@ -3,7 +3,7 @@ import { QuickSwitch } from 'react-viewerbase';
 
 const exampleStudies = [
   {
-    studyUID: '10001',
+    studyInstanceUid: '10001',
     studyDescription: 'Anti-PD-1',
     modalities: 'CT',
     studyDate: '18-nov-2018',
@@ -15,7 +15,7 @@ const exampleStudies = [
         seriesDescription: 'Anti-PD-1_Lung',
         seriesNumber: "2",
         numImageFrames: 512,
-        seriesUID: '10001-1',
+        displaySetInstanceUid: '10001-1',
         stackPercentComplete: 30
       },
       {
@@ -25,13 +25,13 @@ const exampleStudies = [
         seriesNumber: "2",
         instanceNumber: "1",
         numImageFrames: 256,
-        seriesUID: '10001-2',
+        displaySetInstanceUid: '10001-2',
         stackPercentComplete: 70
       }
     ]
   },
   {
-    studyUID: '10002',
+    studyInstanceUid: '10002',
     studyDescription: 'CPTAC',
     modalities: 'CT',
     studyDate: '16-aug-2017',
@@ -44,7 +44,7 @@ const exampleStudies = [
         active: true,
         seriesNumber: "2",
         numImageFrames: 512,
-        seriesUID: '10002-1',
+        displaySetInstanceUid: '10002-1',
         stackPercentComplete: 100
       },
       {
@@ -53,7 +53,7 @@ const exampleStudies = [
         seriesDescription: 'CPTAC-CM',
         seriesNumber: "2",
         instanceNumber: "1",
-        seriesUID: '10002-2',
+        displaySetInstanceUid: '10002-2',
         numImageFrames: 256
       },
       {
@@ -62,7 +62,7 @@ const exampleStudies = [
         seriesDescription: 'CPTAC-HNSCC',
         seriesNumber: "2",
         instanceNumber: "1",
-        seriesUID: '10002-3',
+        displaySetInstanceUid: '10002-3',
         numImageFrames: 256
       },
       {
@@ -71,7 +71,7 @@ const exampleStudies = [
         seriesDescription: 'CPTAC-LSCC',
         seriesNumber: "2",
         instanceNumber: "1",
-        seriesUID: '10002-4',
+        displaySetInstanceUid: '10002-4',
         numImageFrames: 256
       }
     ]
@@ -101,7 +101,7 @@ export default class QuickSwitchExample extends Component {
           {this.getSelectedData()}
         </div>
         <div className='col-xs-12'>
-          <QuickSwitch 
+          <QuickSwitch
             studyListData={this.state.studyListData}
             seriesListData={activeStudy.thumbnails}
             onSeriesSelected={this.onSeriesSelected}
@@ -114,25 +114,25 @@ export default class QuickSwitchExample extends Component {
 
   onSeriesSelected = seriesDataSelected => {
     const { studyListData } = this.state;
-  
+
     studyListData.forEach(studyData => {
       studyData.thumbnails.forEach( seriesData => {
-        seriesData.active = seriesData.seriesUID === seriesDataSelected.seriesUID;
+        seriesData.active = seriesData.displaySetInstanceUid === seriesDataSelected.displaySetInstanceUid;
       });
     });
-  
+
     this.setState({
       studyListData
     });
   };
-  
+
   onStudySelected = studyDataSelected => {
     const { studyListData } = this.state;
-  
+
     studyListData.forEach(studyData => {
-      studyData.active = studyData.studyUID === studyDataSelected.studyUID;
+      studyData.active = studyData.studyInstanceUid === studyDataSelected.studyInstanceUid;
     });
-  
+
     this.setState({
       studyListData
     });
@@ -145,7 +145,7 @@ export default class QuickSwitchExample extends Component {
 
 
     activeStudy = studyListData.filter(studyData => {
-      return studyData.active;  
+      return studyData.active;
     })[0];
     if (activeStudy && activeStudy.thumbnails) {
       activeSeries = activeStudy.thumbnails.filter( seriesData => {
