@@ -9,6 +9,7 @@ export default class TableListItem extends Component {
     children: PropTypes.node,
     itemClass: PropTypes.string,
     itemIndex: PropTypes.number,
+    itemKey: PropTypes.string,
     onItemClick: PropTypes.func.isRequired
   };
 
@@ -36,7 +37,7 @@ export default class TableListItem extends Component {
       event.preventDefault();
       event.stopPropagation();
 
-      this.props.onItemClick(event, this.props);
+      this.props.onItemClick(event, this.props.itemKey);
     }
   };
 }

@@ -30,6 +30,7 @@ export default class MeasurementTableExample extends Component {
           maxMeasurements: 5,
           groupName: 'Targets',
           measurements: [{
+              measurementId: '123',
               label: 'Chest Wall Posterior',
               hasWarnings: true,
               warningTitle: 'Criteria nonconformities',
@@ -46,6 +47,7 @@ export default class MeasurementTableExample extends Component {
                 {}
               ]
             },{
+              measurementId: '124',
               label: 'Bone Extremity',
               data: [{
                   displayText: '24.7 x 11.1'
@@ -60,6 +62,7 @@ export default class MeasurementTableExample extends Component {
           maxMeasurements: 3,
           groupName: 'NonTargets',
           measurements: [{
+              measurementId: '125',
               label: 'Chest Wall Single Site',
               data: [{
                   displayText: 'MD'
@@ -69,6 +72,7 @@ export default class MeasurementTableExample extends Component {
                 {}
               ]
             },{
+              measurementId: '126',
               label: 'Extremity Multiple Sites',
               data: [{
                   displayText: 'CR'
@@ -78,6 +82,7 @@ export default class MeasurementTableExample extends Component {
               ]
             },
             {
+              measurementId: '127',
               label: 'Extremity Site',
               data: [{
                   displayText: 'CR'
@@ -114,6 +119,10 @@ export default class MeasurementTableExample extends Component {
             timepoints={this.state.timepoints}
             measurementCollection={this.state.measurementCollection}
             overwallWarnings={this.state.overwallWarnings}
+            onItemClick={() => alert('onItemClick')}
+            onRelabelClick={() => alert('onRelabelClick')}
+            onDeleteClick={() => alert('onDeleteClick')}
+            onEditDescriptionClick={() => alert('onEditDescriptionClick')}
           >
           </MeasurementTable>
         </div>

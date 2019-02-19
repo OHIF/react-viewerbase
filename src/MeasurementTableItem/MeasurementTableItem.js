@@ -14,7 +14,6 @@ export default class MeasurementTableItem extends Component {
     onRelabel: PropTypes.func.isRequired,
     onDelete: PropTypes.func.isRequired,
     onEditDescription: PropTypes.func.isRequired,
-    itemKey: PropTypes.string.isRequired,
     itemClass: PropTypes.string,
     itemIndex: PropTypes.number
   };
@@ -54,10 +53,10 @@ export default class MeasurementTableItem extends Component {
       : '';
     return (
       <TableListItem
-        itemKey={this.props.itemKey}
+        itemKey={this.props.measurementData.measurementId}
         itemClass={`measurementItem ${this.props.itemClass} ${hasWarningClass}`}
         itemIndex={this.props.itemIndex}
-        onItemClick={this.props.onItemClick}
+        onItemClick={this.onItemClick}
       >
         <div>
           <div className="measurementLocation">
@@ -65,18 +64,15 @@ export default class MeasurementTableItem extends Component {
           </div>
           <div>{this.getDataDisplayText()}</div>
           <div className="rowActions">
-            <button className="btnAction" onClick={this.props.onRelabel}>
+            <button className="btnAction" onClick={this.onRelabelClick}>
               <i className="fa fa-edit" />
               Relabel
             </button>
-            <button
-              className="btnAction"
-              onClick={this.props.onEditDescription}
-            >
+            <button className="btnAction" onClick={this.onEditDescriptionClick}>
               <i className="fa fa-edit" />
               Description
             </button>
-            <button className="btnAction" onClick={this.props.onDelete}>
+            <button className="btnAction" onClick={this.onDeleteClick}>
               <i className="fa fa-trash-o" />
               Delete
             </button>
@@ -84,6 +80,31 @@ export default class MeasurementTableItem extends Component {
         </div>
       </TableListItem>
     );
+  };
+
+  onItemClick = event => {
+    this.props.onItemClick(event, this.props.measurementData);
+  };
+
+  onRelabelClick = event => {
+    // Prevent onItemClick from firing
+    event.stopPropagation();
+
+    this.props.onRelabel(event, this.props.measurementData);
+  };
+
+  onEditDescriptionClick = event => {
+    // Prevent onItemClick from firing
+    event.stopPropagation();
+
+    this.props.onEditDescription(event, this.props.measurementData);
+  };
+
+  onDeleteClick = event => {
+    // Prevent onItemClick from firing
+    event.stopPropagation();
+
+    this.props.onDelete(event, this.props.measurementData);
   };
 
   getDataDisplayText = () => {

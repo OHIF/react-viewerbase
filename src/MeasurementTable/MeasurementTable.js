@@ -12,7 +12,11 @@ export default class MeasurementTable extends Component {
   static propTypes = {
     measurementCollection: PropTypes.array.isRequired,
     timepoints: PropTypes.array.isRequired,
-    overallWarnings: PropTypes.object
+    overallWarnings: PropTypes.object.isRequired,
+    onItemClick: PropTypes.func,
+    onRelabelClick: PropTypes.func,
+    onDeleteClick: PropTypes.func,
+    onEditDescriptionClick: PropTypes.func
   };
 
   static defaultProps = {
@@ -21,13 +25,9 @@ export default class MeasurementTable extends Component {
     }
   };
 
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      selectedKey: null
-    };
-  }
+  state = {
+    selectedKey: null
+  };
 
   render() {
     const hasOverallWarnings =
@@ -86,27 +86,50 @@ export default class MeasurementTable extends Component {
 
   getMeasurements = measureGroup => {
     return measureGroup.measurements.map((measurement, index) => {
-      const key = `${measureGroup.groupName}_${index}`;
+      const key = measurement.measurementId;
+      const itemClass = this.state.selectedKey === key ? 'selected' : '';
+
       return (
         <MeasurementTableItem
           key={key}
           itemIndex={index}
-          itemKey={key}
-          itemClass={this.state.selectedKey === key ? 'selected' : ''}
+          itemClass={itemClass}
           measurementData={measurement}
           onItemClick={this.onItemClick}
-          onRelabel={() => {
-            alert('relabel');
-          }}
-          onDelete={() => {
-            alert('delete');
-          }}
-          onEditDescription={() => {
-            alert('editDescription');
-          }}
+          onRelabel={this.onRelabelClick}
+          onDelete={this.onDeleteClick}
+          onEditDescription={this.onEditDescriptionClick}
         />
       );
     });
+  };
+
+  onItemClick = (event, measurementData) => {
+    this.setState({
+      selectedKey: measurementData.measurementId
+    });
+
+    if (this.props.onItemClick) {
+      this.props.onItemClick(event, measurementData);
+    }
+  };
+
+  onRelabelClick = (event, measurementData) => {
+    if (this.props.onRelabelClick) {
+      this.props.onRelabelClick(event, measurementData);
+    }
+  };
+
+  onEditDescriptionClick = (event, measurementData) => {
+    if (this.props.onEditDescriptionClick) {
+      this.props.onEditDescriptionClick(event, measurementData);
+    }
+  };
+
+  onDeleteClick = (event, measurementData) => {
+    if (this.props.onDeleteClick) {
+      this.props.onDeleteClick(event, measurementData);
+    }
   };
 
   getCustomHeader = measureGroup => {
@@ -131,12 +154,6 @@ export default class MeasurementTable extends Component {
           <div className="timepointDate">{timepoint.date}</div>
         </div>
       );
-    });
-  };
-
-  onItemClick = (event, itemProps) => {
-    this.setState({
-      selectedKey: itemProps.itemKey
     });
   };
 
