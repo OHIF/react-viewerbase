@@ -121,7 +121,9 @@ export default class QuickSwitch extends Component {
   };
 
   onStudyClick = studyDataSelected => {
-    this.props.onStudySelected(studyDataSelected);
+    if (this.props.onStudySelected) {
+      this.props.onStudySelected(studyDataSelected);
+    }
     this.setState({
       activeStudyInstanceUid: studyDataSelected.studyInstanceUid,
       seriesQuickSwitchOpen: true

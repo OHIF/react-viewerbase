@@ -6,7 +6,8 @@ import './StudiesItem.styl';
 export default class StudiesItem extends Component {
   static propTypes = {
     onClick: PropTypes.func.isRequired,
-    studyData: PropTypes.object.isRequired
+    studyData: PropTypes.object.isRequired,
+    active: PropTypes.bool
   };
 
   render() {
@@ -14,10 +15,9 @@ export default class StudiesItem extends Component {
       studyDate,
       studyDescription,
       modalities,
-      studyAvailable,
-      active
+      studyAvailable
     } = this.props.studyData;
-    const activeClass = active ? ' active' : '';
+    const activeClass = this.props.active ? ' active' : '';
     const hasDescriptionAndDate = studyDate && studyDescription;
     return (
       <div
