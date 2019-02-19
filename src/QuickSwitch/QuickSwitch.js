@@ -62,7 +62,7 @@ export default class QuickSwitch extends Component {
         <div className="series-switch" onMouseEnter={this.showSeriesSwitch}>
           <div className="title-label">Series</div>
           <div className="series-box">
-            {this.getSmallListItens()}
+            {this.getSmallListItems()}
             <ScrollableArea scrollStep={201} class="series-browser">
               <SeriesList
                 seriesItems={this.getSeriesItems()}
@@ -108,12 +108,12 @@ export default class QuickSwitch extends Component {
     return seriesListData || [];
   };
 
-  getSmallListItens = () => {
+  getSmallListItems = () => {
     const seriesItems = this.getSeriesItems() || [];
     return seriesItems.map((seriesData, index) => {
       const active =
         seriesData.displaySetInstanceUid ===
-        this.props.activeDisplaySetInstanceUid;
+        this.state.activeDisplaySetInstanceUid;
       return (
         <div key={index} className={`series-item ${active ? 'active' : ''}`} />
       );
@@ -131,6 +131,10 @@ export default class QuickSwitch extends Component {
   };
 
   onSeriesClick = seriesDataSelected => {
+    this.setState({
+      activeDisplaySetInstanceUid: seriesDataSelected.displaySetInstanceUid
+    });
+
     this.props.onSeriesSelected(seriesDataSelected);
   };
 
