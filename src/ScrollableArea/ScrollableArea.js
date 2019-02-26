@@ -63,8 +63,16 @@ export default class ScrollableArea extends Component {
         >
           {this.props.children}
         </div>
-        <div className="scrollNav scrollNavUp" onClick={this.scrollNavUp} />
-        <div className="scrollNav scrollNavDown" onClick={this.scrollNavDown} />
+        <div className="scrollNav scrollNavUp" onClick={this.scrollNavUp}>
+          <svg className="scrollNavIcon">
+            <use xlinkHref="/icons.svg#icon-angle-double-up" />
+          </svg>
+        </div>
+        <div className="scrollNav scrollNavDown" onClick={this.scrollNavDown}>
+          <svg className="scrollNavIcon">
+            <use xlinkHref="/icons.svg#icon-angle-double-down" />
+          </svg>
+        </div>
       </div>
     );
   }
