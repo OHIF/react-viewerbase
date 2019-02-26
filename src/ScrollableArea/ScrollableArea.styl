@@ -36,21 +36,19 @@
     right: 10px
     transition: all 0.3s ease
     
-
-    &:after
+    .scrollNavIcon
       color: var(--active-color);
-      display: block
-      font-family: 'Font Awesome 5 Free'
-      font-weight: 600
-      font-size: 20px
-      text-align: center
-      transition: color 0.3s ease
+      display: block;
+      width: 18px;
+      height: 18px;
+      margin: 0 auto;
+      transition: color 0.3s ease;
 
     &:hover
       background-color: rgba(0, 0, 0, 0.9)
       box-shadow: 0 0 10px 10px rgba(0, 0, 0, 0.9)
 
-      &:after
+      .scrollNavIcon
         color: var(--hover-color)
 
   .scrollNavUp
@@ -59,17 +57,11 @@
     top: 0
     transform: translateY(-24px)
 
-    &:after
-      content: '\f102'
-
   .scrollNavDown
     border-top-left-radius: 12px
     border-top-right-radius: 12px
     bottom: 0
     transform: translateY(24px)
-
-    &:after
-      content: '\f103'
 
   &.canScrollUp .scrollNavUp,
   &.canScrollDown .scrollNavDown
