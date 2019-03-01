@@ -21,16 +21,12 @@ class Dropdown extends Component {
     )
   };
 
-  renderList = () => {
+  getListItems = () => {
     const { list, align } = this.props;
 
-    if (!this.state.open) {
-      return null;
-    }
-
-    return (
-      <div className={`dd-menu-list ${align || 'left'}`}>
-        {list.map(({ icon, title, link, onClick }, key) => (
+    return list.map(({ icon, title, link, onClick }, key) => {
+      if (link) {
+        return (
           <a
             href={link || '#'}
             key={key}
@@ -40,7 +36,32 @@ class Dropdown extends Component {
             {icon && <span className={`dd-item-icon ${icon}`} />}
             <span>{title}</span>
           </a>
-        ))}
+        );
+      } else {
+        return (
+          <button
+            key={key}
+            className="dd-item"
+            onClick={() => this.handleOnClick(onClick)}
+          >
+            {icon && <span className={`dd-item-icon ${icon}`} />}
+            <span>{title}</span>
+          </button>
+        );
+      }
+    });
+  };
+
+  renderList = () => {
+    const { align } = this.props;
+
+    if (!this.state.open) {
+      return null;
+    }
+
+    return (
+      <div className={`dd-menu-list ${align || 'left'}`}>
+        {this.getListItems()}
       </div>
     );
   };
