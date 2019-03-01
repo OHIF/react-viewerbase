@@ -33,12 +33,13 @@ export function ToolbarButton(props) {
   }
 
   const arrowClass = props.expanded ? 'fa-caret-up' : 'fa-caret-down';
+  const svgClasses = props.svgClasses || '';
 
   return (
     <div className={className} onClick={onClick}>
       {svgUrl && (
         <div className="svgContainer">
-          <svg>
+          <svg className={svgClasses}>
             <use xlinkHref={svgUrl} />
           </svg>
         </div>
@@ -71,6 +72,7 @@ ToolbarButton.propTypes = {
   iconClasses: PropTypes.string,
   iconClassesActive: PropTypes.string,
   svgUrl: PropTypes.string,
+  svgClasses: PropTypes.string,
   svgUrlActive: PropTypes.string,
   onClick: PropTypes.func,
   setToolActive: PropTypes.func,
