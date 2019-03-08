@@ -1,6 +1,6 @@
 .viewport-container {
   float: left;
-
+  position: relative;
   border: var(--viewport-border-thickness) solid var(--ui-border-color);
 }
 
