@@ -47,10 +47,41 @@ export default class MeasurementTableItem extends Component {
     );
   }
 
+  getActionButton = (btnLabel, onClickCallback) => {
+    return (
+      <button className="btnAction" onClick={onClickCallback}>
+        <i className="fa fa-edit" />
+        {btnLabel}
+      </button>
+    );
+  };
+
   getTableListItem = () => {
     const hasWarningClass = this.props.measurementData.hasWarnings
       ? 'hasWarnings'
       : '';
+
+    const actionButtons = [];
+
+    if (typeof this.props.onRelabel === 'function') {
+      const relabelButton = this.getActionButton(
+        'Relabel',
+        this.onRelabelClick
+      );
+      actionButtons.push(relabelButton);
+    }
+    if (typeof this.props.onEditDescription === 'function') {
+      const descriptionButton = this.getActionButton(
+        'Description',
+        this.onEditDescriptionClick
+      );
+      actionButtons.push(descriptionButton);
+    }
+    if (typeof this.props.onDelete === 'function') {
+      const deleteButton = this.getActionButton('Delete', this.onDeleteClick);
+      actionButtons.push(deleteButton);
+    }
+
     return (
       <TableListItem
         itemKey={this.props.measurementData.measurementId}
@@ -63,20 +94,7 @@ export default class MeasurementTableItem extends Component {
             {this.props.measurementData.label}
           </div>
           <div>{this.getDataDisplayText()}</div>
-          <div className="rowActions">
-            <button className="btnAction" onClick={this.onRelabelClick}>
-              <i className="fa fa-edit" />
-              Relabel
-            </button>
-            <button className="btnAction" onClick={this.onEditDescriptionClick}>
-              <i className="fa fa-edit" />
-              Description
-            </button>
-            <button className="btnAction" onClick={this.onDeleteClick}>
-              <i className="fa fa-trash-o" />
-              Delete
-            </button>
-          </div>
+          <div className="rowActions">{actionButtons}</div>
         </div>
       </TableListItem>
     );

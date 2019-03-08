@@ -96,9 +96,9 @@ export default class MeasurementTable extends Component {
           itemClass={itemClass}
           measurementData={measurement}
           onItemClick={this.onItemClick}
-          onRelabel={this.onRelabelClick}
-          onDelete={this.onDeleteClick}
-          onEditDescription={this.onEditDescriptionClick}
+          onRelabel={this.props.onRelabelClick}
+          onDelete={this.props.onDeleteClick}
+          onEditDescription={this.props.onEditDescriptionClick}
         />
       );
     });
@@ -111,24 +111,6 @@ export default class MeasurementTable extends Component {
 
     if (this.props.onItemClick) {
       this.props.onItemClick(event, measurementData);
-    }
-  };
-
-  onRelabelClick = (event, measurementData) => {
-    if (this.props.onRelabelClick) {
-      this.props.onRelabelClick(event, measurementData);
-    }
-  };
-
-  onEditDescriptionClick = (event, measurementData) => {
-    if (this.props.onEditDescriptionClick) {
-      this.props.onEditDescriptionClick(event, measurementData);
-    }
-  };
-
-  onDeleteClick = (event, measurementData) => {
-    if (this.props.onDeleteClick) {
-      this.props.onDeleteClick(event, measurementData);
     }
   };
 
