@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StudyBrowser, ViewerbaseDragDropContext, ExampleDropTarget } from 'react-viewerbase';
+import { StudyBrowser, viewerbaseDragDropContext, ExampleDropTarget } from 'react-viewerbase';
 
 const exampleStudies = [
   {
@@ -103,4 +103,4 @@ class StudyBrowserExample extends Component {
   }
 }
 
-export default ViewerbaseDragDropContext(StudyBrowserExample);
+export default viewerbaseDragDropContext(StudyBrowserExample);

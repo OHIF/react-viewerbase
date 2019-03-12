@@ -6,6 +6,12 @@ import { CaretUp, CaretDown } from './../icons';
 
 import './ToolbarButton.styl';
 
+const arrowIconStyle = {
+  width: '8px',
+  height: '8px',
+  transform: 'translate(2px, 2px)'
+};
+
 export function ToolbarButton(props) {
   let onClick = event => {
     if (props.onClick) {
@@ -35,11 +41,6 @@ export function ToolbarButton(props) {
     label = textActive;
   }
 
-  const arrowIconStyle = {
-    width: '8px',
-    height: '8px',
-    transform: 'translate(2px, 2px)'
-  };
   const arrowIcon = props.expanded ? (
     <CaretUp style={arrowIconStyle} />
   ) : (

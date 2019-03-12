@@ -114,7 +114,19 @@ function getDefaultButtonData() {
   return buttonData;
 }
 
-export class Toolbar extends Component {
+export default class Toolbar extends Component {
+  static propTypes = {
+    buttons: PropTypes.array.isRequired,
+    includeLayoutButton: PropTypes.bool.isRequired,
+    includePlayClipButton: PropTypes.bool.isRequired
+  };
+
+  static defaultProps = {
+    buttons: getDefaultButtonData(),
+    includeLayoutButton: true,
+    includePlayClipButton: true
+  };
+
   render() {
     var maybePlayClipButton;
     if (this.props.includePlayClipButton) {
@@ -139,16 +151,3 @@ export class Toolbar extends Component {
     );
   }
 }
-
-Toolbar.propTypes = {
-  buttons: PropTypes.array.isRequired,
-  includeLayoutButton: PropTypes.bool.isRequired,
-  includePlayClipButton: PropTypes.bool.isRequired
-};
-
-Toolbar.defaultProps = {
-  buttons: getDefaultButtonData(),
-  includeLayoutButton: true,
-  includePlayClipButton: true
-};
-export default Toolbar;

@@ -20,7 +20,9 @@ export function ViewportLoadingIndicator(props) {
     </div>
   );
 }
+
 ViewportLoadingIndicator.propTypes = {
   percentComplete: PropTypes.number
 };
+
 export default ViewportLoadingIndicator;
