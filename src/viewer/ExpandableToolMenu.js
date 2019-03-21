@@ -2,8 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import OverlayTrigger from '../basic/OverlayTrigger.js';
 import Tooltip from '../basic/Tooltip.js';
-import ToolbarSection from '../viewer/ToolbarSection.js';
-import ToolbarButton from '../viewer/ToolbarButton.js';
+import ToolbarButton from './ToolbarButton.js';
 
 import './ExpandableToolMenu.styl';
 
@@ -34,18 +33,22 @@ class ExpandableToolMenu extends React.Component {
       className="tooltip-toolbar-overlay"
       id="tooltip-bottom"
     >
-      <ToolbarSection
-        buttons={this.props.buttons}
-        className="toolbarOverlay"
-        activeCommand={this.props.activeCommand}
-        setToolActive={toolProps => {
-          if (this.props.setToolActive) {
-            this.props.setToolActive(toolProps);
-          }
-        }}
-      />
+      {this.getButtons()}
     </Tooltip>
   );
+
+  getButtons = () => {
+    return this.props.buttons.map((item, index) => {
+      return (
+        <ToolbarButton
+          key={index}
+          {...item}
+          active={item.command === this.props.activeCommand}
+          setToolActive={this.props.setToolActive}
+        />
+      );
+    });
+  };
 
   getMenuSvgUrl = () => {
     let svgUrl = this.props.svgUrl || '/icons.svg#icon-tools-more';

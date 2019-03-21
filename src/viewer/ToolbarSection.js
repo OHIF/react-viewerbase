@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react';
 import ToolbarButton from './ToolbarButton';
-import ExpandableToolMenu from './../ExpandableToolMenu/ExpandableToolMenu';
+import ExpandableToolMenu from './ExpandableToolMenu';
 import classnames from 'classnames';
 import './ToolbarSection.styl';
 import PropTypes from 'prop-types';
