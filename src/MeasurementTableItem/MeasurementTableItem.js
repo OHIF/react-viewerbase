@@ -49,7 +49,7 @@ export default class MeasurementTableItem extends Component {
 
   getActionButton = (btnLabel, onClickCallback) => {
     return (
-      <button className="btnAction" onClick={onClickCallback}>
+      <button key={btnLabel} className="btnAction" onClick={onClickCallback}>
         <i className="fa fa-edit" />
         {btnLabel}
       </button>
