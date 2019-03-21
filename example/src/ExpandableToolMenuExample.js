@@ -76,9 +76,9 @@ class ExpandableToolMenuExample extends React.Component {
             <ExpandableToolMenu
               buttons={exampleButtons}
               activeCommand={this.state.activeCommand}
-              onToolSelected={(command) => {
+              setToolActive={(toolProps) => {
                 this.setState({
-                  activeCommand: command
+                  activeCommand: toolProps.command
                 })
               }}
             />
