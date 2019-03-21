@@ -1,7 +1,6 @@
 import CineDialog from './viewer/CineDialog.js';
 import Dropdown from './basic/Dropdown/Dropdown.js';
-import ExpandableToolMenu from './ExpandableToolMenu/ExpandableToolMenu.js';
-import ExampleDropTarget from './studyBrowser/ExampleDropTarget.js';
+import ExampleDropTarget from './StudyBrowser/ExampleDropTarget.js';
 import LayoutButton from './LayoutChooser/LayoutButton.js';
 import LayoutChooser from './LayoutChooser/LayoutChooser.js';
 import LayoutManager from './LayoutChooser/LayoutManager.js';
@@ -16,23 +15,22 @@ import RoundedButtonGroup from './basic/RoundedButtonGroup.js';
 import ScrollableArea from './ScrollableArea/ScrollableArea.js';
 import SelectTree from './SelectTree/SelectTree.js';
 import SimpleDialog from './SimpleDialog/SimpleDialog.js';
-import StudyBrowser from './studyBrowser/StudyBrowser.js';
-import StudyList from './studyList/StudyList.js';
+import StudyBrowser from './StudyBrowser/StudyBrowser.js';
+import StudyList from './StudyList/StudyList.js';
 import TableList from './TableList/TableList.js';
 import TableListItem from './TableListItem/TableListItem.js';
-import ThumbnailEntry from './studyBrowser/ThumbnailEntry.js';
+import ThumbnailEntry from './StudyBrowser/ThumbnailEntry.js';
 import Toolbar from './viewer/Toolbar.js';
 import ToolbarButton from './viewer/ToolbarButton.js';
 import ToolbarSection from './viewer/ToolbarSection.js';
 import Tooltip from './basic/Tooltip.js';
-import UserPreferences from './userPreferences/UserPreferences';
-import UserPreferencesModal from './userPreferences/UserPreferencesModal';
+import UserPreferences from './UserPreferences/UserPreferences';
+import UserPreferencesModal from './UserPreferences/UserPreferencesModal';
 import ViewerbaseDragDropContext from './utils/ViewerbaseDragDropContext.js';
 
 export {
   CineDialog,
   Dropdown,
-  ExpandableToolMenu,
   ExampleDropTarget,
   LayoutButton,
   LayoutChooser,

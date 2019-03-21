@@ -47,7 +47,28 @@ class ToolbarExample extends Component {
           text: 'Manual',
           svgUrl: '/icons.svg#icon-tools-levels',
           active: true
+        },
+        {
+          text: 'More',
+          svgUrl: '/icons.svg#icon-tools-reset',
+          buttons: [
+            {
+              command: 'reset2',
+              type: 'command',
+              text: 'Reset 2',
+              svgUrl: '/icons.svg#icon-tools-reset',
+              active: false
+            },
+            {
+              command: 'WwwcTool2',
+              type: 'tool',
+              text: 'Manual 2',
+              svgUrl: '/icons.svg#icon-tools-levels',
+              active: false
+            }
+          ]
         }
+
       ];
 
       this.state = {

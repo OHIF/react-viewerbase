@@ -2,20 +2,22 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import OverlayTrigger from '../basic/OverlayTrigger.js';
 import Tooltip from '../basic/Tooltip.js';
-import ToolbarSection from '../viewer/ToolbarSection.js';
-import ToolbarButton from '../viewer/ToolbarButton.js';
+import ToolbarButton from './ToolbarButton.js';
 
 import './ExpandableToolMenu.styl';
 
 class ExpandableToolMenu extends React.Component {
   static propTypes = {
+    text: PropTypes.string.isRequired,
+    svgUrl: PropTypes.string,
     buttons: PropTypes.array.isRequired,
     activeCommand: PropTypes.string,
-    onToolSelected: PropTypes.func
+    setToolActive: PropTypes.func
   };
 
   static defaultProps = {
-    buttons: {}
+    buttons: {},
+    text: 'More'
   };
 
   constructor(props) {
@@ -31,21 +33,25 @@ class ExpandableToolMenu extends React.Component {
       className="tooltip-toolbar-overlay"
       id="tooltip-bottom"
     >
-      <ToolbarSection
-        buttons={this.props.buttons}
-        className="toolbarOverlay"
-        activeCommand={this.props.activeCommand}
-        setToolActive={toolProps => {
-          if (this.props.onToolSelected) {
-            this.props.onToolSelected(toolProps.command);
-          }
-        }}
-      />
+      {this.getButtons()}
     </Tooltip>
   );
 
+  getButtons = () => {
+    return this.props.buttons.map((item, index) => {
+      return (
+        <ToolbarButton
+          key={index}
+          {...item}
+          active={item.command === this.props.activeCommand}
+          setToolActive={this.props.setToolActive}
+        />
+      );
+    });
+  };
+
   getMenuSvgUrl = () => {
-    let svgUrl = '/icons.svg#icon-tools-more';
+    let svgUrl = this.props.svgUrl || '/icons.svg#icon-tools-more';
     if (this.props.activeCommand) {
       this.props.buttons.forEach(button => {
         if (this.props.activeCommand === button.command) {
@@ -89,7 +95,7 @@ class ExpandableToolMenu extends React.Component {
           key="menu-button"
           command="More"
           type="tool"
-          text="More"
+          text={this.props.text}
           svgUrl={this.getMenuSvgUrl()}
           className={'ToolbarButton expandableToolMenu'}
           active={this.isActive()}
