@@ -1,7 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import './ToolbarButton.styl';
 import classnames from 'classnames';
+
+import { CaretUp, CaretDown } from './../icons';
+
+import './ToolbarButton.styl';
 
 export function ToolbarButton(props) {
   let onClick = event => {
@@ -32,7 +35,16 @@ export function ToolbarButton(props) {
     label = textActive;
   }
 
-  const arrowClass = props.expanded ? 'fa-caret-up' : 'fa-caret-down';
+  const arrowIconStyle = {
+    width: '8px',
+    height: '8px',
+    transform: 'translate(2px, 2px)'
+  };
+  const arrowIcon = props.expanded ? (
+    <CaretUp style={arrowIconStyle} />
+  ) : (
+    <CaretDown style={arrowIconStyle} />
+  );
   const svgClasses = props.svgClasses || '';
 
   return (
@@ -47,12 +59,7 @@ export function ToolbarButton(props) {
       {iconClasses && <i className={iconClasses} />}
       <div className="buttonLabel">
         <span className="toolbar-button-label">{label}</span>
-        {props.expandableButton && (
-          <i
-            className={classnames('fa', arrowClass, 'expanded-status')}
-            aria-hidden="true"
-          />
-        )}
+        {props.expandableButton && arrowIcon}
       </div>
     </div>
   );

@@ -11,6 +11,7 @@ class ToolbarSection extends PureComponent {
       if (item.buttons && Array.isArray(item.buttons)) {
         return (
           <ExpandableToolMenu
+            key={`expandable-${index}`}
             {...item}
             activeCommand={this.props.activeCommand}
             setToolActive={this.props.setToolActive}
