@@ -11,9 +11,9 @@ export default class MeasurementTableItem extends Component {
   static propTypes = {
     measurementData: PropTypes.object.isRequired,
     onItemClick: PropTypes.func.isRequired,
-    onRelabel: PropTypes.func.isRequired,
-    onDelete: PropTypes.func.isRequired,
-    onEditDescription: PropTypes.func.isRequired,
+    onRelabel: PropTypes.func,
+    onDelete: PropTypes.func,
+    onEditDescription: PropTypes.func,
     itemClass: PropTypes.string,
     itemIndex: PropTypes.number
   };
