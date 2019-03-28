@@ -5,7 +5,18 @@ import classnames from 'classnames';
 import './ToolbarSection.styl';
 import PropTypes from 'prop-types';
 
-class ToolbarSection extends PureComponent {
+export default class ToolbarSection extends PureComponent {
+  static defaultProps = {
+    className: ''
+  };
+
+  static propTypes = {
+    buttons: PropTypes.array.isRequired,
+    className: PropTypes.string,
+    activeCommand: PropTypes.string,
+    setToolActive: PropTypes.func
+  };
+
   render() {
     const items = this.props.buttons.map((item, index) => {
       if (item.buttons && Array.isArray(item.buttons)) {
@@ -36,16 +47,3 @@ class ToolbarSection extends PureComponent {
     );
   }
 }
-
-ToolbarSection.defaultProps = {
-  className: ''
-};
-
-ToolbarSection.propTypes = {
-  buttons: PropTypes.array.isRequired,
-  className: PropTypes.string,
-  activeCommand: PropTypes.string,
-  setToolActive: PropTypes.func
-};
-
-export default ToolbarSection;

@@ -10,7 +10,12 @@ const wLPresetIDs = [
   'setWLPresetBrain'
 ];
 
-class PresetToggle extends Component {
+export default class PresetToggle extends Component {
+  static propTypes = {
+    buttons: PropTypes.array.isRequired,
+    setToolActive: PropTypes.func.isRequired
+  };
+
   constructor(props) {
     super(props);
 
@@ -61,10 +66,3 @@ class PresetToggle extends Component {
     });
   };
 }
-
-PresetToggle.propTypes = {
-  buttons: PropTypes.array.isRequired,
-  setToolActive: PropTypes.func.isRequired
-};
-
-export default PresetToggle;

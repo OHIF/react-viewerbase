@@ -1,7 +1,15 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-export class PlayClipButton extends Component {
+export default class PlayClipButton extends Component {
+  static propTypes = {
+    isPlaying: PropTypes.bool.isRequired
+  };
+
+  static defaultProps = {
+    isPlaying: false
+  };
+
   render() {
     let playClass = 'fa-stop';
     if (this.props.isPlaying) {
@@ -35,13 +43,3 @@ export class PlayClipButton extends Component {
     );
   }
 }
-
-PlayClipButton.propTypes = {
-  isPlaying: PropTypes.bool.isRequired
-};
-
-PlayClipButton.defaultProps = {
-  isPlaying: false
-};
-
-export default PlayClipButton;

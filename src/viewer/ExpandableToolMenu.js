@@ -6,7 +6,7 @@ import ToolbarButton from './ToolbarButton.js';
 
 import './ExpandableToolMenu.styl';
 
-class ExpandableToolMenu extends React.Component {
+export default class ExpandableToolMenu extends React.Component {
   static propTypes = {
     text: PropTypes.string.isRequired,
     svgUrl: PropTypes.string,
@@ -106,5 +106,3 @@ class ExpandableToolMenu extends React.Component {
     );
   }
 }
-
-export default ExpandableToolMenu;
