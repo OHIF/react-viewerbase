@@ -1,5 +1,6 @@
 import CineDialog from './viewer/CineDialog.js';
 import Dropdown from './basic/Dropdown/Dropdown.js';
+import ExpandableToolMenu from './viewer/ExpandableToolMenu.js';
 import ExampleDropTarget from './StudyBrowser/ExampleDropTarget.js';
 import LayoutButton from './LayoutChooser/LayoutButton.js';
 import LayoutChooser from './LayoutChooser/LayoutChooser.js';
@@ -31,6 +32,7 @@ import viewerbaseDragDropContext from './utils/viewerbaseDragDropContext.js';
 export {
   CineDialog,
   Dropdown,
+  ExpandableToolMenu,
   ExampleDropTarget,
   LayoutButton,
   LayoutChooser,
