@@ -3,6 +3,18 @@
   "version": "0.0.0",
   "license": "MIT",
   "private": true,
+  "scripts": {
+    "copy:webworkers": "cpx node_modules/cornerstone-wado-image-loader/dist/*.min.js* public",
+    "version": "node -p -e \"'export default \\'' + require('./package.json').version + '\\';'\" > src/version.js",
+    "sha": "echo \"export default '\"$(git rev-parse HEAD)\"';\" > src/sha.js",
+    "details": "npm run version && npm run sha",
+    "prep": "npm run details && npm run copy:webworkers",
+    "start": "npm run prep && react-scripts start",
+    "lint": "eslint -c .eslintrc --fix src && prettier --single-quote --write src/**/*.{js,jsx,json,css}",
+    "build": "npm run prep && react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
+  },
   "dependencies": {
     "cornerstone-core": "2.2.8",
     "cornerstone-math": "0.1.8",
@@ -20,16 +32,7 @@
     "react-scripts": "^2.1.5",
     "react-viewerbase": "link:../"
   },
-  "scripts": {
-    "copy:webworkers": "cp node_modules/cornerstone-wado-image-loader/dist/*.min.js* public",
-    "version": "node -p -e \"'export default \\'' + require('./package.json').version + '\\';'\" > src/version.js",
-    "sha": "echo \"export default '\"$(git rev-parse HEAD)\"';\" > src/sha.js",
-    "details": "npm run version && npm run sha",
-    "prep": "npm run details && npm run copy:webworkers",
-    "start": "npm run prep && react-scripts start",
-    "lint": "eslint -c .eslintrc --fix src && prettier --single-quote --write src/**/*.{js,jsx,json,css}",
-    "build": "npm run prep && react-scripts build",
-    "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
+  "devDependencies": {
+    "cpx": "1.5.0"
   }
 }
