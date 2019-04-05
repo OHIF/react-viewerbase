@@ -4,7 +4,7 @@
   "license": "MIT",
   "private": true,
   "scripts": {
-    "copy:webworkers": "cpx node_modules/cornerstone-wado-image-loader/dist/*.min.js* public",
+    "copy:webworkers": "cpx 'node_modules/cornerstone-wado-image-loader/dist/*.min.js*' public --verbose",
     "version": "node -p -e \"'export default \\'' + require('./package.json').version + '\\';'\" > src/version.js",
     "sha": "echo \"export default '\"$(git rev-parse HEAD)\"';\" > src/sha.js",
     "details": "npm run version && npm run sha",
