@@ -13,27 +13,17 @@ const propTypes = {
     PropTypes.oneOfType([PropTypes.string, PropTypes.number])
   ),
 
-  /**
-   * Sets the direction the Tooltip is positioned towards.
-   */
+  /** Sets the direction the Tooltip is positioned towards. */
   placement: PropTypes.oneOf(['top', 'right', 'bottom', 'left']),
 
-  /**
-   * The "top" position value for the Tooltip.
-   */
+  /** The "top" position value for the Tooltip. */
   positionTop: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
-  /**
-   * The "left" position value for the Tooltip.
-   */
+  /** The "left" position value for the Tooltip. */
   positionLeft: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
 
-  /**
-   * The "top" position value for the Tooltip arrow.
-   */
+  /** The "top" position value for the Tooltip arrow. */
   arrowOffsetTop: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
-  /**
-   * The "left" position value for the Tooltip arrow.
-   */
+  /** The "left" position value for the Tooltip arrow. */
   arrowOffsetLeft: PropTypes.oneOfType([PropTypes.number, PropTypes.string])
 };
 
