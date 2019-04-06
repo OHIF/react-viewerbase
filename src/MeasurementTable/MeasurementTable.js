@@ -4,7 +4,7 @@ import TableList from '../TableList/TableList.js';
 import MeasurementTableItem from '../MeasurementTableItem/MeasurementTableItem.js';
 import ScrollableArea from '../ScrollableArea/ScrollableArea.js';
 import OverlayTrigger from '../basic/OverlayTrigger.js';
-import Tooltip from '../basic/Tooltip.js';
+import { Tooltip } from '../components/tooltip';
 
 import './MeasurementTable.styl';
 
