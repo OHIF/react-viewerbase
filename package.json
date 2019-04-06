@@ -90,6 +90,7 @@
     "prettier": "^1.15.3",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
+    "react-powerplug": "1.0.0",
     "react-scripts": "^2.1.5",
     "rollup": "^0.68.2",
     "rollup-plugin-babel": "^4.2.0",
