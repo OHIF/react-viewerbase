@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import './Dropdown.css';
+import './select.css';
 
-class Dropdown extends Component {
+class Select extends Component {
   state = {
     open: false
   };
@@ -11,6 +11,7 @@ class Dropdown extends Component {
     titleElement: PropTypes.node,
     title: PropTypes.string,
     align: PropTypes.oneOf(['left', 'center', 'right']),
+    /** Items to render in the select's drop down */
     list: PropTypes.arrayOf(
       PropTypes.shape({
         title: PropTypes.string.isRequired,
@@ -126,4 +127,4 @@ class Dropdown extends Component {
   }
 }
 
-export default Dropdown;
+export { Select };
