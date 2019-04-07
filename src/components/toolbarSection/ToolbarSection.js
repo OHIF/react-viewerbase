@@ -1,11 +1,11 @@
 import React, { PureComponent } from 'react';
-import ToolbarButton from './ToolbarButton';
-import ExpandableToolMenu from './ExpandableToolMenu';
+import ToolbarButton from '../../viewer/ToolbarButton';
+import ExpandableToolMenu from '../../viewer/ExpandableToolMenu';
 import classnames from 'classnames';
 import './ToolbarSection.styl';
 import PropTypes from 'prop-types';
 
-export default class ToolbarSection extends PureComponent {
+class ToolbarSection extends PureComponent {
   static defaultProps = {
     className: ''
   };
@@ -14,6 +14,7 @@ export default class ToolbarSection extends PureComponent {
     buttons: PropTypes.array.isRequired,
     className: PropTypes.string,
     activeCommand: PropTypes.string,
+    /** Called when a button is clicked/touched */
     setToolActive: PropTypes.func
   };
 
@@ -47,3 +48,5 @@ export default class ToolbarSection extends PureComponent {
     );
   }
 }
+
+export { ToolbarSection };
