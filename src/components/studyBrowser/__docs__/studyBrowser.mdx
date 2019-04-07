@@ -1,0 +1,29 @@
+---
+name: Study Browser
+menu: Components
+route: /components/study-browser
+---
+
+
+import { Playground, Props } from 'docz';
+import { State } from 'react-powerplug'
+import { LayoutButton } from './../index.js';
+
+# ToolbarSection
+
+A simple scrollable list of image sets. Users can drag/drop data from here into a panel in the layout.
+
+## Basic usage
+
+<Playground>
+    <State initial={{
+    }}>
+        {({ state, setState }) => (
+            <LayoutButton {...state} />
+        )}
+    </State>
+</Playground>
+
+## API
+
+<Props of={LayoutButton} />

@@ -1,0 +1,29 @@
+---
+name: Layout Button
+menu: Components
+route: /components/layout-button
+---
+
+
+import { Playground, Props } from 'docz';
+import { State } from 'react-powerplug'
+import { LayoutButton } from './../index.js';
+
+# ToolbarSection
+
+A basic row of buttons for a toolbar. Active command is `WwwcTool`
+
+## Basic usage
+
+<Playground>
+    <State initial={{
+    }}>
+        {({ state, setState }) => (
+            <LayoutButton {...state} />
+        )}
+    </State>
+</Playground>
+
+## API
+
+<Props of={LayoutButton} />
