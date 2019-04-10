@@ -6,6 +6,7 @@
 import { css } from 'docz-plugin-css';
 
 export default {
+  indexHtml: 'src/__docs__/index.html',
   menu: [
     'Getting Started',
     { name: 'Elements', menu: ['Form / Select'] },
