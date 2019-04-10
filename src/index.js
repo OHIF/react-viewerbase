@@ -27,7 +27,7 @@ import ToolbarSection from './viewer/ToolbarSection.js';
 import Tooltip from './basic/Tooltip.js';
 import UserPreferences from './UserPreferences/UserPreferences';
 import UserPreferencesModal from './UserPreferences/UserPreferencesModal';
-import viewerbaseDragDropContext from './utils/viewerbaseDragDropContext.js';
+import ViewerbaseDragDropContext from './utils/ViewerbaseDragDropContext.js';
 
 export {
   CineDialog,
@@ -59,5 +59,5 @@ export {
   Tooltip,
   UserPreferences,
   UserPreferencesModal,
-  viewerbaseDragDropContext
+  ViewerbaseDragDropContext
 };
