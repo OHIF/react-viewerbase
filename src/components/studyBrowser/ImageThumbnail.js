@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-import ViewportLoadingIndicator from '../viewer/ViewportLoadingIndicator';
-import ViewportErrorIndicator from '../viewer/ViewportErrorIndicator';
+import ViewportLoadingIndicator from '../../viewer/ViewportLoadingIndicator';
+import ViewportErrorIndicator from '../../viewer/ViewportErrorIndicator';
 import './ImageThumbnail.styl';
 
 // TODO: How should we have this component depend on Cornerstone?

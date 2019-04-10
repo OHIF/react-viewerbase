@@ -59,4 +59,4 @@ class StudyBrowser extends Component {
   }
 }
 
-export default StudyBrowser;
+export { StudyBrowser };

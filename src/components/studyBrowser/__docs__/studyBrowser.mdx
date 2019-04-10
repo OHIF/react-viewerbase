@@ -7,23 +7,23 @@ route: /components/study-browser
 
 import { Playground, Props } from 'docz';
 import { State } from 'react-powerplug'
-import { LayoutButton } from './../index.js';
+import { studies, onThumbnailClick, onThumbnailDoubleClick } from './exampleStudies.js';
 
-# ToolbarSection
+import { StudyBrowser } from './../index.js';
+import ViewerbaseDragDropContext from './../../../utils/viewerbaseDragDropContext.js';
 
-A simple scrollable list of image sets. Users can drag/drop data from here into a panel in the layout.
+# Study Browser
 
 ## Basic usage
 
 <Playground>
-    <State initial={{
-    }}>
-        {({ state, setState }) => (
-            <LayoutButton {...state} />
-        )}
-    </State>
+    <StudyBrowser
+        studies={studies}
+        onThumbnailClick={onThumbnailClick}
+        onThumbnailDoubleClick={onThumbnailDoubleClick}
+    />
 </Playground>
 
 ## API
 
-<Props of={LayoutButton} />
+<Props of={StudyBrowser} />
