@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import OverlayTrigger from '../basic/OverlayTrigger.js';
+import { OverlayTrigger } from '../components/overlayTrigger';
 import { Tooltip } from '../components/tooltip';
 import ToolbarButton from './ToolbarButton.js';
 
