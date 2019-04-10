@@ -2,7 +2,7 @@ import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import './CineDialog.styl';
 
-export default class CineDialog extends PureComponent {
+class CineDialog extends PureComponent {
   constructor(props) {
     super(props);
 
@@ -198,3 +198,5 @@ export default class CineDialog extends PureComponent {
     );
   }
 }
+
+export { CineDialog };
