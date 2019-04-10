@@ -8,10 +8,13 @@ route: /components/layout-button
 import { Playground, Props } from 'docz';
 import { State } from 'react-powerplug'
 import { LayoutButton } from './../index.js';
+import './layoutButton.css';
 
-# ToolbarSection
+# Layout Button
 
-A basic row of buttons for a toolbar. Active command is `WwwcTool`
+TODO:
+- show changing current selection
+- research layoutManager
 
 ## Basic usage
 
@@ -19,7 +22,9 @@ A basic row of buttons for a toolbar. Active command is `WwwcTool`
     <State initial={{
     }}>
         {({ state, setState }) => (
-            <LayoutButton {...state} />
+            <div class="LayoutExample">
+                <LayoutButton {...state} />
+            </div>
         )}
     </State>
 </Playground>

@@ -1,0 +1,33 @@
+---
+name: Study List
+menu: Components
+route: /components/study-list
+---
+
+
+import { Playground, Props } from 'docz';
+import { State } from 'react-powerplug'
+import { StudyList } from './../index.js';
+
+# Simple Dialog
+
+Its similar to a modal but we can pass its style as props and manipulate it as we want. 
+Initially used to display tool data changes in our Viewport.
+
+## Basic usage
+
+<Playground>
+    <State initial={{
+
+    }}>
+        {({ state, setState }) => (
+            <>
+                <StudyList />
+            </>
+        )}
+    </State>
+</Playground>
+
+## API
+
+<Props of={StudyList} />

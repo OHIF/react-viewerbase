@@ -14,7 +14,7 @@ const today = moment();
 const lastWeek = moment().subtract(7, 'day');
 const lastMonth = moment().subtract(1, 'month');
 
-export default class StudyList extends Component {
+class StudyList extends Component {
   static propTypes = {
     studies: PropTypes.array.isRequired,
     onSelectItem: PropTypes.func.isRequired,
@@ -451,3 +451,5 @@ export default class StudyList extends Component {
     );
   }
 }
+
+export { StudyList };
