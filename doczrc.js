@@ -6,6 +6,19 @@
 import { css } from 'docz-plugin-css';
 
 export default {
+  menu: [
+    'Getting Started',
+    { name: 'Elements', menu: ['Form / Select'] },
+    { name: 'Components', menu: [
+      'CINE Dialog',
+      'Layout Button',
+      'Overlay Trigger',
+      'Rounded Button Group',
+      'Study Browser',
+      'Toolbar Section',
+      'Tooltip'
+    ] }
+  ],
   // Rollup Aliases?
   // https://github.com/pedronauck/docz/issues/373
   plugins: [
