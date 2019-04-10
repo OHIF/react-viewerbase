@@ -28,6 +28,34 @@ class Example extends Component {
 }
 ```
 
+- Elements
+  - Global
+    - Animations
+    - Color
+  - Buttons
+  - Feedback
+  - Form Elements
+  - Images
+  - Typography
+- Components
+  - Form
+    - Field
+    - Search
+  - Blocks
+  - Layout
+  - Media
+  - Messaging (alert/overlay)
+- Structures
+  - Footer
+  - Header
+  - Stacked Form
+  - Media List
+- Templates
+  - Dashboard
+  - Homepage
+  - Form
+- Pages
+
 ## To run locally
 
 Clone this repository and build the library
