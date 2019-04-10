@@ -15,6 +15,7 @@ export default {
       'Layout Button',
       'Overlay Trigger',
       'Rounded Button Group',
+      'Simple Dialog',
       'Study Browser',
       'Toolbar Section',
       'Tooltip'

@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 
 import './SimpleDialog.styl';
 
-export default class SimpleDialog extends Component {
+class SimpleDialog extends Component {
   static propTypes = {
     children: PropTypes.node,
     componentRef: PropTypes.any,
@@ -66,3 +66,5 @@ export default class SimpleDialog extends Component {
     this.props.onConfirm();
   };
 }
+
+export { SimpleDialog };
