@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import ReactDOM from 'react-dom';
 import warning from 'warning';
 
-import Overlay from './Overlay';
+import { Overlay } from './Overlay';
 
 import createChainedFunction from './createChainedFunction';
 

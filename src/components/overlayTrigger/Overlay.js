@@ -96,4 +96,4 @@ class Overlay extends React.Component {
 Overlay.propTypes = propTypes;
 Overlay.defaultProps = defaultProps;
 
-export default Overlay;
+export { Overlay };

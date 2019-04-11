@@ -27,7 +27,7 @@ const divTarget = {
 
 // TODO: Find out why we can't move this into the Example app instead.
 // It looks like the context isn't properly shared.
-class ExampleDropTarget extends Component {
+class CustomDropTarget extends Component {
   static className = 'ExampleDropTarget';
 
   state = {
@@ -77,6 +77,8 @@ const collect = (connect, monitor) => ({
   canDrop: monitor.canDrop()
 });
 
-export default DropTarget(Types.THUMBNAIL, divTarget, collect)(
-  ExampleDropTarget
+const ExampleDropTarget = DropTarget(Types.THUMBNAIL, divTarget, collect)(
+  CustomDropTarget
 );
+
+export { ExampleDropTarget };
