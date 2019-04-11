@@ -2,7 +2,7 @@ import { Component } from 'react';
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import './SimpleDialog.styl';
+import './simpleDialog.styl';
 
 class SimpleDialog extends Component {
   static propTypes = {
