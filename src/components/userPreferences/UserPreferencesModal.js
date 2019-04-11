@@ -1,13 +1,16 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Modal from 'react-bootstrap-modal';
+
 import 'react-bootstrap-modal/lib/css/rbm-patch.css';
 import cloneDeep from 'lodash.clonedeep';
 import isEqual from 'lodash.isequal';
-import UserPreferences from './UserPreferences';
-import '../design/styles/common/modal.styl';
+import { UserPreferences } from './UserPreferences';
 
-export default class UserPreferencesModal extends Component {
+// TODO: Is this the only component importing these?
+import './../../design/styles/common/modal.styl';
+
+export class UserPreferencesModal extends Component {
   // TODO: Make this component more generic to allow things other than W/L and hotkeys...
   static propTypes = {
     isOpen: PropTypes.bool.isRequired,

@@ -5,9 +5,9 @@ import {
   allowedKeys,
   disallowedCombinations,
   specialKeys
-} from './HotKeysConfig.js';
+} from './hotKeysConfig.js';
 
-export default class HotKeysPreferences extends Component {
+export class HotKeysPreferences extends Component {
   static propTypes = {
     hotKeysData: PropTypes.object.isRequired,
     onChange: PropTypes.func

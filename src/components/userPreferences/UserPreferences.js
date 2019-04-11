@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import HotKeysPreferences from './HotKeysPreferences';
-import WindowLevelPreferences from './WindowLevelPreferences';
+import { HotKeysPreferences } from './HotKeysPreferences';
+import { WindowLevelPreferences } from './WindowLevelPreferences';
 import './UserPreferences.styl';
 
-export default class UserPreferences extends Component {
+export class UserPreferences extends Component {
   static defaultProps = {
     hotKeysData: {},
     windowLevelData: {}

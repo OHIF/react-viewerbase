@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import './WindowLevelPreferences.styl';
 
-export default class WindowLevelPreferences extends Component {
+export class WindowLevelPreferences extends Component {
   constructor(props) {
     super(props);
 

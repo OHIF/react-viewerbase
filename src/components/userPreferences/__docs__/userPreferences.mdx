@@ -1,0 +1,48 @@
+---
+name: User Preferences Modal
+menu: Components
+route: /components/user-preferences-modal
+---
+
+import { Playground, Props } from 'docz';
+import { State } from 'react-powerplug'
+import { UserPreferencesModal } from './../index.js';
+//
+import windowLevelDefaults from './windowLevelDefaults.js';
+import hotkeyDefaults from './hotkeyDefaults.js';
+
+# User Preferences Modal
+
+## Basic usage
+
+<Playground>
+    <State initial={{
+        isOpen: false,
+        windowLevelData: windowLevelDefaults,
+        hotKeysData: hotkeyDefaults
+    }}>
+
+        {({ state, setState }) => (
+            <>
+                <button
+                    className="btn btn-primary"
+                    type="button"
+                    onClick={ () => setState({ isOpen: true }) }
+                >
+                    Open user preferences
+                </button>
+                <UserPreferencesModal
+                    {...state}
+                    onCancel={() => alert('on cancel')}
+                    onSave={() => alert('on save')}
+                    onResetToDefaults={() => alert('on reset')}
+                />
+            </>
+        )}
+
+    </State>
+</Playground>
+
+## API
+
+<Props of={UserPreferencesModal} />
