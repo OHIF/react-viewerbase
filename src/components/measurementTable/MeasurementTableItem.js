@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import OverlayTrigger from '../basic/OverlayTrigger.js';
-import { Tooltip } from '../components/tooltip';
 
-import TableListItem from '../TableListItem/TableListItem.js';
+import { OverlayTrigger } from './../overlayTrigger';
+import { Tooltip } from './../tooltip';
+import { TableListItem } from './../tableList/TableListItem.js';
 
 import './MeasurementTableItem.styl';
 
-export default class MeasurementTableItem extends Component {
+export class MeasurementTableItem extends Component {
   static propTypes = {
     measurementData: PropTypes.object.isRequired,
     onItemClick: PropTypes.func.isRequired,

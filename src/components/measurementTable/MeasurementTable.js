@@ -1,14 +1,15 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import TableList from '../TableList/TableList.js';
-import MeasurementTableItem from '../MeasurementTableItem/MeasurementTableItem.js';
-import ScrollableArea from '../ScrollableArea/ScrollableArea.js';
-import OverlayTrigger from '../basic/OverlayTrigger.js';
-import { Tooltip } from '../components/tooltip';
 
+import { TableList } from './../tableList';
+import { ScrollableArea } from './../../ScrollableArea/ScrollableArea.js';
+import { OverlayTrigger } from './../overlayTrigger';
+import { Tooltip } from './../tooltip';
+
+import { MeasurementTableItem } from './MeasurementTableItem.js';
 import './MeasurementTable.styl';
 
-export default class MeasurementTable extends Component {
+export class MeasurementTable extends Component {
   static propTypes = {
     measurementCollection: PropTypes.array.isRequired,
     timepoints: PropTypes.array.isRequired,
