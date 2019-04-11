@@ -7,6 +7,8 @@ import { css } from 'docz-plugin-css';
 
 export default {
   indexHtml: 'src/__docs__/index.html',
+  // Limited support for importing `.styl` files
+  codeSandbox: false,
   menu: [
     'Getting Started',
     { name: 'Elements', menu: ['Form / Select'] },
