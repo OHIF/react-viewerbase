@@ -91,4 +91,4 @@ class ThumbnailEntry extends Component {
   };
 }
 
-export default ThumbnailEntry;
+export { ThumbnailEntry };

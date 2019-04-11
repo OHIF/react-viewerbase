@@ -5,7 +5,7 @@ import getScrollbarSize from '../utils/getScrollbarSize.js';
 
 import './ScrollableArea.styl';
 
-export default class ScrollableArea extends Component {
+export class ScrollableArea extends Component {
   static propTypes = {
     children: PropTypes.node.isRequired,
     class: PropTypes.string,

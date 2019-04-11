@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import StudiesItem from './StudiesItem.js';
 
+import { StudiesItem } from './StudiesItem.js';
 import './StudiesList.styl';
 
-export default class StudiesList extends Component {
+export class StudiesList extends Component {
   static propTypes = {
     class: PropTypes.string,
     studyListData: PropTypes.array.isRequired,

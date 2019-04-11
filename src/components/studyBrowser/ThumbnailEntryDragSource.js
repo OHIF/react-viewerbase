@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-import { DragSource } from 'react-dnd';
-import ThumbnailEntry from './ThumbnailEntry.js';
 import PropTypes from 'prop-types';
+import { DragSource } from 'react-dnd';
+
+import { ThumbnailEntry } from './ThumbnailEntry.js';
 
 // Drag sources and drop targets only interact
 // if they have the same string type.

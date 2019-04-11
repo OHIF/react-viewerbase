@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import ThumbnailEntry from './ThumbnailEntry';
+import { ThumbnailEntry } from './ThumbnailEntry';
 import ThumbnailEntryDragSource from './ThumbnailEntryDragSource.js';
 import './StudyBrowser.styl';
 

@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import StudiesList from './StudiesList.js';
-import ScrollableArea from '../ScrollableArea/ScrollableArea.js';
-import SeriesList from './SeriesList.js';
+
+import { StudiesList } from './StudiesList.js';
+import { ScrollableArea } from './../../ScrollableArea/ScrollableArea.js';
+import { SeriesList } from './SeriesList.js';
 
 import './QuickSwitch.styl';
 
-export default class QuickSwitch extends Component {
+export class QuickSwitch extends Component {
   static propTypes = {
     side: PropTypes.string,
     studyListData: PropTypes.array.isRequired,

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 import './StudiesItem.styl';
 
-export default class StudiesItem extends Component {
+export class StudiesItem extends Component {
   static propTypes = {
     onClick: PropTypes.func.isRequired,
     studyData: PropTypes.object.isRequired,

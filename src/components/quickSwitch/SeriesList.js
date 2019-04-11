@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import ThumbnailEntry from '../StudyBrowser/ThumbnailEntry.js';
 
+import { ThumbnailEntry } from './../StudyBrowser/ThumbnailEntry.js';
 import './SeriesList.styl';
 
-export default class SeriesList extends Component {
+export class SeriesList extends Component {
   static propTypes = {
     seriesItems: PropTypes.array.isRequired,
     onClick: PropTypes.func.isRequired,
