@@ -21,9 +21,8 @@
     "start": "rollup -c -w",
     "lint": "eslint -c .eslintrc --fix src && prettier --single-quote --write src/**/*.{js,jsx,json,css}",
     "prepare": "yarn build",
-    "predeploy": "yarn install && docz build",
     "prepublishOnly": "yarn build",
-    "generateStaticSite": "yarn predeploy"
+    "generateStaticSite": "docz build"
   },
   "husky": {
     "hooks": {
