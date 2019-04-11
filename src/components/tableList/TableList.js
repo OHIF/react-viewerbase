@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 import './TableList.styl';
 
-export default class TableList extends Component {
+export class TableList extends Component {
   static propTypes = {
     customHeader: PropTypes.node,
     defaultItems: PropTypes.object,

@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 
 import './TableListItem.styl';
 
-export default class TableListItem extends Component {
+export class TableListItem extends Component {
   static propTypes = {
     children: PropTypes.node,
     itemClass: PropTypes.string,
