@@ -20,7 +20,7 @@ import selectTreeItems from './selectTreeItems.js';
         items: selectTreeItems,
     }}>
         {({ state, setState }) => (
-            <>
+            <React.Fragment>
             <pre style={{ maxHeight: '135px', overflowX: 'auto' }}>
                 {JSON.stringify(state.items, null, 4)}
             </pre>
@@ -34,7 +34,7 @@ import selectTreeItems from './selectTreeItems.js';
                 onComponentChange={() => {} }
                 autoFocus={false}
             />
-            </>
+            </React.Fragment>
         )}
 
     </State>

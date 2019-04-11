@@ -23,7 +23,7 @@ import hotkeyDefaults from './hotkeyDefaults.js';
     }}>
 
         {({ state, setState }) => (
-            <>
+            <React.Fragment>
                 <button
                     className="btn btn-primary"
                     type="button"
@@ -37,7 +37,7 @@ import hotkeyDefaults from './hotkeyDefaults.js';
                     onSave={() => alert('on save')}
                     onResetToDefaults={() => alert('on reset')}
                 />
-            </>
+            </React.Fragment>
         )}
 
     </State>

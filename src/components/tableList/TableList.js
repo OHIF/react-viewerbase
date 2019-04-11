@@ -27,10 +27,10 @@ export class TableList extends Component {
       return this.props.customHeader;
     } else {
       return (
-        <>
+        <React.Fragment>
           <div className="tableListHeaderTitle">{this.props.headerTitle}</div>
           <div className="numberOfItems">{this.props.children.length}</div>
-        </>
+        </React.Fragment>
       );
     }
   };

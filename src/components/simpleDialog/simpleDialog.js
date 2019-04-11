@@ -24,7 +24,7 @@ class SimpleDialog extends Component {
 
   render() {
     return (
-      <>
+      <React.Fragment>
         {this.props.isOpen && (
           <div
             className={`simpleDialog ${this.props.rootClass} `}
@@ -50,7 +50,7 @@ class SimpleDialog extends Component {
             </form>
           </div>
         )}
-      </>
+      </React.Fragment>
     );
   }
 

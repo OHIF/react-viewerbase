@@ -35,13 +35,17 @@ export class StudiesItem extends Component {
           </div>
           <div className="studyText">
             {hasDescriptionAndDate ? (
-              <>
+              <React.Fragment>
                 <div className="studyDate">{studyDate}</div>
                 <div className="studyDescription">{studyDescription}</div>
-              </>
+              </React.Fragment>
             ) : (
               <div className="studyAvailability">
-                {studyAvailable ? <>N/A</> : <>Click to load</>}
+                {studyAvailable ? (
+                  <React.Fragment>N/A</React.Fragment>
+                ) : (
+                  <React.Fragment>Click to load</React.Fragment>
+                )}
               </div>
             )}
           </div>

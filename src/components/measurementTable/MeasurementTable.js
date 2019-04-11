@@ -117,7 +117,7 @@ export class MeasurementTable extends Component {
 
   getCustomHeader = measureGroup => {
     return (
-      <>
+      <React.Fragment>
         <div className="tableListHeaderTitle">{measureGroup.groupName}</div>
         {measureGroup.maxMeasurements && (
           <div className="maxMeasurements">
@@ -125,7 +125,7 @@ export class MeasurementTable extends Component {
           </div>
         )}
         <div className="numberOfItems">{measureGroup.measurements.length}</div>
-      </>
+      </React.Fragment>
     );
   };
 
@@ -150,7 +150,7 @@ export class MeasurementTable extends Component {
 
       return <ol>{listedWarnings}</ol>;
     } else {
-      return <>{warningList}</>;
+      return <React.Fragment>{warningList}</React.Fragment>;
     }
   };
 }

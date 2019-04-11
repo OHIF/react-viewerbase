@@ -34,13 +34,13 @@ A basic styled toggle switch
         }]
     }}>
         {({ state, setState }) => (
-            <>
+            <React.Fragment>
                 <div><pre>value: {JSON.stringify(state.value, null, 2) }</pre></div>
                 <RoundedButtonGroup
                     {...state}
                     onValueChanged={(value) => setState({value}) }
                 />
-            </>
+            </React.Fragment>
         )}
     </State>
 </Playground>

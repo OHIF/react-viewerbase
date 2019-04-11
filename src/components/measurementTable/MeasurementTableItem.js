@@ -22,7 +22,7 @@ export class MeasurementTableItem extends Component {
     const { warningTitle = '', hasWarnings } = this.props.measurementData;
 
     return (
-      <>
+      <React.Fragment>
         {hasWarnings ? (
           <OverlayTrigger
             key={this.props.itemIndex}
@@ -41,9 +41,9 @@ export class MeasurementTableItem extends Component {
             <div>{this.getTableListItem()}</div>
           </OverlayTrigger>
         ) : (
-          <>{this.getTableListItem()}</>
+          <React.Fragment>{this.getTableListItem()}</React.Fragment>
         )}
-      </>
+      </React.Fragment>
     );
   }
 
@@ -145,7 +145,7 @@ export class MeasurementTableItem extends Component {
 
       return <ol>{listedWarnings}</ol>;
     } else {
-      return <>{warningList}</>;
+      return <React.Fragment>{warningList}</React.Fragment>;
     }
   };
 }

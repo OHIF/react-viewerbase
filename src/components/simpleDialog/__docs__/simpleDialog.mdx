@@ -27,7 +27,7 @@ Initially used to display tool data changes in our Viewport.
         }
     }}>
         {({ state, setState }) => (
-            <>
+            <React.Fragment>
                 <div><pre>{JSON.stringify(state, null, 2) }</pre></div>
                 
                 {/* Toggle Dialog */}
@@ -72,7 +72,7 @@ Initially used to display tool data changes in our Viewport.
                         <option value='Option4'>Option4</option>
                     </select>
                 </SimpleDialog>
-            </>
+            </React.Fragment>
         )}
     </State>
 </Playground>

@@ -91,10 +91,10 @@ class Select extends Component {
     }
 
     return (
-      <>
+      <React.Fragment>
         <span className="dd-title">{title}</span>
         <span className="dd-caret-down" />
-      </>
+      </React.Fragment>
     );
   };
 

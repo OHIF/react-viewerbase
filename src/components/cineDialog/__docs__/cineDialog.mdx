@@ -21,7 +21,7 @@ import { CineDialog } from './../index.js';
         lastChange: ''
     }}>
         {({ state, setState }) => (
-            <>
+            <React.Fragment>
             <div><pre>{JSON.stringify(state, null, 2) }</pre></div>
             <div style={{backgroundColor: 'dodgerblue'}}>
                 <CineDialog 
@@ -35,7 +35,7 @@ import { CineDialog } from './../index.js';
                     onPlayPauseChanged={ () => setState({ isPlaying: !state.isPlaying }) }
                 />
             </div>
-            </>
+            </React.Fragment>
         )}
     </State>
 </Playground>

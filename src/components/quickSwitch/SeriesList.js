@@ -13,11 +13,11 @@ export class SeriesList extends Component {
 
   render() {
     return (
-      <>
+      <React.Fragment>
         <div className="study-browser-series clearfix thumbnails-wrapper">
           <div className="study-series-container">{this.getSeriesItems()}</div>
         </div>
-      </>
+      </React.Fragment>
     );
   }
 
