@@ -8,6 +8,7 @@
 # “publish” is the directory to publish (relative to the root of your repo).
 
 YARN_FLAGS = "--no-ignore-optional"
+YARN_VERSION = "1.15.2"
 
 # COMMENT: This a rule for Single Page Applications
 [[redirects]]
