@@ -9,6 +9,8 @@
 
 YARN_FLAGS = "--no-ignore-optional"
 YARN_VERSION = "1.15.2"
+NODE_VERSION = "v10.15.3"
+NODE_ENV = "development"
 
 # COMMENT: This a rule for Single Page Applications
 [[redirects]]
