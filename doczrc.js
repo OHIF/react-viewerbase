@@ -6,6 +6,7 @@
 import { css } from 'docz-plugin-css';
 
 export default {
+  dest: 'example/build',
   indexHtml: 'src/__docs__/index.html',
   // Limited support for importing `.styl` files
   codeSandbox: false,
