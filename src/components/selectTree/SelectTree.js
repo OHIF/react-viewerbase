@@ -8,7 +8,7 @@ import cloneDeep from 'lodash.clonedeep';
 
 import './SelectTree.styl';
 
-export default class SelectTree extends Component {
+export class SelectTree extends Component {
   static propTypes = {
     searchEnabled: PropTypes.bool,
     selectTreeFirstTitle: PropTypes.string,
