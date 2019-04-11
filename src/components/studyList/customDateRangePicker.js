@@ -1,11 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { DateRangePicker } from 'react-dates';
 
-import ReactDates from 'react-dates';
-
+//  If you want to continue using CSS stylesheets and classes...
+//  https://github.com/airbnb/react-dates#initialize
 import 'react-dates/initialize';
 import 'react-dates/lib/css/_datepicker.css';
-import './CustomDateRangePicker.styl';
+import './customDateRangePicker.styl';
 
 export default class CustomDateRangePicker extends React.Component {
   static propTypes = {
@@ -84,7 +85,7 @@ export default class CustomDateRangePicker extends React.Component {
 
     return (
       <div>
-        <ReactDates.DateRangePicker
+        <DateRangePicker
           {...dateRangePickerProps}
           startDate={this.state.startDate}
           endDate={this.state.endDate}

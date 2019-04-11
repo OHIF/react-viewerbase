@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-import './LayoutChooser.styl';
+import './layoutChooser.styl';
 
 /**
  * Adds the 'hover' class to cells above and to the left of the current cell
@@ -8,7 +8,7 @@ import './LayoutChooser.styl';
  * if they click on a specific table cell.
  **/
 
-export class LayoutChooser extends PureComponent {
+class LayoutChooser extends PureComponent {
   static propTypes = {
     rows: PropTypes.number.isRequired,
     columns: PropTypes.number.isRequired,
@@ -126,4 +126,4 @@ export class LayoutChooser extends PureComponent {
   }
 }
 
-export default LayoutChooser;
+export { LayoutChooser };

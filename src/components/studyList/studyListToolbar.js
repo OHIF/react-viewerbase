@@ -1,6 +1,7 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-import './StudyListToolbar.styl';
+
+import './studyListToolbar.styl';
 
 class StudylistToolbar extends PureComponent {
   static propTypes = {
@@ -44,4 +45,4 @@ class StudylistToolbar extends PureComponent {
   }
 }
 
-export default StudylistToolbar;
+export { StudylistToolbar };

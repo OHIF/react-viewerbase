@@ -1,14 +1,13 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-
-import './StudyList.styl';
-import ReactDates from 'react-dates';
-import CustomDateRangePicker from '../basic/CustomDateRangePicker/CustomDateRangePicker.js';
-
-import StudylistToolbar from './StudyListToolbar';
-import LoadingText from '../basic/LoadingText';
-import PaginationArea from '../basic/paginationArea/PaginationArea';
+import { isInclusivelyBeforeDay } from 'react-dates';
 import moment from 'moment';
+
+import CustomDateRangePicker from './customDateRangePicker.js';
+import { PaginationArea } from './paginationArea.js';
+import { StudylistToolbar } from './studyListToolbar.js';
+import { StudyListLoadingText } from './studyListLoadingText.js';
+import './studyList.styl';
 
 const today = moment();
 const lastWeek = moment().subtract(7, 'day');
@@ -170,7 +169,7 @@ class StudyList extends Component {
     if (this.state.loading) {
       return (
         <div className="loading">
-          <LoadingText />
+          <StudyListLoadingText />
         </div>
       );
     }
@@ -349,7 +348,7 @@ class StudyList extends Component {
                       hideKeyboardShortcutsPanel={true}
                       anchorDirection="left"
                       isOutsideRange={day =>
-                        !ReactDates.isInclusivelyBeforeDay(day, moment())
+                        !isInclusivelyBeforeDay(day, moment())
                       }
                       onDatesChange={({
                         startDate,

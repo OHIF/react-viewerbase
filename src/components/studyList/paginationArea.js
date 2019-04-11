@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-import './PaginationArea.styl';
+import './paginationArea.styl';
 
 class PaginationArea extends PureComponent {
   static defaultProps = {
@@ -106,4 +106,4 @@ class PaginationArea extends PureComponent {
   }
 }
 
-export default PaginationArea;
+export { PaginationArea };

@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default function LoadingText() {
+function StudyListLoadingText() {
   return (
     <div className="loadingTextDiv">
       <h5>
@@ -9,3 +9,5 @@ export default function LoadingText() {
     </div>
   );
 }
+
+export { StudyListLoadingText };
