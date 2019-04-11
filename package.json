@@ -23,7 +23,7 @@
     "predeploy": "yarn install && docz build",
     "prepublishOnly": "yarn build",
     "deploy": "gh-pages -d .docz/dist",
-    "generateStaticSite": "yarn predeploy && cpx '.docz/dist/**/*' examples/build -v"
+    "generateStaticSite": "yarn predeploy && cpx '.docz/dist/**/*' example/build -v"
   },
   "husky": {
     "hooks": {
