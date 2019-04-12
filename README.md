@@ -34,6 +34,10 @@
 
 ## Install
 
+> This component library is pre- v1.0. All realeases until a v1.0 have the
+> possibility of introducing breaking changes. Please depend on an "exact"
+> version in your projects to prevent issues caused by loose versioning.
+
 For full installation instructions, be sure to check out our
 [getting started](https://react.ohif.org/getting-started#installation) guide.
 
