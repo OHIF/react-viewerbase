@@ -1,9 +1,9 @@
-/** 
+/**
  * Docz Configuration File:
- * https://www.docz.site/docs/project-configuration 
+ * https://www.docz.site/docs/project-configuration
  */
 
-import { css } from 'docz-plugin-css';
+import { css } from 'docz-plugin-css'
 
 export default {
   dest: 'example/build',
@@ -12,23 +12,27 @@ export default {
   // Limited support for importing `.styl` files
   codeSandbox: false,
   menu: [
+    'Introduction',
     'Getting Started',
     { name: 'Elements', menu: ['Form / Select'] },
-    { name: 'Components', menu: [
-      'CINE Dialog',
-      'Layout Button',
-      'Measurement Table',
-      'Overlay Trigger',
-      'Quick Switch',
-      'Rounded Button Group',
-      'Select Tree',
-      'Simple Dialog',
-      'Study Browser',
-      'Study List',
-      'Table List',
-      'Toolbar Section',
-      'User Preferences Modal'
-    ] }
+    {
+      name: 'Components',
+      menu: [
+        'CINE Dialog',
+        'Layout Button',
+        'Measurement Table',
+        'Overlay Trigger',
+        'Quick Switch',
+        'Rounded Button Group',
+        'Select Tree',
+        'Simple Dialog',
+        'Study Browser',
+        'Study List',
+        'Table List',
+        'Toolbar Section',
+        'User Preferences Modal',
+      ],
+    },
   ],
   // Rollup Aliases?
   // https://github.com/pedronauck/docz/issues/373
@@ -39,10 +43,9 @@ export default {
       cssmodules: false,
     }),
   ],
-
 }
 
-/* 
+/*
  * Alternative ways to extend/modify underlying webpack config
  *
 modifyBundlerConfig: (config) => {
@@ -50,9 +53,9 @@ modifyBundlerConfig: (config) => {
       test: /\.scss$/,
       use: ["style-loader", "css-loader", "sass-loader"]
     })
-  
+
   return config
-} 
+}
   *
   *
   *
