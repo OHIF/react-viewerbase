@@ -34,37 +34,61 @@
 
 ## Install
 
+For full installation instructions, be sure to check out our
+[getting started](https://react.ohif.org/getting-started#installation) guide.
+
 ```bash
-npm install --save react-viewerbase
+// with npm
+npm i react-viewerbase --save-exact
+
+// with yarn
+yarn add react-viewerbase --exact
 ```
 
 ## Usage
 
 ```jsx
 import React, { Component } from 'react'
-
-import CornerstoneViewport from 'react-viewerbase'
+import { LayoutButton } from 'react-viewerbase'
 
 class Example extends Component {
+  constructor(props) {
+    super(props)
+
+    this.state = {
+      selectedCell: {
+        className: 'hover',
+        col: 1,
+        row: 1,
+      },
+    }
+  }
+
   render() {
-    return <CornerstoneViewport />
+    return (
+      <LayoutButton
+        selectedCell={this.state.selectedCell}
+        onChange={cell => this.setState({ selectedCell: cell })}
+      />
+    )
   }
 }
 ```
 
-## To run locally
+## Running Locally
 
-Clone this repository and build the library
+_Restore dependencies after cloning:_
 
 1. `cd react-viewerbase`
 2. `yarn install`
-3. `yarn start`
 
-Open a new terminal (or tab) and build the example application.
+_Develop w/ Hot Reloading:_
 
-1. `cd example`
-2. `yarn install`
-3. `yarn start`
+`yarn dev`
+
+_Build for Production:_
+
+`yarn build`
 
 ## Issues
 
