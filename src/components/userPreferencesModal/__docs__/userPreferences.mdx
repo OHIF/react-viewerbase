@@ -33,7 +33,7 @@ import hotkeyDefaults from './hotkeyDefaults.js';
                 </button>
                 <UserPreferencesModal
                     {...state}
-                    onCancel={() => alert('on cancel')}
+                    onCancel={() => setState({ isOpen: false })}
                     onSave={() => alert('on save')}
                     onResetToDefaults={() => alert('on reset')}
                 />
