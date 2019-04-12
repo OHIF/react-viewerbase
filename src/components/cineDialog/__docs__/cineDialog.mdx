@@ -22,7 +22,7 @@ import { CineDialog } from './../index.js';
         {({ state, setState }) => (
             <React.Fragment>
             <div><pre>{JSON.stringify(state, null, 2) }</pre></div>
-            <div style={{backgroundColor: 'dodgerblue'}}>
+            <div style={{maxWidth: '300px', margin: '0 auto'}}>
                 <CineDialog 
                     {...state} 
                     onClickSkipToStart={ () => setState({lastChange: 'Clicked SkipToStart'}) }
