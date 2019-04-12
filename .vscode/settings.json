@@ -1,4 +1,6 @@
 {
+  "editor.rulers": [80, 120],
+
   // ===
   // Spacing
   // ===
@@ -16,5 +18,12 @@
   // ===
 
   "editor.formatOnSave": true,
+  "eslint.autoFixOnSave": true,
+  "eslint.run": "onSave",
+  "eslint.validate": [
+    { "language": "javascript", "autoFix": true },
+    { "language": "javascriptreact", "autoFix": true },
+    { "language": "html", "autoFix": true }
+  ],
   "prettier.disableLanguages": []
 }
