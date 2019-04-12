@@ -4,7 +4,6 @@ menu: Components
 route: /components/layout-button
 ---
 
-
 import { Playground, Props } from 'docz';
 import { State } from 'react-powerplug'
 import { LayoutButton } from './../index.js';
@@ -12,19 +11,29 @@ import './layoutButton.css';
 
 # Layout Button
 
-TODO:
-- show changing current selection
-- research layoutManager
-
 ## Basic usage
 
 <Playground>
     <State initial={{
+        selectedCell: {
+            className: 'hover',
+            col: 1,
+            row: 1
+        },
     }}>
         {({ state, setState }) => (
-            <div class="LayoutExample">
-                <LayoutButton {...state} />
-            </div>
+            <React.Fragment>
+                {/* STATE */}
+                <div><pre>{JSON.stringify(state, null, 2) }</pre></div>
+
+                {/* COMPONENT */}
+                <div className="LayoutExample">
+                    <LayoutButton
+                        {...state}
+                        onChange={cell => setState({ selectedCell: cell })}
+                    />
+                </div>
+            </React.Fragment>
         )}
     </State>
 </Playground>

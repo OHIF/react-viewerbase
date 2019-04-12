@@ -10,7 +10,9 @@ export class LayoutButton extends PureComponent {
 
   static propTypes = {
     dropdownVisible: PropTypes.bool.isRequired,
+    /** Called with the selectedCell number when grid sell is selected */
     onChange: PropTypes.func,
+    /** The cell to show as selected */
     selectedCell: PropTypes.object
   };
 

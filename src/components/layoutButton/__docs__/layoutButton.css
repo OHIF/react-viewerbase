@@ -1,5 +1,7 @@
 .LayoutExample {
   background-color: var(--primary-background-color);
+  width: 160px;
+  height: 160px;
 }
 
 .GridLayout td {
