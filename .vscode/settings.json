@@ -22,8 +22,7 @@
   "eslint.run": "onSave",
   "eslint.validate": [
     { "language": "javascript", "autoFix": true },
-    { "language": "javascriptreact", "autoFix": true },
-    { "language": "html", "autoFix": true }
+    { "language": "javascriptreact", "autoFix": true }
   ],
   "prettier.disableLanguages": []
 }
