@@ -41,6 +41,9 @@ Some components use classes provided by the following libraries:
 'TODO: Add raw.github url'
 ```
 
+React Viewerbase also looks for theme CSS variabled defined on `:root`. You can
+find a list of variables [on the theming page](/styling-and-theming)
+
 ### Import & Use
 
 You can use components in your React app:
@@ -73,4 +76,5 @@ class Example extends Component {
 }
 ```
 
-> NOTE: border box and reset note?
+> NOTE: It is heavily recommended that you use a CSS reset or normalize. As well
+> as the following style: `* { Box-sizing: Border-box }`
