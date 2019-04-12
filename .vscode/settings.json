@@ -1,0 +1,8 @@
+{
+  // ===
+  // Event Triggers
+  // ===
+
+  "editor.formatOnSave": true,
+  "prettier.disableLanguages": []
+}
