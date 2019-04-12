@@ -7,6 +7,7 @@ import { css } from 'docz-plugin-css';
 
 export default {
   dest: 'example/build',
+  public: '/public',
   indexHtml: 'src/__docs__/index.html',
   // Limited support for importing `.styl` files
   codeSandbox: false,
@@ -16,12 +17,17 @@ export default {
     { name: 'Components', menu: [
       'CINE Dialog',
       'Layout Button',
+      'Measurement Table',
       'Overlay Trigger',
+      'Quick Switch',
       'Rounded Button Group',
+      'Select Tree',
       'Simple Dialog',
       'Study Browser',
+      'Study List',
+      'Table List',
       'Toolbar Section',
-      'Tooltip'
+      'User Preferences Modal'
     ] }
   ],
   // Rollup Aliases?
