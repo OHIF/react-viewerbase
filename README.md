@@ -66,6 +66,31 @@ Open a new terminal (or tab) and build the example application.
 2. `yarn install`
 3. `yarn start`
 
+## Issues
+
+_Looking to contribute? Look for the [Good First Issue][good-first-issue]
+label._
+
+### 🐛 Bugs
+
+Please file an issue for bugs, missing documentation, or unexpected behavior.
+
+[**See Bugs**][bugs]
+
+### 💡 Feature Requests
+
+Please file an issue to suggest new features. Vote on feature requests by adding
+a 👍. This helps maintainers prioritize what to work on.
+
+[**See Feature Requests**][requests-feature]
+
+### ❓ Questions
+
+For questions related to using the library, please visit our support community,
+or file an issue on GitHub.
+
+[Google Group][google-group]
+
 ## License
 
 MIT © [OHIF](https://github.com/OHIF)
@@ -84,4 +109,9 @@ Links:
 [npm-version-image]: https://img.shields.io/npm/v/react-viewerbase.svg?style=flat-square
 [license-image]: https://img.shields.io/badge/license-MIT-blue.svg?style=flat-square
 [license-url]: LICENSE
+
+[bugs]: https://github.com/OHIF/react-viewerbase/labels/bug
+[requests-feature]: https://github.com/OHIF/react-viewerbase/labels/enhancement
+[good-first-issue]: https://github.com/OHIF/react-viewerbase/labels/good%20first%20issue
+[google-group]: https://groups.google.com/forum/#!forum/cornerstone-platform
 <!-- prettier-ignore-end -->
