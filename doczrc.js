@@ -33,6 +33,8 @@ export default {
         'User Preferences Modal',
       ],
     },
+    'Styling & Theming',
+    'Compatibility',
   ],
   // Rollup Aliases?
   // https://github.com/pedronauck/docz/issues/373
