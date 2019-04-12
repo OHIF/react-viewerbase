@@ -1,12 +1,12 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
+import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 
-import InputRadio from './InputRadio.js';
-import SelectTreeBreadcrumb from './SelectTreeBreadcrumb.js';
+import InputRadio from './InputRadio.js'
+import SelectTreeBreadcrumb from './SelectTreeBreadcrumb.js'
 
-import cloneDeep from 'lodash.clonedeep';
+import cloneDeep from 'lodash.clonedeep'
 
-import './SelectTree.styl';
+import './SelectTree.styl'
 
 export class SelectTree extends Component {
   static propTypes = {
@@ -19,28 +19,28 @@ export class SelectTree extends Component {
     /** [{ label, value, items[]}] - An array of items than can be expanded to show child items */
     items: PropTypes.array.isRequired,
     /** fn(evt, item) - Called when a child item is selected; receives event and selected item */
-    onSelected: PropTypes.func.isRequired
-  };
+    onSelected: PropTypes.func.isRequired,
+  }
 
   static defaultProps = {
     searchEnabled: true,
     autoFocus: true,
     selectTreeFirstTitle: 'First Level itens',
-    items: []
-  };
+    items: [],
+  }
 
   constructor(props) {
-    super(props);
+    super(props)
 
     this.state = {
       searchTerm: null,
       currentNode: null,
-      value: null
-    };
+      value: null,
+    }
   }
 
   render() {
-    const treeItems = this.getTreeItems();
+    const treeItems = this.getTreeItems()
 
     return (
       <div className="selectTree selectTreeRoot">
@@ -60,54 +60,54 @@ export class SelectTree extends Component {
           </div>
         </div>
       </div>
-    );
+    )
   }
 
   componentDidUpdate = () => {
     if (this.props.onComponentChange) {
-      this.props.onComponentChange();
+      this.props.onComponentChange()
     }
-  };
+  }
 
-  isLeafSelected = item => item && !Array.isArray(item.items);
+  isLeafSelected = item => item && !Array.isArray(item.items)
 
   getLabelClass = item => {
-    let labelClass = 'treeLeaf';
+    let labelClass = 'treeLeaf'
     if (this.state.searchTerm || Array.isArray(item.items)) {
-      labelClass = 'treeNode';
+      labelClass = 'treeNode'
     }
-    return labelClass;
-  };
+    return labelClass
+  }
 
   getTreeItems() {
-    const storageKey = 'SelectTree';
-    let treeItems;
+    const storageKey = 'SelectTree'
+    let treeItems
 
     if (this.state.searchTerm) {
-      const filteredItems = [];
-      const rawItems = cloneDeep(this.props.items);
+      const filteredItems = []
+      const rawItems = cloneDeep(this.props.items)
       rawItems.forEach(item => {
         if (Array.isArray(item.items)) {
           item.items.forEach(item => {
-            const label = item.label.toLowerCase();
-            const searchTerm = this.state.searchTerm.toLowerCase();
+            const label = item.label.toLowerCase()
+            const searchTerm = this.state.searchTerm.toLowerCase()
             if (label.indexOf(searchTerm) !== -1) {
-              filteredItems.push(item);
+              filteredItems.push(item)
             }
-          });
+          })
         }
-      });
-      treeItems = filteredItems;
+      })
+      treeItems = filteredItems
     } else if (this.state.currentNode) {
-      treeItems = cloneDeep(this.state.currentNode.items);
+      treeItems = cloneDeep(this.state.currentNode.items)
     } else {
-      treeItems = cloneDeep(this.props.items);
+      treeItems = cloneDeep(this.props.items)
     }
 
     return treeItems.map((item, index) => {
-      let itemKey = index;
+      let itemKey = index
       if (this.state.currentNode) {
-        itemKey += `_${this.state.currentNode.value}`;
+        itemKey += `_${this.state.currentNode.value}`
       }
       return (
         <InputRadio
@@ -120,14 +120,14 @@ export class SelectTree extends Component {
           labelClass={this.getLabelClass(item)}
           onSelected={this.onSelected}
         />
-      );
-    });
+      )
+    })
   }
 
   headerItem = () => {
-    let title = this.props.selectTreeFirstTitle;
+    let title = this.props.selectTreeFirstTitle
     if (this.state.currentNode && this.props.selectTreeSecondTitle) {
-      title = this.props.selectTreeSecondTitle;
+      title = this.props.selectTreeSecondTitle
     }
 
     return (
@@ -147,34 +147,34 @@ export class SelectTree extends Component {
           </div>
         )}
       </div>
-    );
-  };
+    )
+  }
 
   searchLocations = evt => {
     this.setState({
       currentNode: null,
-      searchTerm: evt.currentTarget.value
-    });
-  };
+      searchTerm: evt.currentTarget.value,
+    })
+  }
 
   onSelected = (event, item) => {
     if (this.isLeafSelected(item)) {
       this.setState({
         searchTerm: null,
         currentNode: null,
-        value: null
-      });
-      return this.props.onSelected(event, item);
+        value: null,
+      })
+      return this.props.onSelected(event, item)
     } else {
       this.setState({
-        currentNode: item
-      });
+        currentNode: item,
+      })
     }
-  };
+  }
 
   onBreadcrumbSelected = () => {
     this.setState({
-      currentNode: null
-    });
-  };
+      currentNode: null,
+    })
+  }
 }
