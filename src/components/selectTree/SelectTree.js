@@ -10,12 +10,15 @@ import './SelectTree.styl';
 
 export class SelectTree extends Component {
   static propTypes = {
+    autoFocus: PropTypes.bool,
     searchEnabled: PropTypes.bool,
     selectTreeFirstTitle: PropTypes.string,
     selectTreeSecondTitle: PropTypes.string,
+    /** Called when 'componentDidUpdate' is triggered */
     onComponentChange: PropTypes.func,
+    /** [{ label, value, items[]}] - An array of items than can be expanded to show child items */
     items: PropTypes.array.isRequired,
-    autoFocus: PropTypes.bool,
+    /** fn(evt, item) - Called when a child item is selected; receives event and selected item */
     onSelected: PropTypes.func.isRequired
   };
 
