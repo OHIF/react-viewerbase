@@ -13,10 +13,14 @@ class CineDialog extends PureComponent {
   }
 
   static propTypes = {
+    /** Minimum value for range slider */
     cineMinFrameRate: PropTypes.number.isRequired,
+    /** Maximum value for range slider */
     cineMaxFrameRate: PropTypes.number.isRequired,
+    /** Increment range slider can "step" in either direction. */
     cineStepFrameRate: PropTypes.number.isRequired,
     cineFrameRate: PropTypes.number.isRequired,
+    /** 'True' if playing, 'False' if paused. */
     isPlaying: PropTypes.bool.isRequired,
     onPlayPauseChanged: PropTypes.func,
     onFrameRateChanged: PropTypes.func,
