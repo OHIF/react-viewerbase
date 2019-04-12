@@ -64,7 +64,9 @@ export class SelectTree extends Component {
   }
 
   componentDidUpdate = () => {
-    this.props.onComponentChange();
+    if (this.props.onComponentChange) {
+      this.props.onComponentChange();
+    }
   };
 
   isLeafSelected = item => item && !Array.isArray(item.items);
