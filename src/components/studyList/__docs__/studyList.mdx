@@ -9,7 +9,9 @@ import { State } from 'react-powerplug'
 import { StudyList } from './../index.js';
 // Data
 import defaultStudies from './studies.js';
+import onSearch from './onSearch.js';
 import moment from 'moment';
+
 
 # Study List
 
@@ -31,7 +33,7 @@ import moment from 'moment';
         <div className="row" style={{ backgroundColor: '#000', height: '600px' }}>
             <div className="col-xs-12" style={{ padding: 0 }}>
                 <StudyList
-                    studies={[]}
+                    studies={state.studies}
                     pageOptions={[1, 2, 3, 5, 10, 15, 20, 25, 50, 100]}
                     studyListFunctionsEnabled={true}
                     onImport={(e) => alert('Import study mock ' + e)}
@@ -39,7 +41,7 @@ import moment from 'moment';
                     rowsPerPage={5}
                     defaultSort={{ field: 'patientName', order: 'desc', }}
                     studyListDateFilterNumDays={7}
-                    onSearch={() => { console.log('hi'); }}
+                    onSearch={onSearch.bind({ setState, defaultStudies })}
                 />
             </div>
         </div>
