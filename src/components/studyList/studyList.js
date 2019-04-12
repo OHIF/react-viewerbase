@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-// WebPack only?
-// import { isInclusivelyBeforeDay } from 'react-dates/esm';
-import ReactDates from 'react-dates';
+import { isInclusivelyBeforeDay } from 'react-dates';
 import moment from 'moment';
 
 import CustomDateRangePicker from './customDateRangePicker.js';
@@ -350,7 +348,7 @@ class StudyList extends Component {
                       hideKeyboardShortcutsPanel={true}
                       anchorDirection="left"
                       isOutsideRange={day =>
-                        !ReactDates.isInclusivelyBeforeDay(day, moment())
+                        !isInclusivelyBeforeDay(day, moment())
                       }
                       onDatesChange={({
                         startDate,

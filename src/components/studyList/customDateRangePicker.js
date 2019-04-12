@@ -1,8 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-// Works w/ WebPack, but not Rollup
-// import { DateRangePicker } from 'react-dates'; `/esm`, `/lib` (default), or `/src`
-import ReactDates from 'react-dates';
+import { DateRangePicker } from 'react-dates';
 
 //  If you want to continue using CSS stylesheets and classes...
 //  https://github.com/airbnb/react-dates#initialize
@@ -87,7 +85,7 @@ export default class CustomDateRangePicker extends React.Component {
 
     return (
       <div>
-        <ReactDates.DateRangePicker
+        <DateRangePicker
           {...dateRangePickerProps}
           startDate={this.state.startDate}
           endDate={this.state.endDate}
