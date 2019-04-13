@@ -8,7 +8,7 @@ export const studies = [
         active: true,
         seriesNumber: '2',
         numImageFrames: 512,
-        stackPercentComplete: 30
+        stackPercentComplete: 30,
       },
       {
         imageSrc:
@@ -17,9 +17,9 @@ export const studies = [
         seriesNumber: '2',
         instanceNumber: '1',
         numImageFrames: 256,
-        stackPercentComplete: 70
-      }
-    ]
+        stackPercentComplete: 70,
+      },
+    ],
   },
   {
     thumbnails: [
@@ -30,7 +30,7 @@ export const studies = [
         active: true,
         seriesNumber: '2',
         numImageFrames: 512,
-        stackPercentComplete: 100
+        stackPercentComplete: 100,
       },
       {
         imageSrc:
@@ -38,7 +38,7 @@ export const studies = [
         seriesDescription: 'CPTAC-CM',
         seriesNumber: '2',
         instanceNumber: '1',
-        numImageFrames: 256
+        numImageFrames: 256,
       },
       {
         imageSrc:
@@ -46,7 +46,7 @@ export const studies = [
         seriesDescription: 'CPTAC-HNSCC',
         seriesNumber: '2',
         instanceNumber: '1',
-        numImageFrames: 256
+        numImageFrames: 256,
       },
       {
         imageSrc:
@@ -54,16 +54,16 @@ export const studies = [
         seriesDescription: 'CPTAC-LSCC',
         seriesNumber: '2',
         instanceNumber: '1',
-        numImageFrames: 256
-      }
-    ]
-  }
-];
+        numImageFrames: 256,
+      },
+    ],
+  },
+]
 
 export function onThumbnailClick() {
-  console.warn('onThumbnailClick');
+  console.warn('onThumbnailClick')
 }
 
 export function onThumbnailDoubleClick() {
-  console.warn('onThumbnailDoubleClick');
+  console.warn('onThumbnailDoubleClick')
 }
