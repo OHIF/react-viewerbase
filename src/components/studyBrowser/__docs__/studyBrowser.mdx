@@ -6,32 +6,15 @@ route: /components/study-browser
 
 import { Playground, Props } from 'docz'
 import { State } from 'react-powerplug'
-import {
-  studies,
-  onThumbnailClick,
-  onThumbnailDoubleClick,
-} from './exampleStudies.js'
-
-import { ExampleDropTarget, StudyBrowser } from './../index.js'
-import ViewerbaseDragDropContext from './../../../utils/viewerbaseDragDropContext.js'
+import { WrappedStudyBrowser } from './wrappedStudyBrowser.js'
+import { StudyBrowser } from './../index.js'
 
 # Study Browser
 
 ## Basic usage
 
 <Playground>
-  <React.Fragment>
-    {ViewerbaseDragDropContext(
-      <>
-        <ExampleDropTarget />
-        <StudyBrowser
-          studies={studies}
-          onThumbnailClick={onThumbnailClick}
-          onThumbnailDoubleClick={onThumbnailDoubleClick}
-        />
-      </>
-    )}
-  </React.Fragment>
+  <WrappedStudyBrowser />
 </Playground>
 
 ## API
