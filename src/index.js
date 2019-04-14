@@ -30,7 +30,7 @@ import PlayClipButton from './viewer/PlayClipButton.js'
 import { ScrollableArea } from './ScrollableArea/ScrollableArea.js'
 import Toolbar from './viewer/Toolbar.js'
 import ToolbarButton from './viewer/ToolbarButton.js'
-import viewerbaseDragDropContext from './utils/viewerbaseDragDropContext.js'
+import ViewerbaseDragDropContext from './utils/viewerbaseDragDropContext.js'
 
 export {
   CineDialog,
@@ -62,5 +62,5 @@ export {
   Tooltip,
   UserPreferences,
   UserPreferencesModal,
-  viewerbaseDragDropContext,
+  ViewerbaseDragDropContext,
 }
