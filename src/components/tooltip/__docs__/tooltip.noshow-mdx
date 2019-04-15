@@ -4,16 +4,15 @@ menu: Components
 route: /components/tooltip
 ---
 
-import { Playground, Props } from 'docz';
-import { Tooltip } from './../index.js';
+import { Playground, Props } from 'docz'
+import { Tooltip } from './../index.js'
 
 # Tooltip
-
 
 ## Basic usage
 
 <Playground>
-    <Tooltip></Tooltip>
+  <Tooltip />
 </Playground>
 
 ## API
