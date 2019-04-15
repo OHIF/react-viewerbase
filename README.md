@@ -3,15 +3,8 @@
 <div align="center">
   <h1>react-viewerbase</h1>
 
-  <p><strong>React Viewerbase is a collection of components and utilities</strong> that power OHIF's <a href="https://github.com/OHIF/Viewers">zero-footprint DICOM viewer</a>. We maintain them as a separate component library to:</p>
+  <p><strong>React Viewerbase is a collection of components and utilities</strong> that power OHIF's <a href="https://github.com/OHIF/Viewers">zero-footprint DICOM viewer</a>.</p>
 </div>
-
-<ul>
-  <li>Decouple presentation from business logic</li>
-  <li>Test and develop components in isolation</li>
-  <li>Provide well documented, reusable components</li>
-  <li>Aid rapid application development for context specific viewers</li>
-</ul>
 
 <div align="center">
 <a href="https://react.ohif.org/"><strong>Read The Docs</strong></a> |
@@ -30,7 +23,13 @@
 <!-- markdownlint-enable -->
 <!-- prettier-ignore-end -->
 
-> A set of React components for Medical Imaging Viewers.
+This set of "Medical Imaging Viewer" React components are maintained separately
+to:
+
+- Decouple presentation from business logic
+- Test and develop components in isolation
+- Provide well documented, reusable components
+- Aid rapid application development for context specific viewers
 
 ## Install
 
