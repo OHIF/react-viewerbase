@@ -4,38 +4,39 @@ menu: Components
 route: /components/measurement-table
 ---
 
-import { Playground, Props } from 'docz';
+import { Playground, Props } from 'docz'
 import { State } from 'react-powerplug'
-import { MeasurementTable } from './../index.js';
+import { MeasurementTable } from './../index.js'
 //
-import measurements from './measurements.js';
-import timepoints from './timepoints.js';
-import warnings from './warnings.js';
+import measurements from './measurements.js'
+import timepoints from './timepoints.js'
+import warnings from './warnings.js'
 
 # Measurement Table
-
 
 ## Basic usage
 
 <Playground>
-    <State initial={{
-        // Spelling error: overwallWarnings 
-        overwallWarnings: warnings,
-        timepoints,
-        measurementCollection: measurements,
-    }}>
-        {({ state, setState }) => (
-            <div style={{height: '340px'}}>
-                <MeasurementTable
-                    {...state}
-                    onItemClick={() => alert('onItemClick')}
-                    onRelabelClick={() => alert('onRelabelClick')}
-                    onDeleteClick={() => alert('onDeleteClick')}
-                    onEditDescriptionClick={() => alert('onEditDescriptionClick')}
-                />
-            </div>
-        )}
-    </State>
+  <State
+    initial={{
+      // Spelling error: overwallWarnings
+      overwallWarnings: warnings,
+      timepoints,
+      measurementCollection: measurements,
+    }}
+  >
+    {({ state, setState }) => (
+      <div style={{ height: '340px' }}>
+        <MeasurementTable
+          {...state}
+          onItemClick={() => alert('onItemClick')}
+          onRelabelClick={() => alert('onRelabelClick')}
+          onDeleteClick={() => alert('onDeleteClick')}
+          onEditDescriptionClick={() => alert('onEditDescriptionClick')}
+        />
+      </div>
+    )}
+  </State>
 </Playground>
 
 ## API

@@ -5,13 +5,13 @@ export default [
     items: [
       {
         label: 'Abdominal Wall',
-        value: 'AbdominalWall'
+        value: 'AbdominalWall',
       },
       {
         label: 'Adrenal Left',
-        value: 'AdrenalLeft'
-      }
-    ]
+        value: 'AdrenalLeft',
+      },
+    ],
   },
   {
     label: 'B',
@@ -19,12 +19,12 @@ export default [
     items: [
       {
         label: 'Brain',
-        value: 'Brain'
+        value: 'Brain',
       },
       {
         label: 'Breast',
-        value: 'Breast'
-      }
-    ]
-  }
-];
+        value: 'Breast',
+      },
+    ],
+  },
+]

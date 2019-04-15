@@ -11,32 +11,32 @@ export default [
         isSplitLesion: false,
         warningList: [
           'All measurements should have a location',
-          'Nodal lesions must be >= 15mm short axis AND >= double the acquisition slice thickness by CT and MR'
+          'Nodal lesions must be >= 15mm short axis AND >= double the acquisition slice thickness by CT and MR',
         ],
         data: [
           {
-            displayText: '25.7 x 12.9'
+            displayText: '25.7 x 12.9',
           },
           {
-            displayText: '24.7 x 11.5'
+            displayText: '24.7 x 11.5',
           },
-          {}
-        ]
+          {},
+        ],
       },
       {
         measurementId: '124',
         label: 'Bone Extremity',
         data: [
           {
-            displayText: '24.7 x 11.1'
+            displayText: '24.7 x 11.1',
           },
           {
-            displayText: '21.2 x 10.9'
+            displayText: '21.2 x 10.9',
           },
-          {}
-        ]
-      }
-    ]
+          {},
+        ],
+      },
+    ],
   },
   {
     maxMeasurements: 3,
@@ -47,38 +47,38 @@ export default [
         label: 'Chest Wall Single Site',
         data: [
           {
-            displayText: 'MD'
+            displayText: 'MD',
           },
           {
-            displayText: 'NM'
+            displayText: 'NM',
           },
-          {}
-        ]
+          {},
+        ],
       },
       {
         measurementId: '126',
         label: 'Extremity Multiple Sites',
         data: [
           {
-            displayText: 'CR'
+            displayText: 'CR',
           },
           {},
-          {}
-        ]
+          {},
+        ],
       },
       {
         measurementId: '127',
         label: 'Extremity Site',
         data: [
           {
-            displayText: 'CR'
+            displayText: 'CR',
           },
           {},
           {
-            displayText: 'NM'
-          }
-        ]
-      }
-    ]
-  }
-];
+            displayText: 'NM',
+          },
+        ],
+      },
+    ],
+  },
+]

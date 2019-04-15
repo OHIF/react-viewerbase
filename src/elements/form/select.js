@@ -1,11 +1,11 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import './select.css';
+import React, { Component } from 'react'
+import PropTypes from 'prop-types'
+import './select.css'
 
 class Select extends Component {
   state = {
-    open: false
-  };
+    open: false,
+  }
 
   static propTypes = {
     titleElement: PropTypes.node,
@@ -17,13 +17,13 @@ class Select extends Component {
         title: PropTypes.string.isRequired,
         icon: PropTypes.string,
         onClick: PropTypes.func,
-        link: PropTypes.string
+        link: PropTypes.string,
       })
-    )
-  };
+    ),
+  }
 
   getListItems = () => {
-    const { list, align } = this.props;
+    const { list, align } = this.props
 
     return list.map(({ icon, title, link, onClick }, key) => {
       if (link) {
@@ -37,7 +37,7 @@ class Select extends Component {
             {icon && <span className={`dd-item-icon ${icon}`} />}
             <span>{title}</span>
           </a>
-        );
+        )
       } else {
         return (
           <button
@@ -48,46 +48,46 @@ class Select extends Component {
             {icon && <span className={`dd-item-icon ${icon}`} />}
             <span>{title}</span>
           </button>
-        );
+        )
       }
-    });
-  };
+    })
+  }
 
   renderList = () => {
-    const { align } = this.props;
+    const { align } = this.props
 
     if (!this.state.open) {
-      return null;
+      return null
     }
 
     return (
       <div className={`dd-menu-list ${align || 'left'}`}>
         {this.getListItems()}
       </div>
-    );
-  };
+    )
+  }
 
   handleOnClick = onClick => {
-    this.toggleList();
+    this.toggleList()
 
     if (onClick) {
-      onClick();
+      onClick()
     }
-  };
+  }
 
   handleMouseClick = e => {
     if (this.node.contains(e.target)) {
-      return;
+      return
     }
 
-    this.toggleList();
-  };
+    this.toggleList()
+  }
 
   renderTitleElement = () => {
-    const { titleElement, title } = this.props;
+    const { titleElement, title } = this.props
 
     if (titleElement) {
-      return titleElement;
+      return titleElement
     }
 
     return (
@@ -95,24 +95,24 @@ class Select extends Component {
         <span className="dd-title">{title}</span>
         <span className="dd-caret-down" />
       </React.Fragment>
-    );
-  };
+    )
+  }
 
   toggleList = () => {
-    const { open } = this.state;
-    let state = true;
+    const { open } = this.state
+    let state = true
 
-    document.addEventListener('mousedown', this.handleMouseClick, false);
+    document.addEventListener('mousedown', this.handleMouseClick, false)
 
     if (open) {
-      document.removeEventListener('mousedown', this.handleMouseClick, false);
-      state = false;
+      document.removeEventListener('mousedown', this.handleMouseClick, false)
+      state = false
     }
 
     this.setState({
-      open: state
-    });
-  };
+      open: state,
+    })
+  }
 
   render() {
     return (
@@ -123,8 +123,8 @@ class Select extends Component {
 
         {this.renderList()}
       </div>
-    );
+    )
   }
 }
 
-export { Select };
+export { Select }

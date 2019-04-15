@@ -4,15 +4,13 @@ menu: Components
 route: /components/overlay-trigger
 ---
 
-import { Playground, Props } from 'docz';
-import { Tooltip } from './../../tooltip';
-import { OverlayTrigger } from './../index.js';
+import { Playground, Props } from 'docz'
+import { Tooltip } from './../../tooltip'
+import { OverlayTrigger } from './../index.js'
 
 # Overlay Trigger
 
-
 ## Basic usage
-
 
 ### On Hover
 
@@ -46,41 +44,41 @@ import { OverlayTrigger } from './../index.js';
         })
     }
     </div>
-        
+
 </Playground>
 
 ### On Click
 
 <Playground>
-    <div style={{
-        display: 'flex',
-        justifyContent: 'space-between'
-    }}>
-        { ['right', 'left', 'bottom', 'top'].map( (placement) => {
-            return (
-                <OverlayTrigger
-                    key={`example-${placement}`}
-                    placement={placement}
-                    trigger='click'
-                    overlay={
-                    <Tooltip
-                        placement={placement}
-                        className='in'
-                        id={`tooltip-${placement}`}
-                    >
-                        Here I am!
-                    </Tooltip>
-                    }
-                >
-                    <button> Tooltip on {placement}</button>
-                </OverlayTrigger>
-            )
-        })}
-    </div>
+  <div
+    style={{
+      display: 'flex',
+      justifyContent: 'space-between',
+    }}
+  >
+    {['right', 'left', 'bottom', 'top'].map(placement => {
+      return (
+        <OverlayTrigger
+          key={`example-${placement}`}
+          placement={placement}
+          trigger="click"
+          overlay={
+            <Tooltip
+              placement={placement}
+              className="in"
+              id={`tooltip-${placement}`}
+            >
+              Here I am!
+            </Tooltip>
+          }
+        >
+          <button> Tooltip on {placement}</button>
+        </OverlayTrigger>
+      )
+    })}
+  </div>
 </Playground>
 
 ## API
 
-### Tooltip
-
-<Props of={Tooltip} />
+<Props of={OverlayTrigger} />

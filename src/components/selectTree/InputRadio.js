@@ -1,6 +1,6 @@
-import { Component } from 'react';
-import React from 'react';
-import PropTypes from 'prop-types';
+import { Component } from 'react'
+import React from 'react'
+import PropTypes from 'prop-types'
 
 export default class InputRadio extends Component {
   static propTypes = {
@@ -9,11 +9,11 @@ export default class InputRadio extends Component {
     itemData: PropTypes.object.isRequired,
     labelClass: PropTypes.string,
     id: PropTypes.string.isRequired,
-    onSelected: PropTypes.func.isRequired
-  };
+    onSelected: PropTypes.func.isRequired,
+  }
 
   render() {
-    const labelClass = this.props.labelClass ? this.props.labelClass : '';
+    const labelClass = this.props.labelClass ? this.props.labelClass : ''
     return (
       <label
         className={'wrapperLabel radioLabel ' + labelClass}
@@ -28,10 +28,10 @@ export default class InputRadio extends Component {
         />
         <span className="wrapperText">{this.props.label}</span>
       </label>
-    );
+    )
   }
 
   onSelected = evt => {
-    this.props.onSelected(evt, this.props.itemData);
-  };
+    this.props.onSelected(evt, this.props.itemData)
+  }
 }

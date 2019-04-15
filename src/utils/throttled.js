@@ -1,26 +1,26 @@
 export default function throttled(delay, callback) {
   let isThrottled = false,
     args,
-    context;
+    context
 
   function wrapper() {
     if (isThrottled) {
-      args = arguments;
-      context = this;
-      return;
+      args = arguments
+      context = this
+      return
     }
 
-    isThrottled = true;
-    callback.apply(this, arguments);
+    isThrottled = true
+    callback.apply(this, arguments)
 
     setTimeout(() => {
-      isThrottled = false;
+      isThrottled = false
       if (args) {
-        wrapper.apply(context, args);
-        args = context = null;
+        wrapper.apply(context, args)
+        args = context = null
       }
-    }, delay);
+    }, delay)
   }
 
-  return wrapper;
+  return wrapper
 }

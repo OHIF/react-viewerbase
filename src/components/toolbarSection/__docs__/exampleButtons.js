@@ -4,42 +4,42 @@ export default [
     type: 'tool',
     text: 'Pan',
     svgUrl: '/icons.svg#icon-tools-pan',
-    active: false
+    active: false,
   },
   {
     command: 'ZoomTool',
     type: 'tool',
     text: 'Zoom',
     svgUrl: '/icons.svg#icon-tools-zoom',
-    active: false
+    active: false,
   },
   {
     command: 'Bidirectional',
     type: 'tool',
     text: 'Bidirectional',
     svgUrl: '/icons.svg#icon-tools-measure-target',
-    active: false
+    active: false,
   },
   {
     command: 'StackScroll',
     type: 'tool',
     text: 'Stack Scroll',
     svgUrl: '/icons.svg#icon-tools-stack-scroll',
-    active: false
+    active: false,
   },
   {
     command: 'reset',
     type: 'command',
     text: 'Reset',
     svgUrl: '/icons.svg#icon-tools-reset',
-    active: false
+    active: false,
   },
   {
     command: 'WwwcTool',
     type: 'tool',
     text: 'Manual',
     svgUrl: '/icons.svg#icon-tools-levels',
-    active: true
+    active: true,
   },
   {
     text: 'More',
@@ -50,15 +50,15 @@ export default [
         type: 'command',
         text: 'Reset 2',
         svgUrl: '/icons.svg#icon-tools-reset',
-        active: false
+        active: false,
       },
       {
         command: 'WwwcTool2',
         type: 'tool',
         text: 'Manual 2',
         svgUrl: '/icons.svg#icon-tools-levels',
-        active: false
-      }
-    ]
-  }
-];
+        active: false,
+      },
+    ],
+  },
+]

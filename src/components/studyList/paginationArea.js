@@ -1,13 +1,13 @@
-import React, { PureComponent } from 'react';
-import PropTypes from 'prop-types';
-import './paginationArea.styl';
+import React, { PureComponent } from 'react'
+import PropTypes from 'prop-types'
+import './paginationArea.styl'
 
 class PaginationArea extends PureComponent {
   static defaultProps = {
     pageOptions: [5, 10, 25, 50, 100],
     rowsPerPage: 25,
-    currentPage: 0
-  };
+    currentPage: 0,
+  }
 
   static propTypes = {
     pageOptions: PropTypes.array.isRequired,
@@ -16,20 +16,20 @@ class PaginationArea extends PureComponent {
     nextPageFunc: PropTypes.func,
     prevPageFunc: PropTypes.func,
     onRowsPerPageChange: PropTypes.func,
-    recordCount: PropTypes.number.isRequired
-  };
+    recordCount: PropTypes.number.isRequired,
+  }
 
   nextPage = () => {
-    this.props.nextPageFunc(this.props.currentPage);
-  };
+    this.props.nextPageFunc(this.props.currentPage)
+  }
 
   prevPage = () => {
-    this.props.prevPageFunc(this.props.currentPage);
-  };
+    this.props.prevPageFunc(this.props.currentPage)
+  }
 
   onRowsPerPageChange = event => {
-    this.props.onRowsPerPageChange(parseInt(event.target.value));
-  };
+    this.props.onRowsPerPageChange(parseInt(event.target.value))
+  }
 
   renderPaginationButtons() {
     return (
@@ -62,7 +62,7 @@ class PaginationArea extends PureComponent {
           </label>
         </div>
       </div>
-    );
+    )
   }
 
   renderRowsPerPageDropdown() {
@@ -78,12 +78,12 @@ class PaginationArea extends PureComponent {
               <option key={pageNumber} value={pageNumber}>
                 {pageNumber}
               </option>
-            );
+            )
           })}
         </select>
         <span>rows per page</span>
       </div>
-    );
+    )
   }
 
   render() {
@@ -102,8 +102,8 @@ class PaginationArea extends PureComponent {
           </div>
         </div>
       </div>
-    );
+    )
   }
 }
 
-export { PaginationArea };
+export { PaginationArea }

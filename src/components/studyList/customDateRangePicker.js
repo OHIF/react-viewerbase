@@ -1,13 +1,13 @@
 //  If you want to continue using CSS stylesheets and classes...
 //  https://github.com/airbnb/react-dates#initialize
-import 'react-dates/initialize';
-import 'react-dates/lib/css/_datepicker.css';
+import 'react-dates/initialize'
+import 'react-dates/lib/css/_datepicker.css'
 
-import React from 'react';
-import PropTypes from 'prop-types';
-import { DateRangePicker } from 'react-dates';
+import React from 'react'
+import PropTypes from 'prop-types'
+import { DateRangePicker } from 'react-dates'
 
-import './customDateRangePicker.styl';
+import './customDateRangePicker.styl'
 
 export default class CustomDateRangePicker extends React.Component {
   static propTypes = {
@@ -15,37 +15,37 @@ export default class CustomDateRangePicker extends React.Component {
       PropTypes.shape({
         text: PropTypes.string,
         start: PropTypes.required,
-        end: PropTypes.required
+        end: PropTypes.required,
       })
-    )
-  };
+    ),
+  }
 
   constructor(props) {
-    super(props);
+    super(props)
     this.state = {
       startDate: this.props.startDate,
-      endDate: this.props.endDate
-    };
+      endDate: this.props.endDate,
+    }
 
-    this.renderDatePresets = this.renderDatePresets.bind(this);
-    this.onDatesChange = this.onDatesChange.bind(this);
+    this.renderDatePresets = this.renderDatePresets.bind(this)
+    this.onDatesChange = this.onDatesChange.bind(this)
   }
 
   onDatesChange({ startDate, endDate, preset }) {
-    this.setState({ startDate, endDate });
+    this.setState({ startDate, endDate })
     if (this.props.onDatesChange) {
-      this.props.onDatesChange({ startDate, endDate, preset });
+      this.props.onDatesChange({ startDate, endDate, preset })
     }
   }
 
   renderDatePresets() {
-    const { presets } = this.props;
-    const { startDate, endDate } = this.state;
+    const { presets } = this.props
+    const { startDate, endDate } = this.state
 
     return (
       <div className="PresetDateRangePicker_panel">
         {presets.map(({ text, start, end }) => {
-          const isSelected = startDate === start && endDate === end;
+          const isSelected = startDate === start && endDate === end
 
           return (
             <button
@@ -58,16 +58,16 @@ export default class CustomDateRangePicker extends React.Component {
                 this.onDatesChange({
                   startDate: start,
                   endDate: end,
-                  preset: true
+                  preset: true,
                 })
               }
             >
               {text}
             </button>
-          );
+          )
         })}
       </div>
-    );
+    )
   }
 
   render() {
@@ -82,7 +82,7 @@ export default class CustomDateRangePicker extends React.Component {
       endDate,
       presets,
       ...dateRangePickerProps
-    } = this.props;
+    } = this.props
 
     return (
       <div>
@@ -94,6 +94,6 @@ export default class CustomDateRangePicker extends React.Component {
           onDatesChange={this.onDatesChange}
         />
       </div>
-    );
+    )
   }
 }

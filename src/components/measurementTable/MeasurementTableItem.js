@@ -1,11 +1,11 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
+import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 
-import { OverlayTrigger } from './../overlayTrigger';
-import { Tooltip } from './../tooltip';
-import { TableListItem } from './../tableList/TableListItem.js';
+import { OverlayTrigger } from './../overlayTrigger'
+import { Tooltip } from './../tooltip'
+import { TableListItem } from './../tableList/TableListItem.js'
 
-import './MeasurementTableItem.styl';
+import './MeasurementTableItem.styl'
 
 export class MeasurementTableItem extends Component {
   static propTypes = {
@@ -15,11 +15,11 @@ export class MeasurementTableItem extends Component {
     onDelete: PropTypes.func,
     onEditDescription: PropTypes.func,
     itemClass: PropTypes.string,
-    itemIndex: PropTypes.number
-  };
+    itemIndex: PropTypes.number,
+  }
 
   render() {
-    const { warningTitle = '', hasWarnings } = this.props.measurementData;
+    const { warningTitle = '', hasWarnings } = this.props.measurementData
 
     return (
       <React.Fragment>
@@ -44,7 +44,7 @@ export class MeasurementTableItem extends Component {
           <React.Fragment>{this.getTableListItem()}</React.Fragment>
         )}
       </React.Fragment>
-    );
+    )
   }
 
   getActionButton = (btnLabel, onClickCallback) => {
@@ -53,33 +53,30 @@ export class MeasurementTableItem extends Component {
         <i className="fa fa-edit" />
         {btnLabel}
       </button>
-    );
-  };
+    )
+  }
 
   getTableListItem = () => {
     const hasWarningClass = this.props.measurementData.hasWarnings
       ? 'hasWarnings'
-      : '';
+      : ''
 
-    const actionButtons = [];
+    const actionButtons = []
 
     if (typeof this.props.onRelabel === 'function') {
-      const relabelButton = this.getActionButton(
-        'Relabel',
-        this.onRelabelClick
-      );
-      actionButtons.push(relabelButton);
+      const relabelButton = this.getActionButton('Relabel', this.onRelabelClick)
+      actionButtons.push(relabelButton)
     }
     if (typeof this.props.onEditDescription === 'function') {
       const descriptionButton = this.getActionButton(
         'Description',
         this.onEditDescriptionClick
-      );
-      actionButtons.push(descriptionButton);
+      )
+      actionButtons.push(descriptionButton)
     }
     if (typeof this.props.onDelete === 'function') {
-      const deleteButton = this.getActionButton('Delete', this.onDeleteClick);
-      actionButtons.push(deleteButton);
+      const deleteButton = this.getActionButton('Delete', this.onDeleteClick)
+      actionButtons.push(deleteButton)
     }
 
     return (
@@ -97,33 +94,33 @@ export class MeasurementTableItem extends Component {
           <div className="rowActions">{actionButtons}</div>
         </div>
       </TableListItem>
-    );
-  };
+    )
+  }
 
   onItemClick = event => {
-    this.props.onItemClick(event, this.props.measurementData);
-  };
+    this.props.onItemClick(event, this.props.measurementData)
+  }
 
   onRelabelClick = event => {
     // Prevent onItemClick from firing
-    event.stopPropagation();
+    event.stopPropagation()
 
-    this.props.onRelabel(event, this.props.measurementData);
-  };
+    this.props.onRelabel(event, this.props.measurementData)
+  }
 
   onEditDescriptionClick = event => {
     // Prevent onItemClick from firing
-    event.stopPropagation();
+    event.stopPropagation()
 
-    this.props.onEditDescription(event, this.props.measurementData);
-  };
+    this.props.onEditDescription(event, this.props.measurementData)
+  }
 
   onDeleteClick = event => {
     // Prevent onItemClick from firing
-    event.stopPropagation();
+    event.stopPropagation()
 
-    this.props.onDelete(event, this.props.measurementData);
-  };
+    this.props.onDelete(event, this.props.measurementData)
+  }
 
   getDataDisplayText = () => {
     return this.props.measurementData.data.map((data, index) => {
@@ -131,21 +128,21 @@ export class MeasurementTableItem extends Component {
         <div key={`displayText_${index}`} className="measurementDisplayText">
           {data.displayText ? data.displayText : '...'}
         </div>
-      );
-    });
-  };
+      )
+    })
+  }
 
   getWarningContent = () => {
-    const { warningList = '' } = this.props.measurementData;
+    const { warningList = '' } = this.props.measurementData
 
     if (Array.isArray(warningList)) {
       const listedWarnings = warningList.map((warn, index) => {
-        return <li key={index}>{warn}</li>;
-      });
+        return <li key={index}>{warn}</li>
+      })
 
-      return <ol>{listedWarnings}</ol>;
+      return <ol>{listedWarnings}</ol>
     } else {
-      return <React.Fragment>{warningList}</React.Fragment>;
+      return <React.Fragment>{warningList}</React.Fragment>
     }
-  };
+  }
 }

@@ -1,7 +1,7 @@
-import classNames from 'classnames';
-import React from 'react';
-import PropTypes from 'prop-types';
-import isRequiredForA11y from 'prop-types-extra/lib/isRequiredForA11y';
+import classNames from 'classnames'
+import React from 'react'
+import PropTypes from 'prop-types'
+import isRequiredForA11y from 'prop-types-extra/lib/isRequiredForA11y'
 
 const propTypes = {
   /**
@@ -24,12 +24,12 @@ const propTypes = {
   /** The "top" position value for the Tooltip arrow. */
   arrowOffsetTop: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   /** The "left" position value for the Tooltip arrow. */
-  arrowOffsetLeft: PropTypes.oneOfType([PropTypes.number, PropTypes.string])
-};
+  arrowOffsetLeft: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+}
 
 const defaultProps = {
-  placement: 'right'
-};
+  placement: 'right',
+}
 
 class Tooltip extends React.Component {
   render() {
@@ -41,19 +41,19 @@ class Tooltip extends React.Component {
       arrowOffsetLeft,
       className,
       style,
-      children
-    } = this.props;
+      children,
+    } = this.props
 
     const outerStyle = {
       top: positionTop,
       left: positionLeft,
-      ...style
-    };
+      ...style,
+    }
 
     const arrowStyle = {
       top: arrowOffsetTop,
-      left: arrowOffsetLeft
-    };
+      left: arrowOffsetLeft,
+    }
 
     return (
       <div
@@ -64,11 +64,11 @@ class Tooltip extends React.Component {
         <div className="tooltip-arrow" style={arrowStyle} />
         <div className="tooltip-inner">{children}</div>
       </div>
-    );
+    )
   }
 }
 
-Tooltip.propTypes = propTypes;
-Tooltip.defaultProps = defaultProps;
+Tooltip.propTypes = propTypes
+Tooltip.defaultProps = defaultProps
 
-export { Tooltip };
+export { Tooltip }

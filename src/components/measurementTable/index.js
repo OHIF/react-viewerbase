@@ -1,2 +1,2 @@
-export { MeasurementTable } from './MeasurementTable.js';
-export { MeasurementTableItem } from './MeasurementTableItem.js';
+export { MeasurementTable } from './MeasurementTable.js'
+export { MeasurementTableItem } from './MeasurementTableItem.js'

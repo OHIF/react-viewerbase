@@ -1,13 +1,13 @@
-import { Component } from 'react';
-import React from 'react';
-import PropTypes from 'prop-types';
+import { Component } from 'react'
+import React from 'react'
+import PropTypes from 'prop-types'
 
 export default class SelectTreeBreadcrumb extends Component {
   static propTypes = {
     label: PropTypes.string.isRequired,
     value: PropTypes.string.isRequired,
-    onSelected: PropTypes.func.isRequired
-  };
+    onSelected: PropTypes.func.isRequired,
+  }
 
   render() {
     return (
@@ -33,6 +33,6 @@ export default class SelectTreeBreadcrumb extends Component {
           </span>
         </label>
       </div>
-    );
+    )
   }
 }

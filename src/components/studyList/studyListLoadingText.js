@@ -1,4 +1,4 @@
-import React from 'react';
+import React from 'react'
 
 function StudyListLoadingText() {
   return (
@@ -7,7 +7,7 @@ function StudyListLoadingText() {
         Loading... <i className="fa fa-spinner fa-pulse" />
       </h5>
     </div>
-  );
+  )
 }
 
-export { StudyListLoadingText };
+export { StudyListLoadingText }

@@ -1,34 +1,34 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import './WindowLevelPreferences.styl';
+import React, { Component } from 'react'
+import PropTypes from 'prop-types'
+import './WindowLevelPreferences.styl'
 
 export class WindowLevelPreferences extends Component {
   constructor(props) {
-    super(props);
+    super(props)
 
     this.state = {
-      data: this.props.windowLevelData
-    };
+      data: this.props.windowLevelData,
+    }
   }
 
   static propTypes = {
     windowLevelData: PropTypes.object.isRequired,
-    onChange: PropTypes.func
-  };
+    onChange: PropTypes.func,
+  }
 
   onChange(event, key, field) {
-    const data = this.state.data;
-    const entry = data[key];
-    entry[field] = event.target.value;
-    this.setState({ data });
+    const data = this.state.data
+    const entry = data[key]
+    entry[field] = event.target.value
+    this.setState({ data })
 
     if (this.props.onChange) {
-      this.props.onChange(data);
+      this.props.onChange(data)
     }
   }
 
   getWLPreferencesRows(key) {
-    const entry = this.state.data[key];
+    const entry = this.state.data[key]
     return (
       <tr key={key}>
         <td className="p-r-1 text-center">{key}</td>
@@ -39,7 +39,7 @@ export class WindowLevelPreferences extends Component {
               type="text"
               className="form-control"
               onChange={event => {
-                this.onChange(event, key, 'description');
+                this.onChange(event, key, 'description')
               }}
             />
           </label>
@@ -51,7 +51,7 @@ export class WindowLevelPreferences extends Component {
               type="number"
               className="form-control"
               onChange={event => {
-                this.onChange(event, key, 'window');
+                this.onChange(event, key, 'window')
               }}
             />
           </label>
@@ -63,13 +63,13 @@ export class WindowLevelPreferences extends Component {
               type="number"
               className="form-control"
               onChange={event => {
-                this.onChange(event, key, 'level');
+                this.onChange(event, key, 'level')
               }}
             />
           </label>
         </td>
       </tr>
-    );
+    )
   }
 
   render() {
@@ -85,10 +85,10 @@ export class WindowLevelPreferences extends Component {
         </thead>
         <tbody>
           {Object.keys(this.state.data).map(key => {
-            return this.getWLPreferencesRows(key);
+            return this.getWLPreferencesRows(key)
           })}
         </tbody>
       </table>
-    );
+    )
   }
 }

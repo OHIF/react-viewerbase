@@ -1,19 +1,19 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
+import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 
 export default class PlayClipButton extends Component {
   static propTypes = {
-    isPlaying: PropTypes.bool.isRequired
-  };
+    isPlaying: PropTypes.bool.isRequired,
+  }
 
   static defaultProps = {
-    isPlaying: false
-  };
+    isPlaying: false,
+  }
 
   render() {
-    let playClass = 'fa-stop';
+    let playClass = 'fa-stop'
     if (this.props.isPlaying) {
-      playClass = 'fa-play';
+      playClass = 'fa-play'
     }
     return (
       <div className="btn-group">
@@ -40,6 +40,6 @@ export default class PlayClipButton extends Component {
           <span className="fa fa-youtube-play" />
         </button>
       </div>
-    );
+    )
   }
 }

@@ -1,1 +1,1 @@
-export { CineDialog } from './CineDialog.js';
+export { CineDialog } from './CineDialog.js'

@@ -9,5 +9,5 @@ export default {
   7: { description: '', window: '', level: '' },
   8: { description: '', window: '', level: '' },
   9: { description: '', window: '', level: '' },
-  10: { description: '', window: '', level: '' }
-};
+  10: { description: '', window: '', level: '' },
+}
