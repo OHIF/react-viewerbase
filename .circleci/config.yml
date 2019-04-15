@@ -53,7 +53,7 @@ workflows:
   pull_requests:
     jobs:
       - build_and_test
-          filters:
+          filter:
             branches:
               ignore:
                   - master
