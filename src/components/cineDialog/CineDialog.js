@@ -1,15 +1,15 @@
-import React, { PureComponent } from 'react';
-import PropTypes from 'prop-types';
-import './CineDialog.styl';
+import React, { PureComponent } from 'react'
+import PropTypes from 'prop-types'
+import './CineDialog.styl'
 
 class CineDialog extends PureComponent {
   constructor(props) {
-    super(props);
+    super(props)
 
     this.state = {
       cineFrameRate: props.cineFrameRate,
-      isPlaying: props.isPlaying
-    };
+      isPlaying: props.isPlaying,
+    }
   }
 
   static propTypes = {
@@ -27,16 +27,16 @@ class CineDialog extends PureComponent {
     onClickNextButton: PropTypes.func,
     onClickBackButton: PropTypes.func,
     onClickSkipToStart: PropTypes.func,
-    onClickSkipToEnd: PropTypes.func
-  };
+    onClickSkipToEnd: PropTypes.func,
+  }
 
   static defaultProps = {
     cineMinFrameRate: 1,
     cineMaxFrameRate: 90,
     cineStepFrameRate: 1,
     cineFrameRate: 24,
-    isPlaying: false
-  };
+    isPlaying: false,
+  }
 
   componentDidUpdate(prevProps) {
     // TODO: Not sure if we should just switch this to a stateless
@@ -46,8 +46,8 @@ class CineDialog extends PureComponent {
       this.props.isPlaying !== this.state.isPlaying
     ) {
       this.setState({
-        isPlaying: this.props.isPlaying
-      });
+        isPlaying: this.props.isPlaying,
+      })
     }
 
     if (
@@ -55,66 +55,66 @@ class CineDialog extends PureComponent {
       this.props.cineFrameRate !== this.state.cineFrameRate
     ) {
       this.setState({
-        cineFrameRate: this.props.cineFrameRate
-      });
+        cineFrameRate: this.props.cineFrameRate,
+      })
     }
   }
 
   handleInputChange = event => {
-    const target = event.target;
+    const target = event.target
 
-    let value = target.value;
+    let value = target.value
 
     if (target.type === 'range') {
-      value = parseFloat(target.value);
+      value = parseFloat(target.value)
     }
 
-    const name = target.name;
+    const name = target.name
 
     this.setState({
-      [name]: value
-    });
+      [name]: value,
+    })
 
     if (name === 'cineFrameRate' && this.props.onFrameRateChanged) {
-      this.props.onFrameRateChanged(parseFloat(value));
+      this.props.onFrameRateChanged(parseFloat(value))
     }
-  };
+  }
 
   onClickPlayPause = () => {
-    const value = !this.state.isPlaying;
+    const value = !this.state.isPlaying
 
     this.setState({
-      isPlaying: value
-    });
+      isPlaying: value,
+    })
 
     if (this.props.onPlayPauseChanged) {
-      this.props.onPlayPauseChanged(value);
+      this.props.onPlayPauseChanged(value)
     }
-  };
+  }
 
   onClickNextButton = event => {
     if (this.props.onClickNextButton) {
-      this.props.onClickNextButton(event);
+      this.props.onClickNextButton(event)
     }
-  };
+  }
 
   onClickBackButton = event => {
     if (this.props.onClickBackButton) {
-      this.props.onClickBackButton(event);
+      this.props.onClickBackButton(event)
     }
-  };
+  }
 
   onClickSkipToStart = event => {
     if (this.props.onClickSkipToStart) {
-      this.props.onClickSkipToStart(event);
+      this.props.onClickSkipToStart(event)
     }
-  };
+  }
 
   onClickSkipToEnd = event => {
     if (this.props.onClickSkipToEnd) {
-      this.props.onClickSkipToEnd(event);
+      this.props.onClickSkipToEnd(event)
     }
-  };
+  }
 
   // TODO:
   // - Add next / previous display set buttons which just call
@@ -199,8 +199,8 @@ class CineDialog extends PureComponent {
           </div>
         </div>
       </div>
-    );
+    )
   }
 }
 
-export { CineDialog };
+export { CineDialog }
