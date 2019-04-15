@@ -1,10 +1,10 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import './LayoutManager.css';
-import LayoutPanelDropTarget from './LayoutPanelDropTarget.js';
+import React, { Component } from 'react'
+import PropTypes from 'prop-types'
+import './LayoutManager.css'
+import LayoutPanelDropTarget from './LayoutPanelDropTarget.js'
 
 function defaultViewportPlugin(props) {
-  return <div>{JSON.stringify(props)}</div>;
+  return <div>{JSON.stringify(props)}</div>
 }
 
 function EmptyViewport() {
@@ -12,11 +12,11 @@ function EmptyViewport() {
     <div className="EmptyViewport">
       <p>Please drag a stack here to view images.</p>
     </div>
-  );
+  )
 }
 
 export class LayoutManager extends Component {
-  static className = 'LayoutManager';
+  static className = 'LayoutManager'
   static defaultProps = {
     viewportData: [],
     layout: {
@@ -25,17 +25,17 @@ export class LayoutManager extends Component {
           top: 0,
           left: 0,
           height: '100%',
-          width: '100%'
-        }
-      ]
+          width: '100%',
+        },
+      ],
     },
     activeViewportIndex: 0,
     supportsDragAndDrop: true,
     availablePlugins: {
-      defaultViewportPlugin
+      defaultViewportPlugin,
     },
-    defaultPlugin: 'defaultViewportPlugin'
-  };
+    defaultPlugin: 'defaultViewportPlugin',
+  }
 
   static propTypes = {
     viewportData: PropTypes.array.isRequired,
@@ -44,41 +44,41 @@ export class LayoutManager extends Component {
     layout: PropTypes.object.isRequired,
     availablePlugins: PropTypes.object.isRequired,
     setViewportData: PropTypes.func,
-    studies: PropTypes.array
-  };
+    studies: PropTypes.array,
+  }
 
   onDrop = ({ viewportIndex, item }) => {
     if (this.props.setViewportData) {
-      this.props.setViewportData({ viewportIndex, item });
+      this.props.setViewportData({ viewportIndex, item })
     }
-  };
+  }
 
   getPluginComponent = plugin => {
     const pluginComponent = this.props.availablePlugins[
       plugin || this.props.defaultPlugin
-    ];
+    ]
 
     if (!pluginComponent) {
       throw new Error(
         `No Viewport Plugin available for plugin ${plugin}. Available plugins: ${JSON.stringify(
           this.props.availablePlugins
         )}`
-      );
+      )
     }
 
-    return pluginComponent;
-  };
+    return pluginComponent
+  }
 
   getChildComponent(plugin, data, viewportIndex) {
     if (data.displaySet) {
-      const PluginComponent = this.getPluginComponent(plugin);
+      const PluginComponent = this.getPluginComponent(plugin)
 
       return (
         <PluginComponent viewportData={data} viewportIndex={viewportIndex} />
-      );
+      )
     }
 
-    return <EmptyViewport />;
+    return <EmptyViewport />
   }
 
   getContent(childComponent, supportsDragAndDrop, viewportIndex) {
@@ -90,25 +90,25 @@ export class LayoutManager extends Component {
         >
           {childComponent}
         </LayoutPanelDropTarget>
-      );
+      )
     }
 
-    return <div className="LayoutPanel">{childComponent}</div>;
+    return <div className="LayoutPanel">{childComponent}</div>
   }
 
   render() {
     if (!this.props.viewportData.length) {
-      return '';
+      return ''
     }
 
-    const { supportsDragAndDrop, studies, viewportData } = this.props;
-    const viewports = this.props.layout.viewports;
+    const { supportsDragAndDrop, studies, viewportData } = this.props
+    const viewports = this.props.layout.viewports
     const viewportElements = viewports.map((layout, viewportIndex) => {
-      const displaySet = viewportData[viewportIndex];
+      const displaySet = viewportData[viewportIndex]
       const data = {
         displaySet,
-        studies
-      };
+        studies,
+      }
 
       // Use whichever plugin is currently in use in the panel
       // unless nothing is specified. If nothing is specified
@@ -119,36 +119,32 @@ export class LayoutManager extends Component {
       // - When updating a panel, ensure that the currently enabled plugin
       // in the viewport is capable of rendering this display set. If not
       // then use the most capable available plugin
-      let plugin = layout.plugin;
+      let plugin = layout.plugin
       if (!layout.plugin && displaySet && displaySet.plugin) {
-        plugin = displaySet.plugin;
+        plugin = displaySet.plugin
       }
 
-      const childComponent = this.getChildComponent(
-        plugin,
-        data,
-        viewportIndex
-      );
+      const childComponent = this.getChildComponent(plugin, data, viewportIndex)
       const content = this.getContent(
         childComponent,
         supportsDragAndDrop,
         viewportIndex
-      );
+      )
 
-      let className = 'viewport-container';
+      let className = 'viewport-container'
       if (this.props.activeViewportIndex === viewportIndex) {
-        className += ' active';
+        className += ' active'
       }
 
       return (
         <div key={viewportIndex} className={className} style={{ ...layout }}>
           {content}
         </div>
-      );
-    });
+      )
+    })
 
-    return <div className={LayoutManager.className}>{viewportElements}</div>;
+    return <div className={LayoutManager.className}>{viewportElements}</div>
   }
 }
 
-export default LayoutManager;
+export default LayoutManager
