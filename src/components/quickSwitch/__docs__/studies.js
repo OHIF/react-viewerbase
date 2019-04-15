@@ -13,7 +13,7 @@ export default [
         seriesNumber: '2',
         numImageFrames: 512,
         displaySetInstanceUid: '10001-1',
-        stackPercentComplete: 30
+        stackPercentComplete: 30,
       },
       {
         imageSrc:
@@ -23,9 +23,9 @@ export default [
         instanceNumber: '1',
         numImageFrames: 256,
         displaySetInstanceUid: '10001-2',
-        stackPercentComplete: 70
-      }
-    ]
+        stackPercentComplete: 70,
+      },
+    ],
   },
   {
     studyInstanceUid: '10002',
@@ -42,7 +42,7 @@ export default [
         seriesNumber: '2',
         numImageFrames: 512,
         displaySetInstanceUid: '10002-1',
-        stackPercentComplete: 100
+        stackPercentComplete: 100,
       },
       {
         imageSrc:
@@ -51,7 +51,7 @@ export default [
         seriesNumber: '2',
         instanceNumber: '1',
         displaySetInstanceUid: '10002-2',
-        numImageFrames: 256
+        numImageFrames: 256,
       },
       {
         imageSrc:
@@ -60,7 +60,7 @@ export default [
         seriesNumber: '2',
         instanceNumber: '1',
         displaySetInstanceUid: '10002-3',
-        numImageFrames: 256
+        numImageFrames: 256,
       },
       {
         imageSrc:
@@ -69,8 +69,8 @@ export default [
         seriesNumber: '2',
         instanceNumber: '1',
         displaySetInstanceUid: '10002-4',
-        numImageFrames: 256
-      }
-    ]
-  }
-];
+        numImageFrames: 256,
+      },
+    ],
+  },
+]
