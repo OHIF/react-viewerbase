@@ -53,17 +53,17 @@ workflows:
   pull_requests:
     jobs:
       - build_and_test
-          filter:
-            branches:
-              ignore:
-                  - master
-                  - feature/*
-                  - hotfix/*
+          filters:
+              branches:
+                  ignore:
+                      - master
+                      - feature/*
+                      - hotfix/*
 
   # MERGE TO MASTER
   cut_release:
     jobs:
       - build_and_test
-          filter:
-            branches:
-              only: master
+          filters:
+              branches:
+                  only: master
