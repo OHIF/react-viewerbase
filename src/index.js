@@ -22,7 +22,8 @@ import {
   UserPreferencesModal,
 } from './components'
 
-// import Dropdown from './basic/Dropdown/Dropdown.js';
+// Alias this for now as not all dependents are using strict versioning
+import { Select as Dropdown } from './elements/form'
 import ExpandableToolMenu from './viewer/ExpandableToolMenu.js'
 import LayoutManager from './LayoutChooser/LayoutManager.js'
 import LayoutPanelDropTarget from './LayoutChooser/LayoutPanelDropTarget.js'
@@ -34,7 +35,7 @@ import ViewerbaseDragDropContext from './utils/viewerbaseDragDropContext.js'
 
 export {
   CineDialog,
-  // Dropdown,
+  Dropdown,
   ExpandableToolMenu,
   ExampleDropTarget,
   LayoutButton,
