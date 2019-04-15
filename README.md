@@ -14,12 +14,13 @@
 
 <hr />
 
+[![CircleCI][circleci-image]][circleci-url]
+[![All Contributors][all-contributors-image]][contributing-url]
+[![code style: prettier][prettier-image]][prettier-url]
+
 [![NPM version][npm-version-image]][npm-url]
 [![NPM downloads][npm-downloads-image]][npm-url]
 [![MIT License][license-image]][license-url]
-
-[![All Contributors][all-contributors-image]][contributing-url]
-[![code style: prettier][prettier-image]][prettier-url]
 <!-- markdownlint-enable -->
 <!-- prettier-ignore-end -->
 
@@ -129,6 +130,8 @@ Links:
 <!-- prettier-ignore-start -->
 [all-contributors-image]: https://img.shields.io/badge/all_contributors-0-orange.svg?style=flat-square
 [contributing-url]: https://github.com/OHIF/react-viewerbase/blob/master/CONTRIBUTING.md
+[circleci-image]: https://circleci.com/gh/OHIF/react-viewerbase.svg?style=svg
+[circleci-url]: https://circleci.com/gh/OHIF/react-viewerbase
 [prettier-image]: https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square
 [prettier-url]: https://github.com/prettier/prettier
 [npm-url]: https://npmjs.org/package/react-viewerbase
