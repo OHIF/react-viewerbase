@@ -45,6 +45,15 @@ jobs:
           root: ~/repo
           paths: .
 
+    npm_publish:
+      <<: *defaults
+      steps:
+        - attach_workspace:
+            at: ~/repo
+        - run:
+            name: Publish using Semantic Release
+            command: npx semantic-release
+
 workflows:
   version: 2
 
@@ -66,3 +75,4 @@ workflows:
           filters:
             branches:
               only: master
+      - npm_publish
