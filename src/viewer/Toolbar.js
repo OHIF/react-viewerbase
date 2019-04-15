@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import SimpleToolbarButton from './SimpleToolbarButton';
 import PlayClipButton from './PlayClipButton';
-import LayoutButton from '../LayoutChooser/LayoutButton';
+import { LayoutButton } from './../components/layoutButton';
 
 function getDefaultButtonData() {
   var buttonData = [];

@@ -49,6 +49,11 @@ export default {
     resolve({
       browser: true
     }),
-    commonjs()
+    commonjs({
+      // https://github.com/airbnb/react-dates/issues/1183#issuecomment-392073823
+      namedExports: {
+        'node_modules/react-dates/index.js': ['DateRangePicker', 'isInclusivelyBeforeDay']
+      }
+    })
   ]
 }

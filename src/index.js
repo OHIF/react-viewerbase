@@ -1,33 +1,37 @@
-import CineDialog from './viewer/CineDialog.js';
-import Dropdown from './basic/Dropdown/Dropdown.js';
-import ExpandableToolMenu from './viewer/ExpandableToolMenu.js';
-import ExampleDropTarget from './StudyBrowser/ExampleDropTarget.js';
-import LayoutButton from './LayoutChooser/LayoutButton.js';
-import LayoutChooser from './LayoutChooser/LayoutChooser.js';
-import LayoutManager from './LayoutChooser/LayoutManager.js';
-import LayoutPanelDropTarget from './LayoutChooser/LayoutPanelDropTarget.js';
-import MeasurementTable from './MeasurementTable/MeasurementTable.js';
-import MeasurementTableItem from './MeasurementTableItem/MeasurementTableItem.js';
-import Overlay from './basic/Overlay.js';
-import OverlayTrigger from './basic/OverlayTrigger.js';
-import PlayClipButton from './viewer/PlayClipButton.js';
-import QuickSwitch from './QuickSwitch/QuickSwitch.js';
-import RoundedButtonGroup from './basic/RoundedButtonGroup.js';
-import ScrollableArea from './ScrollableArea/ScrollableArea.js';
-import SelectTree from './SelectTree/SelectTree.js';
-import SimpleDialog from './SimpleDialog/SimpleDialog.js';
-import StudyBrowser from './StudyBrowser/StudyBrowser.js';
-import StudyList from './StudyList/StudyList.js';
-import TableList from './TableList/TableList.js';
-import TableListItem from './TableListItem/TableListItem.js';
-import ThumbnailEntry from './StudyBrowser/ThumbnailEntry.js';
-import Toolbar from './viewer/Toolbar.js';
-import ToolbarButton from './viewer/ToolbarButton.js';
-import ToolbarSection from './viewer/ToolbarSection.js';
-import Tooltip from './basic/Tooltip.js';
-import UserPreferences from './UserPreferences/UserPreferences';
-import UserPreferencesModal from './UserPreferences/UserPreferencesModal';
-import ViewerbaseDragDropContext from './utils/ViewerbaseDragDropContext.js';
+import {
+  CineDialog,
+  ExampleDropTarget,
+  LayoutButton,
+  LayoutChooser,
+  MeasurementTable,
+  MeasurementTableItem,
+  Overlay,
+  OverlayTrigger,
+  QuickSwitch,
+  RoundedButtonGroup,
+  SelectTree,
+  SimpleDialog,
+  StudyBrowser,
+  StudyList,
+  TableList,
+  TableListItem,
+  ThumbnailEntry,
+  ToolbarSection,
+  Tooltip,
+  UserPreferences,
+  UserPreferencesModal,
+} from './components'
+
+// Alias this for now as not all dependents are using strict versioning
+import { Select as Dropdown } from './elements/form'
+import ExpandableToolMenu from './viewer/ExpandableToolMenu.js'
+import LayoutManager from './LayoutChooser/LayoutManager.js'
+import LayoutPanelDropTarget from './LayoutChooser/LayoutPanelDropTarget.js'
+import PlayClipButton from './viewer/PlayClipButton.js'
+import { ScrollableArea } from './ScrollableArea/ScrollableArea.js'
+import Toolbar from './viewer/Toolbar.js'
+import ToolbarButton from './viewer/ToolbarButton.js'
+import ViewerbaseDragDropContext from './utils/viewerbaseDragDropContext.js'
 
 export {
   CineDialog,
@@ -59,5 +63,5 @@ export {
   Tooltip,
   UserPreferences,
   UserPreferencesModal,
-  ViewerbaseDragDropContext
-};
+  ViewerbaseDragDropContext,
+}

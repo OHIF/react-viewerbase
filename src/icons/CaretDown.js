@@ -1,6 +1,6 @@
 import React from 'react';
 
-const SVG = ({
+const CaretDown = ({
   style = {},
   width = '292.362px',
   className = '',
@@ -24,4 +24,4 @@ const SVG = ({
   </svg>
 );
 
-export default SVG;
+export { CaretDown };

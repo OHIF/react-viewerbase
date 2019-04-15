@@ -3,11 +3,20 @@
 
 # dependencies
 node_modules
+# Don't track package-lock if we intend to use yarn.lock
+package-lock.json
 
 # builds
 build
-dist
+dist/
 .rpt2_cache
+.docz/
+
+# Log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.idea
 
 # misc
 .DS_Store
@@ -17,8 +26,6 @@ dist
 .env.test.local
 .env.production.local
 
-package-lock.json
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-.idea
+# Can be removed after we update netlify
+# to use default .docz/ output destination
+example/

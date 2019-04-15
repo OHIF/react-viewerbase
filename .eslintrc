@@ -1,8 +1,9 @@
 {
   "extends": [
-  	"react-app",
-  	"eslint:recommended",
-    "plugin:react/recommended"
+    "react-app",
+    "eslint:recommended",
+    "plugin:react/recommended",
+    "plugin:prettier/recommended"
   ],
   "parser": "babel-eslint",
   "env": {
@@ -10,7 +11,7 @@
   },
   "settings": {
     "react": {
-      "version": "detect",
-    },
-  },
+      "version": "detect"
+    }
+  }
 }
