@@ -1,6 +1,6 @@
-import React, { PureComponent } from 'react';
-import PropTypes from 'prop-types';
-import './layoutChooser.styl';
+import React, { PureComponent } from 'react'
+import PropTypes from 'prop-types'
+import './layoutChooser.styl'
 
 /**
  * Adds the 'hover' class to cells above and to the left of the current cell
@@ -17,8 +17,8 @@ class LayoutChooser extends PureComponent {
     boxSize: PropTypes.number.isRequired,
     cellBorder: PropTypes.number.isRequired,
     onClick: PropTypes.func,
-    onChange: PropTypes.func
-  };
+    onChange: PropTypes.func,
+  }
 
   static defaultProps = {
     rows: 3,
@@ -28,67 +28,67 @@ class LayoutChooser extends PureComponent {
     cellBorder: 1,
     selectedCell: {
       row: -1,
-      col: -1
-    }
-  };
+      col: -1,
+    },
+  }
 
   constructor(props) {
-    super(props);
+    super(props)
     this.emptyCell = {
       row: -1,
-      column: -1
-    };
+      column: -1,
+    }
     this.state = {
       table: [[]],
-      selectedCell: this.props.selectedCell
-    };
+      selectedCell: this.props.selectedCell,
+    }
   }
   componentDidMount() {
-    this.highlightCells(this.emptyCell);
+    this.highlightCells(this.emptyCell)
   }
   onClick(currentCell) {
     this.setState({
-      selectedCell: currentCell
-    });
-    this.highlightCells(currentCell);
+      selectedCell: currentCell,
+    })
+    this.highlightCells(currentCell)
     if (this.props.onClick) {
-      this.props.onClick(currentCell);
+      this.props.onClick(currentCell)
     }
     if (this.props.onChange) {
-      this.props.onChange(currentCell);
+      this.props.onChange(currentCell)
     }
   }
   isRange = (cell, parentCell) => {
-    return cell.row <= parentCell.row && cell.col <= parentCell.col;
-  };
+    return cell.row <= parentCell.row && cell.col <= parentCell.col
+  }
   highlightCells = currentCell => {
-    let table = [];
+    let table = []
     for (let row = 0; row < this.props.rows; row++) {
-      let newRow = [];
+      let newRow = []
       for (let col = 0; col < this.props.columns; col++) {
-        let cell = { row: row, col: col };
+        let cell = { row: row, col: col }
         if (this.isRange(cell, currentCell)) {
-          cell.className = 'hover';
+          cell.className = 'hover'
         } else if (
           this.isRange(currentCell, this.emptyCell) &&
           this.isRange(cell, this.state.selectedCell)
         ) {
-          cell.className = 'selectedBefore';
+          cell.className = 'selectedBefore'
         }
-        newRow.push(cell);
+        newRow.push(cell)
       }
-      table.push(newRow);
+      table.push(newRow)
     }
-    this.setState({ table: table });
-  };
+    this.setState({ table: table })
+  }
 
   render() {
-    let columns = this.props.columns;
+    let columns = this.props.columns
     const style = {
       display: this.props.visible ? 'block' : 'none',
       minWidth:
-        columns * this.props.boxSize + (columns + 5) * this.props.cellBorder
-    };
+        columns * this.props.boxSize + (columns + 5) * this.props.cellBorder,
+    }
     return (
       <div
         className="layoutChooser pull-left dropdown-menu"
@@ -107,23 +107,23 @@ class LayoutChooser extends PureComponent {
                         style={{
                           width: this.props.boxSize,
                           height: this.props.boxSize,
-                          border: 'solid 1px black'
+                          border: 'solid 1px black',
                         }}
                         key={j}
                         onMouseEnter={() => this.highlightCells(cell)}
                         onMouseLeave={() => this.highlightCells(this.emptyCell)}
                         onClick={() => this.onClick(cell)}
                       />
-                    );
+                    )
                   })}
                 </tr>
-              );
+              )
             })}
           </tbody>
         </table>
       </div>
-    );
+    )
   }
 }
 
-export { LayoutChooser };
+export { LayoutChooser }
