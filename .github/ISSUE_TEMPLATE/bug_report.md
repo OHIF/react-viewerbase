@@ -14,6 +14,7 @@ assignees: ''
 - Did you search existing issues?
 
 **Describe the bug**
+
 *A clear and concise description of what the bug is.*
 
 **Steps To Reproduce**
@@ -27,6 +28,7 @@ Please use code blocks to show formatted errors or code snippets
 ```
 
 **Expected behavior**
+
 *A clear and concise description of what you expected to happen.*
 
 
