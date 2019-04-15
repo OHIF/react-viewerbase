@@ -75,4 +75,6 @@ workflows:
           filters:
             branches:
               only: master
-      - npm_publish
+      - npm_publish:
+          requires:
+            - build_and_test
