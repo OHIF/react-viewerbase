@@ -18,7 +18,6 @@ jobs:
   build_and_test:
     <<: *defaults
     steps:
-
       # Download and cache dependencies
       - checkout
       - restore_cache:
@@ -52,18 +51,18 @@ workflows:
   # PULL REQUESTS
   pull_requests:
     jobs:
-      - build_and_test
+      - build_and_test:
           filters:
-              branches:
-                  ignore:
-                      - master
-                      - feature/*
-                      - hotfix/*
+            branches:
+              ignore:
+                - master
+                - feature/*
+                - hotfix/*
 
   # MERGE TO MASTER
   cut_release:
     jobs:
-      - build_and_test
+      - build_and_test:
           filters:
-              branches:
-                  only: master
+            branches:
+              only: master
