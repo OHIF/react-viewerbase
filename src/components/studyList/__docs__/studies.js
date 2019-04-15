@@ -1,4 +1,4 @@
-import moment from 'moment';
+import moment from 'moment'
 
 const studies = [
   {
@@ -8,7 +8,7 @@ const studies = [
     accessionNumber: '1234567',
     studyDate: '19930201',
     modalities: 'MR',
-    studyDescription: 'BRAIN'
+    studyDescription: 'BRAIN',
   },
   {
     studyInstanceUid: '2222.222222.22222.22222',
@@ -17,7 +17,7 @@ const studies = [
     accessionNumber: '7654321',
     studyDate: moment().format('YYYYMMDD'),
     modalities: 'CT',
-    studyDescription: 'PET CT STANDARD'
+    studyDescription: 'PET CT STANDARD',
   },
   {
     studyInstanceUid: '3333.333333.33333.33333',
@@ -28,7 +28,7 @@ const studies = [
       .subtract(14, 'days')
       .format('YYYYMMDD'),
     modalities: 'US',
-    studyDescription: '0'
+    studyDescription: '0',
   },
   {
     studyInstanceUid: '444444.44444.44444.4444',
@@ -39,7 +39,7 @@ const studies = [
       .subtract(1, 'months')
       .format('YYYYMMDD'),
     modalities: 'US',
-    studyDescription: '0'
+    studyDescription: '0',
   },
   {
     studyInstanceUid: '55555.55555.55555.55555',
@@ -50,7 +50,7 @@ const studies = [
       .subtract(6, 'days')
       .format('YYYYMMDD'),
     modalities: 'US',
-    studyDescription: '0'
+    studyDescription: '0',
   },
   {
     studyInstanceUid: '66666.66666.66666.6666',
@@ -61,16 +61,16 @@ const studies = [
       .subtract(7, 'days')
       .format('YYYYMMDD'),
     modalities: 'US',
-    studyDescription: 'US'
-  }
+    studyDescription: 'US',
+  },
 ].sort(function(a, b) {
   if (a.patientName < b.patientName) {
-    return -1;
+    return -1
   }
   if (a.patientName > b.patientName) {
-    return 1;
+    return 1
   }
-  return 0;
-});
+  return 0
+})
 
-export default studies;
+export default studies

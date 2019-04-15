@@ -1,8 +1,8 @@
-import React, { PureComponent } from 'react';
-import PropTypes from 'prop-types';
-import ViewportLoadingIndicator from '../../viewer/ViewportLoadingIndicator';
-import ViewportErrorIndicator from '../../viewer/ViewportErrorIndicator';
-import './ImageThumbnail.styl';
+import React, { PureComponent } from 'react'
+import PropTypes from 'prop-types'
+import ViewportLoadingIndicator from '../../viewer/ViewportLoadingIndicator'
+import ViewportErrorIndicator from '../../viewer/ViewportErrorIndicator'
+import './ImageThumbnail.styl'
 
 // TODO: How should we have this component depend on Cornerstone?
 // - Passed in as a prop?
@@ -21,12 +21,12 @@ import './ImageThumbnail.styl';
 function renderAsync(canvasElement, image) {
   return new Promise((resolve, reject) => {
     try {
-      cornerstone.renderToCanvas(canvasElement, image);
-      resolve();
+      cornerstone.renderToCanvas(canvasElement, image)
+      resolve()
     } catch (error) {
-      reject(error);
+      reject(error)
     }
-  });
+  })
 }
 
 export default class ImageThumbnail extends PureComponent {
@@ -36,69 +36,69 @@ export default class ImageThumbnail extends PureComponent {
     error: PropTypes.bool.isRequired,
     width: PropTypes.number.isRequired,
     height: PropTypes.number.isRequired,
-    stackPercentComplete: PropTypes.number.isRequired
-  };
+    stackPercentComplete: PropTypes.number.isRequired,
+  }
 
   static defaultProps = {
     error: false,
     stackPercentComplete: 0,
     width: 217,
-    height: 123
-  };
+    height: 123,
+  }
 
   constructor(props) {
-    super(props);
+    super(props)
 
-    this.canvas = React.createRef();
+    this.canvas = React.createRef()
 
-    const renderIntoCanvas = this.props.imageId && !this.props.imageSrc;
+    const renderIntoCanvas = this.props.imageId && !this.props.imageSrc
 
     this.state = {
-      loading: renderIntoCanvas
-    };
+      loading: renderIntoCanvas,
+    }
   }
 
   componentDidMount() {
-    const renderIntoCanvas = this.props.imageId && !this.props.imageSrc;
+    const renderIntoCanvas = this.props.imageId && !this.props.imageSrc
 
     if (renderIntoCanvas) {
-      const { imageId } = this.props;
-      const canvas = this.canvas.current;
+      const { imageId } = this.props
+      const canvas = this.canvas.current
 
       cornerstone.loadAndCacheImage(imageId).then(
         image => {
           renderAsync(canvas, image).then(
             () => {
               this.setState({
-                loading: false
-              });
+                loading: false,
+              })
             },
             error => {
               // TODO: Set state?
-              throw new Error(error);
+              throw new Error(error)
             }
-          );
+          )
         },
         error => {
           // TODO: Set state?
-          throw new Error(error);
+          throw new Error(error)
         }
-      );
+      )
     }
   }
 
   render() {
-    let loadingOrError;
+    let loadingOrError
     if (this.props.error) {
-      loadingOrError = <ViewportErrorIndicator />;
+      loadingOrError = <ViewportErrorIndicator />
     } else if (this.state.loading) {
-      loadingOrError = <ViewportLoadingIndicator />;
+      loadingOrError = <ViewportLoadingIndicator />
     }
 
     const showStackLoadingProgressBar =
-      this.props.stackPercentComplete !== undefined;
+      this.props.stackPercentComplete !== undefined
 
-    const renderIntoCanvas = this.props.imageId && !this.props.imageSrc;
+    const renderIntoCanvas = this.props.imageId && !this.props.imageSrc
 
     return (
       <div className="ImageThumbnail">
@@ -129,6 +129,6 @@ export default class ImageThumbnail extends PureComponent {
           </div>
         )}
       </div>
-    );
+    )
   }
 }

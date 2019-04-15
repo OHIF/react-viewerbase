@@ -4,14 +4,14 @@ menu: Components
 route: /components/simple-dialog
 ---
 
-import { Playground, Props } from 'docz';
+import { Playground, Props } from 'docz'
 import { State } from 'react-powerplug'
-import { SimpleDialog } from './../index.js';
+import { SimpleDialog } from './../index.js'
 
 # Simple Dialog
 
-Its similar to a modal but we can pass its style as props and manipulate it as we want. 
-Initially used to display tool data changes in our Viewport.
+Its similar to a modal but we can pass its style as props and manipulate it as
+we want. Initially used to display tool data changes in our Viewport.
 
 ## Basic usage
 
@@ -29,7 +29,7 @@ Initially used to display tool data changes in our Viewport.
         {({ state, setState }) => (
             <React.Fragment>
                 <div><pre>{JSON.stringify(state, null, 2) }</pre></div>
-                
+
                 {/* Toggle Dialog */}
                 <button onClick={() => setState({ isDialogOpen: !state.isDialogOpen})}>
                     {state.isDialogOpen ? 'Close Dialog' : 'Open Dialog'}
@@ -52,16 +52,16 @@ Initially used to display tool data changes in our Viewport.
                     onValueChanged={(value) => setState({value}) }
                 >
                     <label htmlFor='input' className='simpleDialogLabelFor'>Input Example</label>
-                    <input 
-                        id='input' 
-                        type='text' 
+                    <input
+                        id='input'
+                        type='text'
                         className='simpleDialogInput'
                         autoComplete='off'
                         onChange={(e) => setState({inputValue: e.target.value})}
                     />
                     <label htmlFor='select' className='simpleDialogLabelFor'>SelectExample</label>
-                    <select 
-                        name='select' 
+                    <select
+                        name='select'
                         id='select'
                         className='simpleDialogSelect'
                         onChange={(e) => setState({selectValue: e.target.value})}
@@ -75,6 +75,7 @@ Initially used to display tool data changes in our Viewport.
             </React.Fragment>
         )}
     </State>
+
 </Playground>
 
 ## API

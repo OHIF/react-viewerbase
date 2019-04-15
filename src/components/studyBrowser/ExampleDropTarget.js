@@ -1,59 +1,59 @@
-import React, { Component } from 'react';
-import { DropTarget } from 'react-dnd';
-import PropTypes from 'prop-types';
-import './ExampleDropTarget.css';
+import React, { Component } from 'react'
+import { DropTarget } from 'react-dnd'
+import PropTypes from 'prop-types'
+import './ExampleDropTarget.css'
 
 // Drag sources and drop targets only interact
 // if they have the same string type.
 const Types = {
-  THUMBNAIL: 'thumbnail'
-};
+  THUMBNAIL: 'thumbnail',
+}
 
 const divTarget = {
   drop(props, monitor, component) {
     // Note: For this example we use setState, but in
     // OHIF we will update the redux store instead
-    const item = monitor.getItem();
+    const item = monitor.getItem()
 
     component.setState({
       item: {
         id: item.id,
-        seriesDescription: item.seriesDescription
-      }
-    });
-    return { id: 'ExampleDropTarget' };
-  }
-};
+        seriesDescription: item.seriesDescription,
+      },
+    })
+    return { id: 'ExampleDropTarget' }
+  },
+}
 
 // TODO: Find out why we can't move this into the Example app instead.
 // It looks like the context isn't properly shared.
 class CustomDropTarget extends Component {
-  static className = 'ExampleDropTarget';
+  static className = 'ExampleDropTarget'
 
   state = {
-    item: null
-  };
+    item: null,
+  }
 
   static defaultProps = {
-    isOver: false
-  };
+    isOver: false,
+  }
 
   static propTypes = {
     connectDropTarget: PropTypes.func.isRequired,
     canDrop: PropTypes.bool.isRequired,
-    isOver: PropTypes.bool.isRequired
-  };
+    isOver: PropTypes.bool.isRequired,
+  }
 
   render() {
-    const { canDrop, isOver, connectDropTarget } = this.props;
-    const isActive = canDrop && isOver;
+    const { canDrop, isOver, connectDropTarget } = this.props
+    const isActive = canDrop && isOver
 
-    let className = ExampleDropTarget.className;
+    let className = ExampleDropTarget.className
 
     if (isActive) {
-      className += ' hovered';
+      className += ' hovered'
     } else if (canDrop) {
-      className += ' can-drop';
+      className += ' can-drop'
     }
 
     return connectDropTarget(
@@ -67,18 +67,18 @@ class CustomDropTarget extends Component {
           {this.state.item && JSON.stringify(this.state.item)}
         </p>
       </div>
-    );
+    )
   }
 }
 
 const collect = (connect, monitor) => ({
   connectDropTarget: connect.dropTarget(),
   isOver: monitor.isOver(),
-  canDrop: monitor.canDrop()
-});
+  canDrop: monitor.canDrop(),
+})
 
 const ExampleDropTarget = DropTarget(Types.THUMBNAIL, divTarget, collect)(
   CustomDropTarget
-);
+)
 
-export { ExampleDropTarget };
+export { ExampleDropTarget }
