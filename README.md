@@ -17,6 +17,7 @@
 [![CircleCI][circleci-image]][circleci-url]
 [![All Contributors][all-contributors-image]][contributing-url]
 [![code style: prettier][prettier-image]][prettier-url]
+[![semantic-release][semantic-image]][semantic-url]
 
 [![NPM version][npm-version-image]][npm-url]
 [![NPM downloads][npm-downloads-image]][npm-url]
@@ -139,6 +140,8 @@ Links:
 [npm-version-image]: https://img.shields.io/npm/v/react-viewerbase.svg?style=flat-square
 [license-image]: https://img.shields.io/badge/license-MIT-blue.svg?style=flat-square
 [license-url]: LICENSE
+[semantic-image]: https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg
+[semantic-url]: https://github.com/semantic-release/semantic-release
 
 [bugs]: https://github.com/OHIF/react-viewerbase/labels/bug
 [requests-feature]: https://github.com/OHIF/react-viewerbase/labels/enhancement
