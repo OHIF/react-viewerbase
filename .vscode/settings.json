@@ -24,5 +24,6 @@
     { "language": "javascript", "autoFix": true },
     { "language": "javascriptreact", "autoFix": true }
   ],
-  "prettier.disableLanguages": []
+  "prettier.disableLanguages": [],
+  "prettier.endOfLine": "lf"
 }
