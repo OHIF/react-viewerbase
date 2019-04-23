@@ -18,6 +18,8 @@ export class MeasurementTable extends Component {
     onRelabelClick: PropTypes.func,
     onDeleteClick: PropTypes.func,
     onEditDescriptionClick: PropTypes.func,
+    selectedMeasurementId: PropTypes.string,
+    overwallWarnings: PropTypes.object,
   }
 
   static defaultProps = {
@@ -85,9 +87,12 @@ export class MeasurementTable extends Component {
   }
 
   getMeasurements = measureGroup => {
+    const selectedKey = this.props.selectedMeasurementId
+      ? this.props.selectedMeasurementId
+      : this.state.selectedKey
     return measureGroup.measurements.map((measurement, index) => {
       const key = measurement.measurementId
-      const itemClass = this.state.selectedKey === key ? 'selected' : ''
+      const itemClass = selectedKey === key ? 'selected' : ''
 
       return (
         <MeasurementTableItem
