@@ -81,7 +81,7 @@ export class MeasurementTableItem extends Component {
 
     return (
       <TableListItem
-        itemKey={this.props.measurementData.measurementId}
+        itemKey={this.props.measurementData.measurementNumber}
         itemClass={`measurementItem ${this.props.itemClass} ${hasWarningClass}`}
         itemIndex={this.props.itemIndex}
         onItemClick={this.onItemClick}

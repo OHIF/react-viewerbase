@@ -18,7 +18,7 @@ export class MeasurementTable extends Component {
     onRelabelClick: PropTypes.func,
     onDeleteClick: PropTypes.func,
     onEditDescriptionClick: PropTypes.func,
-    selectedMeasurementId: PropTypes.string,
+    selectedMeasurementNumber: PropTypes.number,
     overwallWarnings: PropTypes.object,
   }
 
@@ -87,11 +87,11 @@ export class MeasurementTable extends Component {
   }
 
   getMeasurements = measureGroup => {
-    const selectedKey = this.props.selectedMeasurementId
-      ? this.props.selectedMeasurementId
+    const selectedKey = this.props.selectedMeasurementNumber
+      ? this.props.selectedMeasurementNumber
       : this.state.selectedKey
     return measureGroup.measurements.map((measurement, index) => {
-      const key = measurement.measurementId
+      const key = measurement.measurementNumber
       const itemClass = selectedKey === key ? 'selected' : ''
 
       return (
@@ -111,7 +111,7 @@ export class MeasurementTable extends Component {
 
   onItemClick = (event, measurementData) => {
     this.setState({
-      selectedKey: measurementData.measurementId,
+      selectedKey: measurementData.measurementNumber,
     })
 
     if (this.props.onItemClick) {
