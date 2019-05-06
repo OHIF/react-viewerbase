@@ -56,6 +56,11 @@ const propTypes = {
   overlay: PropTypes.node.isRequired,
 
   /**
+   * A function to be called once the hide is triggered
+   */
+  handleHide: PropTypes.func,
+
+  /**
    * @private
    */
   onBlur: PropTypes.func,
@@ -103,7 +108,10 @@ class OverlayTrigger extends React.Component {
     this.handleToggle = this.handleToggle.bind(this)
     this.handleDelayedShow = this.handleDelayedShow.bind(this)
     this.handleDelayedHide = this.handleDelayedHide.bind(this)
-    this.handleHide = this.handleHide.bind(this)
+    this.handleHide = createChainedFunction(
+      this.handleHide.bind(this),
+      props.handleHide
+    )
 
     this.handleMouseOver = e =>
       this.handleMouseOverOut(this.handleDelayedShow, e, 'fromElement')
