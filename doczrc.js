@@ -11,6 +11,13 @@ export default {
   indexHtml: 'src/__docs__/index.html',
   // Limited support for importing `.styl` files
   codeSandbox: false,
+  // https://github.com/pedronauck/docz/pull/849/files
+  // Because we re-export using `index.js` files
+  notUseSpecifiers: true,
+  // filterComponents: files =>
+  //   files.filter(filepath =>
+  //     /\/[A-Z]\w*(\/index)?\.(js|jsx|ts|tsx)$/.test(filepath)
+  //   ),
   menu: [
     'Introduction',
     'Getting Started',
