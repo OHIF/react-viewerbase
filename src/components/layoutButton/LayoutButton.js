@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
-import { LayoutChooser } from './layoutChooser'
-import ToolbarButton from './../../viewer/ToolbarButton'
+import { LayoutChooser } from './LayoutChooser.js'
+import ToolbarButton from '../../viewer/ToolbarButton'
 
 export class LayoutButton extends PureComponent {
   static defaultProps = {

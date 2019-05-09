@@ -3,11 +3,11 @@ import PropTypes from 'prop-types'
 import { isInclusivelyBeforeDay } from 'react-dates'
 import moment from 'moment'
 
-import CustomDateRangePicker from './customDateRangePicker.js'
-import { PaginationArea } from './paginationArea.js'
-import { StudylistToolbar } from './studyListToolbar.js'
-import { StudyListLoadingText } from './studyListLoadingText.js'
-import './studyList.styl'
+import CustomDateRangePicker from './CustomDateRangePicker.js'
+import { PaginationArea } from './PaginationArea.js'
+import { StudylistToolbar } from './StudyListToolbar.js'
+import { StudyListLoadingText } from './StudyListLoadingText.js'
+import './StudyList.styl'
 
 const today = moment()
 const lastWeek = moment().subtract(7, 'day')

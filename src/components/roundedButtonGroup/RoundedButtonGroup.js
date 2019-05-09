@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import classnames from 'classnames'
-import './roundedButtonGroup.css'
+import './RoundedButtonGroup.css'
 
 // TODO: Rename to Toggle?
 class RoundedButtonGroup extends Component {

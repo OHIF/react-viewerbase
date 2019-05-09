@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 
-import './simpleDialog.styl'
+import './SimpleDialog.styl'
 
 class SimpleDialog extends Component {
   static propTypes = {
