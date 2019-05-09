@@ -81,6 +81,12 @@ export default class ExpandableToolMenu extends React.Component {
     })
   }
 
+  onOverlayHide = () => {
+    this.setState({
+      expanded: false,
+    })
+  }
+
   render() {
     return (
       <OverlayTrigger
@@ -88,6 +94,7 @@ export default class ExpandableToolMenu extends React.Component {
         trigger="click"
         placement="bottom"
         rootClose={true}
+        handleHide={this.onOverlayHide}
         onClick={this.onExpandableToolClick}
         overlay={this.toolbarMenuOverlay()}
       >
