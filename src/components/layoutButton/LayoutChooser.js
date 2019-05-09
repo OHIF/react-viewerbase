@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
-import './layoutChooser.styl'
+import './LayoutChooser.styl'
 
 /**
  * Adds the 'hover' class to cells above and to the left of the current cell

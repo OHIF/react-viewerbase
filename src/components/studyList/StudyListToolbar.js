@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
 
-import './studyListToolbar.styl'
+import './StudyListToolbar.styl'
 
 class StudylistToolbar extends PureComponent {
   static propTypes = {
