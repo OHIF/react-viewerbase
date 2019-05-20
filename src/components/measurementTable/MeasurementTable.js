@@ -96,12 +96,13 @@ export class MeasurementTable extends Component {
       : this.state.selectedKey
     return measureGroup.measurements.map((measurement, index) => {
       const key = measurement.measurementNumber
+      const itemIndex = measurement.itemNumber || index + 1
       const itemClass = selectedKey === key ? 'selected' : ''
 
       return (
         <MeasurementTableItem
           key={key}
-          itemIndex={index}
+          itemIndex={itemIndex}
           itemClass={itemClass}
           measurementData={measurement}
           onItemClick={this.onItemClick}

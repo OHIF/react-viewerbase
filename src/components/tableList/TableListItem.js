@@ -24,7 +24,7 @@ export class TableListItem extends Component {
         onClick={this.onItemClick}
       >
         <div className="itemIndex">
-          {this.props.itemIndex + 1}
+          {this.props.itemIndex}
           <span className="warning-icon">
             <svg>
               <use xlinkHref={`${Icons}#icon-ui-warning`} />
