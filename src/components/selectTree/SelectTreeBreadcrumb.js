@@ -10,6 +10,10 @@ export default class SelectTreeBreadcrumb extends Component {
   }
 
   render() {
+    const config = window.config || {}
+    const routerBaseName = config.routerBaseName || ''
+    const Icons = `${routerBaseName}/icons.svg`.replace('//', '/')
+
     return (
       <div className="selectTreeBreadcrumb">
         <label
@@ -26,7 +30,7 @@ export default class SelectTreeBreadcrumb extends Component {
           <span className="wrapperText">
             <span className="backIcon">
               <svg>
-                <use xlinkHref="/icons.svg#fast-backward" />
+                <use xlinkHref={`${Icons}#fast-backward`} />
               </svg>
             </span>
             {this.props.label}

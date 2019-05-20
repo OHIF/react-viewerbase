@@ -35,6 +35,10 @@ export class ScrollableArea extends Component {
   }
 
   render() {
+    const config = window.config || {}
+    const routerBaseName = config.routerBaseName || ''
+    const Icons = `${routerBaseName}/icons.svg`.replace('//', '/')
+
     let scrollableClass = 'scrollable'
     if (this.props.scrollableClass) {
       scrollableClass += ` ${this.props.scrollableClass}`
@@ -65,12 +69,12 @@ export class ScrollableArea extends Component {
         </div>
         <div className="scrollNav scrollNavUp" onClick={this.scrollNavUp}>
           <svg className="scrollNavIcon">
-            <use xlinkHref="/icons.svg#icon-angle-double-up" />
+            <use xlinkHref={`${Icons}#icon-angle-double-up`} />
           </svg>
         </div>
         <div className="scrollNav scrollNavDown" onClick={this.scrollNavDown}>
           <svg className="scrollNavIcon">
-            <use xlinkHref="/icons.svg#icon-angle-double-down" />
+            <use xlinkHref={`${Icons}#icon-angle-double-down`} />
           </svg>
         </div>
       </div>

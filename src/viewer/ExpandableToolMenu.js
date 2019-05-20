@@ -51,7 +51,11 @@ export default class ExpandableToolMenu extends React.Component {
   }
 
   getMenuSvgUrl = () => {
-    let svgUrl = this.props.svgUrl || '/icons.svg#icon-tools-more'
+    const config = window.config || {}
+    const routerBaseName = config.routerBaseName || ''
+    const Icons = `${routerBaseName}/icons.svg`.replace('//', '/')
+
+    let svgUrl = this.props.svgUrl || `${Icons}#icon-tools-more`
     if (this.props.activeCommand) {
       this.props.buttons.forEach(button => {
         if (this.props.activeCommand === button.command) {
