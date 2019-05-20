@@ -33,6 +33,10 @@ export class MeasurementTable extends Component {
   }
 
   render() {
+    const config = window.config || {}
+    const routerBaseName = config.routerBaseName || ''
+    const Icons = `${routerBaseName}/icons.svg`.replace('//', '/')
+
     const hasOverallWarnings = this.props.overallWarnings.warningList.length > 0
     return (
       <div className="measurementTable">
@@ -58,7 +62,7 @@ export class MeasurementTable extends Component {
               <span className="warning-status">
                 <span className="warning-border">
                   <svg>
-                    <use xlinkHref="/icons.svg#icon-ui-warning" />
+                    <use xlinkHref={`${Icons}#icon-ui-warning`} />
                   </svg>
                 </span>
               </span>

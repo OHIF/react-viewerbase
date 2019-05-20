@@ -14,6 +14,10 @@ export class TableListItem extends Component {
   }
 
   render() {
+    const config = window.config || {}
+    const routerBaseName = config.routerBaseName || ''
+    const Icons = `${routerBaseName}/icons.svg`.replace('//', '/')
+
     return (
       <div
         className={`tableListItem ${this.props.itemClass}`}
@@ -23,7 +27,7 @@ export class TableListItem extends Component {
           {this.props.itemIndex}
           <span className="warning-icon">
             <svg>
-              <use xlinkHref="/icons.svg#icon-ui-warning" />
+              <use xlinkHref={`${Icons}#icon-ui-warning`} />
             </svg>
           </span>
         </div>
