@@ -9,7 +9,7 @@ export class TableListItem extends Component {
     children: PropTypes.node,
     itemClass: PropTypes.string,
     itemIndex: PropTypes.number,
-    itemKey: PropTypes.string,
+    itemKey: PropTypes.oneOfType(['number', 'string']),
     onItemClick: PropTypes.func.isRequired,
   }
 
