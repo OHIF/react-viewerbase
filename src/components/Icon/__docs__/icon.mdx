@@ -1,0 +1,29 @@
+---
+name: Icon
+menu: Components
+route: /components/icon
+---
+
+import { Playground, Props } from 'docz'
+import { State } from 'react-powerplug'
+import { Icon, IconTypes } from './../index.js'
+
+# Icon
+
+## Basic usage
+
+<Playground>
+  <div>
+    {Object.keys(IconTypes).map((name, i) => {
+      return (
+        <React.Fragment key={i}>
+          <Icon name={name} />
+        </React.Fragment>
+      )
+    })}
+  </div>
+</Playground>
+
+## API
+
+<Props of={Icon} />
