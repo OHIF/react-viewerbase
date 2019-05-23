@@ -6,16 +6,28 @@ function Icon(props) {
 
   return (
     <svg
-      className="icon-tool-more"
+      className="icon-tool-measure-target-cr"
       xmlns="http://www.w3.org/2000/svg"
-      viewBox="0 0 18 18"
+      viewBox="0 0 24 24"
       aria-labelledby="title"
       width={width}
       height={height}
-      fill={fill}
+      stroke={fill}
+      fill="none"
+      strokeWidth="1"
+      strokeLinecap="round"
+      strokeLinejoin="round"
     >
-      <title id="title">More</title>
-      <path d="M9,0 a9 9 0 0 1 0 18 a9 9 0 0 1 0 -18 M4.5,8 a1.5 1.5 0 0 0 0 3 a1.5 1.5 0 0 0 0 -3 M9,8 a1.5 1.5 0 0 0 0 3 a1.5 1.5 0 0 0 0 -3  M13.5,8 a1.5 1.5 0 0 0 0 3 a1.5 1.5 0 0 0 0 -3" />
+      <title id="title">Measure Target CR</title>
+      <text
+        fill="#000000"
+        x="0"
+        y="8"
+        style={{ fontSize: '10px', fontFamily: 'sans-serif' }}
+      >
+        CR
+      </text>
+      <path d="M23,7 l-15,15 M7,17 l0,6 6,0" strokeWidth="2" />
     </svg>
   )
 }
@@ -27,8 +39,8 @@ Icon.propTypes = {
 }
 
 Icon.defaultProps = {
-  width: 18,
-  height: 18,
+  width: 24,
+  height: 24,
   fill: 'black',
 }
 

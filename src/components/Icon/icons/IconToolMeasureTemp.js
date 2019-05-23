@@ -6,7 +6,7 @@ function Icon(props) {
 
   return (
     <svg
-      className="icon-tool-measure-target"
+      className="icon-tool-measure-temp"
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 24 24"
       aria-labelledby="title"
@@ -18,7 +18,7 @@ function Icon(props) {
       strokeLinecap="round"
       strokeLinejoin="round"
     >
-      <title id="title">Measure Target</title>
+      <title id="title">Measure Temp</title>
       <circle cx="6.5" cy="6.5" r="6" />
       <path d="M6.5,3 l0,7 M3,6.5 l7,0" />
       <path d="m22.5,6 -16.5,16.5" strokeWidth="3" strokeDasharray="0.6666,5" />

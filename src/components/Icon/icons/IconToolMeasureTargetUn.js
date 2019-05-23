@@ -6,7 +6,7 @@ function Icon(props) {
 
   return (
     <svg
-      className="icon-tool-more"
+      className="icon-tool-measure-target-un"
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 24 24"
       aria-labelledby="title"
@@ -18,7 +18,7 @@ function Icon(props) {
       strokeLinecap="round"
       strokeLinejoin="round"
     >
-      <title id="title">More</title>
+      <title id="title">Measure Target UN</title>
       <text
         fill="#000000"
         x="0"
