@@ -153,9 +153,8 @@ Icon.propTypes = {
 }
 
 Icon.defaultProps = {
-  width: '16px',
-  height: '16px',
-  color: 'black',
+  width: '100%',
+  height: '100%',
 }
 
 export { Icon, IconTypes }

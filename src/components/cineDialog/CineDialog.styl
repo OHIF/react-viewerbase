@@ -128,10 +128,12 @@
 
   .btn
     color: var(--text-secondary-color);
+    fill: var(--text-secondary-color);
     background-color: transparent
     border: 0
     border-radius: 4px
     font-size: 15px
+    width: 45px
     font-weight: normal
     height: 37px
     line-height: 37px
@@ -139,12 +141,15 @@
 
     &:hover, &:active, &.active
       color: var(--hover-color);
+      fill: var(--hover-color);
 
     &[disabled]
       &:hover
         color: inherit
+        fill: inherit
       &:active
         color: var(--text-secondary-color);
+        fill: var(--text-secondary-color);
 
     &.btn-primary, &.btn-secondary, &.btn-danger
       transition: background-color 0.3s ease
