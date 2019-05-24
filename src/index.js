@@ -1,6 +1,8 @@
 import {
   CineDialog,
   ExampleDropTarget,
+  Icon,
+  IconTypes,
   LayoutButton,
   LayoutChooser,
   MeasurementTable,
@@ -38,6 +40,8 @@ export {
   Dropdown,
   ExpandableToolMenu,
   ExampleDropTarget,
+  Icon,
+  IconTypes,
   LayoutButton,
   LayoutChooser,
   LayoutManager,

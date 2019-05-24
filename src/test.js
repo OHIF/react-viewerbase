@@ -7,6 +7,8 @@ describe('Top level exports', () => {
       'Dropdown',
       'ExpandableToolMenu',
       'ExampleDropTarget',
+      'Icon',
+      'IconTypes',
       'LayoutButton',
       'LayoutChooser',
       'LayoutManager',
