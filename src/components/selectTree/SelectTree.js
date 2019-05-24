@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 
 import InputRadio from './InputRadio.js'
 import SelectTreeBreadcrumb from './SelectTreeBreadcrumb.js'
+import { Icon } from './../Icon'
 
 import cloneDeep from 'lodash.clonedeep'
 
@@ -135,7 +136,9 @@ export class SelectTree extends Component {
         <div className="wrapperText">{title}</div>
         {this.props.searchEnabled && (
           <div className="wrapperSearch">
-            <i className="fa fa-lg fa-search searchIcon" />
+            <div className="searchIcon">
+              <Icon name="log" />
+            </div>
             <input
               type="text"
               className="searchInput"
