@@ -13,11 +13,36 @@ import { Icon, IconTypes } from './../index.js'
 ## Basic usage
 
 <Playground>
-  <div>
+  <div
+    style={{
+      display: 'flex',
+      flexWrap: 'wrap',
+      alignItems: 'center',
+      justifyContent: 'center',
+      color: 'white',
+    }}
+  >
     {Object.keys(IconTypes).map((name, i) => {
       return (
         <React.Fragment key={i}>
-          <Icon name={name} />
+          <div
+            style={{
+              display: 'flex',
+              flexDirection: 'column',
+              flexBasis: '25%',
+              minWidth: '100px',
+              margin: '16px',
+              backgroundColor: 'rgb(11, 95, 255)',
+              borderRadius: '8px',
+              padding: '16px',
+              alignItems: 'center',
+            }}
+          >
+            <Icon name={name} width="24px" height="24px" fill="white" />
+            <div style={{ fontSize: '12px', wordWrap: 'break-word' }}>
+              {name}
+            </div>
+          </div>
         </React.Fragment>
       )
     })}
