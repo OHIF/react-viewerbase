@@ -69,6 +69,8 @@ import WindowLevelSoftTissue from './icons/IconWindowLevelSoftTissue.js'
 import WindowLevelLung from './icons/IconWindowLevelLung.js'
 import WindowLevelLiver from './icons/IconWindowLevelLiver.js'
 
+import './Icon.styl'
+
 const IconTypes = {
   'accordian-expand': AccordianExpand,
   add: Add,
@@ -150,6 +152,7 @@ Icon.propTypes = {
   width: PropTypes.string,
   height: PropTypes.string,
   color: PropTypes.string,
+  animation: PropTypes.string,
 }
 
 Icon.defaultProps = {

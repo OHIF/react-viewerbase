@@ -5,112 +5,98 @@ import PlayClipButton from './PlayClipButton'
 import { LayoutButton } from './../components/layoutButton'
 
 function getDefaultButtonData() {
-  var buttonData = []
-
-  buttonData.push({
-    id: 'wwwc',
-    title: 'WW/WC',
-    className: 'imageViewerTool',
-    iconClassName: 'fa fa-sun-o',
-  })
-
-  buttonData.push({
-    id: 'wwwcRegion',
-    title: 'Window by Region',
-    className: 'imageViewerTool',
-    iconClassName: 'fa fa-square',
-  })
-
-  buttonData.push({
-    id: 'magnify',
-    title: 'Magnify',
-    className: 'imageViewerTool',
-    iconClassName: 'fa fa-circle',
-  })
-
-  buttonData.push({
-    id: 'annotate',
-    title: 'Annotation',
-    className: 'imageViewerTool',
-    iconClassName: 'fa fa-arrows-h',
-  })
-
-  buttonData.push({
-    id: 'invert',
-    title: 'Invert',
-    className: 'imageViewerCommand',
-    iconClassName: 'fa fa-adjust',
-  })
-
-  buttonData.push({
-    id: 'zoom',
-    title: 'Zoom',
-    className: 'imageViewerTool',
-    iconClassName: 'fa fa-search',
-  })
-
-  buttonData.push({
-    id: 'pan',
-    title: 'Pan',
-    className: 'imageViewerTool',
-    iconClassName: 'fa fa-arrows',
-  })
-
-  buttonData.push({
-    id: 'stackScroll',
-    title: 'Stack Scroll',
-    className: 'imageViewerTool',
-    iconClassName: 'fa fa-bars',
-  })
-
-  buttonData.push({
-    id: 'length',
-    title: 'Length Measurement',
-    className: 'imageViewerTool',
-    iconClassName: 'fa fa-arrows-v',
-  })
-
-  buttonData.push({
-    id: 'angle',
-    title: 'Angle Measurement',
-    className: 'imageViewerTool',
-    iconClassName: 'fa fa-angle-left',
-  })
-
-  buttonData.push({
-    id: 'dragProbe',
-    title: 'Pixel Probe',
-    className: 'imageViewerTool',
-    iconClassName: 'fa fa-dot-circle-o',
-  })
-
-  buttonData.push({
-    id: 'ellipticalRoi',
-    title: 'Elliptical ROI',
-    className: 'imageViewerTool',
-    iconClassName: 'fa fa-circle-o',
-  })
-
-  buttonData.push({
-    id: 'rectangleRoi',
-    title: 'Rectangle ROI',
-    className: 'imageViewerTool',
-    iconClassName: 'fa fa-square-o',
-  })
-
-  buttonData.push({
-    id: 'resetViewport',
-    title: 'Reset Viewport',
-    className: 'imageViewerCommand',
-    iconClassName: 'fa fa-undo',
-  })
-
-  buttonData.push({
-    id: 'clearTools',
-    title: 'Clear tools',
-    className: 'imageViewerCommand',
-    iconClassName: 'fa fa-trash',
-  })
+  var buttonData = [
+    {
+      id: 'wwwc',
+      title: 'WW/WC',
+      className: 'imageViewerTool',
+      iconName: 'sun',
+    },
+    {
+      id: 'wwwcRegion',
+      title: 'Window by Region',
+      className: 'imageViewerTool',
+      iconName: 'stop',
+    },
+    {
+      id: 'magnify',
+      title: 'Magnify',
+      className: 'imageViewerTool',
+      iconName: 'circle',
+    },
+    {
+      id: 'annotate',
+      title: 'Annotation',
+      className: 'imageViewerTool',
+      iconName: 'arrows-alt-h',
+    },
+    {
+      id: 'invert',
+      title: 'Invert',
+      className: 'imageViewerCommand',
+      iconName: 'tool-invert',
+    },
+    {
+      id: 'zoom',
+      title: 'Zoom',
+      className: 'imageViewerTool',
+      iconName: 'log',
+    },
+    {
+      id: 'pan',
+      title: 'Pan',
+      className: 'imageViewerTool',
+      iconName: 'tool-pan',
+    },
+    {
+      id: 'stackScroll',
+      title: 'Stack Scroll',
+      className: 'imageViewerTool',
+      iconName: 'bars',
+    },
+    {
+      id: 'length',
+      title: 'Length Measurement',
+      className: 'imageViewerTool',
+      iconName: 'arrows-alt-v',
+    },
+    {
+      id: 'angle',
+      title: 'Angle Measurement',
+      className: 'imageViewerTool',
+      iconName: 'fa fa-angle-left',
+    },
+    {
+      id: 'dragProbe',
+      title: 'Pixel Probe',
+      className: 'imageViewerTool',
+      iconName: 'fa fa-dot-circle-o',
+    },
+    {
+      id: 'ellipticalRoi',
+      title: 'Elliptical ROI',
+      className: 'imageViewerTool',
+      iconName: 'circle-outline',
+    },
+    {
+      id: 'rectangleRoi',
+      title: 'Rectangle ROI',
+      className: 'imageViewerTool',
+      iconName: 'square-outline',
+    },
+    {
+      id: 'resetViewport',
+      title: 'Reset Viewport',
+      className: 'imageViewerCommand',
+      iconName: 'tool-reset',
+    },
+    {
+      id: 'clearTools',
+      title: 'Clear tools',
+      className: 'imageViewerCommand',
+      iconName: 'trash',
+    },
+  ]
   return buttonData
 }
 
