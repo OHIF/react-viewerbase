@@ -2,23 +2,22 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 function Icon(props) {
-  const { fill, width, height } = props
+  const { color, title, width, height } = props
 
   return (
     <svg
-      className="icon-tool-measure-target-cr"
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 24 24"
       aria-labelledby="title"
       width={width}
       height={height}
-      stroke={fill}
+      stroke={color}
       fill="none"
       strokeWidth="1"
       strokeLinecap="round"
       strokeLinejoin="round"
     >
-      <title id="title">Measure Target CR</title>
+      <title id="title">{title}</title>
       <text
         fill="#000000"
         x="0"
@@ -33,15 +32,14 @@ function Icon(props) {
 }
 
 Icon.propTypes = {
-  width: PropTypes.number,
-  height: PropTypes.number,
-  fill: PropTypes.string,
+  width: PropTypes.string.isRequired,
+  height: PropTypes.string.isRequired,
+  color: PropTypes.string.isRequired,
+  title: PropTypes.string,
 }
 
 Icon.defaultProps = {
-  width: 24,
-  height: 24,
-  fill: 'black',
+  title: 'Measure Target CR',
 }
 
 export default Icon
