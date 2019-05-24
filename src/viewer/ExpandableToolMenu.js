@@ -9,7 +9,6 @@ import './ExpandableToolMenu.styl'
 export default class ExpandableToolMenu extends React.Component {
   static propTypes = {
     text: PropTypes.string.isRequired,
-    svgUrl: PropTypes.string,
     buttons: PropTypes.array.isRequired,
     activeCommand: PropTypes.string,
     setToolActive: PropTypes.func,
@@ -48,22 +47,6 @@ export default class ExpandableToolMenu extends React.Component {
         />
       )
     })
-  }
-
-  getMenuSvgUrl = () => {
-    const config = window.config || {}
-    const routerBaseName = config.routerBaseName || ''
-    const Icons = `${routerBaseName}/icons.svg`.replace('//', '/')
-
-    let svgUrl = this.props.svgUrl || `${Icons}#icon-tools-more`
-    if (this.props.activeCommand) {
-      this.props.buttons.forEach(button => {
-        if (this.props.activeCommand === button.command) {
-          svgUrl = button.svgUrl
-        }
-      })
-    }
-    return svgUrl
   }
 
   isActive = () => {
@@ -107,7 +90,6 @@ export default class ExpandableToolMenu extends React.Component {
           command="More"
           type="tool"
           text={this.props.text}
-          svgUrl={this.getMenuSvgUrl()}
           className={'ToolbarButton expandableToolMenu'}
           active={this.isActive()}
           expandableButton={true}

@@ -5,6 +5,7 @@ import { TableList } from './../tableList'
 import { ScrollableArea } from './../../ScrollableArea/ScrollableArea.js'
 import { OverlayTrigger } from './../overlayTrigger'
 import { Tooltip } from './../tooltip'
+import { Icon } from './../Icon'
 
 import { MeasurementTableItem } from './MeasurementTableItem.js'
 import './MeasurementTable.styl'
@@ -33,10 +34,6 @@ export class MeasurementTable extends Component {
   }
 
   render() {
-    const config = window.config || {}
-    const routerBaseName = config.routerBaseName || ''
-    const Icons = `${routerBaseName}/icons.svg`.replace('//', '/')
-
     const hasOverallWarnings = this.props.overallWarnings.warningList.length > 0
     return (
       <div className="measurementTable">
@@ -61,9 +58,7 @@ export class MeasurementTable extends Component {
             >
               <span className="warning-status">
                 <span className="warning-border">
-                  <svg>
-                    <use xlinkHref={`${Icons}#icon-ui-warning`} />
-                  </svg>
+                  <Icon name="warning" />
                 </span>
               </span>
             </OverlayTrigger>

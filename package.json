@@ -22,7 +22,7 @@
     "lint": "eslint -c .eslintrc --fix src && prettier --single-quote --write src/**/*.{js,jsx,json,css}",
     "prepare": "yarn build",
     "prepublishOnly": "yarn build",
-    "generateStaticSite": "docz build && cpx 'example/build/public/icons.svg' example/build/ -v"
+    "generateStaticSite": "docz build"
   },
   "husky": {
     "hooks": {

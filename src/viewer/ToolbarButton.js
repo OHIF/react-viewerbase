@@ -24,12 +24,7 @@ export function ToolbarButton(props) {
   }
 
   const className = classnames(props.className, { active: props.active })
-  const { active, svgUrlActive, iconClassesActive, textActive } = props
-
-  let svgUrl = props.svgUrl
-  if (active && svgUrlActive) {
-    svgUrl = svgUrlActive
-  }
+  const { active, iconClassesActive, textActive } = props
 
   let iconClasses = props.iconClasses
   if (active && iconClassesActive) {
@@ -46,17 +41,9 @@ export function ToolbarButton(props) {
   ) : (
     <CaretDown style={arrowIconStyle} />
   )
-  const svgClasses = props.svgClasses || ''
 
   return (
     <div className={className} onClick={onClick}>
-      {svgUrl && (
-        <div className="svgContainer">
-          <svg className={svgClasses}>
-            <use xlinkHref={svgUrl} />
-          </svg>
-        </div>
-      )}
       {iconClasses && <i className={iconClasses} />}
       <div className="buttonLabel">
         <span className="toolbar-button-label">{label}</span>
@@ -79,9 +66,6 @@ ToolbarButton.propTypes = {
   textActive: PropTypes.string,
   iconClasses: PropTypes.string,
   iconClassesActive: PropTypes.string,
-  svgUrl: PropTypes.string,
-  svgClasses: PropTypes.string,
-  svgUrlActive: PropTypes.string,
   onClick: PropTypes.func,
   setToolActive: PropTypes.func,
   expandableButton: PropTypes.bool,

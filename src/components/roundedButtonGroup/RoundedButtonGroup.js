@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import classnames from 'classnames'
+import { Icon } from './../Icon'
 import './RoundedButtonGroup.css'
 
 // TODO: Rename to Toggle?
@@ -42,23 +43,14 @@ class RoundedButtonGroup extends Component {
         active: this.props.value === option.value,
       })
 
-      let optionSVG
-      if (option.svgLink) {
-        const svgStyle = {
-          width: `${option.svgWidth}px`,
-          height: `${option.svgHeight}px`,
-        }
-        optionSVG = (
-          <svg style={svgStyle}>
-            <use xlinkHref={option.svgLink} />
-          </svg>
-        )
-      }
-
       const optionText = option.text && <span>{option.text}</span>
 
-      const optionIcon = option.iconClasses && (
-        <i className={option.iconClasses} />
+      const optionIcon = option.iconName && (
+        <Icon
+          name={option.iconName}
+          width={option.iconWidth}
+          height={option.iconHeight}
+        />
       )
 
       const bottomLabel = option.bottomLabel && (
@@ -72,7 +64,6 @@ class RoundedButtonGroup extends Component {
           onClick={() => this.onClickOption(option.value)}
         >
           <div className="roundedButton">
-            {optionSVG}
             {optionText}
             {optionIcon}
           </div>
