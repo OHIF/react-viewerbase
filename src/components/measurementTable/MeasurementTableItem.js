@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 
+import { Icon } from './../Icon'
 import { OverlayTrigger } from './../overlayTrigger'
 import { Tooltip } from './../tooltip'
 import { TableListItem } from './../tableList/TableListItem.js'
@@ -50,7 +51,9 @@ export class MeasurementTableItem extends Component {
   getActionButton = (btnLabel, onClickCallback) => {
     return (
       <button key={btnLabel} className="btnAction" onClick={onClickCallback}>
-        <i className="fa fa-edit" />
+        <span style={{ marginRight: '4px' }}>
+          <Icon name="edit" width="14px" height="14px" />
+        </span>
         {btnLabel}
       </button>
     )

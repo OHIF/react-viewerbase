@@ -11,21 +11,24 @@
         background-color: transparent;
         border: none;
         color: var(--default-color)
+        fill: var(--default-color)
         cursor: pointer
         line-height: 35px
+        height: 35px
         transition: all 0.3s ease
 
         &:hover, &:active
           color: var(--text-primary-color)
+          fill: var(--text-primary-color)
 
         i
           margin-right: 4px;
-  
+
   &.selected
     .rowActions
       height: 35px
       visibility: visible
-  
+
   .measurementLocation
     margin-left: 9px;
     margin-top: 9px;
@@ -38,7 +41,7 @@
     width: 90px;
     border-left: 1px solid var(--text-secondary-color);
     color: var(--text-primary-color);
-  
+
   &.hasWarnings
     .itemIndex
       opacity: 1
