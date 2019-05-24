@@ -7,18 +7,23 @@ function Icon(props) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      viewBox="0 0 17 17"
+      viewBox="0 0 20 22"
       aria-labelledby="title"
-      stroke={color}
       width={width}
       height={height}
-      fill="none"
-      strokeWidth="2"
+      fill={color}
+      strokeWidth="1"
       strokeLinecap="round"
+      strokeLinejoin="round"
     >
       <title id="title">{title}</title>
-      <path d="m11.5,11.5 4.5,4.5" />
-      <circle cx="7" cy="7" r="6" />
+      <path
+        d="m14.5,2.75 2,0 a2.5 2.5 0 0 1 2.5 2.5 l0,13.25 a2.5 2.5 0 0 1 -2.5 2.5 l-11.5,0 a2.5 2.5 0 0 1 -2.5 -2.5 l0,-1"
+        strokeDasharray="1,3"
+      />
+      <path d="m0.5,2 0,14 a1.5 1.5 0 0 0 1.5 1.5 l12,0 a1.5 1.5 0 0 0 1.5 -1.5 l0,-14" />
+      <path d="m2,2 12,0" strokeWidth="4" />
+      <path d="m4.4,7.5 7.2,0 m0,3 -7.2,0 m0,3 7.2,0" strokeLinecap="square" />
     </svg>
   )
 }
@@ -31,7 +36,7 @@ Icon.propTypes = {
 }
 
 Icon.defaultProps = {
-  title: 'Zoom',
+  title: 'Hud Group',
 }
 
 export default Icon

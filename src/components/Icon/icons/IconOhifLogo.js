@@ -12,6 +12,7 @@ function Icon(props) {
       width={width}
       height={height}
       stroke={color}
+      fill="none"
       strokeWidth="2.5"
       strokeMiterlimit="10"
     >

@@ -13,6 +13,7 @@ import Close from './icons/IconClose.js'
 import CreateComment from './icons/IconCreateComment.js'
 import CreateScreenCapture from './icons/IconCreateScreenCapture.js'
 import FastBackward from './icons/IconFastBackward.js'
+import HudGroup from './icons/IconHudGroup.js'
 import Log from './icons/IconLog.js'
 import Logout from './icons/IconLogout.js'
 import MeasurementAdditional from './icons/IconMeasurementAdditional.js'
@@ -67,6 +68,7 @@ const IconTypes = {
   'create-comment': CreateComment,
   'create-screen-capture': CreateScreenCapture,
   'fast-backward': FastBackward,
+  'hud-group': HudGroup,
   log: Log,
   logout: Logout,
   'measurement-additional': MeasurementAdditional,
