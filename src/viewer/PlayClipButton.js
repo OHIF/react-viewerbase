@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
+import { Icon } from './../components/Icon'
 
 export default class PlayClipButton extends Component {
   static propTypes = {
@@ -11,10 +12,8 @@ export default class PlayClipButton extends Component {
   }
 
   render() {
-    let playClass = 'fa-stop'
-    if (this.props.isPlaying) {
-      playClass = 'fa-play'
-    }
+    const iconName = this.props.isPlaying ? 'stop' : 'play'
+
     return (
       <div className="btn-group">
         <button
@@ -26,7 +25,7 @@ export default class PlayClipButton extends Component {
           data-placement="bottom"
           title="Play/Stop Clip"
         >
-          <span className={`fa ${playClass}`} />
+          <Icon name={iconName} />
         </button>
         <button
           id="toggleCineDialog"
@@ -37,7 +36,7 @@ export default class PlayClipButton extends Component {
           data-placement="bottom"
           title="Toggle CINE Dialog"
         >
-          <span className="fa fa-youtube-play" />
+          <Icon name="tool-cineplay-toggle" />
         </button>
       </div>
     )

@@ -1,11 +1,10 @@
 import React from 'react'
+import { Icon } from './../Icon'
 
 function StudyListLoadingText() {
   return (
-    <div className="loadingTextDiv">
-      <h5>
-        Loading... <i className="fa fa-spinner fa-pulse" />
-      </h5>
+    <div className="loading-text">
+      Loading... <Icon name="spinner" animation="pulse" />
     </div>
   )
 }
