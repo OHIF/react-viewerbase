@@ -4,15 +4,21 @@ import PropTypes from 'prop-types'
 // Icons
 import Add from './icons/IconAdd.js'
 import AccordianExpand from './icons/IconAccordianExpand.js'
-import AngleDoubleUp from './icons/IconAngleDoubleUp.js'
 import AngleDoubleDown from './icons/IconAngleDoubleDown.js'
+import AngleDoubleUp from './icons/IconAngleDoubleUp.js'
+import ArrowsAltH from './icons/IconArrowsAltH.js'
+import ArrowsAltV from './icons/IconArrowsAltV.js'
 import Bars from './icons/IconBars.js'
 import CheckCircle from './icons/IconCheckCircle.js'
 import CheckSolid from './icons/IconCheckSolid.js'
+import Circle from './icons/IconCircle.js'
+import CircleOutline from './icons/IconCircleOutline.js'
 import Close from './icons/IconClose.js'
 import CreateComment from './icons/IconCreateComment.js'
 import CreateScreenCapture from './icons/IconCreateScreenCapture.js'
+import Edit from './icons/IconEdit.js'
 import FastBackward from './icons/IconFastBackward.js'
+import FastForward from './icons/IconFastForward.js'
 import HudGroup from './icons/IconHudGroup.js'
 import Log from './icons/IconLog.js'
 import Logout from './icons/IconLogout.js'
@@ -20,13 +26,19 @@ import MeasurementAdditional from './icons/IconMeasurementAdditional.js'
 import MeasurementLesions from './icons/IconMeasurementLesions.js'
 import OhifLogo from './icons/IconOhifLogo.js'
 import Password from './icons/IconPassword.js'
+import Play from './icons/IconPlay.js'
 import Server from './icons/IconServer.js'
 import Settings from './icons/IconSettings.js'
 import Spinner from './icons/IconSpinner.js'
+import SquareOutline from './icons/IconSquareOutline.js'
 import StatusComplete from './icons/IconStatusComplete.js'
 import StatusLock from './icons/IconStatusLock.js'
+import StepBackward from './icons/IconStepBackward.js'
+import StepForward from './icons/IconStepForward.js'
+import Stop from './icons/IconStop.js'
 import Studies from './icons/IconStudies.js'
 import StudyList from './icons/IconStudyList.js'
+import Sun from './icons/IconSun.js'
 import Theme from './icons/IconTheme.js'
 import ToolCineplayToggle from './icons/IconToolCineplayToggle.js'
 import ToolElliptical from './icons/IconToolElliptical.js'
@@ -48,6 +60,7 @@ import ToolRotate from './icons/IconToolRotate.js'
 import ToolRotateRight from './icons/IconToolRotateRight.js'
 import ToolStackScroll from './icons/IconToolStackScroll.js'
 import ToolZoom from './icons/IconToolZoom.js'
+import Trash from './icons/IconTrash.js'
 import TrialInfo from './icons/IconTrialInfo.js'
 import ViewportLink from './icons/IconViewportLink.js'
 import Warning from './icons/IconWarning.js'
@@ -59,15 +72,21 @@ import WindowLevelLiver from './icons/IconWindowLevelLiver.js'
 const IconTypes = {
   'accordian-expand': AccordianExpand,
   add: Add,
-  'angle-double-up': AngleDoubleUp,
   'angle-double-down': AngleDoubleDown,
+  'angle-double-up': AngleDoubleUp,
+  'arrows-alt-h': ArrowsAltH,
+  'arrows-alt-v': ArrowsAltV,
   bars: Bars,
   'check-circle': CheckCircle,
   'check-solid': CheckSolid,
+  circle: Circle,
+  'circle-outline': CircleOutline,
   close: Close,
   'create-comment': CreateComment,
   'create-screen-capture': CreateScreenCapture,
+  edit: Edit,
   'fast-backward': FastBackward,
+  'fast-forward': FastForward,
   'hud-group': HudGroup,
   log: Log,
   logout: Logout,
@@ -75,13 +94,19 @@ const IconTypes = {
   'measurement-lesions': MeasurementLesions,
   'ohif-logo': OhifLogo,
   password: Password,
+  play: Play,
   server: Server,
   settings: Settings,
   spinner: Spinner,
+  'square-outline': SquareOutline,
   'status-complete': StatusComplete,
   'status-lock': StatusLock,
+  'step-backward': StepBackward,
+  'step-forward': StepForward,
+  stop: Stop,
   studies: Studies,
   'study-list': StudyList,
+  sun: Sun,
   theme: Theme,
   'tool-cineplay-toggle': ToolCineplayToggle,
   'tool-elliptical': ToolElliptical,
@@ -103,6 +128,7 @@ const IconTypes = {
   'tool-rotate-right': ToolRotateRight,
   'tool-stack-scroll': ToolStackScroll,
   'tool-zoom': ToolZoom,
+  trash: Trash,
   'trial-info': TrialInfo,
   'viewport-link': ViewportLink,
   warning: Warning,
