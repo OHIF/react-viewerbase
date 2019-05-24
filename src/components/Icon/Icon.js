@@ -56,8 +56,8 @@ import WindowLevelLung from './icons/IconWindowLevelLung.js'
 import WindowLevelLiver from './icons/IconWindowLevelLiver.js'
 
 const IconTypes = {
-  add: Add,
   'accordian-expand': AccordianExpand,
+  add: Add,
   'angle-double-up': AngleDoubleUp,
   'angle-double-down': AngleDoubleDown,
   bars: Bars,
@@ -117,12 +117,17 @@ const Icon = props => {
 }
 
 Icon.propTypes = {
-  name: PropTypes.string,
+  name: PropTypes.string.isRequired,
+  title: PropTypes.string,
   width: PropTypes.string,
   height: PropTypes.string,
-  fill: PropTypes.string,
+  color: PropTypes.string,
 }
 
-Icon.defaultProps = {}
+Icon.defaultProps = {
+  width: '16px',
+  height: '16px',
+  color: 'black',
+}
 
 export { Icon, IconTypes }
