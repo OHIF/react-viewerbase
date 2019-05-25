@@ -3,15 +3,8 @@
         margin: 0 10px
 
         label
-            color: var(--text-secondary-color)
             font-weight: 400
             cursor: pointer
-
-        &:hover
-            color: var(--hover-color)
-
-        &:active
-            color: var(--active-color)
 
         input
             width: 0.1px;
@@ -20,3 +13,21 @@
             overflow: hidden
             position: absolute
             z-index: -1
+
+
+        color: var(--text-secondary-color)
+
+        &:hover
+            color: var(--hover-color)
+
+        &:active
+            color: var(--active-color)
+
+        & svg
+            fill: var(--text-secondary-color)
+
+        & svg:hover
+            fill: var(--hover-color)
+
+        & svg:active
+            fill: var(--active-color)

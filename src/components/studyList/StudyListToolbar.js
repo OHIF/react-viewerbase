@@ -22,7 +22,7 @@ class StudylistToolbar extends PureComponent {
     if (this.props.onImport && this.props.studyListFunctionsEnabled) {
       return (
         <div className="addNewStudy btn-file">
-          <label htmlFor="btnImport">
+          <label htmlFor="btnImport" style={{ width: '18px' }}>
             <Icon name="add" />
             Import study
           </label>
