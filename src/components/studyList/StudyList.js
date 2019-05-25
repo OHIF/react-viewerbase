@@ -4,6 +4,7 @@ import { isInclusivelyBeforeDay } from 'react-dates'
 import moment from 'moment'
 
 import CustomDateRangePicker from './CustomDateRangePicker.js'
+import { Icon } from './../Icon'
 import { PaginationArea } from './PaginationArea.js'
 import { StudylistToolbar } from './StudyListToolbar.js'
 import { StudyListLoadingText } from './StudyListLoadingText.js'
@@ -36,10 +37,6 @@ class StudyList extends Component {
     studyListDateFilterNumDays: 7,
   }
 
-  static DEFAULT_SORTABLE_ICON_CLS = 'fa fa-fw fa-sort'
-  static DESC_SORT_ICON_CLS = 'fa fa-fw fa-sort-down'
-  static ASC_SORT_ICON_CLS = 'fa fa-fw fa-sort-up'
-
   static studyDatePresets = [
     {
       text: 'Today',
@@ -61,23 +58,16 @@ class StudyList extends Component {
   constructor(props) {
     super(props)
 
-    const sortData = {}
-    const sortClasses = {
-      patientName: StudyList.DEFAULT_SORTABLE_ICON_CLS,
-      patientId: StudyList.DEFAULT_SORTABLE_ICON_CLS,
-      accessionNumber: StudyList.DEFAULT_SORTABLE_ICON_CLS,
-      studyDatePresets: StudyList.DEFAULT_SORTABLE_ICON_CLS,
-      modalities: StudyList.DEFAULT_SORTABLE_ICON_CLS,
-      studyDescription: StudyList.DEFAULT_SORTABLE_ICON_CLS,
+    const sortData = {
+      field: undefined,
+      order: undefined,
     }
 
+    // init from props
     if (props.defaultSort) {
       sortData.field = props.defaultSort.field
-      sortData.order = props.defaultSort.order
-      sortClasses[props.defaultSort.field] =
-        props.defaultSort.order === 'desc'
-          ? StudyList.DESC_SORT_ICON_CLS
-          : StudyList.ASC_SORT_ICON_CLS
+      // todo: -1, 0, 1?
+      sortData.order = props.defaultSort.order // asc, desc
     }
 
     this.defaultStartDate = moment().subtract(
@@ -89,7 +79,6 @@ class StudyList extends Component {
     this.state = {
       loading: false,
       error: false,
-      sortClasses,
       searchData: {
         sortData,
         currentPage: this.props.currentPage,
@@ -187,28 +176,24 @@ class StudyList extends Component {
     this.setSearchDataBatch({ rowsPerPage, currentPage: 0 }, this.search)
   }
 
-  onSortClick(key) {
+  onSortClick(field) {
     return () => {
-      const sortClasses = this.state.sortClasses
       let order
+      const sort = this.state.searchData.sortData
+      const isSortedField = sort.field === field
 
-      if (sortClasses[key] === StudyList.ASC_SORT_ICON_CLS) {
-        sortClasses[key] = StudyList.DESC_SORT_ICON_CLS
-        order = 'desc'
+      if (isSortedField) {
+        if (sort.order === 'asc') {
+          order = 'desc'
+        } else {
+          order = undefined
+          field = undefined
+        }
       } else {
-        sortClasses[key] = StudyList.ASC_SORT_ICON_CLS
         order = 'asc'
       }
 
-      Object.keys(sortClasses).forEach(sortClassKey => {
-        if (sortClassKey !== key) {
-          sortClasses[sortClassKey] = StudyList.DEFAULT_SORTABLE_ICON_CLS
-        }
-      })
-
-      this.setState({ sortClasses }, () => {
-        this.setSearchData('sortData', { field: key, order }, this.search)
-      })
+      this.setSearchData('sortData', { field, order }, this.search)
     }
   }
 
@@ -277,7 +262,17 @@ class StudyList extends Component {
                     onClick={this.onSortClick('patientName')}
                   >
                     <span>Patient Name</span>
-                    <i className={this.state.sortClasses.patientName}>&nbsp;</i>
+                    {this.state.searchData.sortData.field === 'patientName' && (
+                      <Icon
+                        name={
+                          this.state.searchData.sortData.order === 'asc'
+                            ? 'caret-up'
+                            : 'caret-down'
+                        }
+                        color="white"
+                        width="15px"
+                      />
+                    )}
                   </div>
                   <input
                     type="text"
@@ -295,7 +290,6 @@ class StudyList extends Component {
                     onClick={this.onSortClick('patientId')}
                   >
                     <span>MRN</span>
-                    <i className={this.state.sortClasses.patientId}>&nbsp;</i>
                   </div>
                   <input
                     type="text"
@@ -313,9 +307,6 @@ class StudyList extends Component {
                     onClick={this.onSortClick('accessionNumber')}
                   >
                     <span>Accession #</span>
-                    <i className={this.state.sortClasses.accessionNumber}>
-                      &nbsp;
-                    </i>
                   </div>
                   <input
                     type="text"
@@ -333,7 +324,6 @@ class StudyList extends Component {
                     onClick={this.onSortClick('studyDate')}
                   >
                     <span>Study Date</span>
-                    <i className={this.state.sortClasses.studyDate}>&nbsp;</i>
                   </div>
                   <div style={{ display: 'block' }}>
                     <CustomDateRangePicker
@@ -390,7 +380,6 @@ class StudyList extends Component {
                     onClick={this.onSortClick('modalities')}
                   >
                     <span>Modality</span>
-                    <i className={this.state.sortClasses.modalities}>&nbsp;</i>
                   </div>
                   <input
                     type="text"
@@ -408,9 +397,6 @@ class StudyList extends Component {
                     onClick={this.onSortClick('studyDescription')}
                   >
                     <span>Study Description</span>
-                    <i className={this.state.sortClasses.studyDescription}>
-                      &nbsp;
-                    </i>
                   </div>
                   <input
                     type="text"

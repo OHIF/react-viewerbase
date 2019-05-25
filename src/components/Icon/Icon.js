@@ -9,6 +9,8 @@ import AngleDoubleUp from './icons/IconAngleDoubleUp.js'
 import ArrowsAltH from './icons/IconArrowsAltH.js'
 import ArrowsAltV from './icons/IconArrowsAltV.js'
 import Bars from './icons/IconBars.js'
+import CaretDown from './icons/IconCaretDown.js'
+import CaretUp from './icons/IconCaretUp.js'
 import CheckCircle from './icons/IconCheckCircle.js'
 import CheckSolid from './icons/IconCheckSolid.js'
 import Circle from './icons/IconCircle.js'
@@ -79,6 +81,8 @@ const IconTypes = {
   'arrows-alt-h': ArrowsAltH,
   'arrows-alt-v': ArrowsAltV,
   bars: Bars,
+  'caret-down': CaretDown,
+  'caret-up': CaretUp,
   'check-circle': CheckCircle,
   'check-solid': CheckSolid,
   circle: Circle,
@@ -158,6 +162,7 @@ Icon.propTypes = {
 Icon.defaultProps = {
   width: '100%',
   height: '100%',
+  color: 'white',
 }
 
 export { Icon, IconTypes }

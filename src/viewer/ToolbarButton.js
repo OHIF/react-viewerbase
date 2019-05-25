@@ -2,7 +2,6 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import classnames from 'classnames'
 
-import { CaretUp, CaretDown } from './../icons'
 import { Icon } from './../components/Icon'
 
 import './ToolbarButton.styl'
@@ -33,9 +32,9 @@ export function ToolbarButton(props) {
   }
 
   const arrowIcon = props.expanded ? (
-    <CaretUp style={arrowIconStyle} />
+    <Icon name="caret-up" style={arrowIconStyle} />
   ) : (
-    <CaretDown style={arrowIconStyle} />
+    <Icon name="caret-down" style={arrowIconStyle} />
   )
 
   return (
