@@ -38,12 +38,12 @@ export default [
     command: 'WwwcTool',
     type: 'tool',
     text: 'Manual',
-    iconName: 'tool-levels',
+    iconName: 'tool-level',
     active: true,
   },
   {
     text: 'More',
-    iconName: 'tool-reset',
+    iconName: 'tool-more',
     buttons: [
       {
         command: 'reset2',
@@ -56,7 +56,7 @@ export default [
         command: 'WwwcTool2',
         type: 'tool',
         text: 'Manual 2',
-        iconName: 'tool-levels',
+        iconName: 'tool-level',
         active: false,
       },
     ],

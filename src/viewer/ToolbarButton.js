@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import classnames from 'classnames'
 
 import { CaretUp, CaretDown } from './../icons'
+import { Icon } from './../components/Icon'
 
 import './ToolbarButton.styl'
 
@@ -24,12 +25,7 @@ export function ToolbarButton(props) {
   }
 
   const className = classnames(props.className, { active: props.active })
-  const { active, iconClassesActive, textActive } = props
-
-  let iconClasses = props.iconClasses
-  if (active && iconClassesActive) {
-    iconClasses = iconClassesActive
-  }
+  const { active, iconName, textActive } = props
 
   let label = props.text
   if (active && textActive) {
@@ -44,7 +40,7 @@ export function ToolbarButton(props) {
 
   return (
     <div className={className} onClick={onClick}>
-      {iconClasses && <i className={iconClasses} />}
+      {iconName && <Icon name={iconName} />}
       <div className="buttonLabel">
         <span className="toolbar-button-label">{label}</span>
         {props.expandableButton && arrowIcon}
@@ -64,8 +60,7 @@ ToolbarButton.propTypes = {
   className: PropTypes.string.isRequired,
   text: PropTypes.string.isRequired,
   textActive: PropTypes.string,
-  iconClasses: PropTypes.string,
-  iconClassesActive: PropTypes.string,
+  iconName: PropTypes.string,
   onClick: PropTypes.func,
   setToolActive: PropTypes.func,
   expandableButton: PropTypes.bool,

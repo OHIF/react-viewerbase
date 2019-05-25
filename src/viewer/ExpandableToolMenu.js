@@ -9,6 +9,7 @@ import './ExpandableToolMenu.styl'
 export default class ExpandableToolMenu extends React.Component {
   static propTypes = {
     text: PropTypes.string.isRequired,
+    iconName: PropTypes.string,
     buttons: PropTypes.array.isRequired,
     activeCommand: PropTypes.string,
     setToolActive: PropTypes.func,
@@ -16,6 +17,7 @@ export default class ExpandableToolMenu extends React.Component {
 
   static defaultProps = {
     buttons: {},
+    iconName: 'tool-more',
     text: 'More',
   }
 
@@ -27,11 +29,7 @@ export default class ExpandableToolMenu extends React.Component {
   }
 
   toolbarMenuOverlay = () => (
-    <Tooltip
-      placement="bottom"
-      className="tooltip-toolbar-overlay"
-      id="tooltip-bottom"
-    >
+    <Tooltip placement="bottom" className="tooltip-toolbar-overlay">
       {this.getButtons()}
     </Tooltip>
   )
@@ -90,6 +88,7 @@ export default class ExpandableToolMenu extends React.Component {
           command="More"
           type="tool"
           text={this.props.text}
+          iconName={this.props.iconName}
           className={'ToolbarButton expandableToolMenu'}
           active={this.isActive()}
           expandableButton={true}
