@@ -11,6 +11,7 @@ export default class ExpandableToolMenu extends React.Component {
     text: PropTypes.string.isRequired,
     svgUrl: PropTypes.string,
     buttons: PropTypes.array.isRequired,
+    onGroupMenuClick: PropTypes.func,
     activeCommand: PropTypes.string,
     setToolActive: PropTypes.func,
   }
@@ -80,6 +81,9 @@ export default class ExpandableToolMenu extends React.Component {
   }
 
   onExpandableToolClick = () => {
+    if (this.props.onGroupMenuClick) {
+      this.props.onGroupMenuClick()
+    }
     this.setState({
       expanded: !this.state.expanded,
     })
