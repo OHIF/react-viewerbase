@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import { Icon } from './../components/Icon'
+import { Icon } from './../../components/Icon'
 import './Select.css'
 
 class Select extends Component {
@@ -16,7 +16,7 @@ class Select extends Component {
     list: PropTypes.arrayOf(
       PropTypes.shape({
         title: PropTypes.string.isRequired,
-        icon: PropTypes.string,
+        icon: PropTypes.object,
         onClick: PropTypes.func,
         link: PropTypes.string,
       })
