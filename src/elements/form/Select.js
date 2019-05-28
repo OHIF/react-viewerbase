@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
+import { Icon } from './../components/Icon'
 import './Select.css'
 
 class Select extends Component {
@@ -34,7 +35,7 @@ class Select extends Component {
             className="dd-item"
             onClick={() => this.handleOnClick(onClick)}
           >
-            {icon && <span className={`dd-item-icon ${icon}`} />}
+            {icon && <Icon {...icon} className="dd-item-icon" />}
             <span>{title}</span>
           </a>
         )
@@ -45,7 +46,7 @@ class Select extends Component {
             className="dd-item"
             onClick={() => this.handleOnClick(onClick)}
           >
-            {icon && <span className={`dd-item-icon ${icon}`} />}
+            {icon && <Icon {...icon} className="dd-item-icon" />}
             <span>{title}</span>
           </button>
         )
