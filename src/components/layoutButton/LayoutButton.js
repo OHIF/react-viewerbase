@@ -47,7 +47,7 @@ export class LayoutButton extends PureComponent {
         <ToolbarButton
           active={this.state.dropdownVisible}
           text={'Layout'}
-          iconClasses={'fa fa-th-large'}
+          icon="th"
           onClick={this.onClick}
         />
         <LayoutChooser

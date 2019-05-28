@@ -11,7 +11,20 @@ class ToolbarSection extends PureComponent {
   }
 
   static propTypes = {
-    buttons: PropTypes.array.isRequired,
+    buttons: PropTypes.arrayOf(
+      PropTypes.shape({
+        text: PropTypes.string.isRequired,
+        icon: PropTypes.oneOfType([
+          PropTypes.string,
+          PropTypes.shape({
+            name: PropTypes.string.isRequired,
+          }),
+        ]),
+        /** Optional: Expandable Tool Menu */
+        buttons: PropTypes.arrayOf(PropTypes.shape({})),
+      })
+    ).isRequired,
+    /** Class for toolbar section container */
     className: PropTypes.string,
     activeCommand: PropTypes.string,
     /** Called when a button is clicked/touched */

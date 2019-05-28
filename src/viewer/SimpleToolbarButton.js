@@ -16,13 +16,13 @@ export function SimpleToolbarButton(props) {
       data-placement="bottom"
       title={props.title}
     >
-      {props.iconName && <Icon name={props.iconName} />}
+      {props.icon && <Icon name={props.icon} />}
     </button>
   )
 }
 
 SimpleToolbarButton.propTypes = {
-  iconName: PropTypes.string,
+  icon: PropTypes.string,
   title: PropTypes.string,
   className: PropTypes.string,
   id: PropTypes.string,

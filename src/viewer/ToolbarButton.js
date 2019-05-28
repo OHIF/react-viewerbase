@@ -1,9 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import classnames from 'classnames'
-
 import { Icon } from './../components/Icon'
-
 import './ToolbarButton.styl'
 
 const arrowIconStyle = {
@@ -13,23 +11,10 @@ const arrowIconStyle = {
 }
 
 export function ToolbarButton(props) {
-  let onClick = event => {
-    if (props.onClick) {
-      props.onClick(event, props)
-    }
-
-    if (props.setToolActive) {
-      props.setToolActive(props)
-    }
-  }
-
-  const className = classnames(props.className, { active: props.active })
-  const { active, iconName, textActive } = props
-
-  let label = props.text
-  if (active && textActive) {
-    label = textActive
-  }
+  const { active, icon, textActive, onClick, setToolActive } = props
+  const className = classnames(props.className, { active })
+  const iconProps = typeof icon === 'string' ? { name: icon } : icon
+  const label = active && textActive ? textActive : props.text
 
   const arrowIcon = props.expanded ? (
     <Icon name="caret-up" style={arrowIconStyle} />
@@ -37,9 +22,19 @@ export function ToolbarButton(props) {
     <Icon name="caret-down" style={arrowIconStyle} />
   )
 
+  const handleClick = event => {
+    if (onClick) {
+      onClick(event, props)
+    }
+
+    if (setToolActive) {
+      setToolActive(props)
+    }
+  }
+
   return (
-    <div className={className} onClick={onClick}>
-      {iconName && <Icon name={iconName} />}
+    <div className={className} onClick={handleClick}>
+      {iconProps && <Icon {...iconProps} />}
       <div className="buttonLabel">
         <span className="toolbar-button-label">{label}</span>
         {props.expandableButton && arrowIcon}
@@ -59,7 +54,12 @@ ToolbarButton.propTypes = {
   className: PropTypes.string.isRequired,
   text: PropTypes.string.isRequired,
   textActive: PropTypes.string,
-  iconName: PropTypes.string,
+  icon: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.shape({
+      name: PropTypes.string.isRequired,
+    }),
+  ]),
   onClick: PropTypes.func,
   setToolActive: PropTypes.func,
   expandableButton: PropTypes.bool,

@@ -8,9 +8,26 @@ import './ExpandableToolMenu.styl'
 
 export default class ExpandableToolMenu extends React.Component {
   static propTypes = {
+    /** Button label/text */
     text: PropTypes.string.isRequired,
-    iconName: PropTypes.string,
-    buttons: PropTypes.array.isRequired,
+    /** Array of buttons to render when expanded */
+    buttons: PropTypes.arrayOf(
+      PropTypes.shape({
+        text: PropTypes.string.isRequired,
+        icon: PropTypes.oneOfType([
+          PropTypes.string,
+          PropTypes.shape({
+            name: PropTypes.string.isRequired,
+          }),
+        ]),
+      })
+    ).isRequired,
+    icon: PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.shape({
+        name: PropTypes.string.isRequired,
+      }),
+    ]),
     onGroupMenuClick: PropTypes.func,
     activeCommand: PropTypes.string,
     setToolActive: PropTypes.func,
@@ -18,7 +35,7 @@ export default class ExpandableToolMenu extends React.Component {
 
   static defaultProps = {
     buttons: {},
-    iconName: 'tool-more',
+    icon: 'tool-more',
     text: 'More',
   }
 
@@ -92,7 +109,7 @@ export default class ExpandableToolMenu extends React.Component {
           command="More"
           type="tool"
           text={this.props.text}
-          iconName={this.props.iconName}
+          icon={this.props.icon}
           className={'ToolbarButton expandableToolMenu'}
           active={this.isActive()}
           expandableButton={true}

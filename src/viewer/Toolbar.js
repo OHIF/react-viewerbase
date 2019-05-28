@@ -4,97 +4,98 @@ import SimpleToolbarButton from './SimpleToolbarButton'
 import PlayClipButton from './PlayClipButton'
 import { LayoutButton } from './../components/layoutButton'
 
+// TODO: This should not be built in the `react-viewerbase` component
 function getDefaultButtonData() {
   var buttonData = [
     {
       id: 'wwwc',
       title: 'WW/WC',
       className: 'imageViewerTool',
-      iconName: 'sun',
+      icon: 'sun',
     },
     {
       id: 'wwwcRegion',
       title: 'Window by Region',
       className: 'imageViewerTool',
-      iconName: 'stop',
+      icon: 'stop',
     },
     {
       id: 'magnify',
       title: 'Magnify',
       className: 'imageViewerTool',
-      iconName: 'circle',
+      icon: 'circle',
     },
     {
       id: 'annotate',
       title: 'Annotation',
       className: 'imageViewerTool',
-      iconName: 'arrows-alt-h',
+      icon: 'arrows-alt-h',
     },
     {
       id: 'invert',
       title: 'Invert',
       className: 'imageViewerCommand',
-      iconName: 'tool-invert',
+      icon: 'tool-invert',
     },
     {
       id: 'zoom',
       title: 'Zoom',
       className: 'imageViewerTool',
-      iconName: 'log',
+      icon: 'log',
     },
     {
       id: 'pan',
       title: 'Pan',
       className: 'imageViewerTool',
-      iconName: 'tool-pan',
+      icon: 'tool-pan',
     },
     {
       id: 'stackScroll',
       title: 'Stack Scroll',
       className: 'imageViewerTool',
-      iconName: 'bars',
+      icon: 'bars',
     },
     {
       id: 'length',
       title: 'Length Measurement',
       className: 'imageViewerTool',
-      iconName: 'arrows-alt-v',
+      icon: 'arrows-alt-v',
     },
     {
       id: 'angle',
       title: 'Angle Measurement',
       className: 'imageViewerTool',
-      iconName: 'fa fa-angle-left',
+      icon: 'fa fa-angle-left',
     },
     {
       id: 'dragProbe',
       title: 'Pixel Probe',
       className: 'imageViewerTool',
-      iconName: 'fa fa-dot-circle-o',
+      icon: 'fa fa-dot-circle-o',
     },
     {
       id: 'ellipticalRoi',
       title: 'Elliptical ROI',
       className: 'imageViewerTool',
-      iconName: 'circle-outline',
+      icon: 'circle-outline',
     },
     {
       id: 'rectangleRoi',
       title: 'Rectangle ROI',
       className: 'imageViewerTool',
-      iconName: 'square-outline',
+      icon: 'square-outline',
     },
     {
       id: 'resetViewport',
       title: 'Reset Viewport',
       className: 'imageViewerCommand',
-      iconName: 'tool-reset',
+      icon: 'tool-reset',
     },
     {
       id: 'clearTools',
       title: 'Clear tools',
       className: 'imageViewerCommand',
-      iconName: 'trash',
+      icon: 'trash',
     },
   ]
   return buttonData
@@ -102,7 +103,18 @@ function getDefaultButtonData() {
 
 export default class Toolbar extends Component {
   static propTypes = {
-    buttons: PropTypes.array.isRequired,
+    buttons: PropTypes.arrayOf(
+      PropTypes.shape({
+        id: PropTypes.string.isRequired,
+        title: PropTypes.string.isRequired,
+        icon: PropTypes.oneOfType([
+          PropTypes.string,
+          PropTypes.shape({
+            name: PropTypes.string.isRequired,
+          }),
+        ]),
+      })
+    ).isRequired,
     includeLayoutButton: PropTypes.bool.isRequired,
     includePlayClipButton: PropTypes.bool.isRequired,
   }

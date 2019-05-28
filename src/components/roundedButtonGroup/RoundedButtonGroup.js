@@ -9,7 +9,18 @@ class RoundedButtonGroup extends Component {
   static className = 'RoundedButtonGroup'
 
   static propTypes = {
-    options: PropTypes.array,
+    options: PropTypes.arrayOf(
+      PropTypes.shape({
+        value: PropTypes.any,
+        text: PropTypes.string,
+        icon: PropTypes.oneOfType([
+          PropTypes.string,
+          PropTypes.shape({
+            name: PropTypes.string.isRequired,
+          }),
+        ]),
+      })
+    ),
     value: PropTypes.string,
     onValueChanged: PropTypes.func,
   }
@@ -44,14 +55,8 @@ class RoundedButtonGroup extends Component {
       })
 
       const optionText = option.text && <span>{option.text}</span>
-
-      const optionIcon = option.iconName && (
-        <Icon
-          name={option.iconName}
-          width={option.iconWidth}
-          height={option.iconHeight}
-        />
-      )
+      const iconProps =
+        typeof option.icon === 'string' ? { name: option.icon } : option.icon
 
       const bottomLabel = option.bottomLabel && (
         <div className="bottomLabel">{option.bottomLabel}</div>
@@ -65,7 +70,7 @@ class RoundedButtonGroup extends Component {
         >
           <div className="roundedButton">
             {optionText}
-            {optionIcon}
+            {iconProps && <Icon {...iconProps} />}
           </div>
           {bottomLabel}
         </div>
