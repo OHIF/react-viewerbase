@@ -1,10 +1,10 @@
-import React, { Component } from 'react'
-import PropTypes from 'prop-types'
-import throttled from '../utils/throttled.js'
-import getScrollbarSize from '../utils/getScrollbarSize.js'
-import { Icon } from './../components/Icon'
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import throttled from '../utils/throttled.js';
+import getScrollbarSize from '../utils/getScrollbarSize.js';
+import { Icon } from './../components/Icon';
 
-import './ScrollableArea.styl'
+import './ScrollableArea.styl';
 
 export class ScrollableArea extends Component {
   static propTypes = {
@@ -15,7 +15,7 @@ export class ScrollableArea extends Component {
     scrollY: PropTypes.bool,
     hideScrollbar: PropTypes.bool,
     scrollStep: PropTypes.number,
-  }
+  };
 
   static defaultProps = {
     hideScrollbar: true,
@@ -23,28 +23,28 @@ export class ScrollableArea extends Component {
     scrollY: true,
     scrollX: false,
     scrollStep: 100,
-  }
+  };
 
   constructor(props) {
-    super(props)
+    super(props);
 
     this.state = {
       scrollAreaClasses: '',
-    }
+    };
 
-    this.scrollHandlerThrottled = throttled(150, this.scrollHandler)
+    this.scrollHandlerThrottled = throttled(150, this.scrollHandler);
   }
 
   render() {
-    let scrollableClass = 'scrollable'
+    let scrollableClass = 'scrollable';
     if (this.props.scrollableClass) {
-      scrollableClass += ` ${this.props.scrollableClass}`
+      scrollableClass += ` ${this.props.scrollableClass}`;
     }
     if (this.props.scrollX) {
-      scrollableClass += ` scrollX`
+      scrollableClass += ` scrollX`;
     }
     if (this.props.scrollY) {
-      scrollableClass += ` scrollY`
+      scrollableClass += ` scrollY`;
     }
 
     return (
@@ -56,7 +56,7 @@ export class ScrollableArea extends Component {
         <div
           className={scrollableClass}
           ref={element => {
-            this.scrollableElement = element
+            this.scrollableElement = element;
           }}
           onScroll={this.scrollHandlerThrottled}
           onMouseEnter={this.scrollHandlerThrottled}
@@ -72,22 +72,22 @@ export class ScrollableArea extends Component {
           <Icon name="angle-double-down" />
         </div>
       </div>
-    )
+    );
   }
 
   componentDidMount() {
-    this.adjustMargins()
-    this.scrollHandler()
-    window.addEventListener('resize', this.adjustMargins)
+    this.adjustMargins();
+    this.scrollHandler();
+    window.addEventListener('resize', this.adjustMargins);
   }
 
   componentDidUpdate() {
-    this.adjustMargins()
-    this.scrollHandler()
+    this.adjustMargins();
+    this.scrollHandler();
   }
 
   componentWillUnmount() {
-    window.removeEventListener('resize', this.adjustMargins)
+    window.removeEventListener('resize', this.adjustMargins);
   }
 
   scrollNavDown = event => {
@@ -95,56 +95,57 @@ export class ScrollableArea extends Component {
       scrollTop: currentTop,
       offsetHeight: height,
       scrollHeight,
-    } = this.scrollableElement
+    } = this.scrollableElement;
 
-    const limit = scrollHeight - height
-    let scrollTop = currentTop + this.props.scrollStep
-    scrollTop = scrollTop > limit ? limit : scrollTop
-    this.scrollableElement.scrollTop = scrollTop
-  }
+    const limit = scrollHeight - height;
+    let scrollTop = currentTop + this.props.scrollStep;
+    scrollTop = scrollTop > limit ? limit : scrollTop;
+    this.scrollableElement.scrollTop = scrollTop;
+  };
 
   scrollNavUp = event => {
-    const { scrollTop: currentTop } = this.scrollableElement
+    const { scrollTop: currentTop } = this.scrollableElement;
 
-    let scrollTop = currentTop - this.props.scrollStep
-    scrollTop = scrollTop < 0 ? 0 : scrollTop
+    let scrollTop = currentTop - this.props.scrollStep;
+    scrollTop = scrollTop < 0 ? 0 : scrollTop;
 
-    this.scrollableElement.scrollTop = scrollTop
-  }
+    this.scrollableElement.scrollTop = scrollTop;
+  };
 
   adjustMargins = () => {
     if (this.props.hideScrollbar) {
-      const x = this.props.scrollX ? 1 : 0
-      const y = this.props.scrollY ? 1 : 0
-      const scrollbarSize = getScrollbarSize()
-      this.scrollableElement.style.marginRight = `${0 - scrollbarSize[0] * y}px`
+      const x = this.props.scrollX ? 1 : 0;
+      const y = this.props.scrollY ? 1 : 0;
+      const scrollbarSize = getScrollbarSize();
+      this.scrollableElement.style.marginRight = `${0 -
+        scrollbarSize[0] * y}px`;
       this.scrollableElement.style.marginBottom = `${0 -
-        scrollbarSize[1] * x}px`
+        scrollbarSize[1] * x}px`;
     }
-  }
+  };
 
   scrollHandler = () => {
     const {
       offsetHeight: height,
       scrollTop: scrollTop,
       scrollHeight,
-    } = this.scrollableElement
-    let scrollAreaClasses = ''
+    } = this.scrollableElement;
+    let scrollAreaClasses = '';
 
     // Check if can scroll up
     if (scrollTop) {
-      scrollAreaClasses += 'canScrollUp'
+      scrollAreaClasses += 'canScrollUp';
     }
 
     // Check if can scroll down
     if (scrollTop + height < scrollHeight) {
-      scrollAreaClasses += ' canScrollDown'
+      scrollAreaClasses += ' canScrollDown';
     }
 
     if (this.state.scrollAreaClasses !== scrollAreaClasses) {
       this.setState({
         scrollAreaClasses,
-      })
+      });
     }
-  }
+  };
 }

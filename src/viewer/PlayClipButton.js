@@ -1,18 +1,18 @@
-import React, { Component } from 'react'
-import PropTypes from 'prop-types'
-import { Icon } from './../components/Icon'
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import { Icon } from './../components/Icon';
 
 export default class PlayClipButton extends Component {
   static propTypes = {
     isPlaying: PropTypes.bool.isRequired,
-  }
+  };
 
   static defaultProps = {
     isPlaying: false,
-  }
+  };
 
   render() {
-    const iconName = this.props.isPlaying ? 'stop' : 'play'
+    const iconName = this.props.isPlaying ? 'stop' : 'play';
 
     return (
       <div className="btn-group">
@@ -39,6 +39,6 @@ export default class PlayClipButton extends Component {
           <Icon name="tool-cineplay-toggle" />
         </button>
       </div>
-    )
+    );
   }
 }

@@ -1,8 +1,8 @@
-import React, { Component } from 'react'
-import PropTypes from 'prop-types'
-import SimpleToolbarButton from './SimpleToolbarButton'
-import PlayClipButton from './PlayClipButton'
-import { LayoutButton } from './../components/layoutButton'
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import SimpleToolbarButton from './SimpleToolbarButton';
+import PlayClipButton from './PlayClipButton';
+import { LayoutButton } from './../components/layoutButton';
 
 // TODO: This should not be built in the `react-viewerbase` component
 function getDefaultButtonData() {
@@ -97,8 +97,8 @@ function getDefaultButtonData() {
       className: 'imageViewerCommand',
       icon: 'trash',
     },
-  ]
-  return buttonData
+  ];
+  return buttonData;
 }
 
 export default class Toolbar extends Component {
@@ -117,35 +117,35 @@ export default class Toolbar extends Component {
     ).isRequired,
     includeLayoutButton: PropTypes.bool.isRequired,
     includePlayClipButton: PropTypes.bool.isRequired,
-  }
+  };
 
   static defaultProps = {
     buttons: getDefaultButtonData(),
     includeLayoutButton: true,
     includePlayClipButton: true,
-  }
+  };
 
   render() {
-    var maybePlayClipButton
+    var maybePlayClipButton;
     if (this.props.includePlayClipButton) {
-      maybePlayClipButton = <PlayClipButton />
+      maybePlayClipButton = <PlayClipButton />;
     }
 
-    var maybeLayoutButton
+    var maybeLayoutButton;
     if (this.props.includeLayoutButton) {
-      maybeLayoutButton = <LayoutButton />
+      maybeLayoutButton = <LayoutButton />;
     }
 
     return (
       <div id="toolbar">
         <div className="btn-group">
           {this.props.buttons.map((button, i) => {
-            return <SimpleToolbarButton {...button} key={i} />
+            return <SimpleToolbarButton {...button} key={i} />;
           })}
           {maybePlayClipButton}
           {maybeLayoutButton}
         </div>
       </div>
-    )
+    );
   }
 }

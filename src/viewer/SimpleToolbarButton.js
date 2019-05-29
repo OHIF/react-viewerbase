@@ -1,10 +1,10 @@
-import React from 'react'
-import PropTypes from 'prop-types'
-import classnames from 'classnames'
-import { Icon } from './../components/Icon'
+import React from 'react';
+import PropTypes from 'prop-types';
+import classnames from 'classnames';
+import { Icon } from './../components/Icon';
 
 export function SimpleToolbarButton(props) {
-  const className = classnames(props.className, 'btn btn-sm btn-default')
+  const className = classnames(props.className, 'btn btn-sm btn-default');
 
   return (
     <button
@@ -18,7 +18,7 @@ export function SimpleToolbarButton(props) {
     >
       {props.icon && <Icon name={props.icon} />}
     </button>
-  )
+  );
 }
 
 SimpleToolbarButton.propTypes = {
@@ -27,5 +27,5 @@ SimpleToolbarButton.propTypes = {
   className: PropTypes.string,
   id: PropTypes.string,
   onClick: PropTypes.func,
-}
-export default SimpleToolbarButton
+};
+export default SimpleToolbarButton;

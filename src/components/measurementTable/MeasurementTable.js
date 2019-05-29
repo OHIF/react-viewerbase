@@ -1,14 +1,14 @@
-import React, { Component } from 'react'
-import PropTypes from 'prop-types'
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
-import { TableList } from './../tableList'
-import { ScrollableArea } from './../../ScrollableArea/ScrollableArea.js'
-import { OverlayTrigger } from './../overlayTrigger'
-import { Tooltip } from './../tooltip'
-import { Icon } from './../Icon'
+import { TableList } from './../tableList';
+import { ScrollableArea } from './../../ScrollableArea/ScrollableArea.js';
+import { OverlayTrigger } from './../overlayTrigger';
+import { Tooltip } from './../tooltip';
+import { Icon } from './../Icon';
 
-import { MeasurementTableItem } from './MeasurementTableItem.js'
-import './MeasurementTable.styl'
+import { MeasurementTableItem } from './MeasurementTableItem.js';
+import './MeasurementTable.styl';
 
 export class MeasurementTable extends Component {
   static propTypes = {
@@ -21,20 +21,21 @@ export class MeasurementTable extends Component {
     onEditDescriptionClick: PropTypes.func,
     selectedMeasurementNumber: PropTypes.number,
     overwallWarnings: PropTypes.object,
-  }
+  };
 
   static defaultProps = {
     overallWarnings: {
       warningList: [],
     },
-  }
+  };
 
   state = {
     selectedKey: null,
-  }
+  };
 
   render() {
-    const hasOverallWarnings = this.props.overallWarnings.warningList.length > 0
+    const hasOverallWarnings =
+      this.props.overallWarnings.warningList.length > 0;
     return (
       <div className="measurementTable">
         <div className="measurementTableHeader">
@@ -69,7 +70,7 @@ export class MeasurementTable extends Component {
           <div>{this.getMeasurementsGroups()}</div>
         </ScrollableArea>
       </div>
-    )
+    );
   }
 
   getMeasurementsGroups = () => {
@@ -81,18 +82,18 @@ export class MeasurementTable extends Component {
         >
           {this.getMeasurements(measureGroup)}
         </TableList>
-      )
-    })
-  }
+      );
+    });
+  };
 
   getMeasurements = measureGroup => {
     const selectedKey = this.props.selectedMeasurementNumber
       ? this.props.selectedMeasurementNumber
-      : this.state.selectedKey
+      : this.state.selectedKey;
     return measureGroup.measurements.map((measurement, index) => {
-      const key = measurement.measurementNumber
-      const itemIndex = measurement.itemNumber || index + 1
-      const itemClass = selectedKey === key ? 'selected' : ''
+      const key = measurement.measurementNumber;
+      const itemIndex = measurement.itemNumber || index + 1;
+      const itemClass = selectedKey === key ? 'selected' : '';
 
       return (
         <MeasurementTableItem
@@ -105,19 +106,19 @@ export class MeasurementTable extends Component {
           onDelete={this.props.onDeleteClick}
           onEditDescription={this.props.onEditDescriptionClick}
         />
-      )
-    })
-  }
+      );
+    });
+  };
 
   onItemClick = (event, measurementData) => {
     this.setState({
       selectedKey: measurementData.measurementNumber,
-    })
+    });
 
     if (this.props.onItemClick) {
-      this.props.onItemClick(event, measurementData)
+      this.props.onItemClick(event, measurementData);
     }
-  }
+  };
 
   getCustomHeader = measureGroup => {
     return (
@@ -130,8 +131,8 @@ export class MeasurementTable extends Component {
         )}
         <div className="numberOfItems">{measureGroup.measurements.length}</div>
       </React.Fragment>
-    )
-  }
+    );
+  };
 
   getTimepointsHeader = () => {
     return this.props.timepoints.map((timepoint, index) => {
@@ -140,21 +141,21 @@ export class MeasurementTable extends Component {
           <div className="timepointLabel">{timepoint.label}</div>
           <div className="timepointDate">{timepoint.date}</div>
         </div>
-      )
-    })
-  }
+      );
+    });
+  };
 
   getWarningContent = () => {
-    const { warningList = '' } = this.props.overwallWarnings
+    const { warningList = '' } = this.props.overwallWarnings;
 
     if (Array.isArray(warningList)) {
       const listedWarnings = warningList.map((warn, index) => {
-        return <li key={index}>{warn}</li>
-      })
+        return <li key={index}>{warn}</li>;
+      });
 
-      return <ol>{listedWarnings}</ol>
+      return <ol>{listedWarnings}</ol>;
     } else {
-      return <React.Fragment>{warningList}</React.Fragment>
+      return <React.Fragment>{warningList}</React.Fragment>;
     }
-  }
+  };
 }

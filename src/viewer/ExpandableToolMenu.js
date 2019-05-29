@@ -1,10 +1,10 @@
-import React from 'react'
-import PropTypes from 'prop-types'
-import { OverlayTrigger } from '../components/overlayTrigger'
-import { Tooltip } from '../components/tooltip'
-import ToolbarButton from './ToolbarButton.js'
+import React from 'react';
+import PropTypes from 'prop-types';
+import { OverlayTrigger } from '../components/overlayTrigger';
+import { Tooltip } from '../components/tooltip';
+import ToolbarButton from './ToolbarButton.js';
 
-import './ExpandableToolMenu.styl'
+import './ExpandableToolMenu.styl';
 
 export default class ExpandableToolMenu extends React.Component {
   static propTypes = {
@@ -31,26 +31,26 @@ export default class ExpandableToolMenu extends React.Component {
     onGroupMenuClick: PropTypes.func,
     activeCommand: PropTypes.string,
     setToolActive: PropTypes.func,
-  }
+  };
 
   static defaultProps = {
     buttons: {},
     icon: 'tool-more',
     text: 'More',
-  }
+  };
 
   constructor(props) {
-    super(props)
+    super(props);
     this.state = {
       expanded: false,
-    }
+    };
   }
 
   toolbarMenuOverlay = () => (
     <Tooltip placement="bottom" className="tooltip-toolbar-overlay">
       {this.getButtons()}
     </Tooltip>
-  )
+  );
 
   getButtons = () => {
     return this.props.buttons.map((item, index) => {
@@ -61,37 +61,37 @@ export default class ExpandableToolMenu extends React.Component {
           active={item.command === this.props.activeCommand}
           setToolActive={this.props.setToolActive}
         />
-      )
-    })
-  }
+      );
+    });
+  };
 
   isActive = () => {
-    let isActive = false
+    let isActive = false;
     if (this.props.activeCommand) {
       this.props.buttons.forEach(button => {
         if (this.props.activeCommand === button.command) {
-          isActive = true
+          isActive = true;
         }
-      })
+      });
     }
 
-    return isActive
-  }
+    return isActive;
+  };
 
   onExpandableToolClick = () => {
     if (this.props.onGroupMenuClick) {
-      this.props.onGroupMenuClick()
+      this.props.onGroupMenuClick();
     }
     this.setState({
       expanded: !this.state.expanded,
-    })
-  }
+    });
+  };
 
   onOverlayHide = () => {
     this.setState({
       expanded: false,
-    })
-  }
+    });
+  };
 
   render() {
     return (
@@ -116,6 +116,6 @@ export default class ExpandableToolMenu extends React.Component {
           expanded={this.state.expanded}
         />
       </OverlayTrigger>
-    )
+    );
   }
 }

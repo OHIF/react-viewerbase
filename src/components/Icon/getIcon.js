@@ -1,71 +1,71 @@
-import React from 'react'
-import adjust from './icons/adjust.svg'
+import React from 'react';
+import adjust from './icons/adjust.svg';
 // Icons
-import angleDoubleDown from './icons/angle-double-down.svg'
-import angleDoubleUp from './icons/angle-double-up.svg'
-import arrows from './icons/arrows.svg'
-import arrowsAltH from './icons/arrows-alt-h.svg'
-import arrowsAltV from './icons/arrows-alt-v.svg'
-import bars from './icons/bars.svg'
-import brain from './icons/brain.svg'
-import caretDown from './icons/caret-down.svg'
-import caretUp from './icons/caret-up.svg'
-import check from './icons/check.svg'
-import checkCircle from './icons/check-circle.svg'
-import checkCircleO from './icons/check-circle-o.svg'
-import chevronDown from './icons/chevron-down.svg'
-import circle from './icons/circle.svg'
-import circleNotch from './icons/circle-notch.svg'
-import circleO from './icons/circle-o.svg'
-import cog from './icons/cog.svg'
-import createComment from './icons/create-comment.svg'
-import createScreenCapture from './icons/create-screen-capture.svg'
-import database from './icons/database.svg'
-import edit from './icons/edit.svg'
-import ellipseCircle from './icons/ellipse-circle.svg'
-import ellipseH from './icons/ellipse-h.svg'
-import ellipseV from './icons/ellipse-v.svg'
-import exclamationCircle from './icons/exclamation-circle.svg'
-import exclamationTriangle from './icons/exclamation-triangle.svg'
-import fastBackward from './icons/fast-backward.svg'
-import fastForward from './icons/fast-forward.svg'
-import inlineEdit from './icons/inline-edit.svg'
-import level from './icons/level.svg'
-import link from './icons/link.svg'
-import linkCircles from './icons/link-circles.svg'
-import list from './icons/list.svg'
-import liver from './icons/liver.svg'
-import lock from './icons/lock.svg'
-import lockAlt from './icons/lock-alt.svg'
-import lung from './icons/lung.svg'
-import measureNonTarget from './icons/measure-non-target.svg'
-import measureTarget from './icons/measure-target.svg'
-import measureTargetCr from './icons/measure-target-cr.svg'
-import measureTargetUn from './icons/measure-target-un.svg'
-import measureTemp from './icons/measure-temp.svg'
-import objectGroup from './icons/object-group.svg'
-import ohifLogo from './icons/ohif-logo.svg'
-import oval from './icons/oval.svg'
-import palette from './icons/palette.svg'
-import play from './icons/play.svg'
-import plus from './icons/plus.svg'
-import powerOff from './icons/power-off.svg'
-import reset from './icons/reset.svg'
-import rotate from './icons/rotate.svg'
-import rotateRight from './icons/rotate-right.svg'
-import search from './icons/search.svg'
-import searchPlus from './icons/search-plus.svg'
-import softTissue from './icons/soft-tissue.svg'
-import squareO from './icons/square-o.svg'
-import stepBackward from './icons/step-backward.svg'
-import stepForward from './icons/step-forward.svg'
-import stop from './icons/stop.svg'
-import sun from './icons/sun.svg'
-import thLarge from './icons/th-large.svg'
-import thList from './icons/th-list.svg'
-import times from './icons/times.svg'
-import trash from './icons/trash.svg'
-import youtube from './icons/youtube.svg'
+import angleDoubleDown from './icons/angle-double-down.svg';
+import angleDoubleUp from './icons/angle-double-up.svg';
+import arrows from './icons/arrows.svg';
+import arrowsAltH from './icons/arrows-alt-h.svg';
+import arrowsAltV from './icons/arrows-alt-v.svg';
+import bars from './icons/bars.svg';
+import brain from './icons/brain.svg';
+import caretDown from './icons/caret-down.svg';
+import caretUp from './icons/caret-up.svg';
+import check from './icons/check.svg';
+import checkCircle from './icons/check-circle.svg';
+import checkCircleO from './icons/check-circle-o.svg';
+import chevronDown from './icons/chevron-down.svg';
+import circle from './icons/circle.svg';
+import circleNotch from './icons/circle-notch.svg';
+import circleO from './icons/circle-o.svg';
+import cog from './icons/cog.svg';
+import createComment from './icons/create-comment.svg';
+import createScreenCapture from './icons/create-screen-capture.svg';
+import database from './icons/database.svg';
+import edit from './icons/edit.svg';
+import ellipseCircle from './icons/ellipse-circle.svg';
+import ellipseH from './icons/ellipse-h.svg';
+import ellipseV from './icons/ellipse-v.svg';
+import exclamationCircle from './icons/exclamation-circle.svg';
+import exclamationTriangle from './icons/exclamation-triangle.svg';
+import fastBackward from './icons/fast-backward.svg';
+import fastForward from './icons/fast-forward.svg';
+import inlineEdit from './icons/inline-edit.svg';
+import level from './icons/level.svg';
+import link from './icons/link.svg';
+import linkCircles from './icons/link-circles.svg';
+import list from './icons/list.svg';
+import liver from './icons/liver.svg';
+import lock from './icons/lock.svg';
+import lockAlt from './icons/lock-alt.svg';
+import lung from './icons/lung.svg';
+import measureNonTarget from './icons/measure-non-target.svg';
+import measureTarget from './icons/measure-target.svg';
+import measureTargetCr from './icons/measure-target-cr.svg';
+import measureTargetUn from './icons/measure-target-un.svg';
+import measureTemp from './icons/measure-temp.svg';
+import objectGroup from './icons/object-group.svg';
+import ohifLogo from './icons/ohif-logo.svg';
+import oval from './icons/oval.svg';
+import palette from './icons/palette.svg';
+import play from './icons/play.svg';
+import plus from './icons/plus.svg';
+import powerOff from './icons/power-off.svg';
+import reset from './icons/reset.svg';
+import rotate from './icons/rotate.svg';
+import rotateRight from './icons/rotate-right.svg';
+import search from './icons/search.svg';
+import searchPlus from './icons/search-plus.svg';
+import softTissue from './icons/soft-tissue.svg';
+import squareO from './icons/square-o.svg';
+import stepBackward from './icons/step-backward.svg';
+import stepForward from './icons/step-forward.svg';
+import stop from './icons/stop.svg';
+import sun from './icons/sun.svg';
+import thLarge from './icons/th-large.svg';
+import thList from './icons/th-list.svg';
+import times from './icons/times.svg';
+import trash from './icons/trash.svg';
+import youtube from './icons/youtube.svg';
 
 const ICONS = {
   plus,
@@ -134,7 +134,7 @@ const ICONS = {
   'soft-tissue': softTissue,
   lung,
   liver,
-}
+};
 
 /**
  * Return the matching SVG Icon as a React Component.
@@ -143,10 +143,10 @@ const ICONS = {
  */
 export default function getIcon(key) {
   if (!key) {
-    return null
+    return null;
   }
 
-  return React.createElement(ICONS[key])
+  return React.createElement(ICONS[key]);
 }
 
-export { ICONS }
+export { ICONS };

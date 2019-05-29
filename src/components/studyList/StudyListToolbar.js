@@ -1,21 +1,21 @@
-import React, { PureComponent } from 'react'
-import PropTypes from 'prop-types'
+import React, { PureComponent } from 'react';
+import PropTypes from 'prop-types';
 
-import { Icon } from './../Icon'
-import './StudyListToolbar.styl'
+import { Icon } from './../Icon';
+import './StudyListToolbar.styl';
 
 class StudylistToolbar extends PureComponent {
   static propTypes = {
     studyListFunctionsEnabled: PropTypes.bool.isRequired,
     onImport: PropTypes.func,
-  }
+  };
 
   static defaultProps = {
     studyListFunctionsEnabled: true,
-  }
+  };
 
   clear(e) {
-    e.target.value = null
+    e.target.value = null;
   }
 
   getImportTool() {
@@ -37,13 +37,13 @@ class StudylistToolbar extends PureComponent {
             multiple={true}
           />
         </div>
-      )
+      );
     }
   }
 
   render() {
-    return <div className="studylistToolbar">{this.getImportTool()}</div>
+    return <div className="studylistToolbar">{this.getImportTool()}</div>;
   }
 }
 
-export { StudylistToolbar }
+export { StudylistToolbar };
