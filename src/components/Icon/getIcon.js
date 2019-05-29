@@ -143,7 +143,7 @@ const ICONS = {
  */
 export default function getIcon(key) {
   if (!key) {
-    return null;
+    return React.createElement('div', {}, 'No matching icon');
   }
 
   return React.createElement(ICONS[key]);
