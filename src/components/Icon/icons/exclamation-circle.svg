@@ -8,6 +8,6 @@
   fill="none"
   strokeWidth="2"
 >
-  <title id="title">Trial Info</title>
+  <title id="title">Exclamation Circle</title>
   <path d="M10,1 a9 9 0 0 1 0 18 a9 9 0 0 1 0 -18 M10,5 l0,2 m0,2 0,6" />
 </svg>

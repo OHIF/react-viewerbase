@@ -10,7 +10,7 @@
   strokeLinecap="round"
   strokeLinejoin="round"
 >
-  <title id="title">Pan</title>
+  <title id="title">Arrows</title>
   <path id="icon-tools-pan-line-v" d="M9,1 L9,17" />
   <path id="icon-tools-pan-line-h" d="M1,9 L17,9" />
   <polyline id="icon-tools-pan-caret-t" points="7 3 9 1 11 3" />

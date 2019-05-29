@@ -3,6 +3,7 @@ import adjust from './icons/adjust.svg'
 // Icons
 import angleDoubleDown from './icons/angle-double-down.svg'
 import angleDoubleUp from './icons/angle-double-up.svg'
+import arrows from './icons/arrows.svg'
 import arrowsAltH from './icons/arrows-alt-h.svg'
 import arrowsAltV from './icons/arrows-alt-v.svg'
 import bars from './icons/bars.svg'
@@ -21,13 +22,17 @@ import createComment from './icons/create-comment.svg'
 import createScreenCapture from './icons/create-screen-capture.svg'
 import database from './icons/database.svg'
 import edit from './icons/edit.svg'
+import ellipseCircle from './icons/ellipse-circle.svg'
 import ellipseH from './icons/ellipse-h.svg'
 import ellipseV from './icons/ellipse-v.svg'
+import exclamationCircle from './icons/exclamation-circle.svg'
+import exclamationTriangle from './icons/exclamation-triangle.svg'
 import fastBackward from './icons/fast-backward.svg'
 import fastForward from './icons/fast-forward.svg'
 import inlineEdit from './icons/inline-edit.svg'
 import level from './icons/level.svg'
 import link from './icons/link.svg'
+import linkCircles from './icons/link-circles.svg'
 import list from './icons/list.svg'
 import liver from './icons/liver.svg'
 import lock from './icons/lock.svg'
@@ -38,11 +43,10 @@ import measureTarget from './icons/measure-target.svg'
 import measureTargetCr from './icons/measure-target-cr.svg'
 import measureTargetUn from './icons/measure-target-un.svg'
 import measureTemp from './icons/measure-temp.svg'
-import more from './icons/more.svg'
 import objectGroup from './icons/object-group.svg'
 import ohifLogo from './icons/ohif-logo.svg'
 import oval from './icons/oval.svg'
-import pan from './icons/pan.svg'
+import palette from './icons/palette.svg'
 import play from './icons/play.svg'
 import plus from './icons/plus.svg'
 import powerOff from './icons/power-off.svg'
@@ -53,21 +57,15 @@ import search from './icons/search.svg'
 import searchPlus from './icons/search-plus.svg'
 import softTissue from './icons/soft-tissue.svg'
 import squareO from './icons/square-o.svg'
-import stackScroll from './icons/stack-scroll.svg'
 import stepBackward from './icons/step-backward.svg'
 import stepForward from './icons/step-forward.svg'
 import stop from './icons/stop.svg'
-import studies from './icons/studies.svg'
-import studyList from './icons/study-list.svg'
 import sun from './icons/sun.svg'
-import theme from './icons/theme.svg'
+import thLarge from './icons/th-large.svg'
+import thList from './icons/th-list.svg'
 import times from './icons/times.svg'
 import trash from './icons/trash.svg'
-import trialInfo from './icons/trial-info.svg'
-import viewportLink from './icons/viewport-link.svg'
-import warning from './icons/warning.svg'
 import youtube from './icons/youtube.svg'
-import zoom from './icons/zoom.svg'
 
 const ICONS = {
   plus,
@@ -106,34 +104,32 @@ const ICONS = {
   'step-backward': stepBackward,
   'step-forward': stepForward,
   stop,
-  studies,
-  'study-list': studyList,
+  'th-large': thLarge,
+  'th-list': thList,
   sun,
-  theme,
+  palette,
   youtube,
   oval,
   'ellipse-h': ellipseH,
   'ellipse-v': ellipseV,
   adjust,
   level,
-  link,
+  'link-circles': linkCircles,
   'search-plus': searchPlus,
   'measure-non-target': measureNonTarget,
   'measure-target': measureTarget,
   'measure-target-cr': measureTargetCr,
   'measure-target-un': measureTargetUn,
   'measure-temp': measureTemp,
-  more,
-  pan,
+  'ellipse-circle': ellipseCircle,
+  arrows,
   reset,
   rotate,
   'rotate-right': rotateRight,
-  'stack-scroll': stackScroll,
-  zoom,
   trash,
-  'trial-info': trialInfo,
-  'viewport-link': viewportLink,
-  warning,
+  'exclamation-circle': exclamationCircle,
+  link,
+  'exclamation-triangle': exclamationTriangle,
   brain,
   'soft-tissue': softTissue,
   lung,

@@ -6,6 +6,6 @@
   height="1em"
   fill="currentColor"
 >
-  <title id="title">Warning</title>
+  <title id="title">Exclamation Triangle</title>
   <path d="m11,0 11,20 -22,0Z m1,7 -2,0 0,6 2,0Z m0,8 -2,0 0,2 2,0Z" />
 </svg>
