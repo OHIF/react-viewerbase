@@ -3,12 +3,13 @@ import * as ReactViewerbase from './index.js';
 describe('Top level exports', () => {
   test('have not changed', () => {
     const expectedExports = [
+      'ICONS',
+      //
       'CineDialog',
       'Dropdown',
       'ExpandableToolMenu',
       'ExampleDropTarget',
       'Icon',
-      'IconTypes',
       'LayoutButton',
       'LayoutChooser',
       'LayoutManager',
