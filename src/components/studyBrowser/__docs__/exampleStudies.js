@@ -58,12 +58,12 @@ export const studies = [
       },
     ],
   },
-]
+];
 
 export function onThumbnailClick() {
-  console.warn('onThumbnailClick')
+  console.warn('onThumbnailClick');
 }
 
 export function onThumbnailDoubleClick() {
-  console.warn('onThumbnailDoubleClick')
+  console.warn('onThumbnailDoubleClick');
 }

@@ -1,1 +1,1 @@
-export { ToolbarSection } from './ToolbarSection.js'
+export { ToolbarSection } from './ToolbarSection.js';

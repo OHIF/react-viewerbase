@@ -1,1 +1,1 @@
-export { QuickSwitch } from './QuickSwitch.js'
+export { QuickSwitch } from './QuickSwitch.js';

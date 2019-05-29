@@ -1,17 +1,17 @@
-import React, { Component } from 'react'
-import PropTypes from 'prop-types'
-import { isInclusivelyBeforeDay } from 'react-dates'
-import moment from 'moment'
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import { isInclusivelyBeforeDay } from 'react-dates';
+import moment from 'moment';
 
-import CustomDateRangePicker from './CustomDateRangePicker.js'
-import { PaginationArea } from './PaginationArea.js'
-import { StudylistToolbar } from './StudyListToolbar.js'
-import { StudyListLoadingText } from './StudyListLoadingText.js'
-import './StudyList.styl'
+import CustomDateRangePicker from './CustomDateRangePicker.js';
+import { PaginationArea } from './PaginationArea.js';
+import { StudylistToolbar } from './StudyListToolbar.js';
+import { StudyListLoadingText } from './StudyListLoadingText.js';
+import './StudyList.styl';
 
-const today = moment()
-const lastWeek = moment().subtract(7, 'day')
-const lastMonth = moment().subtract(1, 'month')
+const today = moment();
+const lastWeek = moment().subtract(7, 'day');
+const lastMonth = moment().subtract(1, 'month');
 
 class StudyList extends Component {
   static propTypes = {
@@ -28,17 +28,17 @@ class StudyList extends Component {
     }),
     onImport: PropTypes.func,
     pageOptions: PropTypes.array,
-  }
+  };
 
   static defaultProps = {
     currentPage: 0,
     rowsPerPage: 25,
     studyListDateFilterNumDays: 7,
-  }
+  };
 
-  static DEFAULT_SORTABLE_ICON_CLS = 'fa fa-fw fa-sort'
-  static DESC_SORT_ICON_CLS = 'fa fa-fw fa-sort-down'
-  static ASC_SORT_ICON_CLS = 'fa fa-fw fa-sort-up'
+  static DEFAULT_SORTABLE_ICON_CLS = 'fa fa-fw fa-sort';
+  static DESC_SORT_ICON_CLS = 'fa fa-fw fa-sort-down';
+  static ASC_SORT_ICON_CLS = 'fa fa-fw fa-sort-up';
 
   static studyDatePresets = [
     {
@@ -56,12 +56,12 @@ class StudyList extends Component {
       start: lastMonth,
       end: today,
     },
-  ]
+  ];
 
   constructor(props) {
-    super(props)
+    super(props);
 
-    const sortData = {}
+    const sortData = {};
     const sortClasses = {
       patientName: StudyList.DEFAULT_SORTABLE_ICON_CLS,
       patientId: StudyList.DEFAULT_SORTABLE_ICON_CLS,
@@ -69,22 +69,22 @@ class StudyList extends Component {
       studyDatePresets: StudyList.DEFAULT_SORTABLE_ICON_CLS,
       modalities: StudyList.DEFAULT_SORTABLE_ICON_CLS,
       studyDescription: StudyList.DEFAULT_SORTABLE_ICON_CLS,
-    }
+    };
 
     if (props.defaultSort) {
-      sortData.field = props.defaultSort.field
-      sortData.order = props.defaultSort.order
+      sortData.field = props.defaultSort.field;
+      sortData.order = props.defaultSort.order;
       sortClasses[props.defaultSort.field] =
         props.defaultSort.order === 'desc'
           ? StudyList.DESC_SORT_ICON_CLS
-          : StudyList.ASC_SORT_ICON_CLS
+          : StudyList.ASC_SORT_ICON_CLS;
     }
 
     this.defaultStartDate = moment().subtract(
       this.props.studyListDateFilterNumDays,
       'days'
-    )
-    this.defaultEndDate = moment()
+    );
+    this.defaultEndDate = moment();
 
     this.state = {
       loading: false,
@@ -98,68 +98,70 @@ class StudyList extends Component {
         studyDateTo: this.defaultEndDate,
       },
       highlightedItem: '',
-    }
+    };
 
-    this.getChangeHandler = this.getChangeHandler.bind(this)
-    this.onInputKeydown = this.onInputKeydown.bind(this)
-    this.nextPage = this.nextPage.bind(this)
-    this.prevPage = this.prevPage.bind(this)
-    this.onRowsPerPageChange = this.onRowsPerPageChange.bind(this)
+    this.getChangeHandler = this.getChangeHandler.bind(this);
+    this.onInputKeydown = this.onInputKeydown.bind(this);
+    this.nextPage = this.nextPage.bind(this);
+    this.prevPage = this.prevPage.bind(this);
+    this.onRowsPerPageChange = this.onRowsPerPageChange.bind(this);
   }
 
   getChangeHandler(key) {
     return event => {
-      this.setSearchData(key, event.target.value)
-    }
+      this.setSearchData(key, event.target.value);
+    };
   }
 
   setSearchData(key, value, callback) {
-    const searchData = this.state.searchData
-    searchData[key] = value
-    this.setState({ searchData }, callback)
+    const searchData = this.state.searchData;
+    searchData[key] = value;
+    this.setState({ searchData }, callback);
   }
 
   setSearchDataBatch(keyValues, callback) {
-    const searchData = this.state.searchData
+    const searchData = this.state.searchData;
 
     Object.keys(keyValues).forEach(key => {
-      searchData[key] = keyValues[key]
-    })
+      searchData[key] = keyValues[key];
+    });
 
-    this.setState({ searchData }, callback)
+    this.setState({ searchData }, callback);
   }
 
   async onInputKeydown(event) {
     if (event.key === 'Enter') {
-      event.preventDefault()
-      event.stopPropagation()
+      event.preventDefault();
+      event.stopPropagation();
 
       // reset the page because user is doing a new search
-      this.setSearchData('currentPage', 0, this.search)
+      this.setSearchData('currentPage', 0, this.search);
     }
   }
 
   async search() {
     try {
-      this.setState({ loading: true, error: false })
-      await this.props.onSearch(this.state.searchData)
+      this.setState({ loading: true, error: false });
+      await this.props.onSearch(this.state.searchData);
     } catch (error) {
-      this.setState({ error: true })
-      throw new Error(error)
+      this.setState({ error: true });
+      throw new Error(error);
     } finally {
-      this.setState({ loading: false })
+      this.setState({ loading: false });
     }
   }
 
   renderNoMachingResults() {
     if (!this.props.studies.length && !this.state.error) {
-      return <div className="notFound">No matching results</div>
+      return <div className="notFound">No matching results</div>;
     }
   }
 
   renderHasError() {
     if (this.state.error) {
-      return <div className="notFound">There was an error fetching studies</div>
+      return (
+        <div className="notFound">There was an error fetching studies</div>
+      );
     }
   }
 
@@ -169,51 +171,51 @@ class StudyList extends Component {
         <div className="loading">
           <StudyListLoadingText />
         </div>
-      )
+      );
     }
   }
 
   nextPage(currentPage) {
-    currentPage = currentPage + 1
-    this.setSearchData('currentPage', currentPage, this.search)
+    currentPage = currentPage + 1;
+    this.setSearchData('currentPage', currentPage, this.search);
   }
 
   prevPage(currentPage) {
-    currentPage = currentPage - 1
-    this.setSearchData('currentPage', currentPage, this.search)
+    currentPage = currentPage - 1;
+    this.setSearchData('currentPage', currentPage, this.search);
   }
 
   onRowsPerPageChange(rowsPerPage) {
-    this.setSearchDataBatch({ rowsPerPage, currentPage: 0 }, this.search)
+    this.setSearchDataBatch({ rowsPerPage, currentPage: 0 }, this.search);
   }
 
   onSortClick(key) {
     return () => {
-      const sortClasses = this.state.sortClasses
-      let order
+      const sortClasses = this.state.sortClasses;
+      let order;
 
       if (sortClasses[key] === StudyList.ASC_SORT_ICON_CLS) {
-        sortClasses[key] = StudyList.DESC_SORT_ICON_CLS
-        order = 'desc'
+        sortClasses[key] = StudyList.DESC_SORT_ICON_CLS;
+        order = 'desc';
       } else {
-        sortClasses[key] = StudyList.ASC_SORT_ICON_CLS
-        order = 'asc'
+        sortClasses[key] = StudyList.ASC_SORT_ICON_CLS;
+        order = 'asc';
       }
 
       Object.keys(sortClasses).forEach(sortClassKey => {
         if (sortClassKey !== key) {
-          sortClasses[sortClassKey] = StudyList.DEFAULT_SORTABLE_ICON_CLS
+          sortClasses[sortClassKey] = StudyList.DEFAULT_SORTABLE_ICON_CLS;
         }
-      })
+      });
 
       this.setState({ sortClasses }, () => {
-        this.setSearchData('sortData', { field: key, order }, this.search)
-      })
-    }
+        this.setSearchData('sortData', { field: key, order }, this.search);
+      });
+    };
   }
 
   onHighlightItem(studyItemUid) {
-    this.setState({ highlightedItem: studyItemUid })
+    this.setState({ highlightedItem: studyItemUid });
   }
 
   renderTableRow(study) {
@@ -226,16 +228,16 @@ class StudyList extends Component {
             : 'studylistStudy noselect'
         }
         onClick={() => {
-          this.onHighlightItem(study.studyInstanceUid)
+          this.onHighlightItem(study.studyInstanceUid);
         }}
         onMouseDown={event => {
           // middle/wheel click
           if (event.button === 1) {
-            this.props.onSelectItem(study.studyInstanceUid)
+            this.props.onSelectItem(study.studyInstanceUid);
           }
         }}
         onDoubleClick={() => {
-          this.props.onSelectItem(study.studyInstanceUid)
+          this.props.onSelectItem(study.studyInstanceUid);
         }}
       >
         <td className="patientName">{study.patientName}</td>
@@ -245,7 +247,7 @@ class StudyList extends Component {
         <td className="modalities">{study.modalities}</td>
         <td className="studyDescription">{study.studyDescription}</td>
       </tr>
-    )
+    );
   }
 
   render() {
@@ -364,8 +366,8 @@ class StudyList extends Component {
                               studyDateTo: endDate.toDate(),
                             },
                             this.search
-                          )
-                          this.setState({ focusedInput: false })
+                          );
+                          this.setState({ focusedInput: false });
                         } else if (!startDate && !endDate) {
                           this.setSearchDataBatch(
                             {
@@ -373,12 +375,12 @@ class StudyList extends Component {
                               studyDateTo: null,
                             },
                             this.search
-                          )
+                          );
                         }
                       }}
                       focusedInput={this.state.focusedInput}
                       onFocusChange={focusedInput => {
-                        this.setState({ focusedInput })
+                        this.setState({ focusedInput });
                       }}
                     />
                   </div>
@@ -425,7 +427,7 @@ class StudyList extends Component {
             </thead>
             <tbody id="studyListData">
               {this.props.studies.map(study => {
-                return this.renderTableRow(study)
+                return this.renderTableRow(study);
               })}
             </tbody>
           </table>
@@ -445,8 +447,8 @@ class StudyList extends Component {
           />
         </div>
       </div>
-    )
+    );
   }
 }
 
-export { StudyList }
+export { StudyList };

@@ -1,4 +1,4 @@
-import moment from 'moment'
+import moment from 'moment';
 
 const studies = [
   {
@@ -65,12 +65,12 @@ const studies = [
   },
 ].sort(function(a, b) {
   if (a.patientName < b.patientName) {
-    return -1
+    return -1;
   }
   if (a.patientName > b.patientName) {
-    return 1
+    return 1;
   }
-  return 0
-})
+  return 0;
+});
 
-export default studies
+export default studies;

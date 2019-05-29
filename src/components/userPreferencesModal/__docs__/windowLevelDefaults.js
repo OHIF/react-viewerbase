@@ -10,4 +10,4 @@ export default {
   8: { description: '', window: '', level: '' },
   9: { description: '', window: '', level: '' },
   10: { description: '', window: '', level: '' },
-}
+};

@@ -1,3 +1,3 @@
 // import { Provider } from 'react-redux'
 
-const Wrapper = ({ children }) => ({ children })
+const Wrapper = ({ children }) => ({ children });

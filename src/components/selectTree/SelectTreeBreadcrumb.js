@@ -1,18 +1,18 @@
-import { Component } from 'react'
-import React from 'react'
-import PropTypes from 'prop-types'
+import { Component } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 
 export default class SelectTreeBreadcrumb extends Component {
   static propTypes = {
     label: PropTypes.string.isRequired,
     value: PropTypes.string.isRequired,
     onSelected: PropTypes.func.isRequired,
-  }
+  };
 
   render() {
-    const config = window.config || {}
-    const routerBaseName = config.routerBaseName || ''
-    const Icons = `${routerBaseName}/icons.svg`.replace('//', '/')
+    const config = window.config || {};
+    const routerBaseName = config.routerBaseName || '';
+    const Icons = `${routerBaseName}/icons.svg`.replace('//', '/');
 
     return (
       <div className="selectTreeBreadcrumb">
@@ -37,6 +37,6 @@ export default class SelectTreeBreadcrumb extends Component {
           </span>
         </label>
       </div>
-    )
+    );
   }
 }

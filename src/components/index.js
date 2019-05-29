@@ -9,7 +9,7 @@ import { SimpleDialog } from './simpleDialog';
 import {
   ExampleDropTarget,
   StudyBrowser,
-  ThumbnailEntry
+  ThumbnailEntry,
 } from './studyBrowser';
 import { StudyList } from './studyList';
 import { TableList, TableListItem } from './tableList';
@@ -38,5 +38,5 @@ export {
   ToolbarSection,
   Tooltip,
   UserPreferences,
-  UserPreferencesModal
+  UserPreferencesModal,
 };

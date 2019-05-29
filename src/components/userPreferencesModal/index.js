@@ -1,2 +1,2 @@
-export { UserPreferences } from './UserPreferences.js'
-export { UserPreferencesModal } from './UserPreferencesModal.js'
+export { UserPreferences } from './UserPreferences.js';
+export { UserPreferencesModal } from './UserPreferencesModal.js';

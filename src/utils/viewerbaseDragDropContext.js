@@ -1,5 +1,5 @@
-import { DragDropContext } from 'react-dnd'
-import HTML5Backend from 'react-dnd-html5-backend'
+import { DragDropContext } from 'react-dnd';
+import HTML5Backend from 'react-dnd-html5-backend';
 
 // See https://github.com/react-dnd/react-dnd/issues/186#issuecomment-335429067
 // https://github.com/react-dnd/react-dnd/issues/186#issuecomment-282789420
@@ -7,5 +7,5 @@ import HTML5Backend from 'react-dnd-html5-backend'
 
 // http://react-dnd.github.io/react-dnd/docs/api/drag-drop-context
 export default function viewerbaseDragDropContext(DecoratedClass) {
-  return DragDropContext(HTML5Backend, null, true)(DecoratedClass)
+  return DragDropContext(HTML5Backend, null, true)(DecoratedClass);
 }
