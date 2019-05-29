@@ -18,6 +18,12 @@ class ThumbnailEntry extends Component {
     error: PropTypes.bool.isRequired,
     active: PropTypes.bool.isRequired,
     stackPercentComplete: PropTypes.number,
+    /**
+    altImageText will be used when no imageId or imageSrc is provided.
+    It will be displayed inside the <div>. This is useful when it is difficult
+    to make a preview for a type of DICOM series (e.g. DICOM-SR)
+    */
+    altImageText: PropTypes.string,
     seriesDescription: PropTypes.string,
     seriesNumber: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
     instanceNumber: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
@@ -34,13 +40,9 @@ class ThumbnailEntry extends Component {
     });
     const infoOnly = false;
 
-    return (
-      <div
-        className={className}
-        onClick={this.onClick}
-        onDoubleClick={this.onDoubleClick}
-        onMouseDown={this.onMouseDown}
-      >
+    let contents = null;
+    if (this.props.imageSrc || this.props.imageId) {
+      contents = (
         <div className="p-x-1">
           <ImageThumbnail
             imageSrc={this.props.imageSrc}
@@ -49,6 +51,23 @@ class ThumbnailEntry extends Component {
             stackPercentComplete={this.props.stackPercentComplete}
           />
         </div>
+      );
+    } else if (this.props.altImageText) {
+      contents = (
+        <div className={'alt-image-text p-x-1'}>
+          <h1>{this.props.altImageText}</h1>
+        </div>
+      );
+    }
+
+    return (
+      <div
+        className={className}
+        onClick={this.onClick}
+        onDoubleClick={this.onDoubleClick}
+        onMouseDown={this.onMouseDown}
+      >
+        {contents}
         <div
           className={infoOnly ? 'series-details info-only' : 'series-details'}
         >
