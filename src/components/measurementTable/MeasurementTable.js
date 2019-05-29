@@ -59,7 +59,7 @@ export class MeasurementTable extends Component {
             >
               <span className="warning-status">
                 <span className="warning-border">
-                  <Icon name="warning" />
+                  <Icon name="exclamation-triangle" />
                 </span>
               </span>
             </OverlayTrigger>

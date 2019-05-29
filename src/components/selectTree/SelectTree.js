@@ -137,7 +137,7 @@ export class SelectTree extends Component {
         {this.props.searchEnabled && (
           <div className="wrapperSearch">
             <div className="searchIcon">
-              <Icon name="log" />
+              <Icon name="search" />
             </div>
             <input
               type="text"

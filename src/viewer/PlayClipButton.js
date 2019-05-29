@@ -36,7 +36,7 @@ export default class PlayClipButton extends Component {
           data-placement="bottom"
           title="Toggle CINE Dialog"
         >
-          <Icon name="tool-cineplay-toggle" />
+          <Icon name="youtube" />
         </button>
       </div>
     );

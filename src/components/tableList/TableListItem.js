@@ -23,7 +23,7 @@ export class TableListItem extends Component {
         <div className="itemIndex">
           {this.props.itemIndex}
           <span className="warning-icon">
-            <Icon name="warning" />
+            <Icon name="exclamation-triangle" />
           </span>
         </div>
         <div className="itemContent">{this.props.children}</div>

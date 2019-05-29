@@ -35,7 +35,7 @@ export default class ExpandableToolMenu extends React.Component {
 
   static defaultProps = {
     buttons: {},
-    icon: 'tool-more',
+    icon: 'ellipse-circle',
     text: 'More',
   };
 
