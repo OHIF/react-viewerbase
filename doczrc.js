@@ -46,12 +46,42 @@ export default {
   // Rollup Aliases?
   // https://github.com/pedronauck/docz/issues/373
   plugins: [
+    // CSS
     css(),
+    // Stylus
     css({
       preprocessor: 'stylus',
       cssmodules: false,
     }),
   ],
+  // `docz` uses file-loader to pull in SVGs. This kills our icons before
+  // They can be picked up by our `babel-plugin-inline-react-svg` dependency
+  // You can see where it's configured here:
+  // https://github.com/pedronauck/docz/blob/f72624d0aa5231dab17e1770e8d36be920f590a2/core/docz-core/src/bundler/loaders.ts#L135-L144
+  // How we delete our rule:
+  // https://github.com/neutrinojs/webpack-chain/issues/48
+  onCreateWebpackChain: config => {
+    config.module.rules.delete('svg')
+
+    // config.module
+    //   .rule('svg')
+    //   .test(/\.(svg)(\?.*)?$/)
+    //   .use('file-loader')
+    //   .loader(require.resolve('file-loader'))
+    //   .options({
+    //     name: `static/img/[name].[ext]`,
+    //   })
+  },
+  modifyBabelRc: babelrc => {
+    const newBabelRc = {
+      ...babelrc,
+      plugins: [
+        ...babelrc.plugins,
+        require.resolve('babel-plugin-inline-react-svg'),
+      ],
+    }
+    return newBabelRc
+  },
 }
 
 /*
