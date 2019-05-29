@@ -1,7 +1,7 @@
-import React, { Component } from 'react'
-import PropTypes from 'prop-types'
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
-import './SimpleDialog.styl'
+import './SimpleDialog.styl';
 
 class SimpleDialog extends Component {
   static propTypes = {
@@ -13,13 +13,13 @@ class SimpleDialog extends Component {
     headerTitle: PropTypes.string.isRequired,
     onClose: PropTypes.func.isRequired,
     onConfirm: PropTypes.func.isRequired,
-  }
+  };
 
   static defaultProps = {
     isOpen: true,
     componentStyle: {},
     rootClass: '',
-  }
+  };
 
   render() {
     return (
@@ -50,20 +50,20 @@ class SimpleDialog extends Component {
           </div>
         )}
       </React.Fragment>
-    )
+    );
   }
 
   onClose = event => {
-    event.preventDefault()
-    event.stopPropagation()
-    this.props.onClose()
-  }
+    event.preventDefault();
+    event.stopPropagation();
+    this.props.onClose();
+  };
 
   onConfirm = event => {
-    event.preventDefault()
-    event.stopPropagation()
-    this.props.onConfirm()
-  }
+    event.preventDefault();
+    event.stopPropagation();
+    this.props.onConfirm();
+  };
 }
 
-export { SimpleDialog }
+export { SimpleDialog };

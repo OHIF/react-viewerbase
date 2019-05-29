@@ -1,1 +1,1 @@
-export { SimpleDialog } from './SimpleDialog.js'
+export { SimpleDialog } from './SimpleDialog.js';

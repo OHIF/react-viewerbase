@@ -1,14 +1,14 @@
-import React, { Component } from 'react'
-import PropTypes from 'prop-types'
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
-import './StudiesItem.styl'
+import './StudiesItem.styl';
 
 export class StudiesItem extends Component {
   static propTypes = {
     onClick: PropTypes.func.isRequired,
     studyData: PropTypes.object.isRequired,
     active: PropTypes.bool,
-  }
+  };
 
   render() {
     const {
@@ -16,9 +16,9 @@ export class StudiesItem extends Component {
       studyDescription,
       modalities,
       studyAvailable,
-    } = this.props.studyData
-    const activeClass = this.props.active ? ' active' : ''
-    const hasDescriptionAndDate = studyDate && studyDescription
+    } = this.props.studyData;
+    const activeClass = this.props.active ? ' active' : '';
+    const hasDescriptionAndDate = studyDate && studyDescription;
     return (
       <div
         className={`studyBrowseItem${activeClass}`}
@@ -51,10 +51,10 @@ export class StudiesItem extends Component {
           </div>
         </div>
       </div>
-    )
+    );
   }
 
   getModalitiesStyle = () => {
-    return {}
-  }
+    return {};
+  };
 }

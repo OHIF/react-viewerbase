@@ -1,8 +1,8 @@
-import React, { Component } from 'react'
-import PropTypes from 'prop-types'
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
-import { StudiesItem } from './StudiesItem.js'
-import './StudiesList.styl'
+import { StudiesItem } from './StudiesItem.js';
+import './StudiesList.styl';
 
 export class StudiesList extends Component {
   static propTypes = {
@@ -10,14 +10,14 @@ export class StudiesList extends Component {
     studyListData: PropTypes.array.isRequired,
     onClick: PropTypes.func.isRequired,
     activeStudyInstanceUid: PropTypes.string,
-  }
+  };
 
   render() {
     return (
       <div className={`studiesList ${this.props.class}`}>
         {this.getBrowserItems()}
       </div>
-    )
+    );
   }
 
   getBrowserItems = () => {
@@ -31,7 +31,7 @@ export class StudiesList extends Component {
           }
           onClick={event => this.props.onClick(studyData)}
         />
-      )
-    })
-  }
+      );
+    });
+  };
 }

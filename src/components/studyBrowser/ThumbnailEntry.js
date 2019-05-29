@@ -1,15 +1,15 @@
-import React, { Component } from 'react'
-import PropTypes from 'prop-types'
-import ImageThumbnail from './ImageThumbnail'
-import './ThumbnailEntry.styl'
-import classnames from 'classnames'
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import ImageThumbnail from './ImageThumbnail';
+import './ThumbnailEntry.styl';
+import classnames from 'classnames';
 
 class ThumbnailEntry extends Component {
   static defaultProps = {
     active: false,
     error: false,
     stackPercentComplete: 0,
-  }
+  };
 
   static propTypes = {
     id: PropTypes.string.isRequired,
@@ -24,15 +24,15 @@ class ThumbnailEntry extends Component {
     numImageFrames: PropTypes.number,
     onDoubleClick: PropTypes.func,
     onClick: PropTypes.func,
-  }
+  };
 
   render() {
-    const hasInstanceNumber = this.props.instanceNumber !== undefined
+    const hasInstanceNumber = this.props.instanceNumber !== undefined;
 
     let className = classnames('ThumbnailEntry noselect', {
       active: this.props.active,
-    })
-    const infoOnly = false
+    });
+    const infoOnly = false;
 
     return (
       <div
@@ -75,20 +75,20 @@ class ThumbnailEntry extends Component {
           </div>
         </div>
       </div>
-    )
+    );
   }
 
   onClick = () => {
     if (this.props.onClick) {
-      this.props.onClick()
+      this.props.onClick();
     }
-  }
+  };
 
   onDoubleClick = () => {
     if (this.props.onDoubleClick) {
-      this.props.onDoubleClick()
+      this.props.onDoubleClick();
     }
-  }
+  };
 }
 
-export { ThumbnailEntry }
+export { ThumbnailEntry };

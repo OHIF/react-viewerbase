@@ -1,4 +1,4 @@
-import * as ReactViewerbase from './index.js'
+import * as ReactViewerbase from './index.js';
 
 describe('Top level exports', () => {
   test('have not changed', () => {
@@ -35,10 +35,10 @@ describe('Top level exports', () => {
       'UserPreferences',
       'UserPreferencesModal',
       'ViewerbaseDragDropContext',
-    ].sort()
+    ].sort();
 
-    const exports = Object.keys(ReactViewerbase).sort()
+    const exports = Object.keys(ReactViewerbase).sort();
 
-    expect(exports).toEqual(expectedExports)
-  })
-})
+    expect(exports).toEqual(expectedExports);
+  });
+});

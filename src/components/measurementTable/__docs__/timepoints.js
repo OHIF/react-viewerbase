@@ -11,4 +11,4 @@ export default [
     label: 'Baseline',
     date: '10-Apr-18',
   },
-]
+];

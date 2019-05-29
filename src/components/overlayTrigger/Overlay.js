@@ -1,10 +1,10 @@
-import classNames from 'classnames'
-import React, { cloneElement } from 'react'
-import PropTypes from 'prop-types'
-import { Overlay as BaseOverlay } from 'react-overlays'
-import elementType from 'prop-types-extra/lib/elementType'
+import classNames from 'classnames';
+import React, { cloneElement } from 'react';
+import PropTypes from 'prop-types';
+import { Overlay as BaseOverlay } from 'react-overlays';
+import elementType from 'prop-types-extra/lib/elementType';
 
-import Fade from './Fade'
+import Fade from './Fade';
 
 const propTypes = {
   /**
@@ -60,40 +60,40 @@ const propTypes = {
    * Sets the direction of the Overlay.
    */
   placement: PropTypes.oneOf(['top', 'right', 'bottom', 'left']),
-}
+};
 
 const defaultProps = {
   animation: Fade,
   rootClose: false,
   show: false,
   placement: 'right',
-}
+};
 
 class Overlay extends React.Component {
   render() {
-    const { animation, children, ...props } = this.props
+    const { animation, children, ...props } = this.props;
 
-    const transition = animation === true ? Fade : animation || null
+    const transition = animation === true ? Fade : animation || null;
 
-    let child
+    let child;
 
     if (!transition) {
       child = cloneElement(children, {
         className: classNames(children.props.className, 'in'),
-      })
+      });
     } else {
-      child = children
+      child = children;
     }
 
     return (
       <BaseOverlay {...props} transition={transition}>
         {child}
       </BaseOverlay>
-    )
+    );
   }
 }
 
-Overlay.propTypes = propTypes
-Overlay.defaultProps = defaultProps
+Overlay.propTypes = propTypes;
+Overlay.defaultProps = defaultProps;
 
-export { Overlay }
+export { Overlay };

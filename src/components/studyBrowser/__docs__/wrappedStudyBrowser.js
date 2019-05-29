@@ -1,13 +1,13 @@
-import React, { Component } from 'react'
-import { DragDropContext } from 'react-dnd'
-import HTML5Backend from 'react-dnd-html5-backend'
+import React, { Component } from 'react';
+import { DragDropContext } from 'react-dnd';
+import HTML5Backend from 'react-dnd-html5-backend';
 //
 import {
   studies,
   onThumbnailClick,
   onThumbnailDoubleClick,
-} from './exampleStudies.js'
-import { ExampleDropTarget, StudyBrowser } from './../index.js'
+} from './exampleStudies.js';
+import { ExampleDropTarget, StudyBrowser } from './../index.js';
 
 class StudyBrowserContainer extends Component {
   render() {
@@ -22,7 +22,7 @@ class StudyBrowserContainer extends Component {
           onThumbnailDoubleClick={onThumbnailDoubleClick}
         />
       </React.Fragment>
-    )
+    );
   }
 }
 
@@ -31,7 +31,7 @@ class StudyBrowserContainer extends Component {
 // We wrap this component to create a simple/local example.
 const WrappedStudyBrowser = DragDropContext(HTML5Backend, null, true)(
   StudyBrowserContainer
-)
+);
 
 // http://react-dnd.github.io/react-dnd/docs/api/drag-drop-context
-export { WrappedStudyBrowser }
+export { WrappedStudyBrowser };

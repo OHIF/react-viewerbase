@@ -1,15 +1,15 @@
-import React, { Component } from 'react'
-import PropTypes from 'prop-types'
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
-import { ThumbnailEntry } from './../studyBrowser'
-import './SeriesList.styl'
+import { ThumbnailEntry } from './../studyBrowser';
+import './SeriesList.styl';
 
 export class SeriesList extends Component {
   static propTypes = {
     seriesItems: PropTypes.array.isRequired,
     onClick: PropTypes.func.isRequired,
     activeDisplaySetInstanceUid: PropTypes.string,
-  }
+  };
 
   render() {
     return (
@@ -18,7 +18,7 @@ export class SeriesList extends Component {
           <div className="study-series-container">{this.getSeriesItems()}</div>
         </div>
       </React.Fragment>
-    )
+    );
   }
 
   getSeriesItems = () => {
@@ -34,7 +34,7 @@ export class SeriesList extends Component {
           }
           onClick={() => this.props.onClick(seriesData)}
         />
-      )
-    })
-  }
+      );
+    });
+  };
 }

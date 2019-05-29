@@ -23,18 +23,18 @@ import {
   Tooltip,
   UserPreferences,
   UserPreferencesModal,
-} from './components'
+} from './components';
 
 // Alias this for now as not all dependents are using strict versioning
-import { Select as Dropdown } from './elements/form'
-import ExpandableToolMenu from './viewer/ExpandableToolMenu.js'
-import LayoutManager from './LayoutChooser/LayoutManager.js'
-import LayoutPanelDropTarget from './LayoutChooser/LayoutPanelDropTarget.js'
-import PlayClipButton from './viewer/PlayClipButton.js'
-import { ScrollableArea } from './ScrollableArea/ScrollableArea.js'
-import Toolbar from './viewer/Toolbar.js'
-import ToolbarButton from './viewer/ToolbarButton.js'
-import ViewerbaseDragDropContext from './utils/viewerbaseDragDropContext.js'
+import { Select as Dropdown } from './elements/form';
+import ExpandableToolMenu from './viewer/ExpandableToolMenu.js';
+import LayoutManager from './LayoutChooser/LayoutManager.js';
+import LayoutPanelDropTarget from './LayoutChooser/LayoutPanelDropTarget.js';
+import PlayClipButton from './viewer/PlayClipButton.js';
+import { ScrollableArea } from './ScrollableArea/ScrollableArea.js';
+import Toolbar from './viewer/Toolbar.js';
+import ToolbarButton from './viewer/ToolbarButton.js';
+import ViewerbaseDragDropContext from './utils/viewerbaseDragDropContext.js';
 
 export {
   ICONS,
@@ -70,4 +70,4 @@ export {
   UserPreferences,
   UserPreferencesModal,
   ViewerbaseDragDropContext,
-}
+};
