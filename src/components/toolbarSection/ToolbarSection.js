@@ -1,14 +1,14 @@
-import React, { PureComponent } from 'react'
-import ToolbarButton from '../../viewer/ToolbarButton'
-import ExpandableToolMenu from '../../viewer/ExpandableToolMenu'
-import classnames from 'classnames'
-import './ToolbarSection.styl'
-import PropTypes from 'prop-types'
+import React, { PureComponent } from 'react';
+import ToolbarButton from '../../viewer/ToolbarButton';
+import ExpandableToolMenu from '../../viewer/ExpandableToolMenu';
+import classnames from 'classnames';
+import './ToolbarSection.styl';
+import PropTypes from 'prop-types';
 
 class ToolbarSection extends PureComponent {
   static defaultProps = {
     className: '',
-  }
+  };
 
   static propTypes = {
     buttons: PropTypes.array.isRequired,
@@ -16,7 +16,7 @@ class ToolbarSection extends PureComponent {
     activeCommand: PropTypes.string,
     /** Called when a button is clicked/touched */
     setToolActive: PropTypes.func,
-  }
+  };
 
   render() {
     const items = this.props.buttons.map((item, index) => {
@@ -28,7 +28,7 @@ class ToolbarSection extends PureComponent {
             activeCommand={this.props.activeCommand}
             setToolActive={this.props.setToolActive}
           />
-        )
+        );
       } else {
         return (
           <ToolbarButton
@@ -37,16 +37,16 @@ class ToolbarSection extends PureComponent {
             active={item.command === this.props.activeCommand}
             setToolActive={this.props.setToolActive}
           />
-        )
+        );
       }
-    })
+    });
 
     return (
       <div className={classnames('ToolbarSection', this.props.className)}>
         {items}
       </div>
-    )
+    );
   }
 }
 
-export { ToolbarSection }
+export { ToolbarSection };

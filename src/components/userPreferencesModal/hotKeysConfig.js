@@ -1,6 +1,6 @@
 const range = (start, end) => {
-  return new Array(end - start).fill().map((d, i) => i + start)
-}
+  return new Array(end - start).fill().map((d, i) => i + start);
+};
 
 export const disallowedCombinations = {
   '': [],
@@ -32,7 +32,7 @@ export const disallowedCombinations = {
     'PAGEUP',
   ],
   'CTRL+SHIFT': ['Q', 'W', 'R', 'T', 'P', 'A', 'H', 'V', 'B', 'N'],
-}
+};
 
 export const allowedKeys = [
   ...[8, 13, 27, 32, 46], // BACKSPACE, ENTER, ESCAPE, SPACE, DELETE
@@ -43,7 +43,7 @@ export const allowedKeys = [
   ...range(32, 41), // arrow keys, home/end, pg dn/up
   ...range(47, 58), // 0-9
   ...range(64, 91), // A-Z
-]
+];
 
 export const specialKeys = {
   8: 'backspace',
@@ -97,4 +97,4 @@ export const specialKeys = {
   145: 'scroll',
   191: '/',
   224: 'meta',
-}
+};

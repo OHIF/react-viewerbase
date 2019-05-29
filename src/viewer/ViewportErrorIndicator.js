@@ -1,5 +1,5 @@
-import React from 'react'
-import PropTypes from 'prop-types'
+import React from 'react';
+import PropTypes from 'prop-types';
 
 export function ViewportErrorIndicator(props) {
   return (
@@ -20,11 +20,11 @@ export function ViewportErrorIndicator(props) {
       <p className="description">An error has occurred.</p>
       <p className="details">{props.details}</p>
     </div>
-  )
+  );
 }
 
 ViewportErrorIndicator.propTypes = {
   details: PropTypes.string,
-}
+};
 
-export default ViewportErrorIndicator
+export default ViewportErrorIndicator;

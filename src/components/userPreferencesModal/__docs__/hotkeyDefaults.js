@@ -77,4 +77,4 @@ export default {
   WLPreset7: { label: 'W/L Preset 7', command: '8', column: 1 },
   WLPreset8: { label: 'W/L Preset 8', command: '9', column: 1 },
   WLPreset9: { label: 'W/L Preset 0', command: '0', column: 1 },
-}
+};

@@ -1,10 +1,10 @@
-import classNames from 'classnames'
-import React from 'react'
-import PropTypes from 'prop-types'
+import classNames from 'classnames';
+import React from 'react';
+import PropTypes from 'prop-types';
 import Transition, {
   ENTERED,
   ENTERING,
-} from 'react-transition-group/Transition'
+} from 'react-transition-group/Transition';
 
 const propTypes = {
   /**
@@ -59,7 +59,7 @@ const propTypes = {
    * Callback fired after the component has faded out
    */
   onExited: PropTypes.func,
-}
+};
 
 const defaultProps = {
   in: false,
@@ -67,16 +67,16 @@ const defaultProps = {
   mountOnEnter: false,
   unmountOnExit: false,
   appear: false,
-}
+};
 
 const fadeStyles = {
   [ENTERING]: 'in',
   [ENTERED]: 'in',
-}
+};
 
 class Fade extends React.Component {
   render() {
-    const { className, children, ...props } = this.props
+    const { className, children, ...props } = this.props;
 
     return (
       <Transition {...props}>
@@ -92,11 +92,11 @@ class Fade extends React.Component {
           })
         }
       </Transition>
-    )
+    );
   }
 }
 
-Fade.propTypes = propTypes
-Fade.defaultProps = defaultProps
+Fade.propTypes = propTypes;
+Fade.defaultProps = defaultProps;
 
-export default Fade
+export default Fade;

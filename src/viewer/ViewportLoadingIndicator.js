@@ -1,5 +1,5 @@
-import React from 'react'
-import PropTypes from 'prop-types'
+import React from 'react';
+import PropTypes from 'prop-types';
 
 export function ViewportLoadingIndicator(props) {
   return (
@@ -18,11 +18,11 @@ export function ViewportLoadingIndicator(props) {
     >
       Loading {props.percentComplete}
     </div>
-  )
+  );
 }
 
 ViewportLoadingIndicator.propTypes = {
   percentComplete: PropTypes.number,
-}
+};
 
-export default ViewportLoadingIndicator
+export default ViewportLoadingIndicator;

@@ -1,2 +1,2 @@
-export { TableList } from './TableList'
-export { TableListItem } from './TableListItem'
+export { TableList } from './TableList';
+export { TableListItem } from './TableListItem';

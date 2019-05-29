@@ -1,6 +1,6 @@
-const config = window.config || {}
-const routerBaseName = config.routerBaseName || ''
-const Icons = `${routerBaseName}/icons.svg`.replace('//', '/')
+const config = window.config || {};
+const routerBaseName = config.routerBaseName || '';
+const Icons = `${routerBaseName}/icons.svg`.replace('//', '/');
 
 export default [
   {
@@ -65,4 +65,4 @@ export default [
       },
     ],
   },
-]
+];

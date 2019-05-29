@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 
 const CaretDown = ({
   style = {},
@@ -22,6 +22,6 @@ const CaretDown = ({
       s9.233-1.811,12.847-5.428L286.935,95.074c3.613-3.617,5.427-7.898,5.427-12.847C292.362,77.279,290.548,72.998,286.935,69.377z"
     />
   </svg>
-)
+);
 
-export { CaretDown }
+export { CaretDown };
