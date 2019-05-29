@@ -19,6 +19,12 @@ export const studies = [
         numImageFrames: 256,
         stackPercentComplete: 70,
       },
+      {
+        altImageText: 'SR',
+        seriesDescription: 'Imaging Measurement Report',
+        seriesNumber: '3',
+        stackPercentComplete: 100,
+      },
     ],
   },
   {
