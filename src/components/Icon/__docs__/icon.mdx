@@ -6,7 +6,7 @@ route: /components/icon
 
 import { Playground, Props } from 'docz'
 import { State } from 'react-powerplug'
-import { Icon, IconTypes } from './../index.js'
+import { Icon, ICONS } from './../index.js'
 
 # Icon
 
@@ -22,30 +22,32 @@ import { Icon, IconTypes } from './../index.js'
       color: 'white',
     }}
   >
-    {Object.keys(IconTypes).map((name, i) => {
-      return (
-        <React.Fragment key={i}>
-          <div
-            style={{
-              display: 'flex',
-              flexDirection: 'column',
-              flexBasis: '25%',
-              minWidth: '100px',
-              margin: '16px',
-              backgroundColor: 'rgb(11, 95, 255)',
-              borderRadius: '8px',
-              padding: '16px',
-              alignItems: 'center',
-            }}
-          >
-            <Icon name={name} width="24px" height="24px" color="white" />
-            <div style={{ fontSize: '12px', wordWrap: 'break-word' }}>
-              {name}
+    {Object.keys(ICONS)
+      .sort()
+      .map((name, i) => {
+        return (
+          <React.Fragment key={i}>
+            <div
+              style={{
+                display: 'flex',
+                flexDirection: 'column',
+                flexBasis: '25%',
+                minWidth: '100px',
+                margin: '16px',
+                backgroundColor: 'rgb(11, 95, 255)',
+                borderRadius: '8px',
+                padding: '16px',
+                alignItems: 'center',
+              }}
+            >
+              <Icon name={name} />
+              <div style={{ fontSize: '12px', wordWrap: 'break-word' }}>
+                {name}
+              </div>
             </div>
-          </div>
-        </React.Fragment>
-      )
-    })}
+          </React.Fragment>
+        )
+      })}
   </div>
 </Playground>
 

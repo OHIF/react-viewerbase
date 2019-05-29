@@ -1,8 +1,9 @@
 import {
+  ICONS,
+  //
   CineDialog,
   ExampleDropTarget,
   Icon,
-  IconTypes,
   LayoutButton,
   LayoutChooser,
   MeasurementTable,
@@ -36,12 +37,13 @@ import ToolbarButton from './viewer/ToolbarButton.js'
 import ViewerbaseDragDropContext from './utils/viewerbaseDragDropContext.js'
 
 export {
+  ICONS,
+  //
   CineDialog,
   Dropdown,
   ExpandableToolMenu,
   ExampleDropTarget,
   Icon,
-  IconTypes,
   LayoutButton,
   LayoutChooser,
   LayoutManager,

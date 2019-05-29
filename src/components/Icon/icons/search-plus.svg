@@ -1,0 +1,11 @@
+<svg
+  xmlns="http://www.w3.org/2000/svg"
+  viewBox="0 0 24 28"
+  aria-labelledby="title"
+  width="1em"
+  height="1em"
+  fill="currentColor"
+>
+  <title id="title">Search Plus</title>
+  <path d="M24 14c0 6.625-5.375 12-12 12s-12-5.375-12-12 5.375-12 12-12 12 5.375 12 12z" />
+</svg>

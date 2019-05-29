@@ -1,5 +1,5 @@
 import { CineDialog } from './cineDialog'
-import { Icon, IconTypes } from './Icon'
+import { Icon, ICONS } from './Icon'
 import { LayoutButton, LayoutChooser } from './layoutButton'
 import { MeasurementTable, MeasurementTableItem } from './measurementTable'
 import { Overlay, OverlayTrigger } from './overlayTrigger'
@@ -18,7 +18,7 @@ export {
   CineDialog,
   ExampleDropTarget,
   Icon,
-  IconTypes,
+  ICONS,
   LayoutButton,
   LayoutChooser,
   MeasurementTable,
