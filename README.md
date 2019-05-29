@@ -48,6 +48,9 @@ npm i react-viewerbase --save-exact
 
 // with yarn
 yarn add react-viewerbase --exact
+
+// if above does not work, try
+npm install --force
 ```
 
 ## Usage
