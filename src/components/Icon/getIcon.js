@@ -142,8 +142,8 @@ const ICONS = {
  * return `null`
  */
 export default function getIcon(key) {
-  if (!key) {
-    return React.createElement('div', {}, 'No matching icon');
+  if (!key || !ICONS[key]) {
+    return React.createElement('div', null, 'Missing Icon');
   }
 
   return React.createElement(ICONS[key]);
