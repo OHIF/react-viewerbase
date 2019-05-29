@@ -3,6 +3,7 @@ import adjust from './icons/adjust.svg';
 // Icons
 import angleDoubleDown from './icons/angle-double-down.svg';
 import angleDoubleUp from './icons/angle-double-up.svg';
+import angleLeft from './icons/angle-left.svg';
 import arrows from './icons/arrows.svg';
 import arrowsAltH from './icons/arrows-alt-h.svg';
 import arrowsAltV from './icons/arrows-alt-v.svg';
@@ -20,7 +21,10 @@ import circleO from './icons/circle-o.svg';
 import cog from './icons/cog.svg';
 import createComment from './icons/create-comment.svg';
 import createScreenCapture from './icons/create-screen-capture.svg';
+import cube from './icons/cube.svg';
+import d3Rotate from './icons/3d-rotate.svg';
 import database from './icons/database.svg';
+import dotCircle from './icons/dot-circle.svg';
 import edit from './icons/edit.svg';
 import ellipseCircle from './icons/ellipse-circle.svg';
 import ellipseH from './icons/ellipse-h.svg';
@@ -29,6 +33,7 @@ import exclamationCircle from './icons/exclamation-circle.svg';
 import exclamationTriangle from './icons/exclamation-triangle.svg';
 import fastBackward from './icons/fast-backward.svg';
 import fastForward from './icons/fast-forward.svg';
+import info from './icons/info.svg';
 import inlineEdit from './icons/inline-edit.svg';
 import level from './icons/level.svg';
 import link from './icons/link.svg';
@@ -56,18 +61,33 @@ import rotateRight from './icons/rotate-right.svg';
 import search from './icons/search.svg';
 import searchPlus from './icons/search-plus.svg';
 import softTissue from './icons/soft-tissue.svg';
+import sortDown from './icons/sort-down.svg';
+import sortUp from './icons/sort-up.svg';
 import squareO from './icons/square-o.svg';
+import star from './icons/star.svg';
 import stepBackward from './icons/step-backward.svg';
 import stepForward from './icons/step-forward.svg';
 import stop from './icons/stop.svg';
 import sun from './icons/sun.svg';
+import th from './icons/th.svg';
 import thLarge from './icons/th-large.svg';
 import thList from './icons/th-list.svg';
 import times from './icons/times.svg';
 import trash from './icons/trash.svg';
+import user from './icons/user.svg';
 import youtube from './icons/youtube.svg';
 
 const ICONS = {
+  user,
+  th,
+  star,
+  'sort-up': sortUp,
+  'sort-down': sortDown,
+  info,
+  cube,
+  'dot-circle': dotCircle,
+  'angle-left': angleLeft,
+  '3d-rotate': d3Rotate,
   plus,
   'chevron-down': chevronDown,
   'angle-double-down': angleDoubleDown,
