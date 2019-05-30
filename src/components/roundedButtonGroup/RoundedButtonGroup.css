@@ -25,7 +25,7 @@
   border: 2px solid var(--ui-border-color-dark);
   color: var(--text-secondary-color);
   display: flex;
-  font-size: 11px;
+  font-size: 15px;
   font-weight: 500;
   justify-content: center;
   height: var(--height);
