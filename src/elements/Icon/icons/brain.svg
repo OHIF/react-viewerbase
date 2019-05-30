@@ -5,11 +5,11 @@
   width="1em"
   height="1em"
   stroke="currentColor"
-  strokeWidth="1.25"
+  stroke-width="1.25"
   fill="none"
-  fillRule="evenodd"
-  strokeLinecap="round"
-  strokeLinejoin="round"
+  fill-rule="evenodd"
+  stroke-linecap="round"
+  stroke-linejoin="round"
 >
   <title id="title">Brain</title>
   <path d="M9.477,17.251 C9.47700008,15.4559127 8.02208718,14.0005522 6.227,14 C6.174,14 6.127,14.013 6.074,14.016" />

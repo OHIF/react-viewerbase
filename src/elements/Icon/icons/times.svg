@@ -5,7 +5,7 @@
   width="1em"
   height="1em"
   stroke="currentColor"
-  strokeWidth="1.75"
+  stroke-width="1.75"
 >
   <title id="title">Times</title>
   <path d="M1,1 13,13 M1,13 13,1" />

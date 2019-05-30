@@ -6,7 +6,7 @@
   height="1em"
   stroke="currentColor"
   fill="none"
-  strokeWidth="2.5"
+  stroke-width="2.5"
   strokeMiterlimit="10"
 >
   <title id="title">OHIF Logo</title>

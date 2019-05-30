@@ -5,9 +5,9 @@
   width="1em"
   height="1em"
   stroke="currentColor"
-  strokeWidth="1.65"
+  stroke-width="1.65"
   fill="none"
-  fillRule="evenodd"
+  fill-rule="evenodd"
 >
   <title id="title">Liver</title>
   <g transform="translate(1.000000, 1.000000)">

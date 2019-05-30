@@ -6,9 +6,9 @@
   height="1em"
   stroke="currentColor"
   fill="none"
-  strokeWidth="1"
-  strokeLinecap="round"
-  strokeLinejoin="round"
+  stroke-width="1"
+  stroke-linecap="round"
+  stroke-linejoin="round"
 >
   <title id="title">Measure Target UN</title>
   <text
@@ -19,5 +19,5 @@
   >
     UN
   </text>
-  <path d="M23,7 l-15,15 M7,17 l0,6 6,0" strokeWidth="2" />
+  <path d="M23,7 l-15,15 M7,17 l0,6 6,0" stroke-width="2" />
 </svg>
