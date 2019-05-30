@@ -250,7 +250,11 @@ class StudyList extends Component {
         displayText: 'Accession #',
         sort: 0,
       },
-      //
+      studyDate: {
+        displayText: 'Study Date',
+        inputType: 'date-range',
+        sort: 0,
+      },
       modalities: {
         displayText: 'Modality',
         sort: 0,
@@ -264,6 +268,7 @@ class StudyList extends Component {
     // Apply sort
     const sortedFieldName = this.state.searchData.sortData.field;
     const sortedField = tableMeta[sortedFieldName];
+
     if (sortedField) {
       const sortOrder = this.state.searchData.sortData.order;
       sortedField.sort = sortOrder === 'asc' ? 1 : 2;
@@ -301,7 +306,7 @@ class StudyList extends Component {
                       <th className={fieldName}>
                         <div
                           id={`_${fieldName}`}
-                          className="sortingCell"
+                          className="display-text"
                           onClick={this.onSortClick(fieldName)}
                         >
                           <span>{field.displayText}</span>
@@ -310,74 +315,70 @@ class StudyList extends Component {
                             style={{ fontSize: '12px' }}
                           />
                         </div>
-                        <input
-                          type="text"
-                          className="form-control studylist-search"
-                          id={fieldName}
-                          value={this.state[fieldName]}
-                          onKeyDown={this.onInputKeydown}
-                          onChange={this.getChangeHandler(fieldName)}
-                        />
+                        {!field.inputType && (
+                          <input
+                            type="text"
+                            className="form-control studylist-search"
+                            id={fieldName}
+                            value={this.state[fieldName]}
+                            onKeyDown={this.onInputKeydown}
+                            onChange={this.getChangeHandler(fieldName)}
+                          />
+                        )}
+                        {field.inputType === 'date-range' && (
+                          <div style={{ display: 'block' }}>
+                            <CustomDateRangePicker
+                              presets={StudyList.studyDatePresets}
+                              showClearDates={true}
+                              startDateId="studyListStartDate"
+                              endDateId="studyListEndDate"
+                              startDate={this.defaultStartDate}
+                              endDate={this.defaultEndDate}
+                              hideKeyboardShortcutsPanel={true}
+                              anchorDirection="left"
+                              isOutsideRange={day =>
+                                !isInclusivelyBeforeDay(day, moment())
+                              }
+                              onDatesChange={({
+                                startDate,
+                                endDate,
+                                preset = false,
+                              }) => {
+                                if (
+                                  startDate &&
+                                  endDate &&
+                                  (this.state.focusedInput === 'endDate' ||
+                                    preset)
+                                ) {
+                                  this.setSearchDataBatch(
+                                    {
+                                      studyDateFrom: startDate.toDate(),
+                                      studyDateTo: endDate.toDate(),
+                                    },
+                                    this.search
+                                  );
+                                  this.setState({ focusedInput: false });
+                                } else if (!startDate && !endDate) {
+                                  this.setSearchDataBatch(
+                                    {
+                                      studyDateFrom: null,
+                                      studyDateTo: null,
+                                    },
+                                    this.search
+                                  );
+                                }
+                              }}
+                              focusedInput={this.state.focusedInput}
+                              onFocusChange={focusedInput => {
+                                this.setState({ focusedInput });
+                              }}
+                            />
+                          </div>
+                        )}
                       </th>
                     </React.Fragment>
                   );
                 })}
-                <th className="studyDate">
-                  <div
-                    id="_studyDate"
-                    className="sortingCell"
-                    onClick={this.onSortClick('studyDate')}
-                  >
-                    <span>Study Date</span>
-                  </div>
-                  <div style={{ display: 'block' }}>
-                    <CustomDateRangePicker
-                      presets={StudyList.studyDatePresets}
-                      showClearDates={true}
-                      startDateId="studyListStartDate"
-                      endDateId="studyListEndDate"
-                      startDate={this.defaultStartDate}
-                      endDate={this.defaultEndDate}
-                      hideKeyboardShortcutsPanel={true}
-                      anchorDirection="left"
-                      isOutsideRange={day =>
-                        !isInclusivelyBeforeDay(day, moment())
-                      }
-                      onDatesChange={({
-                        startDate,
-                        endDate,
-                        preset = false,
-                      }) => {
-                        if (
-                          startDate &&
-                          endDate &&
-                          (this.state.focusedInput === 'endDate' || preset)
-                        ) {
-                          this.setSearchDataBatch(
-                            {
-                              studyDateFrom: startDate.toDate(),
-                              studyDateTo: endDate.toDate(),
-                            },
-                            this.search
-                          );
-                          this.setState({ focusedInput: false });
-                        } else if (!startDate && !endDate) {
-                          this.setSearchDataBatch(
-                            {
-                              studyDateFrom: null,
-                              studyDateTo: null,
-                            },
-                            this.search
-                          );
-                        }
-                      }}
-                      focusedInput={this.state.focusedInput}
-                      onFocusChange={focusedInput => {
-                        this.setState({ focusedInput });
-                      }}
-                    />
-                  </div>
-                </th>
               </tr>
             </thead>
             <tbody id="studyListData">
