@@ -10,7 +10,7 @@ export default [
     command: 'ZoomTool',
     type: 'tool',
     text: 'Zoom',
-    icon: 'search-plus',
+    icon: 'search',
     active: false,
   },
   {
@@ -43,7 +43,7 @@ export default [
   },
   {
     text: 'More',
-    icon: 'more',
+    icon: 'ellipse-circle',
     buttons: [
       {
         command: 'reset2',

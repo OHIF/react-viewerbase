@@ -1,10 +1,10 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import { OverlayTrigger } from '../components/overlayTrigger';
-import { Tooltip } from '../components/tooltip';
-import ToolbarButton from './ToolbarButton.js';
-
 import './ExpandableToolMenu.styl';
+
+import { OverlayTrigger } from '../components/overlayTrigger';
+import PropTypes from 'prop-types';
+import React from 'react';
+import ToolbarButton from './ToolbarButton.js';
+import { Tooltip } from '../components/tooltip';
 
 export default class ExpandableToolMenu extends React.Component {
   static propTypes = {
@@ -110,7 +110,7 @@ export default class ExpandableToolMenu extends React.Component {
           type="tool"
           text={this.props.text}
           icon={this.props.icon}
-          className={'ToolbarButton expandableToolMenu'}
+          className={'toolbar-button expandableToolMenu'}
           active={this.isActive()}
           expandableButton={true}
           expanded={this.state.expanded}
