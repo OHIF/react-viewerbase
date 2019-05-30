@@ -68,7 +68,6 @@
     "@babel/preset-env": "^7.2.3",
     "@babel/preset-react": "^7.0.0",
     "@mdx-js/tag": "^0.20.3",
-    "@svgr/rollup": "^4.1.0",
     "babel-eslint": "^9.0.0",
     "babel-plugin-inline-react-svg": "1.1.0",
     "commitizen": "3.0.7",
