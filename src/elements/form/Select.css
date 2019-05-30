@@ -71,12 +71,6 @@
   border-bottom: 1px solid #ccc;
 }
 
-.dd-item svg {
-  width: 22px;
-  height: 22px;
-  margin-right: 15px;
-}
-
 .dd-item:hover {
   text-decoration: none;
   background: #eee;
@@ -87,11 +81,6 @@
 }
 
 .dd-item-icon {
-  width: 10px;
-  text-align: center;
   margin-right: 10px;
-}
-
-.dd-item-icon:before {
-  vertical-align: middle;
+  margin-top: 2px;
 }
