@@ -2,7 +2,7 @@ import './CineDialog.styl';
 
 import React, { PureComponent } from 'react';
 
-import { Icon } from './../Icon';
+import { Icon } from './../../elements/Icon';
 import PropTypes from 'prop-types';
 
 class CineDialog extends PureComponent {

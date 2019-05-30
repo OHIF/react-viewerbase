@@ -1,9 +1,6 @@
 import {
-  ICONS,
-  //
   CineDialog,
   ExampleDropTarget,
-  Icon,
   LayoutButton,
   LayoutChooser,
   MeasurementTable,
@@ -24,6 +21,7 @@ import {
   UserPreferences,
   UserPreferencesModal,
 } from './components';
+import { ICONS, Icon } from './elements';
 
 // Alias this for now as not all dependents are using strict versioning
 import { Select as Dropdown } from './elements/form';

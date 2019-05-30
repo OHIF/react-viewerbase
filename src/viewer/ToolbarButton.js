@@ -1,8 +1,9 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import classnames from 'classnames';
-import { Icon } from './../components/Icon';
 import './ToolbarButton.styl';
+
+import { Icon } from './../elements/Icon';
+import PropTypes from 'prop-types';
+import React from 'react';
+import classnames from 'classnames';
 
 const arrowIconStyle = {
   width: '8px',

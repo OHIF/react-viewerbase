@@ -1,7 +1,9 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import { Icon } from './../../components/Icon';
 import './Select.css';
+
+import React, { Component } from 'react';
+
+import { Icon } from './../../elements/Icon';
+import PropTypes from 'prop-types';
 
 class Select extends Component {
   state = {

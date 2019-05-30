@@ -1,8 +1,9 @@
-import React, { PureComponent } from 'react';
-import PropTypes from 'prop-types';
-
-import { Icon } from './../Icon';
 import './StudyListToolbar.styl';
+
+import React, { PureComponent } from 'react';
+
+import { Icon } from './../../elements/Icon';
+import PropTypes from 'prop-types';
 
 class StudylistToolbar extends PureComponent {
   static propTypes = {

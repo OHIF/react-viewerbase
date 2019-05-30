@@ -1,10 +1,11 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import throttled from '../utils/throttled.js';
-import getScrollbarSize from '../utils/getScrollbarSize.js';
-import { Icon } from './../components/Icon';
-
 import './ScrollableArea.styl';
+
+import React, { Component } from 'react';
+
+import { Icon } from './../elements/Icon';
+import PropTypes from 'prop-types';
+import getScrollbarSize from '../utils/getScrollbarSize.js';
+import throttled from '../utils/throttled.js';
 
 export class ScrollableArea extends Component {
   static propTypes = {

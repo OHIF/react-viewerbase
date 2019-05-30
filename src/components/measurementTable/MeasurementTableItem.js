@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-import { Icon } from './../Icon';
+import { Icon } from './../../elements/Icon';
 import { OverlayTrigger } from './../overlayTrigger';
 import { Tooltip } from './../tooltip';
 import { TableListItem } from './../tableList/TableListItem.js';

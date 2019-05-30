@@ -3,7 +3,6 @@ import {
   StudyBrowser,
   ThumbnailEntry,
 } from './studyBrowser';
-import { ICONS, Icon } from './Icon';
 import { LayoutButton, LayoutChooser } from './layoutButton';
 import { MeasurementTable, MeasurementTableItem } from './measurementTable';
 import { Overlay, OverlayTrigger } from './overlayTrigger';
@@ -22,8 +21,6 @@ import { Tooltip } from './tooltip';
 export {
   CineDialog,
   ExampleDropTarget,
-  Icon,
-  ICONS,
   LayoutButton,
   LayoutChooser,
   MeasurementTable,

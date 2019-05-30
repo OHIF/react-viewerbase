@@ -161,12 +161,12 @@ const ICONS = {
  * Results in an inlined SVG Element. If there's no match,
  * return `null`
  */
-export default function getIcon(key) {
+export default function getIcon(key, props) {
   if (!key || !ICONS[key]) {
     return React.createElement('div', null, 'Missing Icon');
   }
 
-  return React.createElement(ICONS[key]);
+  return React.createElement(ICONS[key], props);
 }
 
 export { ICONS };

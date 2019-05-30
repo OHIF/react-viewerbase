@@ -1,9 +1,9 @@
-import { Component } from 'react';
-import React from 'react';
-import PropTypes from 'prop-types';
-import { Icon } from './../Icon';
-
 import './TableListItem.styl';
+
+import { Component } from 'react';
+import { Icon } from './../../elements/Icon';
+import PropTypes from 'prop-types';
+import React from 'react';
 
 export class TableListItem extends Component {
   static propTypes = {

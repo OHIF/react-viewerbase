@@ -4,7 +4,7 @@ import { isInclusivelyBeforeDay } from 'react-dates';
 import moment from 'moment';
 
 import CustomDateRangePicker from './CustomDateRangePicker.js';
-import { Icon } from './../Icon';
+import { Icon } from './../../elements/Icon';
 import { PaginationArea } from './PaginationArea.js';
 import { StudylistToolbar } from './StudyListToolbar.js';
 import { StudyListLoadingText } from './StudyListLoadingText.js';

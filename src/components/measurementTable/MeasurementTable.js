@@ -1,14 +1,14 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-
-import { TableList } from './../tableList';
-import { ScrollableArea } from './../../ScrollableArea/ScrollableArea.js';
-import { OverlayTrigger } from './../overlayTrigger';
-import { Tooltip } from './../tooltip';
-import { Icon } from './../Icon';
-
-import { MeasurementTableItem } from './MeasurementTableItem.js';
 import './MeasurementTable.styl';
+
+import React, { Component } from 'react';
+
+import { Icon } from './../../elements/Icon';
+import { MeasurementTableItem } from './MeasurementTableItem.js';
+import { OverlayTrigger } from './../overlayTrigger';
+import PropTypes from 'prop-types';
+import { ScrollableArea } from './../../ScrollableArea/ScrollableArea.js';
+import { TableList } from './../tableList';
+import { Tooltip } from './../tooltip';
 
 export class MeasurementTable extends Component {
   static propTypes = {

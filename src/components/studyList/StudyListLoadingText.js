@@ -1,5 +1,5 @@
+import { Icon } from './../../elements/Icon';
 import React from 'react';
-import { Icon } from './../Icon';
 
 function StudyListLoadingText() {
   return (
