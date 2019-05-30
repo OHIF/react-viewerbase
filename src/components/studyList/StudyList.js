@@ -1,14 +1,15 @@
+import './StudyList.styl';
+
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import { isInclusivelyBeforeDay } from 'react-dates';
-import moment from 'moment';
 
 import CustomDateRangePicker from './CustomDateRangePicker.js';
 import { Icon } from './../../elements/Icon';
 import { PaginationArea } from './PaginationArea.js';
-import { StudylistToolbar } from './StudyListToolbar.js';
+import PropTypes from 'prop-types';
 import { StudyListLoadingText } from './StudyListLoadingText.js';
-import './StudyList.styl';
+import { StudylistToolbar } from './StudyListToolbar.js';
+import { isInclusivelyBeforeDay } from 'react-dates';
+import moment from 'moment';
 
 const today = moment();
 const lastWeek = moment().subtract(7, 'day');
@@ -236,6 +237,32 @@ class StudyList extends Component {
   }
 
   render() {
+    const tableMeta = {
+      patientName: {
+        displayText: 'Patient Name',
+        sort: 0,
+      },
+      patientId: {
+        displayText: 'MRN',
+        sort: 0,
+      },
+      accessionNumber: {
+        displayText: 'Accession #',
+        sort: 0,
+      },
+    };
+
+    // Apply sort
+    const sortedFieldName = this.state.searchData.sortData.field;
+    const sortedField = tableMeta[sortedFieldName];
+    if (sortedField) {
+      const sortOrder = this.state.searchData.sortData.order;
+      sortedField.sort = sortOrder === 'asc' ? 1 : 2;
+    }
+
+    // Sort Icons
+    const sortIcons = ['sort', 'sort-up', 'sort-down'];
+
     return (
       <div className="StudyList">
         <div className="studyListToolbar clearfix">
@@ -257,68 +284,32 @@ class StudyList extends Component {
           <table id="tblStudyList" className="studylistResult table noselect">
             <thead>
               <tr>
-                <th className="patientName">
-                  <div
-                    id="_patientName"
-                    className="sortingCell"
-                    onClick={this.onSortClick('patientName')}
-                  >
-                    <span>Patient Name</span>
-                    {this.state.searchData.sortData.field === 'patientName' && (
-                      <Icon
-                        name={
-                          this.state.searchData.sortData.order === 'asc'
-                            ? 'caret-up'
-                            : 'caret-down'
-                        }
-                        color="white"
-                        width="15px"
-                      />
-                    )}
-                  </div>
-                  <input
-                    type="text"
-                    className="form-control studylist-search"
-                    id="patientName"
-                    value={this.state.patientName}
-                    onKeyDown={this.onInputKeydown}
-                    onChange={this.getChangeHandler('patientName')}
-                  />
-                </th>
-                <th className="patientId">
-                  <div
-                    id="_patientId"
-                    className="sortingCell"
-                    onClick={this.onSortClick('patientId')}
-                  >
-                    <span>MRN</span>
-                  </div>
-                  <input
-                    type="text"
-                    className="form-control studylist-search"
-                    id="patientId"
-                    value={this.state.patientId}
-                    onKeyDown={this.onInputKeydown}
-                    onChange={this.getChangeHandler('patientId')}
-                  />
-                </th>
-                <th className="accessionNumber">
-                  <div
-                    id="_accessionNumber"
-                    className="sortingCell"
-                    onClick={this.onSortClick('accessionNumber')}
-                  >
-                    <span>Accession #</span>
-                  </div>
-                  <input
-                    type="text"
-                    className="form-control studylist-search"
-                    id="accessionNumber"
-                    value={this.state.accessionNumber}
-                    onKeyDown={this.onInputKeydown}
-                    onChange={this.getChangeHandler('accessionNumber')}
-                  />
-                </th>
+                {Object.keys(tableMeta).map((fieldName, i) => {
+                  const field = tableMeta[fieldName];
+
+                  return (
+                    <React.Fragment key={i}>
+                      <th className={fieldName}>
+                        <div
+                          id={`_${fieldName}`}
+                          className="sortingCell"
+                          onClick={this.onSortClick(fieldName)}
+                        >
+                          <span>{field.displayText}</span>
+                          <Icon name={sortIcons[field.sort]} />
+                        </div>
+                        <input
+                          type="text"
+                          className="form-control studylist-search"
+                          id={fieldName}
+                          value={this.state[fieldName]}
+                          onKeyDown={this.onInputKeydown}
+                          onChange={this.getChangeHandler(fieldName)}
+                        />
+                      </th>
+                    </React.Fragment>
+                  );
+                })}
                 <th className="studyDate">
                   <div
                     id="_studyDate"
