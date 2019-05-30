@@ -61,6 +61,7 @@ import rotateRight from './icons/rotate-right.svg';
 import search from './icons/search.svg';
 import searchPlus from './icons/search-plus.svg';
 import softTissue from './icons/soft-tissue.svg';
+import sort from './icons/sort.svg';
 import sortDown from './icons/sort-down.svg';
 import sortUp from './icons/sort-up.svg';
 import squareO from './icons/square-o.svg';
@@ -79,6 +80,7 @@ import youtube from './icons/youtube.svg';
 
 const ICONS = {
   user,
+  sort,
   th,
   star,
   'sort-up': sortUp,
