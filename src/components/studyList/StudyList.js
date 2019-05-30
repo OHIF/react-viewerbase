@@ -250,6 +250,15 @@ class StudyList extends Component {
         displayText: 'Accession #',
         sort: 0,
       },
+      //
+      modalities: {
+        displayText: 'Modality',
+        sort: 0,
+      },
+      studyDescription: {
+        displayText: 'Description',
+        sort: 0,
+      },
     };
 
     // Apply sort
@@ -296,7 +305,10 @@ class StudyList extends Component {
                           onClick={this.onSortClick(fieldName)}
                         >
                           <span>{field.displayText}</span>
-                          <Icon name={sortIcons[field.sort]} />
+                          <Icon
+                            name={sortIcons[field.sort]}
+                            style={{ fontSize: '12px' }}
+                          />
                         </div>
                         <input
                           type="text"
@@ -365,40 +377,6 @@ class StudyList extends Component {
                       }}
                     />
                   </div>
-                </th>
-                <th className="modalities">
-                  <div
-                    id="_modalities"
-                    className="sortingCell"
-                    onClick={this.onSortClick('modalities')}
-                  >
-                    <span>Modality</span>
-                  </div>
-                  <input
-                    type="text"
-                    className="form-control studylist-search"
-                    id="modalities"
-                    onKeyDown={this.onInputKeydown}
-                    value={this.state.modalities}
-                    onChange={this.getChangeHandler('modalities')}
-                  />
-                </th>
-                <th className="studyDescription">
-                  <div
-                    id="_studyDescription"
-                    className="sortingCell"
-                    onClick={this.onSortClick('studyDescription')}
-                  >
-                    <span>Study Description</span>
-                  </div>
-                  <input
-                    type="text"
-                    className="form-control studylist-search"
-                    id="studyDescription"
-                    onKeyDown={this.onInputKeydown}
-                    value={this.state.studyDescription}
-                    onChange={this.getChangeHandler('studyDescription')}
-                  />
                 </th>
               </tr>
             </thead>
