@@ -1,15 +1,9 @@
-import './ToolbarButton.styl';
+import './toolbar-button.styl';
 
 import { Icon } from './../elements/Icon';
 import PropTypes from 'prop-types';
 import React from 'react';
 import classnames from 'classnames';
-
-const arrowIconStyle = {
-  width: '8px',
-  height: '8px',
-  transform: 'translate(2px, 2px)',
-};
 
 export function ToolbarButton(props) {
   const { active, icon, textActive, onClick, setToolActive } = props;
@@ -17,10 +11,9 @@ export function ToolbarButton(props) {
   const iconProps = typeof icon === 'string' ? { name: icon } : icon;
   const label = active && textActive ? textActive : props.text;
 
-  const arrowIcon = props.expanded ? (
-    <Icon name="caret-up" style={arrowIconStyle} />
-  ) : (
-    <Icon name="caret-down" style={arrowIconStyle} />
+  const arrowIconName = props.expanded ? 'caret-up' : 'caret-down';
+  const arrowIcon = props.expandableButton && (
+    <Icon name={arrowIconName} className="expand-caret" />
   );
 
   const handleClick = event => {
@@ -36,19 +29,13 @@ export function ToolbarButton(props) {
   return (
     <div className={className} onClick={handleClick}>
       {iconProps && <Icon {...iconProps} />}
-      <div className="buttonLabel">
-        <span className="toolbar-button-label">{label}</span>
-        {props.expandableButton && arrowIcon}
+      <div className="toolbar-button-label">
+        {label}
+        {arrowIcon}
       </div>
     </div>
   );
 }
-
-ToolbarButton.defaultProps = {
-  active: false,
-  className: 'ToolbarButton',
-  command: 'ToolbarButton',
-};
 
 ToolbarButton.propTypes = {
   active: PropTypes.bool.isRequired,
@@ -65,6 +52,12 @@ ToolbarButton.propTypes = {
   setToolActive: PropTypes.func,
   expandableButton: PropTypes.bool,
   expanded: PropTypes.bool,
+};
+
+ToolbarButton.defaultProps = {
+  active: false,
+  className: 'toolbar-button',
+  command: 'ToolbarButton',
 };
 
 export default ToolbarButton;

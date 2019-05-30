@@ -1,51 +1,33 @@
-.ToolbarButton
+.toolbar-button
   height: 48px;
   color: var(--default-color);
   float: left;
   text-align: center;
   padding: 0 10px;
   cursor: pointer;
-
   -webkit-touch-callout: none; /* iOS Safari */
   -webkit-user-select: none; /* Safari */
   -khtml-user-select: none; /* Konqueror HTML */
   -moz-user-select: none; /* Firefox */
   -ms-user-select: none; /* Internet Explorer/Edge */
-  user-select: none; /* Non-prefixed version, currently
-                                  supported by Chrome and Opera */
+  user-select: none; /* Chrome and Opera */
 
-  .svgContainer
-    margin: 0 auto;
-    text-align: center;
-
-  .buttonLabel
+  .toolbar-button-label
     font-size: 12px;
     font-weight: 500;
 
-    .expanded-status
-      text-align: center;
-      width: 15px;
-      line-height: unset;
-      font-size: 12px;
+  .expand-caret
+    width: 8px;
+    height: 8px;
+    transform: translate(2px, 2px);
 
   svg
     height: 21px;
     width: 21px;
     margin: 2px;
 
-  i
-    font-size: 18px;
-    line-height: 30px;
-
   &:hover
     color: var(--hover-color);
 
   &.active, &:active
     color: var(--active-color);
-
-    i
-      color: var(--active-color);
-
-  span.toolbar-button-label
-    font-size: 12px;
-    font-weight: 500;
