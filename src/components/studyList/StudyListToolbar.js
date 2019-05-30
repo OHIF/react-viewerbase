@@ -1,7 +1,9 @@
-import React, { PureComponent } from 'react';
-import PropTypes from 'prop-types';
-
 import './StudyListToolbar.styl';
+
+import React, { PureComponent } from 'react';
+
+import { Icon } from './../../elements/Icon';
+import PropTypes from 'prop-types';
 
 class StudylistToolbar extends PureComponent {
   static propTypes = {
@@ -21,8 +23,8 @@ class StudylistToolbar extends PureComponent {
     if (this.props.onImport && this.props.studyListFunctionsEnabled) {
       return (
         <div className="addNewStudy btn-file">
-          <label htmlFor="btnImport">
-            <i className="fa fa-plus" />
+          <label htmlFor="btnImport" style={{ width: '18px' }}>
+            <Icon name="plus" />
             Import study
           </label>
           <input

@@ -1,12 +1,12 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-
-import InputRadio from './InputRadio.js';
-import SelectTreeBreadcrumb from './SelectTreeBreadcrumb.js';
-
-import cloneDeep from 'lodash.clonedeep';
-
 import './SelectTree.styl';
+
+import React, { Component } from 'react';
+
+import { Icon } from './../../elements/Icon';
+import InputRadio from './InputRadio.js';
+import PropTypes from 'prop-types';
+import SelectTreeBreadcrumb from './SelectTreeBreadcrumb.js';
+import cloneDeep from 'lodash.clonedeep';
 
 export class SelectTree extends Component {
   static propTypes = {
@@ -135,7 +135,9 @@ export class SelectTree extends Component {
         <div className="wrapperText">{title}</div>
         {this.props.searchEnabled && (
           <div className="wrapperSearch">
-            <i className="fa fa-lg fa-search searchIcon" />
+            <div className="searchIcon">
+              <Icon name="search" />
+            </div>
             <input
               type="text"
               className="searchInput"

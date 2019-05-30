@@ -25,7 +25,7 @@
   border: 2px solid var(--ui-border-color-dark);
   color: var(--text-secondary-color);
   display: flex;
-  font-size: 11px;
+  font-size: 15px;
   font-weight: 500;
   justify-content: center;
   height: var(--height);
@@ -35,11 +35,6 @@
   text-transform: uppercase;
   transition: var(--sidebar-transition);
   z-index: 1;
-}
-
-.roundedButtonWrapper .roundedButton svg {
-  fill: var(--default-color);
-  stroke: var(--default-color);
 }
 
 .roundedButtonWrapper
@@ -88,10 +83,4 @@
   border-color: var(--ui-border-color-active);
   color: var(--ui-gray-dark);
   z-index: 2;
-}
-
-.roundedButtonWrapper:hover .roundedButton svg,
-.roundedButtonWrapper.active .roundedButton svg {
-  fill: var(--ui-gray-dark);
-  stroke: var(--ui-gray-dark);
 }

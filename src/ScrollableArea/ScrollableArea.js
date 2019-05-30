@@ -1,9 +1,11 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import throttled from '../utils/throttled.js';
-import getScrollbarSize from '../utils/getScrollbarSize.js';
-
 import './ScrollableArea.styl';
+
+import React, { Component } from 'react';
+
+import { Icon } from './../elements/Icon';
+import PropTypes from 'prop-types';
+import getScrollbarSize from '../utils/getScrollbarSize.js';
+import throttled from '../utils/throttled.js';
 
 export class ScrollableArea extends Component {
   static propTypes = {
@@ -35,10 +37,6 @@ export class ScrollableArea extends Component {
   }
 
   render() {
-    const config = window.config || {};
-    const routerBaseName = config.routerBaseName || '';
-    const Icons = `${routerBaseName}/icons.svg`.replace('//', '/');
-
     let scrollableClass = 'scrollable';
     if (this.props.scrollableClass) {
       scrollableClass += ` ${this.props.scrollableClass}`;
@@ -68,14 +66,11 @@ export class ScrollableArea extends Component {
           {this.props.children}
         </div>
         <div className="scrollNav scrollNavUp" onClick={this.scrollNavUp}>
-          <svg className="scrollNavIcon">
-            <use xlinkHref={`${Icons}#icon-angle-double-up`} />
-          </svg>
+          {/* <svg className="scrollNavIcon"> */}
+          <Icon name="angle-double-up" />
         </div>
         <div className="scrollNav scrollNavDown" onClick={this.scrollNavDown}>
-          <svg className="scrollNavIcon">
-            <use xlinkHref={`${Icons}#icon-angle-double-down`} />
-          </svg>
+          <Icon name="angle-double-down" />
         </div>
       </div>
     );

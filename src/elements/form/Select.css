@@ -81,11 +81,6 @@
 }
 
 .dd-item-icon {
-  width: 10px;
-  text-align: center;
   margin-right: 10px;
-}
-
-.dd-item-icon:before {
-  vertical-align: middle;
+  margin-top: 2px;
 }

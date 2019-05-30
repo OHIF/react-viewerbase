@@ -12,7 +12,17 @@ const wLPresetIDs = [
 
 export default class PresetToggle extends Component {
   static propTypes = {
-    buttons: PropTypes.array.isRequired,
+    buttons: PropTypes.arrayOf(
+      PropTypes.shape({
+        text: PropTypes.string.isRequired,
+        icon: PropTypes.oneOfType([
+          PropTypes.string,
+          PropTypes.shape({
+            name: PropTypes.string.isRequired,
+          }),
+        ]),
+      })
+    ).isRequired,
     setToolActive: PropTypes.func.isRequired,
   };
 

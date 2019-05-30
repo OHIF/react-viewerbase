@@ -1,11 +1,10 @@
+import { Icon } from './../../elements/Icon';
 import React from 'react';
 
 function StudyListLoadingText() {
   return (
-    <div className="loadingTextDiv">
-      <h5>
-        Loading... <i className="fa fa-spinner fa-pulse" />
-      </h5>
+    <div className="loading-text">
+      Loading... <Icon name="circle-notch" animation="pulse" />
     </div>
   );
 }

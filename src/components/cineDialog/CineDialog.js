@@ -1,6 +1,9 @@
-import React, { PureComponent } from 'react';
-import PropTypes from 'prop-types';
 import './CineDialog.styl';
+
+import React, { PureComponent } from 'react';
+
+import { Icon } from './../../elements/Icon';
+import PropTypes from 'prop-types';
 
 class CineDialog extends PureComponent {
   constructor(props) {
@@ -128,55 +131,44 @@ class CineDialog extends PureComponent {
           <div className="cine-controls">
             <div className="btn-group">
               <button
-                id="cineFirstButton"
                 title="Skip to first image"
                 className="btn"
                 data-toggle="tooltip"
                 onClick={this.onClickSkipToStart}
               >
-                <i className="fa fa-lg fa-fast-backward" />
+                <Icon name="fast-backward" />
               </button>
               <button
-                id="cineBackButton"
                 title="Previous image"
                 className="btn"
                 data-toggle="tooltip"
                 onClick={this.onClickBackButton}
               >
-                <i className="fa fa-lg fa-step-backward" />
+                <Icon name="step-backward" />
               </button>
               <button
-                id="cinePlayButton"
                 title="Play / Stop"
                 className="btn"
                 data-toggle="tooltip"
                 onClick={this.onClickPlayPause}
               >
-                <i
-                  className={
-                    this.state.isPlaying
-                      ? 'fa fa-lg fa-stop'
-                      : 'fa fa-lg fa-play'
-                  }
-                />
+                <Icon name={this.state.isPlaying ? 'stop' : 'play'} />
               </button>
               <button
-                id="cineNextButton"
                 title="Next image"
                 className="btn"
                 data-toggle="tooltip"
                 onClick={this.onClickNextButton}
               >
-                <i className="fa fa-lg fa-step-forward" />
+                <Icon name="step-forward" />
               </button>
               <button
-                id="cineLastButton"
                 title="Skip to last image"
                 className="btn"
                 data-toggle="tooltip"
                 onClick={this.onClickSkipToEnd}
               >
-                <i className="fa fa-lg fa-fast-forward" />
+                <Icon name="fast-forward" />
               </button>
             </div>
           </div>
@@ -185,7 +177,6 @@ class CineDialog extends PureComponent {
               <input
                 type="range"
                 name="cineFrameRate"
-                id="cineSlider"
                 min={this.props.cineMinFrameRate}
                 max={this.props.cineMaxFrameRate}
                 step={this.props.cineStepFrameRate}

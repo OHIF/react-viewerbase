@@ -4,119 +4,117 @@ import SimpleToolbarButton from './SimpleToolbarButton';
 import PlayClipButton from './PlayClipButton';
 import { LayoutButton } from './../components/layoutButton';
 
+// TODO: This should not be built in the `react-viewerbase` component
 function getDefaultButtonData() {
-  var buttonData = [];
-
-  buttonData.push({
-    id: 'wwwc',
-    title: 'WW/WC',
-    className: 'imageViewerTool',
-    iconClassName: 'fa fa-sun-o',
-  });
-
-  buttonData.push({
-    id: 'wwwcRegion',
-    title: 'Window by Region',
-    className: 'imageViewerTool',
-    iconClassName: 'fa fa-square',
-  });
-
-  buttonData.push({
-    id: 'magnify',
-    title: 'Magnify',
-    className: 'imageViewerTool',
-    iconClassName: 'fa fa-circle',
-  });
-
-  buttonData.push({
-    id: 'annotate',
-    title: 'Annotation',
-    className: 'imageViewerTool',
-    iconClassName: 'fa fa-arrows-h',
-  });
-
-  buttonData.push({
-    id: 'invert',
-    title: 'Invert',
-    className: 'imageViewerCommand',
-    iconClassName: 'fa fa-adjust',
-  });
-
-  buttonData.push({
-    id: 'zoom',
-    title: 'Zoom',
-    className: 'imageViewerTool',
-    iconClassName: 'fa fa-search',
-  });
-
-  buttonData.push({
-    id: 'pan',
-    title: 'Pan',
-    className: 'imageViewerTool',
-    iconClassName: 'fa fa-arrows',
-  });
-
-  buttonData.push({
-    id: 'stackScroll',
-    title: 'Stack Scroll',
-    className: 'imageViewerTool',
-    iconClassName: 'fa fa-bars',
-  });
-
-  buttonData.push({
-    id: 'length',
-    title: 'Length Measurement',
-    className: 'imageViewerTool',
-    iconClassName: 'fa fa-arrows-v',
-  });
-
-  buttonData.push({
-    id: 'angle',
-    title: 'Angle Measurement',
-    className: 'imageViewerTool',
-    iconClassName: 'fa fa-angle-left',
-  });
-
-  buttonData.push({
-    id: 'dragProbe',
-    title: 'Pixel Probe',
-    className: 'imageViewerTool',
-    iconClassName: 'fa fa-dot-circle-o',
-  });
-
-  buttonData.push({
-    id: 'ellipticalRoi',
-    title: 'Elliptical ROI',
-    className: 'imageViewerTool',
-    iconClassName: 'fa fa-circle-o',
-  });
-
-  buttonData.push({
-    id: 'rectangleRoi',
-    title: 'Rectangle ROI',
-    className: 'imageViewerTool',
-    iconClassName: 'fa fa-square-o',
-  });
-
-  buttonData.push({
-    id: 'resetViewport',
-    title: 'Reset Viewport',
-    className: 'imageViewerCommand',
-    iconClassName: 'fa fa-undo',
-  });
-
-  buttonData.push({
-    id: 'clearTools',
-    title: 'Clear tools',
-    className: 'imageViewerCommand',
-    iconClassName: 'fa fa-trash',
-  });
+  var buttonData = [
+    {
+      id: 'wwwc',
+      title: 'WW/WC',
+      className: 'imageViewerTool',
+      icon: 'sun',
+    },
+    {
+      id: 'wwwcRegion',
+      title: 'Window by Region',
+      className: 'imageViewerTool',
+      icon: 'stop',
+    },
+    {
+      id: 'magnify',
+      title: 'Magnify',
+      className: 'imageViewerTool',
+      icon: 'circle',
+    },
+    {
+      id: 'annotate',
+      title: 'Annotation',
+      className: 'imageViewerTool',
+      icon: 'arrows-alt-h',
+    },
+    {
+      id: 'invert',
+      title: 'Invert',
+      className: 'imageViewerCommand',
+      icon: 'adjust',
+    },
+    {
+      id: 'zoom',
+      title: 'Zoom',
+      className: 'imageViewerTool',
+      icon: 'search-plus',
+    },
+    {
+      id: 'pan',
+      title: 'Pan',
+      className: 'imageViewerTool',
+      icon: 'arrows',
+    },
+    {
+      id: 'stackScroll',
+      title: 'Stack Scroll',
+      className: 'imageViewerTool',
+      icon: 'bars',
+    },
+    {
+      id: 'length',
+      title: 'Length Measurement',
+      className: 'imageViewerTool',
+      icon: 'arrows-alt-v',
+    },
+    {
+      id: 'angle',
+      title: 'Angle Measurement',
+      className: 'imageViewerTool',
+      icon: 'fa fa-angle-left',
+    },
+    {
+      id: 'dragProbe',
+      title: 'Pixel Probe',
+      className: 'imageViewerTool',
+      icon: 'fa fa-dot-circle-o',
+    },
+    {
+      id: 'ellipticalRoi',
+      title: 'Elliptical ROI',
+      className: 'imageViewerTool',
+      icon: 'circle-o',
+    },
+    {
+      id: 'rectangleRoi',
+      title: 'Rectangle ROI',
+      className: 'imageViewerTool',
+      icon: 'square-o',
+    },
+    {
+      id: 'resetViewport',
+      title: 'Reset Viewport',
+      className: 'imageViewerCommand',
+      icon: 'reset',
+    },
+    {
+      id: 'clearTools',
+      title: 'Clear tools',
+      className: 'imageViewerCommand',
+      icon: 'trash',
+    },
+  ];
   return buttonData;
 }
 
 export default class Toolbar extends Component {
   static propTypes = {
-    buttons: PropTypes.array.isRequired,
+    buttons: PropTypes.arrayOf(
+      PropTypes.shape({
+        id: PropTypes.string.isRequired,
+        title: PropTypes.string.isRequired,
+        icon: PropTypes.oneOfType([
+          PropTypes.string,
+          PropTypes.shape({
+            name: PropTypes.string.isRequired,
+          }),
+        ]),
+      })
+    ).isRequired,
     includeLayoutButton: PropTypes.bool.isRequired,
     includePlayClipButton: PropTypes.bool.isRequired,
   };

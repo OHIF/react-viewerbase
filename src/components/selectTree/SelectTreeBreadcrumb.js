@@ -1,6 +1,7 @@
 import { Component } from 'react';
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Icon } from './../../elements/Icon';
 
 export default class SelectTreeBreadcrumb extends Component {
   static propTypes = {
@@ -10,10 +11,6 @@ export default class SelectTreeBreadcrumb extends Component {
   };
 
   render() {
-    const config = window.config || {};
-    const routerBaseName = config.routerBaseName || '';
-    const Icons = `${routerBaseName}/icons.svg`.replace('//', '/');
-
     return (
       <div className="selectTreeBreadcrumb">
         <label
@@ -29,9 +26,7 @@ export default class SelectTreeBreadcrumb extends Component {
           />
           <span className="wrapperText">
             <span className="backIcon">
-              <svg>
-                <use xlinkHref={`${Icons}#fast-backward`} />
-              </svg>
+              <Icon name="fast-backward" />
             </span>
             {this.props.label}
           </span>

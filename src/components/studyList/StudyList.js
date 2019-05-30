@@ -1,13 +1,15 @@
+import './StudyList.styl';
+
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import { isInclusivelyBeforeDay } from 'react-dates';
-import moment from 'moment';
 
 import CustomDateRangePicker from './CustomDateRangePicker.js';
+import { Icon } from './../../elements/Icon';
 import { PaginationArea } from './PaginationArea.js';
-import { StudylistToolbar } from './StudyListToolbar.js';
+import PropTypes from 'prop-types';
 import { StudyListLoadingText } from './StudyListLoadingText.js';
-import './StudyList.styl';
+import { StudylistToolbar } from './StudyListToolbar.js';
+import { isInclusivelyBeforeDay } from 'react-dates';
+import moment from 'moment';
 
 const today = moment();
 const lastWeek = moment().subtract(7, 'day');
@@ -36,10 +38,6 @@ class StudyList extends Component {
     studyListDateFilterNumDays: 7,
   };
 
-  static DEFAULT_SORTABLE_ICON_CLS = 'fa fa-fw fa-sort';
-  static DESC_SORT_ICON_CLS = 'fa fa-fw fa-sort-down';
-  static ASC_SORT_ICON_CLS = 'fa fa-fw fa-sort-up';
-
   static studyDatePresets = [
     {
       text: 'Today',
@@ -61,23 +59,16 @@ class StudyList extends Component {
   constructor(props) {
     super(props);
 
-    const sortData = {};
-    const sortClasses = {
-      patientName: StudyList.DEFAULT_SORTABLE_ICON_CLS,
-      patientId: StudyList.DEFAULT_SORTABLE_ICON_CLS,
-      accessionNumber: StudyList.DEFAULT_SORTABLE_ICON_CLS,
-      studyDatePresets: StudyList.DEFAULT_SORTABLE_ICON_CLS,
-      modalities: StudyList.DEFAULT_SORTABLE_ICON_CLS,
-      studyDescription: StudyList.DEFAULT_SORTABLE_ICON_CLS,
+    const sortData = {
+      field: undefined,
+      order: undefined,
     };
 
+    // init from props
     if (props.defaultSort) {
       sortData.field = props.defaultSort.field;
-      sortData.order = props.defaultSort.order;
-      sortClasses[props.defaultSort.field] =
-        props.defaultSort.order === 'desc'
-          ? StudyList.DESC_SORT_ICON_CLS
-          : StudyList.ASC_SORT_ICON_CLS;
+      // todo: -1, 0, 1?
+      sortData.order = props.defaultSort.order; // asc, desc
     }
 
     this.defaultStartDate = moment().subtract(
@@ -89,7 +80,6 @@ class StudyList extends Component {
     this.state = {
       loading: false,
       error: false,
-      sortClasses,
       searchData: {
         sortData,
         currentPage: this.props.currentPage,
@@ -189,28 +179,24 @@ class StudyList extends Component {
     this.setSearchDataBatch({ rowsPerPage, currentPage: 0 }, this.search);
   }
 
-  onSortClick(key) {
+  onSortClick(field) {
     return () => {
-      const sortClasses = this.state.sortClasses;
       let order;
+      const sort = this.state.searchData.sortData;
+      const isSortedField = sort.field === field;
 
-      if (sortClasses[key] === StudyList.ASC_SORT_ICON_CLS) {
-        sortClasses[key] = StudyList.DESC_SORT_ICON_CLS;
-        order = 'desc';
+      if (isSortedField) {
+        if (sort.order === 'asc') {
+          order = 'desc';
+        } else {
+          order = undefined;
+          field = undefined;
+        }
       } else {
-        sortClasses[key] = StudyList.ASC_SORT_ICON_CLS;
         order = 'asc';
       }
 
-      Object.keys(sortClasses).forEach(sortClassKey => {
-        if (sortClassKey !== key) {
-          sortClasses[sortClassKey] = StudyList.DEFAULT_SORTABLE_ICON_CLS;
-        }
-      });
-
-      this.setState({ sortClasses }, () => {
-        this.setSearchData('sortData', { field: key, order }, this.search);
-      });
+      this.setSearchData('sortData', { field, order }, this.search);
     };
   }
 
@@ -251,6 +237,46 @@ class StudyList extends Component {
   }
 
   render() {
+    const tableMeta = {
+      patientName: {
+        displayText: 'Patient Name',
+        sort: 0,
+      },
+      patientId: {
+        displayText: 'MRN',
+        sort: 0,
+      },
+      accessionNumber: {
+        displayText: 'Accession #',
+        sort: 0,
+      },
+      studyDate: {
+        displayText: 'Study Date',
+        inputType: 'date-range',
+        sort: 0,
+      },
+      modalities: {
+        displayText: 'Modality',
+        sort: 0,
+      },
+      studyDescription: {
+        displayText: 'Description',
+        sort: 0,
+      },
+    };
+
+    // Apply sort
+    const sortedFieldName = this.state.searchData.sortData.field;
+    const sortedField = tableMeta[sortedFieldName];
+
+    if (sortedField) {
+      const sortOrder = this.state.searchData.sortData.order;
+      sortedField.sort = sortOrder === 'asc' ? 1 : 2;
+    }
+
+    // Sort Icons
+    const sortIcons = ['sort', 'sort-up', 'sort-down'];
+
     return (
       <div className="StudyList">
         <div className="studyListToolbar clearfix">
@@ -272,157 +298,87 @@ class StudyList extends Component {
           <table id="tblStudyList" className="studylistResult table noselect">
             <thead>
               <tr>
-                <th className="patientName">
-                  <div
-                    id="_patientName"
-                    className="sortingCell"
-                    onClick={this.onSortClick('patientName')}
-                  >
-                    <span>Patient Name</span>
-                    <i className={this.state.sortClasses.patientName}>&nbsp;</i>
-                  </div>
-                  <input
-                    type="text"
-                    className="form-control studylist-search"
-                    id="patientName"
-                    value={this.state.patientName}
-                    onKeyDown={this.onInputKeydown}
-                    onChange={this.getChangeHandler('patientName')}
-                  />
-                </th>
-                <th className="patientId">
-                  <div
-                    id="_patientId"
-                    className="sortingCell"
-                    onClick={this.onSortClick('patientId')}
-                  >
-                    <span>MRN</span>
-                    <i className={this.state.sortClasses.patientId}>&nbsp;</i>
-                  </div>
-                  <input
-                    type="text"
-                    className="form-control studylist-search"
-                    id="patientId"
-                    value={this.state.patientId}
-                    onKeyDown={this.onInputKeydown}
-                    onChange={this.getChangeHandler('patientId')}
-                  />
-                </th>
-                <th className="accessionNumber">
-                  <div
-                    id="_accessionNumber"
-                    className="sortingCell"
-                    onClick={this.onSortClick('accessionNumber')}
-                  >
-                    <span>Accession #</span>
-                    <i className={this.state.sortClasses.accessionNumber}>
-                      &nbsp;
-                    </i>
-                  </div>
-                  <input
-                    type="text"
-                    className="form-control studylist-search"
-                    id="accessionNumber"
-                    value={this.state.accessionNumber}
-                    onKeyDown={this.onInputKeydown}
-                    onChange={this.getChangeHandler('accessionNumber')}
-                  />
-                </th>
-                <th className="studyDate">
-                  <div
-                    id="_studyDate"
-                    className="sortingCell"
-                    onClick={this.onSortClick('studyDate')}
-                  >
-                    <span>Study Date</span>
-                    <i className={this.state.sortClasses.studyDate}>&nbsp;</i>
-                  </div>
-                  <div style={{ display: 'block' }}>
-                    <CustomDateRangePicker
-                      presets={StudyList.studyDatePresets}
-                      showClearDates={true}
-                      startDateId="studyListStartDate"
-                      endDateId="studyListEndDate"
-                      startDate={this.defaultStartDate}
-                      endDate={this.defaultEndDate}
-                      hideKeyboardShortcutsPanel={true}
-                      anchorDirection="left"
-                      isOutsideRange={day =>
-                        !isInclusivelyBeforeDay(day, moment())
-                      }
-                      onDatesChange={({
-                        startDate,
-                        endDate,
-                        preset = false,
-                      }) => {
-                        if (
-                          startDate &&
-                          endDate &&
-                          (this.state.focusedInput === 'endDate' || preset)
-                        ) {
-                          this.setSearchDataBatch(
-                            {
-                              studyDateFrom: startDate.toDate(),
-                              studyDateTo: endDate.toDate(),
-                            },
-                            this.search
-                          );
-                          this.setState({ focusedInput: false });
-                        } else if (!startDate && !endDate) {
-                          this.setSearchDataBatch(
-                            {
-                              studyDateFrom: null,
-                              studyDateTo: null,
-                            },
-                            this.search
-                          );
-                        }
-                      }}
-                      focusedInput={this.state.focusedInput}
-                      onFocusChange={focusedInput => {
-                        this.setState({ focusedInput });
-                      }}
-                    />
-                  </div>
-                </th>
-                <th className="modalities">
-                  <div
-                    id="_modalities"
-                    className="sortingCell"
-                    onClick={this.onSortClick('modalities')}
-                  >
-                    <span>Modality</span>
-                    <i className={this.state.sortClasses.modalities}>&nbsp;</i>
-                  </div>
-                  <input
-                    type="text"
-                    className="form-control studylist-search"
-                    id="modalities"
-                    onKeyDown={this.onInputKeydown}
-                    value={this.state.modalities}
-                    onChange={this.getChangeHandler('modalities')}
-                  />
-                </th>
-                <th className="studyDescription">
-                  <div
-                    id="_studyDescription"
-                    className="sortingCell"
-                    onClick={this.onSortClick('studyDescription')}
-                  >
-                    <span>Study Description</span>
-                    <i className={this.state.sortClasses.studyDescription}>
-                      &nbsp;
-                    </i>
-                  </div>
-                  <input
-                    type="text"
-                    className="form-control studylist-search"
-                    id="studyDescription"
-                    onKeyDown={this.onInputKeydown}
-                    value={this.state.studyDescription}
-                    onChange={this.getChangeHandler('studyDescription')}
-                  />
-                </th>
+                {Object.keys(tableMeta).map((fieldName, i) => {
+                  const field = tableMeta[fieldName];
+
+                  return (
+                    <React.Fragment key={i}>
+                      <th className={fieldName}>
+                        <div
+                          id={`_${fieldName}`}
+                          className="display-text"
+                          onClick={this.onSortClick(fieldName)}
+                        >
+                          <span>{field.displayText}</span>
+                          <Icon
+                            name={sortIcons[field.sort]}
+                            style={{ fontSize: '12px' }}
+                          />
+                        </div>
+                        {!field.inputType && (
+                          <input
+                            type="text"
+                            className="form-control studylist-search"
+                            id={fieldName}
+                            value={this.state[fieldName]}
+                            onKeyDown={this.onInputKeydown}
+                            onChange={this.getChangeHandler(fieldName)}
+                          />
+                        )}
+                        {field.inputType === 'date-range' && (
+                          <div style={{ display: 'block' }}>
+                            <CustomDateRangePicker
+                              presets={StudyList.studyDatePresets}
+                              showClearDates={true}
+                              startDateId="studyListStartDate"
+                              endDateId="studyListEndDate"
+                              startDate={this.defaultStartDate}
+                              endDate={this.defaultEndDate}
+                              hideKeyboardShortcutsPanel={true}
+                              anchorDirection="left"
+                              isOutsideRange={day =>
+                                !isInclusivelyBeforeDay(day, moment())
+                              }
+                              onDatesChange={({
+                                startDate,
+                                endDate,
+                                preset = false,
+                              }) => {
+                                if (
+                                  startDate &&
+                                  endDate &&
+                                  (this.state.focusedInput === 'endDate' ||
+                                    preset)
+                                ) {
+                                  this.setSearchDataBatch(
+                                    {
+                                      studyDateFrom: startDate.toDate(),
+                                      studyDateTo: endDate.toDate(),
+                                    },
+                                    this.search
+                                  );
+                                  this.setState({ focusedInput: false });
+                                } else if (!startDate && !endDate) {
+                                  this.setSearchDataBatch(
+                                    {
+                                      studyDateFrom: null,
+                                      studyDateTo: null,
+                                    },
+                                    this.search
+                                  );
+                                }
+                              }}
+                              focusedInput={this.state.focusedInput}
+                              onFocusChange={focusedInput => {
+                                this.setState({ focusedInput });
+                              }}
+                            />
+                          </div>
+                        )}
+                      </th>
+                    </React.Fragment>
+                  );
+                })}
               </tr>
             </thead>
             <tbody id="studyListData">

@@ -21,6 +21,7 @@ import {
   UserPreferences,
   UserPreferencesModal,
 } from './components';
+import { ICONS, Icon } from './elements';
 
 // Alias this for now as not all dependents are using strict versioning
 import { Select as Dropdown } from './elements/form';
@@ -34,10 +35,13 @@ import ToolbarButton from './viewer/ToolbarButton.js';
 import ViewerbaseDragDropContext from './utils/viewerbaseDragDropContext.js';
 
 export {
+  ICONS,
+  //
   CineDialog,
   Dropdown,
   ExpandableToolMenu,
   ExampleDropTarget,
+  Icon,
   LayoutButton,
   LayoutChooser,
   LayoutManager,

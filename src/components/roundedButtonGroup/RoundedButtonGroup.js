@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
+import { Icon } from './../../elements/Icon';
 import './RoundedButtonGroup.css';
 
 // TODO: Rename to Toggle?
@@ -8,7 +9,18 @@ class RoundedButtonGroup extends Component {
   static className = 'RoundedButtonGroup';
 
   static propTypes = {
-    options: PropTypes.array,
+    options: PropTypes.arrayOf(
+      PropTypes.shape({
+        value: PropTypes.any,
+        text: PropTypes.string,
+        icon: PropTypes.oneOfType([
+          PropTypes.string,
+          PropTypes.shape({
+            name: PropTypes.string.isRequired,
+          }),
+        ]),
+      })
+    ),
     value: PropTypes.string,
     onValueChanged: PropTypes.func,
   };
@@ -42,24 +54,9 @@ class RoundedButtonGroup extends Component {
         active: this.props.value === option.value,
       });
 
-      let optionSVG;
-      if (option.svgLink) {
-        const svgStyle = {
-          width: `${option.svgWidth}px`,
-          height: `${option.svgHeight}px`,
-        };
-        optionSVG = (
-          <svg style={svgStyle}>
-            <use xlinkHref={option.svgLink} />
-          </svg>
-        );
-      }
-
       const optionText = option.text && <span>{option.text}</span>;
-
-      const optionIcon = option.iconClasses && (
-        <i className={option.iconClasses} />
-      );
+      const iconProps =
+        typeof option.icon === 'string' ? { name: option.icon } : option.icon;
 
       const bottomLabel = option.bottomLabel && (
         <div className="bottomLabel">{option.bottomLabel}</div>
@@ -72,9 +69,8 @@ class RoundedButtonGroup extends Component {
           onClick={() => this.onClickOption(option.value)}
         >
           <div className="roundedButton">
-            {optionSVG}
             {optionText}
-            {optionIcon}
+            {iconProps && <Icon {...iconProps} />}
           </div>
           {bottomLabel}
         </div>

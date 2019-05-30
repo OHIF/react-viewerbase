@@ -1,13 +1,14 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-
-import { TableList } from './../tableList';
-import { ScrollableArea } from './../../ScrollableArea/ScrollableArea.js';
-import { OverlayTrigger } from './../overlayTrigger';
-import { Tooltip } from './../tooltip';
-
-import { MeasurementTableItem } from './MeasurementTableItem.js';
 import './MeasurementTable.styl';
+
+import React, { Component } from 'react';
+
+import { Icon } from './../../elements/Icon';
+import { MeasurementTableItem } from './MeasurementTableItem.js';
+import { OverlayTrigger } from './../overlayTrigger';
+import PropTypes from 'prop-types';
+import { ScrollableArea } from './../../ScrollableArea/ScrollableArea.js';
+import { TableList } from './../tableList';
+import { Tooltip } from './../tooltip';
 
 export class MeasurementTable extends Component {
   static propTypes = {
@@ -33,10 +34,6 @@ export class MeasurementTable extends Component {
   };
 
   render() {
-    const config = window.config || {};
-    const routerBaseName = config.routerBaseName || '';
-    const Icons = `${routerBaseName}/icons.svg`.replace('//', '/');
-
     const hasOverallWarnings =
       this.props.overallWarnings.warningList.length > 0;
     return (
@@ -62,9 +59,7 @@ export class MeasurementTable extends Component {
             >
               <span className="warning-status">
                 <span className="warning-border">
-                  <svg>
-                    <use xlinkHref={`${Icons}#icon-ui-warning`} />
-                  </svg>
+                  <Icon name="exclamation-triangle" />
                 </span>
               </span>
             </OverlayTrigger>

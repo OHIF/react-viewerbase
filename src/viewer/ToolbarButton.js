@@ -1,10 +1,9 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import classnames from 'classnames';
-
-import { CaretUp, CaretDown } from './../icons';
-
 import './ToolbarButton.styl';
+
+import { Icon } from './../elements/Icon';
+import PropTypes from 'prop-types';
+import React from 'react';
+import classnames from 'classnames';
 
 const arrowIconStyle = {
   width: '8px',
@@ -13,51 +12,30 @@ const arrowIconStyle = {
 };
 
 export function ToolbarButton(props) {
-  let onClick = event => {
-    if (props.onClick) {
-      props.onClick(event, props);
+  const { active, icon, textActive, onClick, setToolActive } = props;
+  const className = classnames(props.className, { active });
+  const iconProps = typeof icon === 'string' ? { name: icon } : icon;
+  const label = active && textActive ? textActive : props.text;
+
+  const arrowIcon = props.expanded ? (
+    <Icon name="caret-up" style={arrowIconStyle} />
+  ) : (
+    <Icon name="caret-down" style={arrowIconStyle} />
+  );
+
+  const handleClick = event => {
+    if (onClick) {
+      onClick(event, props);
     }
 
-    if (props.setToolActive) {
-      props.setToolActive(props);
+    if (setToolActive) {
+      setToolActive(props);
     }
   };
 
-  const className = classnames(props.className, { active: props.active });
-  const { active, svgUrlActive, iconClassesActive, textActive } = props;
-
-  let svgUrl = props.svgUrl;
-  if (active && svgUrlActive) {
-    svgUrl = svgUrlActive;
-  }
-
-  let iconClasses = props.iconClasses;
-  if (active && iconClassesActive) {
-    iconClasses = iconClassesActive;
-  }
-
-  let label = props.text;
-  if (active && textActive) {
-    label = textActive;
-  }
-
-  const arrowIcon = props.expanded ? (
-    <CaretUp style={arrowIconStyle} />
-  ) : (
-    <CaretDown style={arrowIconStyle} />
-  );
-  const svgClasses = props.svgClasses || '';
-
   return (
-    <div className={className} onClick={onClick}>
-      {svgUrl && (
-        <div className="svgContainer">
-          <svg className={svgClasses}>
-            <use xlinkHref={svgUrl} />
-          </svg>
-        </div>
-      )}
-      {iconClasses && <i className={iconClasses} />}
+    <div className={className} onClick={handleClick}>
+      {iconProps && <Icon {...iconProps} />}
       <div className="buttonLabel">
         <span className="toolbar-button-label">{label}</span>
         {props.expandableButton && arrowIcon}
@@ -77,11 +55,12 @@ ToolbarButton.propTypes = {
   className: PropTypes.string.isRequired,
   text: PropTypes.string.isRequired,
   textActive: PropTypes.string,
-  iconClasses: PropTypes.string,
-  iconClassesActive: PropTypes.string,
-  svgUrl: PropTypes.string,
-  svgClasses: PropTypes.string,
-  svgUrlActive: PropTypes.string,
+  icon: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.shape({
+      name: PropTypes.string.isRequired,
+    }),
+  ]),
   onClick: PropTypes.func,
   setToolActive: PropTypes.func,
   expandableButton: PropTypes.bool,

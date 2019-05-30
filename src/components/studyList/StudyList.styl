@@ -79,7 +79,7 @@ placeholder-color(c)
   position: absolute
   z-index: 2
 
-  .loadingTextDiv
+  .loading-text
     color: var(--table-text-secondary-color)
     font-size: 30px
 
@@ -105,7 +105,7 @@ placeholder-color(c)
           &.studyDate
             min-width: 230px
 
-          div.sortingCell
+          .display-text
             display: inline-block
             cursor: pointer
             width: 100%
@@ -114,6 +114,10 @@ placeholder-color(c)
             color: var(--table-text-primary-color)
             font-weight: 400
             padding: 20px
+            -webkit-user-select: none
+            -moz-user-select: none
+            -ms-user-select: none
+            user-select: none
 
             span
               font-size: 15px
@@ -244,7 +248,7 @@ placeholder-color(c)
         input.worklist-search
           padding: 10px
 
-        div.sortingCell
+        .display-text
           padding: 10px 5px
 
           i

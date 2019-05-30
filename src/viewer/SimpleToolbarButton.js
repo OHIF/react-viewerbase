@@ -1,9 +1,11 @@
-import React from 'react';
+import { Icon } from './../elements/Icon';
 import PropTypes from 'prop-types';
+import React from 'react';
 import classnames from 'classnames';
 
 export function SimpleToolbarButton(props) {
-  let className = classnames(props.className, 'btn btn-sm btn-default');
+  const className = classnames(props.className, 'btn btn-sm btn-default');
+
   return (
     <button
       id={props.id}
@@ -14,13 +16,13 @@ export function SimpleToolbarButton(props) {
       data-placement="bottom"
       title={props.title}
     >
-      <span className={props.iconClassName} />
+      {props.icon && <Icon name={props.icon} />}
     </button>
   );
 }
 
 SimpleToolbarButton.propTypes = {
-  iconClassName: PropTypes.string,
+  icon: PropTypes.string,
   title: PropTypes.string,
   className: PropTypes.string,
   id: PropTypes.string,

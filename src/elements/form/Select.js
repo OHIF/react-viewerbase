@@ -1,6 +1,9 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
 import './Select.css';
+
+import React, { Component } from 'react';
+
+import { Icon } from './../../elements/Icon';
+import PropTypes from 'prop-types';
 
 class Select extends Component {
   state = {
@@ -15,7 +18,7 @@ class Select extends Component {
     list: PropTypes.arrayOf(
       PropTypes.shape({
         title: PropTypes.string.isRequired,
-        icon: PropTypes.string,
+        icon: PropTypes.object,
         onClick: PropTypes.func,
         link: PropTypes.string,
       })
@@ -34,7 +37,7 @@ class Select extends Component {
             className="dd-item"
             onClick={() => this.handleOnClick(onClick)}
           >
-            {icon && <span className={`dd-item-icon ${icon}`} />}
+            {icon && <Icon {...icon} className="dd-item-icon" />}
             <span>{title}</span>
           </a>
         );
@@ -45,7 +48,7 @@ class Select extends Component {
             className="dd-item"
             onClick={() => this.handleOnClick(onClick)}
           >
-            {icon && <span className={`dd-item-icon ${icon}`} />}
+            {icon && <Icon {...icon} className="dd-item-icon" />}
             <span>{title}</span>
           </button>
         );

@@ -4,9 +4,9 @@ menu: Elements
 route: /elements/form-select
 ---
 
-import { Playground, Props } from 'docz'
-import { State } from 'react-powerplug'
-import { Select } from './../index.js'
+import { Playground, Props } from 'docz';
+import { State } from 'react-powerplug';
+import { Select } from './../index.js';
 
 # Select
 
@@ -19,7 +19,16 @@ import { Select } from './../index.js'
       align: 'left',
       list: [
         {
-          title: 'Hello World',
+          title: 'Edit',
+          icon: {
+            name: 'edit',
+          },
+        },
+        {
+          title: 'Retry',
+          icon: {
+            name: 'reset',
+          },
         },
       ],
     }}
