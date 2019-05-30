@@ -51,35 +51,28 @@ import { Icon, ICONS } from './../index.js';
   </div>
 </Playground>
 
+The `<Icon />` component inherits the color of its parent, and sizing is based
+on its parent's `font-size`. Each icon has an `aria-labelledby` to assist screen
+readers.
+
+We use `airbnb`'s [`babel-plugin-inline-react-svg`][airbnb] to automate
+optimizing SVG files with [SVGO][svgo] and to create animatable React SVG
+components that can be requested asynchronously.
+
 ## API
 
 <Props of={Icon} />
 
 ## Attribution
 
-Some of our icons, while free to use, have an attribution requirement. You can
-find that information here.
+A large number of these icons are from [Font Awesome 5's free set.][fa-license]
+Some attribution is likely required, depending on your usage. Sometimes as
+little as a comment included side-by-side with the accompanying SVG icon.
 
-| Icon                | Attribution                                  |
-| ------------------- | -------------------------------------------- |
-| `angle-double-down` | [FontAwesome][fa-license], CC-by-Attribution |
-| `angle-double-up`   | [FontAwesome][fa-license], CC-by-Attribution |
-| `arrows-alt-h`      | [FontAwesome][fa-license], CC-by-Attribution |
-| `arrows-alt-v`      | [FontAwesome][fa-license], CC-by-Attribution |
-| `check-circle`      | [FontAwesome][fa-license], CC-by-Attribution |
-| `check-solid`       | [FontAwesome][fa-license], CC-by-Attribution |
-| `circle`            | [FontAwesome][fa-license], CC-by-Attribution |
-| `circle-outline`    | [FontAwesome][fa-license], CC-by-Attribution |
-| `edit`              | [FontAwesome][fa-license], CC-by-Attribution |
-| `fast-backward`     | [FontAwesome][fa-license], CC-by-Attribution |
-| `fast-forward`      | [FontAwesome][fa-license], CC-by-Attribution |
-| `play`              | [FontAwesome][fa-license], CC-by-Attribution |
-| `spinner-group`     | [FontAwesome][fa-license], CC-by-Attribution |
-| `square-outline`    | [FontAwesome][fa-license], CC-by-Attribution |
-| `step-backward`     | [FontAwesome][fa-license], CC-by-Attribution |
-| `step-forward`      | [FontAwesome][fa-license], CC-by-Attribution |
-| `stop`              | [FontAwesome][fa-license], CC-by-Attribution |
-| `sun`               | [FontAwesome][fa-license], CC-by-Attribution |
-| `trash`             | [FontAwesome][fa-license], CC-by-Attribution |
+<!--
+  Links
+-->
 
 [fa-license]: https://fontawesome.com/license
+[airbnb]: https://github.com/airbnb/babel-plugin-inline-react-svg
+[svgo]: https://github.com/svg/svgo/
