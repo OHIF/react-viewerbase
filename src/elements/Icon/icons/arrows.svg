@@ -11,10 +11,12 @@
   strokeLinejoin="round"
 >
   <title id="title">Arrows</title>
-  <path id="icon-tools-pan-line-v" d="M9,1 L9,17" />
-  <path id="icon-tools-pan-line-h" d="M1,9 L17,9" />
-  <polyline id="icon-tools-pan-caret-t" points="7 3 9 1 11 3" />
-  <polyline id="icon-tools-pan-caret-r" points="15 11 17 9 15 7" />
-  <polyline id="icon-tools-pan-caret-b" points="11 15 9 17 7 15" />
-  <polyline id="icon-tools-pan-caret-l" points="3 7 1 9 3 11" />
+    <g fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M9,1 L9,17"></path>
+      <path d="M1,9 L17,9"></path>
+      <polyline points="7 3 9 1 11 3"></polyline>
+      <polyline points="15 11 17 9 15 7"></polyline>
+      <polyline points="11 15 9 17 7 15"></polyline>
+      <polyline points="3 7 1 9 3 11"></polyline>
+    </g>
 </svg>
