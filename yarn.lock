@@ -1873,20 +1873,6 @@
     merge-deep "^3.0.2"
     svgo "^1.2.1"
 
-"@svgr/rollup@^4.1.0":
-  version "4.2.0"
-  resolved "https://registry.yarnpkg.com/@svgr/rollup/-/rollup-4.2.0.tgz#42108c4109e98c43e7f8ef0ae4206c3a939e4db0"
-  integrity sha512-YDZG1CLekHuiokggs0weA8uElKGKLe+V9e0TlYDYuuU0jnnM0layHAyImYyrNZZCgfnWi2daIzQyx6kQ8Rhx/Q==
-  dependencies:
-    "@babel/core" "^7.4.3"
-    "@babel/plugin-transform-react-constant-elements" "^7.0.0"
-    "@babel/preset-env" "^7.4.3"
-    "@babel/preset-react" "^7.0.0"
-    "@svgr/core" "^4.2.0"
-    "@svgr/plugin-jsx" "^4.2.0"
-    "@svgr/plugin-svgo" "^4.2.0"
-    rollup-pluginutils "^2.6.0"
-
 "@svgr/webpack@4.1.0":
   version "4.1.0"
   resolved "https://registry.yarnpkg.com/@svgr/webpack/-/webpack-4.1.0.tgz#20c88f32f731c7b1d4711045b2b993887d731c28"

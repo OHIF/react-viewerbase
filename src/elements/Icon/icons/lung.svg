@@ -5,9 +5,9 @@
   width="1em"
   height="1em"
   stroke="currentColor"
-  strokeWidth="1.5"
+  stroke-width="1.5"
   fill="none"
-  fillRule="nonzero"
+  fill-rule="nonzero"
 >
   <title id="title">Lung</title>
   <g transform="translate(1.000000, 0)">
