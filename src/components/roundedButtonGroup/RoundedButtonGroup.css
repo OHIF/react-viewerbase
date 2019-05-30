@@ -24,7 +24,6 @@
   background-color: var(--ui-gray-dark);
   border: 2px solid var(--ui-border-color-dark);
   color: var(--text-secondary-color);
-  fill: var(--text-secondary-color);
   display: flex;
   font-size: 11px;
   font-weight: 500;
@@ -37,11 +36,6 @@
   transition: var(--sidebar-transition);
   z-index: 1;
 }
-
-/* .roundedButtonWrapper .roundedButton svg {
-  fill: var(--default-color);
-  stroke: var(--default-color);
-} */
 
 .roundedButtonWrapper
   .roundedButton
@@ -82,13 +76,11 @@
 .roundedButtonWrapper:hover .roundedButton {
   background-color: var(--box-background-color);
   color: var(--ui-gray-dark);
-  fill: var(--ui-gray-dark);
 }
 
 .roundedButtonWrapper.active .roundedButton {
   background-color: var(--active-color);
   border-color: var(--ui-border-color-active);
   color: var(--ui-gray-dark);
-  fill: var(--ui-gray-dark);
   z-index: 2;
 }
