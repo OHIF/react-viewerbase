@@ -226,7 +226,10 @@ class StudyList extends Component {
           this.props.onSelectItem(study.studyInstanceUid);
         }}
       >
-        <td className="patientName">{study.patientName}</td>
+        <td className={study.patientName ? 'patientName' : 'emptyCell'}>
+          {study.patientName || '(empty)'}
+        </td>
+
         <td className="patientId">{study.patientId}</td>
         <td className="accessionNumber">{study.accessionNumber}</td>
         <td className="studyDate">{study.studyDate}</td>
