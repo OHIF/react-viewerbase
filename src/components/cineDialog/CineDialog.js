@@ -1,7 +1,7 @@
 import './CineDialog.styl';
 
 import React, { PureComponent } from 'react';
-
+import { withTranslation } from 'react-i18next';
 import { Icon } from './../../elements/Icon';
 import PropTypes from 'prop-types';
 
@@ -31,6 +31,7 @@ class CineDialog extends PureComponent {
     onClickBackButton: PropTypes.func,
     onClickSkipToStart: PropTypes.func,
     onClickSkipToEnd: PropTypes.func,
+    t: PropTypes.func.isRequired,
   };
 
   static defaultProps = {
@@ -131,7 +132,7 @@ class CineDialog extends PureComponent {
           <div className="cine-controls">
             <div className="btn-group">
               <button
-                title="Skip to first image"
+                title={this.props.t('Skip to first image')}
                 className="btn"
                 data-toggle="tooltip"
                 onClick={this.onClickSkipToStart}
@@ -139,7 +140,7 @@ class CineDialog extends PureComponent {
                 <Icon name="fast-backward" />
               </button>
               <button
-                title="Previous image"
+                title={this.props.t('Previous image')}
                 className="btn"
                 data-toggle="tooltip"
                 onClick={this.onClickBackButton}
@@ -147,7 +148,7 @@ class CineDialog extends PureComponent {
                 <Icon name="step-backward" />
               </button>
               <button
-                title="Play / Stop"
+                title={this.props.t('Play / Stop')}
                 className="btn"
                 data-toggle="tooltip"
                 onClick={this.onClickPlayPause}
@@ -155,7 +156,7 @@ class CineDialog extends PureComponent {
                 <Icon name={this.state.isPlaying ? 'stop' : 'play'} />
               </button>
               <button
-                title="Next image"
+                title={this.props.t('Next image')}
                 className="btn"
                 data-toggle="tooltip"
                 onClick={this.onClickNextButton}
@@ -163,7 +164,7 @@ class CineDialog extends PureComponent {
                 <Icon name="step-forward" />
               </button>
               <button
-                title="Skip to last image"
+                title={this.props.t('Skip to last image')}
                 className="btn"
                 data-toggle="tooltip"
                 onClick={this.onClickSkipToEnd}
@@ -185,7 +186,7 @@ class CineDialog extends PureComponent {
               />
             </div>
             <span className="fps">
-              {this.state.cineFrameRate.toFixed(1)} fps
+              {this.state.cineFrameRate.toFixed(1)} {this.props.t('fps')}
             </span>
           </div>
         </div>
@@ -194,4 +195,6 @@ class CineDialog extends PureComponent {
   }
 }
 
-export { CineDialog };
+const connectedComponent = withTranslation('CineDialog')(CineDialog);
+export { connectedComponent };
+export default connectedComponent;

@@ -3,6 +3,7 @@ import './toolbar-button.styl';
 import { Icon } from './../elements/Icon';
 import PropTypes from 'prop-types';
 import React from 'react';
+import { t } from 'ohif-i18n';
 import classnames from 'classnames';
 
 export function ToolbarButton(props) {
@@ -30,7 +31,7 @@ export function ToolbarButton(props) {
     <div className={className} onClick={handleClick}>
       {iconProps && <Icon {...iconProps} />}
       <div className="toolbar-button-label">
-        {label}
+        {t(label)}
         {arrowIcon}
       </div>
     </div>

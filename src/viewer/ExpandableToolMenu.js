@@ -6,7 +6,7 @@ import React from 'react';
 import ToolbarButton from './ToolbarButton.js';
 import { Tooltip } from '../components/tooltip';
 
-export default class ExpandableToolMenu extends React.Component {
+class ExpandableToolMenu extends React.Component {
   static propTypes = {
     /** Button label/text */
     text: PropTypes.string.isRequired,
@@ -119,3 +119,5 @@ export default class ExpandableToolMenu extends React.Component {
     );
   }
 }
+
+export default ExpandableToolMenu;
