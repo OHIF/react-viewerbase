@@ -213,16 +213,14 @@ class StudyList extends Component {
             ? 'studylistStudy noselect active'
             : 'studylistStudy noselect'
         }
-        onClick={() => {
-          this.onHighlightItem(study.studyInstanceUid);
-        }}
         onMouseDown={event => {
           // middle/wheel click
           if (event.button === 1) {
             this.props.onSelectItem(study.studyInstanceUid);
           }
         }}
-        onDoubleClick={() => {
+        onClick={() => {
+          this.onHighlightItem(study.studyInstanceUid);
           this.props.onSelectItem(study.studyInstanceUid);
         }}
       >
