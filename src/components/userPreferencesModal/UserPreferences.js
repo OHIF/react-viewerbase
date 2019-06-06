@@ -1,16 +1,18 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import { HotKeysPreferences } from './HotKeysPreferences';
-import { WindowLevelPreferences } from './WindowLevelPreferences';
 import './UserPreferences.styl';
 
+import React, { Component } from 'react';
+
+import { HotKeysPreferences } from './HotKeysPreferences';
+import PropTypes from 'prop-types';
+import { WindowLevelPreferences } from './WindowLevelPreferences';
+
+// TODO: Make this more generic. Tabs should not be restricted to these entries
 export class UserPreferences extends Component {
   static defaultProps = {
     hotKeysData: {},
     windowLevelData: {},
   };
 
-  // TODO: Make this more generic. Tabs should not be restricted to these entries
   static propTypes = {
     hotKeysData: PropTypes.object.isRequired,
     windowLevelData: PropTypes.object.isRequired,
