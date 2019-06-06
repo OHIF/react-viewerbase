@@ -1,9 +1,0 @@
-{
-  "version": "v1",
-  "packages": {
-    "ohif-i18n": {
-      "signature": "1b747a135497864598312e0656cffc9b",
-      "file": true
-    }
-  }
-}
