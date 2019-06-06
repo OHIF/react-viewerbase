@@ -213,20 +213,21 @@ class StudyList extends Component {
             ? 'studylistStudy noselect active'
             : 'studylistStudy noselect'
         }
-        onClick={() => {
-          this.onHighlightItem(study.studyInstanceUid);
-        }}
         onMouseDown={event => {
           // middle/wheel click
           if (event.button === 1) {
             this.props.onSelectItem(study.studyInstanceUid);
           }
         }}
-        onDoubleClick={() => {
+        onClick={() => {
+          this.onHighlightItem(study.studyInstanceUid);
           this.props.onSelectItem(study.studyInstanceUid);
         }}
       >
-        <td className="patientName">{study.patientName}</td>
+        <td className={study.patientName ? 'patientName' : 'emptyCell'}>
+          {study.patientName || '(empty)'}
+        </td>
+
         <td className="patientId">{study.patientId}</td>
         <td className="accessionNumber">{study.accessionNumber}</td>
         <td className="studyDate">{study.studyDate}</td>

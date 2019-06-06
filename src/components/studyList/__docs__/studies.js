@@ -63,6 +63,17 @@ const studies = [
     modalities: 'US',
     studyDescription: 'US',
   },
+  {
+    studyInstanceUid: '77777.77777.77777.77777',
+    patientName: '',
+    patientId: '7',
+    accessionNumber: '5315136',
+    studyDate: moment()
+      .subtract(5, 'days')
+      .format('YYYYMMDD'),
+    modalities: 'US',
+    studyDescription: 'US',
+  },
 ].sort(function(a, b) {
   if (a.patientName < b.patientName) {
     return -1;
