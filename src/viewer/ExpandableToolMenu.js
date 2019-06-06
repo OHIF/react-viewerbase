@@ -13,6 +13,7 @@ export default class ExpandableToolMenu extends React.Component {
     /** Array of buttons to render when expanded */
     buttons: PropTypes.arrayOf(
       PropTypes.shape({
+        command: PropTypes.string,
         text: PropTypes.string.isRequired,
         icon: PropTypes.oneOfType([
           PropTypes.string,
@@ -34,7 +35,7 @@ export default class ExpandableToolMenu extends React.Component {
   };
 
   static defaultProps = {
-    buttons: {},
+    buttons: [],
     icon: 'ellipse-circle',
     text: 'More',
   };

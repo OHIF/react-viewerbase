@@ -71,12 +71,14 @@ export class UserPreferencesModal extends Component {
         <Modal.Header closeButton>
           <Modal.Title>User Preferences</Modal.Title>
         </Modal.Header>
+
         <Modal.Body>
           <UserPreferences
             windowLevelData={this.state.windowLevelData}
             hotKeysData={this.state.hotKeysData}
           />
         </Modal.Body>
+
         <Modal.Footer>
           <button
             className="btn btn-danger pull-left"

@@ -1,55 +1,65 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-
 import {
   allowedKeys,
   disallowedCombinations,
   specialKeys,
 } from './hotKeysConfig.js';
 
+import PropTypes from 'prop-types';
+
 export class HotKeysPreferences extends Component {
   static propTypes = {
-    hotKeysData: PropTypes.object.isRequired,
+    hotKeysData: PropTypes.objectOf(
+      PropTypes.shape({
+        keys: PropTypes.arrayOf(PropTypes.string).isRequired,
+        label: PropTypes.string.isRequired,
+      })
+    ).isRequired,
     onChange: PropTypes.func,
   };
 
   constructor(props) {
     super(props);
 
-    this.columns = {};
+    const hotkeyCommands = Object.keys(this.props.hotKeysData);
+    const localHotKeys = hotkeyCommands.map(commandName => {
+      const definition = this.props.hotKeysData[commandName];
 
-    Object.keys(this.props.hotKeysData).forEach(key => {
-      const hotKey = this.props.hotKeysData[key];
-
-      if (this.columns.hasOwnProperty(hotKey.column)) {
-        this.columns[hotKey.column].push(key);
-      } else {
-        this.columns[hotKey.column] = [key];
-      }
+      return {
+        commandName,
+        keys: definition.keys,
+        label: definition.label,
+      };
     });
 
-    this.columnClass = `col-md-${12 / Object.keys(this.columns).length || 1}`;
-
     this.state = {
-      hotKeys: this.props.hotKeysData,
+      hotKeys: localHotKeys,
       errorMessages: {},
     };
 
     this.onInputKeyDown = this.onInputKeyDown.bind(this);
   }
 
-  getKeysPressedArray(event) {
+  /**
+   * Normalizes the keys used in a KeyPress event and returns an array of the
+   * keys pressed
+   *
+   * @param {KeyDownEvent} keyDownEvent
+   * @returns {string[]}
+   */
+  getKeysPressedArray(keyDownEvent) {
     const keysPressedArray = [];
+    const { ctrlKey, altKey, shiftKey } = keyDownEvent;
 
-    if (event.ctrlKey && !event.altKey) {
+    if (ctrlKey && !altKey) {
       keysPressedArray.push('CTRL');
     }
 
-    if (event.shiftKey && !event.altKey) {
+    if (shiftKey && !altKey) {
       keysPressedArray.push('SHIFT');
     }
 
-    if (event.altKey && !event.ctrlKey) {
+    if (altKey && !ctrlKey) {
       keysPressedArray.push('ALT');
     }
 
@@ -63,54 +73,68 @@ export class HotKeysPreferences extends Component {
     });
   }
 
-  updateInputText(toolKey, event, displayPressedKey = false) {
-    const pressedKeys = this.getKeysPressedArray(event);
+  /**
+   *
+   * @param {String} commandName
+   * @param {KeyDownEvent} keyDownEvent
+   * @param {Boolean} [displayPressedKey=false]
+   */
+  updateInputText(commandName, keyDownEvent, displayPressedKey = false) {
+    const pressedKeys = this.getKeysPressedArray(keyDownEvent);
 
     if (displayPressedKey) {
-      const specialKeyName = specialKeys[event.which];
+      const specialKeyName = specialKeys[keyDownEvent.which];
       const keyName =
-        specialKeyName || event.key || String.fromCharCode(event.keyCode);
+        specialKeyName ||
+        keyDownEvent.key ||
+        String.fromCharCode(keyDownEvent.keyCode);
       pressedKeys.push(keyName.toUpperCase());
     }
 
-    this.updateHotKeysState(toolKey, pressedKeys.join('+'));
+    this.updateHotKeysState(commandName, pressedKeys.join('+'));
   }
 
-  updateHotKeysState(toolKey, command, callback = () => {}) {
+  updateHotKeysState(commandName, keys) {
     const hotKeys = this.state.hotKeys;
-    hotKeys[toolKey].command = command;
-    this.setState(hotKeys, callback);
+    const hotKeyIndex = this.state.hotKeys.findIndex(
+      x => x.commandName === commandName
+    );
+    hotKeys[hotKeyIndex].keys[0] = keys;
+    this.setState({ hotKeys });
   }
 
-  updateErrorsState(toolKey, errorMessage, callback = () => {}) {
+  updateErrorsState(toolKey, errorMessage) {
     const errorMessages = this.state.errorMessages;
     errorMessages[toolKey] = errorMessage;
-    this.setState({ errorMessages }, callback);
+    this.setState({ errorMessages });
   }
 
-  onInputKeyDown(event, toolKey) {
+  onInputKeyDown(event, commandName) {
     // Prevent ESC key from propagating and closing the modal
     if (event.key === 'Escape') {
       event.stopPropagation();
     }
 
     if (allowedKeys.includes(event.keyCode)) {
-      this.updateInputText(toolKey, event, true);
+      this.updateInputText(commandName, event, true);
     } else {
-      this.updateInputText(toolKey, event, false);
+      this.updateInputText(commandName, event, false);
     }
 
     event.preventDefault();
   }
 
-  onChange(event, toolKey) {
+  onChange(event, commandName) {
     if (event.ctrlKey || event.altKey || event.shiftKey) {
       return;
     }
 
-    const hotKey = this.state.hotKeys[toolKey];
-    const command = hotKey.command;
-    const pressedKeys = command.split('+');
+    const hotKeyIndex = this.state.hotKeys.findIndex(
+      x => x.commandName === commandName
+    );
+    const hotKey = this.state.hotKeys[hotKeyIndex];
+    const keys = hotKey.keys[0];
+    const pressedKeys = keys.split('+');
     const lastPressedKey = pressedKeys[pressedKeys.length - 1].toUpperCase();
 
     // clear the prior errors
@@ -118,9 +142,9 @@ export class HotKeysPreferences extends Component {
       // Check if it has a valid modifier
       const isModifier = ['CTRL', 'ALT', 'SHIFT'].includes(lastPressedKey);
       if (isModifier) {
-        this.updateHotKeysState(toolKey, '');
+        this.updateHotKeysState(commandName, '');
         this.updateErrorsState(
-          toolKey,
+          commandName,
           "It's not possible to define only modifier keys (CTRL, ALT and SHIFT) as a shortcut"
         );
         return;
@@ -129,18 +153,21 @@ export class HotKeysPreferences extends Component {
       /*
        * Check if it has some conflict
        */
-      const conflictedCommandKey = this.getConflictingCommand(toolKey, command);
+      const conflictedCommandKey = this.getConflictingCommand(
+        commandName,
+        keys
+      );
       if (conflictedCommandKey) {
         const conflictedCommand = this.state.hotKeys[conflictedCommandKey];
 
         this.updateErrorsState(
-          toolKey,
+          commandName,
           `"${conflictedCommand.label}" is already using the "${
             conflictedCommand.command
           }" shortcut.`
         );
         this.updateErrorsState(conflictedCommandKey, '');
-        this.updateHotKeysState(toolKey, '');
+        this.updateHotKeysState(commandName, '');
         return;
       }
 
@@ -158,9 +185,9 @@ export class HotKeysPreferences extends Component {
         : false;
 
       if (hasDisallowedCombinations) {
-        this.updateHotKeysState(toolKey, '');
+        this.updateHotKeysState(commandName, '');
         this.updateErrorsState(
-          toolKey,
+          commandName,
           "It's not possible to define only modifier keys (CTRL, ALT and SHIFT) as a shortcut"
         );
         return;
@@ -168,32 +195,32 @@ export class HotKeysPreferences extends Component {
     });
   }
 
-  renderRow(toolKey, hotKey) {
+  renderRow({ commandName, label, keys }) {
     return (
-      <tr key={toolKey}>
-        <td className="text-right p-r-1">{hotKey.label}</td>
+      <tr key={commandName}>
+        <td className="text-right p-r-1">{label}</td>
         <td width="200">
           <label
             className={`wrapperLabel ${
-              this.state.errorMessages[toolKey] !== undefined
+              this.state.errorMessages[commandName] !== undefined
                 ? 'state-error'
                 : ''
             } `}
-            ref={input => (this[toolKey] = input)}
+            ref={input => (this[commandName] = input)}
             data-key="defaultTool"
           >
             <input
               readOnly={true}
               type="text"
-              value={hotKey.command}
+              value={keys[0]}
               vali="true"
               className="form-control hotkey text-center"
-              onKeyDown={event => this.onInputKeyDown(event, toolKey)}
-              onKeyUp={event => this.onChange(event, toolKey)}
+              onKeyDown={event => this.onInputKeyDown(event, commandName)}
+              onKeyUp={event => this.onChange(event, commandName)}
             />
             <span className="wrapperText" />
             <span className="errorMessage">
-              {this.state.errorMessages[toolKey]}
+              {this.state.errorMessages[commandName]}
             </span>
           </label>
         </td>
@@ -201,34 +228,48 @@ export class HotKeysPreferences extends Component {
     );
   }
 
-  renderColumn(columnIndex, hotkeysColumn) {
-    return (
-      <div key={columnIndex} className={this.columnClass}>
-        <table className="full-width">
-          <thead>
-            <tr>
-              <th className="text-right p-r-1">Function</th>
-              <th className="text-center">Shortcut</th>
-            </tr>
-          </thead>
-          <tbody>
-            {hotkeysColumn.map(keyTool =>
-              this.renderRow(keyTool, this.state.hotKeys[keyTool])
-            )}
-          </tbody>
-        </table>
-      </div>
-    );
-  }
-
   render() {
+    const halfWayThough = Math.floor(this.state.hotKeys.length / 2);
+    const firstHalfHotkeys = this.state.hotKeys.slice(0, halfWayThough);
+    const secondHalfHotkeys = this.state.hotKeys.slice(
+      halfWayThough,
+      this.state.hotKeys.length
+    );
+
     return (
       <div className="row">
-        {Object.keys(this.columns)
-          .sort()
-          .map(columnIndex =>
-            this.renderColumn(columnIndex, this.columns[columnIndex])
-          )}
+        {/* <!-- Column 1 --> */}
+        <div className="col-md-6">
+          <table className="full-width">
+            <thead>
+              <tr>
+                <th className="text-right p-r-1">Function</th>
+                <th className="text-center">Shortcut</th>
+              </tr>
+            </thead>
+            <tbody>
+              {firstHalfHotkeys.map(hotkeyDefinition =>
+                this.renderRow(hotkeyDefinition)
+              )}
+            </tbody>
+          </table>
+        </div>
+        {/* <!-- Column 2 --> */}
+        <div className="col-md-6">
+          <table className="full-width">
+            <thead>
+              <tr>
+                <th className="text-right p-r-1">Function</th>
+                <th className="text-center">Shortcut</th>
+              </tr>
+            </thead>
+            <tbody>
+              {secondHalfHotkeys.map(hotkeyDefinition =>
+                this.renderRow(hotkeyDefinition)
+              )}
+            </tbody>
+          </table>
+        </div>
       </div>
     );
   }
