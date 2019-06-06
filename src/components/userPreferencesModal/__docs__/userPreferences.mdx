@@ -10,6 +10,7 @@ import { UserPreferencesModal } from './../index.js'
 //
 import windowLevelDefaults from './windowLevelDefaults.js'
 import hotkeyDefaults from './hotkeyDefaults.js'
+import generalDefaults from './generalDefaults.js'
 
 # User Preferences Modal
 
@@ -19,7 +20,8 @@ import hotkeyDefaults from './hotkeyDefaults.js'
     <State initial={{
         isOpen: false,
         windowLevelData: windowLevelDefaults,
-        hotKeysData: hotkeyDefaults
+        hotKeysData: hotkeyDefaults,
+        generalData: generalDefaults
     }}>
 
         {({ state, setState }) => (
