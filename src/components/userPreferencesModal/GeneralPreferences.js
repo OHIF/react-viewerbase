@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import './GeneralPreferences.styl';
+import i18n from 'ohif-i18n';
 
 export class GeneralPreferences extends Component {
   constructor(props) {
@@ -35,6 +36,11 @@ export class GeneralPreferences extends Component {
     if (this.props.onChange) {
       this.props.onChange(data);
     }
+
+    i18n.init({
+      fallbackLng: language.substring(0, 2),
+      lng: language,
+    });
   }
 
   renderLanguageOptions = (val, label) => {
