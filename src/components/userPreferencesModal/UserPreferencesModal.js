@@ -19,7 +19,6 @@ export class UserPreferencesModal extends Component {
     onResetToDefaults: PropTypes.func,
     windowLevelData: PropTypes.object,
     hotKeysData: PropTypes.object,
-    generalData: PropTypes.object,
   };
 
   constructor(props) {
@@ -28,7 +27,6 @@ export class UserPreferencesModal extends Component {
     this.state = {
       windowLevelData: cloneDeep(props.windowLevelData),
       hotKeysData: cloneDeep(props.hotKeysData),
-      generalData: cloneDeep(props.generalData),
     };
   }
 
@@ -40,7 +38,6 @@ export class UserPreferencesModal extends Component {
     this.props.onSave({
       windowLevelData: this.state.windowLevelData,
       hotKeysData: this.state.hotKeysData,
-      generalData: this.state.generalData,
     });
   };
 
@@ -55,15 +52,7 @@ export class UserPreferencesModal extends Component {
       newStateData.hotKeysData = prev.hotKeysData;
     }
 
-    if (!isEqual(prev.generalData, next.generalData)) {
-      newStateData.generalData = prev.generalData;
-    }
-
-    if (
-      newStateData.hotKeysData ||
-      newStateData.windowLevelData ||
-      newStateData.generalData
-    ) {
+    if (newStateData.hotKeysData || newStateData.windowLevelData) {
       this.setState(newStateData);
     }
   }
@@ -86,7 +75,6 @@ export class UserPreferencesModal extends Component {
           <UserPreferences
             windowLevelData={this.state.windowLevelData}
             hotKeysData={this.state.hotKeysData}
-            generalData={this.state.generalData}
           />
         </Modal.Body>
         <Modal.Footer>
