@@ -1,5 +1,7 @@
 import React from 'react';
-import i18n, { I18nextProvider } from 'ohif-i18n';
+import i18n from '@ohif/i18n';
+import { I18nextProvider } from 'react-i18next';
+
 import PropTypes from 'prop-types';
 
 const Wrapper = ({ children }) => (
