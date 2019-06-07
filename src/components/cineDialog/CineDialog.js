@@ -1,7 +1,7 @@
 import './CineDialog.styl';
 
 import React, { PureComponent } from 'react';
-
+import { withTranslation } from 'ohif-i18n';
 import { Icon } from './../../elements/Icon';
 import PropTypes from 'prop-types';
 
@@ -31,6 +31,7 @@ class CineDialog extends PureComponent {
     onClickBackButton: PropTypes.func,
     onClickSkipToStart: PropTypes.func,
     onClickSkipToEnd: PropTypes.func,
+    t: PropTypes.func.isRequired,
   };
 
   static defaultProps = {
@@ -125,13 +126,14 @@ class CineDialog extends PureComponent {
   // See https://github.com/OHIF/Viewers/blob/master/Packages/ohif-viewerbase/client/components/viewer/cineDialog/cineDialog.html#L38
   // - Add 'isEnabled' prop: https://github.com/OHIF/Viewers/blob/master/Packages/ohif-viewerbase/client/components/viewer/cineDialog/cineDialog.js#L301
   render() {
+    const { t } = this.props;
     return (
       <div className="CineDialog">
         <div className="noselect double-row-style">
           <div className="cine-controls">
             <div className="btn-group">
               <button
-                title="Skip to first image"
+                title={t('Skip to first image')}
                 className="btn"
                 data-toggle="tooltip"
                 onClick={this.onClickSkipToStart}
@@ -139,7 +141,7 @@ class CineDialog extends PureComponent {
                 <Icon name="fast-backward" />
               </button>
               <button
-                title="Previous image"
+                title={t('Previous image')}
                 className="btn"
                 data-toggle="tooltip"
                 onClick={this.onClickBackButton}
@@ -147,7 +149,7 @@ class CineDialog extends PureComponent {
                 <Icon name="step-backward" />
               </button>
               <button
-                title="Play / Stop"
+                title={t('Play / Stop')}
                 className="btn"
                 data-toggle="tooltip"
                 onClick={this.onClickPlayPause}
@@ -155,7 +157,7 @@ class CineDialog extends PureComponent {
                 <Icon name={this.state.isPlaying ? 'stop' : 'play'} />
               </button>
               <button
-                title="Next image"
+                title={t('Next image')}
                 className="btn"
                 data-toggle="tooltip"
                 onClick={this.onClickNextButton}
@@ -163,7 +165,7 @@ class CineDialog extends PureComponent {
                 <Icon name="step-forward" />
               </button>
               <button
-                title="Skip to last image"
+                title={t('Skip to last image')}
                 className="btn"
                 data-toggle="tooltip"
                 onClick={this.onClickSkipToEnd}
@@ -185,7 +187,7 @@ class CineDialog extends PureComponent {
               />
             </div>
             <span className="fps">
-              {this.state.cineFrameRate.toFixed(1)} fps
+              {this.state.cineFrameRate.toFixed(1)} {t('fps')}
             </span>
           </div>
         </div>
@@ -194,4 +196,6 @@ class CineDialog extends PureComponent {
   }
 }
 
-export { CineDialog };
+const connectedComponent = withTranslation('CineDialog')(CineDialog);
+export { connectedComponent };
+export default connectedComponent;

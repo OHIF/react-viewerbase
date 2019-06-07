@@ -1,1 +1,2 @@
-export { CineDialog } from './CineDialog.js';
+import CineDialog from './CineDialog';
+export { CineDialog };

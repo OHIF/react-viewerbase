@@ -13,6 +13,10 @@ dist/
 .docz/
 .yalc
 
+# YALC (for Erik)
+.yalc
+yalc.lock
+
 # Log
 npm-debug.log*
 yarn-debug.log*
