@@ -1,7 +1,7 @@
 import './toolbar-button.styl';
 
 import { Icon } from './../elements/Icon';
-import { withTranslation } from 'ohif-i18n';
+import { withTranslation } from 'react-i18next';
 import PropTypes from 'prop-types';
 import React from 'react';
 import classnames from 'classnames';
