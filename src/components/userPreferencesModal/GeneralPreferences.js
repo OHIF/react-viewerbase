@@ -1,40 +1,28 @@
 import React, { Component } from 'react';
 import './GeneralPreferences.styl';
-import i18n from '@ohif/i18n';
+import PropTypes from 'prop-types';
 
 export class GeneralPreferences extends Component {
   constructor(props) {
     super(props);
-
-    this.state = {
-      language: i18n.language,
-      // TODO: list of available languages should come from i18n.options.resources
-      languages: [
-        {
-          value: 'en-US',
-          label: 'English',
-        },
-        {
-          value: 'es',
-          label: 'Spanish',
-        },
-      ],
-    };
   }
 
+  static propTypes = {
+    generalData: PropTypes.object.isRequired,
+  };
+
   onChange(event) {
-    const language = event.target.value;
-
-    this.setState({ language });
-
-    i18n.init({
-      fallbackLng: language.substring(0, 2),
-      lng: language,
+    const { value: language } = event.target;
+    this.setState({
+      currentLanguage: language,
     });
+
+    this.props.generalData.onChange(language);
   }
 
   renderLanguageOptions = (val, label) => {
-    return this.state.languages.map(language => (
+    const { languages } = this.props.generalData;
+    return languages.map(language => (
       <option key={language.value} value={language.value}>
         {language.label}
       </option>
@@ -42,6 +30,8 @@ export class GeneralPreferences extends Component {
   };
 
   render() {
+    const { currentLanguage } = this.props.generalData;
+
     return (
       <div className="general-preferences-wrapper">
         <div className="col-sm-3">
@@ -52,7 +42,7 @@ export class GeneralPreferences extends Component {
             name="language-select"
             id="language-select"
             className="language-select"
-            value={this.state.language}
+            value={currentLanguage}
             onChange={event => this.onChange(event)}
           >
             {this.renderLanguageOptions()}

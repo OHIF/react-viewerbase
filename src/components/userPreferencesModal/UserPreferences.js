@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+
 import { HotKeysPreferences } from './HotKeysPreferences';
 import { WindowLevelPreferences } from './WindowLevelPreferences';
 import { GeneralPreferences } from './GeneralPreferences';
@@ -9,12 +10,14 @@ export class UserPreferences extends Component {
   static defaultProps = {
     hotKeysData: {},
     windowLevelData: {},
+    generalData: {},
   };
 
   // TODO: Make this more generic. Tabs should not be restricted to these entries
   static propTypes = {
     hotKeysData: PropTypes.object.isRequired,
     windowLevelData: PropTypes.object.isRequired,
+    generalData: PropTypes.object.isRequired,
   };
 
   state = {
@@ -53,7 +56,7 @@ export class UserPreferences extends Component {
     return (
       <form className="form-themed themed">
         <div className="form-content">
-          <GeneralPreferences />
+          <GeneralPreferences generalData={this.props.generalData} />
         </div>
       </form>
     );
