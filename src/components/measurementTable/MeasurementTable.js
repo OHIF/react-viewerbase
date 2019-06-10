@@ -15,6 +15,7 @@ export class MeasurementTable extends Component {
     measurementCollection: PropTypes.array.isRequired,
     timepoints: PropTypes.array.isRequired,
     overallWarnings: PropTypes.object.isRequired,
+    readOnly: PropTypes.bool,
     onItemClick: PropTypes.func,
     onRelabelClick: PropTypes.func,
     onDeleteClick: PropTypes.func,
@@ -111,6 +112,8 @@ export class MeasurementTable extends Component {
   };
 
   onItemClick = (event, measurementData) => {
+    if (this.props.readOnly) return;
+
     this.setState({
       selectedKey: measurementData.measurementNumber,
     });
