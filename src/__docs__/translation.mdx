@@ -10,34 +10,14 @@ route: /translation
 [@ohif/i18n](https://www.npmjs.com/package/@ohif/i18n), where is the main
 instance of i18n containing several languages and tools.
 
-## How to use
+## How to translate components
 
-### Consuming in your project
+**React-viewerbase** already implements the
+[I18nextProvider](https://react.i18next.com/latest/i18nextprovider) in the whole
+application, more info about the provider implementation
+[here](#i18next-provider).
 
-In case you're adding **react-viewerbase** to your project, you can easily add
-translations to the components in this way:
-
-```js
-import React from 'react';
-import { Dropdown } from 'react-viewerbase';
-import { withTranslation } from 'react-i18next';
-
-function MyComponent({ t, ...props }) {
-  return <Dropdown title={t('Options')} {...props} />;
-}
-
-export default withTranslation('MyNameSpace')(MyComponent);
-```
-
-[Dynamically add locales](#extending-languages-dynamically) allows us to pass
-any text as props to the components. Before overriding something, we advise you
-to take a look at the components documentation to see if the component you're
-adding accepts the text prop and what's the namespace related to the component.
-
-### Developing
-
-After cloning the **react-viewerbase** repository, once it already uses the
-`<I18nextProvider />` in the application, you will only need to use the
+You will only need to use the
 [withTranslation](https://react.i18next.com/latest/withtranslation-hoc) HOC to
 get the `t` prop inside the component.
 
@@ -79,6 +59,15 @@ e.g.:
 
 For further information about namespaces, please visit
 [OHIF Namespaces docs](https://docs.ohif.org/essentials/translating.html#namespaces).
+
+---
+
+## I18next Provider
+
+**React Viewerbase** implements using
+[docz wrappers](https://www.docz.site/docs/project-configuration#wrapper) and in
+the overlay components
+[react-overlays](https://github.com/OHIF/react-viewerbase/blob/master/src/components/overlayTrigger/Overlay.js).
 
 ---
 
