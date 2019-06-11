@@ -42,6 +42,7 @@ export default {
       ],
     },
     'Styling & Theming',
+    'Translation',
     'Compatibility',
   ],
   // Rollup Aliases?

@@ -1,0 +1,117 @@
+---
+name: Translation
+route: /translation
+---
+
+# Translation
+
+**React Viewerbase** supports internationalization using
+[i18next](https://www.i18next.com/) through the npm package
+[@ohif/i18n](https://www.npmjs.com/package/@ohif/i18n), where is the main
+instance of i18n containing several languages and tools.
+
+## How to use
+
+### Consuming in your project
+
+In case you're adding **react-viewerbase** to your project, you can easily add
+translations to the components in this way:
+
+```js
+import React from 'react';
+import { Dropdown } from 'react-viewerbase';
+import { withTranslation } from 'react-i18next';
+
+function MyComponent({ t, ...props }) {
+  return <Dropdown title={t('Options')} {...props} />;
+}
+
+export default withTranslation('MyNameSpace')(MyComponent);
+```
+
+[Dynamically add locales](#extending-languages-dynamically) allows us to pass
+any text as props to the components. Before overriding something, we advise you
+to take a look at the components documentation to see if the component you're
+adding accepts the text prop and what's the namespace related to the component.
+
+### Developing
+
+After cloning the **react-viewerbase** repository, once it already uses the
+`<I18nextProvider />` in the application, you will only need to use the
+[withTranslation](https://react.i18next.com/latest/withtranslation-hoc) HOC to
+get the `t` prop inside the component.
+
+e.g.:
+
+```js
+import React from 'react';
+import { withTranslation } from 'react-i18next';
+
+function MyComponent({ t }) {
+  return <p>{t('my translated text')}</p>;
+}
+
+export default withTranslation('MyNameSpace')(MyComponent);
+```
+
+---
+
+## Namespaces
+
+Namespaces are used to organize translations in smaller portions, combined
+semantically or by use. Each `.json` file inside `@ohif/i18n` npm package
+becomes a new namespace automatically.
+
+You can organize them by files, where each file will be a unique namespace.
+
+e.g.:
+
+```bash
+ |-- ...
+ |-- src
+    |-- locales
+        |-- en
+            |-- Buttons.json
+        |-- es
+            |-- Buttons.json
+  ...
+```
+
+For further information about namespaces, please visit
+[OHIF Namespaces docs](https://docs.ohif.org/essentials/translating.html#namespaces).
+
+---
+
+## Extending languages dynamically
+
+[@ohif/i18n](https://www.npmjs.com/package/@ohif/i18n) provides a method that
+allows us to dynamically add new translation files to the bundle.
+
+Let's assume that we're gonna use the same folder structure demonstrated in the
+[Namespaces](#namespaces) example:
+
+```js
+import { addLocales } from '@ohif/i18n';
+
+function addNewLocales() {
+  const localesPath = './locales';
+  const context = require.context(localesPath, true, /\.json$/);
+  addLocales(context);
+}
+
+export default addNewLocales;
+```
+
+---
+
+## Debugging translations
+
+[@ohif/i18n](https://www.npmjs.com/package/@ohif/i18n) uses two environment
+variables responsible for debugging the translations: `REACT_APP_I18N_DEBUG` and
+`REACT_APP_LANG`.
+
+For debugging, you can run the project as follows:
+
+```bash
+yarn && REACT_APP_I18N_DEBUG=true REACT_APP_LANG=es yarn run dev
+```
