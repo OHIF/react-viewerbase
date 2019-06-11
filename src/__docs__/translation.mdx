@@ -5,20 +5,15 @@ route: /translation
 
 # Translation
 
-**React Viewerbase** supports internationalization using
-[i18next](https://www.i18next.com/) through the npm package
-[@ohif/i18n](https://www.npmjs.com/package/@ohif/i18n), where is the main
-instance of i18n containing several languages and tools.
+**React Viewerbase** supports internationalization using [i18next](https://www.i18next.com/) through the npm package
+[@ohif/i18n](https://www.npmjs.com/package/@ohif/i18n), where is the main instance of i18n containing several languages and tools.
 
 ## How to translate components
 
-**React-viewerbase** already implements the
-[I18nextProvider](https://react.i18next.com/latest/i18nextprovider) in the whole
-application, more info about the provider implementation
+**React-viewerbase** already implements the [I18nextProvider](https://react.i18next.com/latest/i18nextprovider) in the whole application, you don't need to care about it, but more information about this implementation can be found
 [here](#i18next-provider).
 
-You will only need to use the
-[withTranslation](https://react.i18next.com/latest/withtranslation-hoc) HOC to
+All you need is to use the [withTranslation HOC](https://react.i18next.com/latest/withtranslation-hoc) or the [useTranslation Hook](https://react.i18next.com/latest/usetranslation-hook) to
 get the `t` prop inside the component.
 
 e.g.:
@@ -38,13 +33,35 @@ export default withTranslation('MyNameSpace')(MyComponent);
 
 ## Namespaces
 
-Namespaces are used to organize translations in smaller portions, combined
-semantically or by use. Each `.json` file inside `@ohif/i18n` npm package
-becomes a new namespace automatically.
+Namespaces are used to organize translations in smaller portions, combined semantically or by use, each `.json` file inside `@ohif/i18n` npm package
+becomes a new namespace automatically, which can be override later.
 
-You can organize them by files, where each file will be a unique namespace.
+For further information about namespaces available and how they work, please visit
+[OHIF Namespaces docs](https://docs.ohif.org/essentials/translating.html#namespaces).
 
-e.g.:
+#### How to get right the Name Space of a component?
+Check the component's documentation in this site, the NameSpace information should be there, or, if not, in the withTranslation definition of the component.
+
+E.g.
+
+```
+export default withTranslation('TheNamespaceYouAreLookingFor')(TheComponentIWantToUse);
+```
+
+---
+
+## I18next Provider
+
+**React Viewerbase** pass down the `t` function trough the [docz wrappers](https://www.docz.site/docs/project-configuration#wrapper) and trough overlay components via
+[react-overlays](https://github.com/OHIF/react-viewerbase/blob/master/src/components/overlayTrigger/Overlay.js).
+
+---
+
+## Extending languages dynamically
+
+[@ohif/i18n](https://www.npmjs.com/package/@ohif/i18n) provides a method to extend, override and add language resources dynamically, called `addLocales`, using a file folder structure.
+
+Using the a folder structure as following, load the node context of the folder and send to `addLocales`.
 
 ```bash
  |-- ...
@@ -57,38 +74,12 @@ e.g.:
   ...
 ```
 
-For further information about namespaces, please visit
-[OHIF Namespaces docs](https://docs.ohif.org/essentials/translating.html#namespaces).
-
----
-
-## I18next Provider
-
-**React Viewerbase** implements using
-[docz wrappers](https://www.docz.site/docs/project-configuration#wrapper) and in
-the overlay components
-[react-overlays](https://github.com/OHIF/react-viewerbase/blob/master/src/components/overlayTrigger/Overlay.js).
-
----
-
-## Extending languages dynamically
-
-[@ohif/i18n](https://www.npmjs.com/package/@ohif/i18n) provides a method that
-allows us to dynamically add new translation files to the bundle.
-
-Let's assume that we're gonna use the same folder structure demonstrated in the
-[Namespaces](#namespaces) example:
-
 ```js
 import { addLocales } from '@ohif/i18n';
 
-function addNewLocales() {
-  const localesPath = './locales';
-  const context = require.context(localesPath, true, /\.json$/);
-  addLocales(context);
-}
-
-export default addNewLocales;
+const localesPath = './locales';
+const context = require.context(localesPath, true, /\.json$/);
+addLocales(context);
 ```
 
 ---

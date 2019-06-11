@@ -39,11 +39,11 @@ export class UserPreferencesModal extends Component {
       windowLevelData: cloneDeep(props.windowLevelData),
       hotKeysData: cloneDeep(props.hotKeysData),
       generalData: {
-        currentLanguage: i18n.language,
+        currentLanguage: i18n.language.substring(0, 2),
         // TODO: list of available languages should come from i18n.options.resources
         languages: [
           {
-            value: 'en-US',
+            value: 'en',
             label: 'English',
           },
           {

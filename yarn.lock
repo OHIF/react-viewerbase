@@ -1660,10 +1660,8 @@
     universal-user-agent "^2.0.0"
     url-template "^2.0.8"
 
-"@ohif/i18n@0.0.1-rc-001":
-  version "0.0.1-rc-001"
-  resolved "https://registry.yarnpkg.com/@ohif/i18n/-/i18n-0.0.1-rc-001.tgz#47286daa1411efb5f0219f0310484c8919bfe607"
-  integrity sha512-CJ9wqd15DpJ6adVMyXkyqQqcRZgSnMWJ7L3WyUpMqf66CvAFKzCUuckyiFeCupIq8ZGv7w4jaADSYKrLcpviUw==
+"@ohif/i18n@file:.yalc/@ohif/i18n":
+  version "0.0.1-rc-003-18e6caf4"
   dependencies:
     "@babel/runtime" "^7.2.0"
     classnames "^2.2.6"

@@ -47,7 +47,11 @@ class ExpandableToolMenu extends React.Component {
   }
 
   toolbarMenuOverlay = () => (
-    <Tooltip placement="bottom" className="tooltip-toolbar-overlay">
+    <Tooltip
+      placement="bottom"
+      className="tooltip-toolbar-overlay"
+      id={`${Math.random()}_tooltip-toolbar-overlay}`}
+    >
       {this.getButtons()}
     </Tooltip>
   );
