@@ -46,6 +46,7 @@ import lung from './icons/lung.svg';
 import measureNonTarget from './icons/measure-non-target.svg';
 import measureTarget from './icons/measure-target.svg';
 import measureTargetCr from './icons/measure-target-cr.svg';
+import measureTargetNe from './icons/measure-target-ne.svg';
 import measureTargetUn from './icons/measure-target-un.svg';
 import measureTemp from './icons/measure-temp.svg';
 import objectGroup from './icons/object-group.svg';
@@ -142,6 +143,7 @@ const ICONS = {
   'measure-target': measureTarget,
   'measure-target-cr': measureTargetCr,
   'measure-target-un': measureTargetUn,
+  'measure-target-ne': measureTargetNe,
   'measure-temp': measureTemp,
   'ellipse-circle': ellipseCircle,
   arrows,
