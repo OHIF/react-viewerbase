@@ -51,7 +51,7 @@ class DragPreview extends Component {
   render() {
     const { currentOffset, isDragging } = this.props;
     if (!isDragging) {
-      return <div />;
+      return null;
     }
 
     return (
