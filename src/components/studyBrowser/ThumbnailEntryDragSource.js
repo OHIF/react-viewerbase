@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { DragSource } from 'react-dnd';
-
+import DragPreview from './DragPreview';
 import { ThumbnailEntry } from './ThumbnailEntry.js';
 
 // Drag sources and drop targets only interact
@@ -46,6 +46,7 @@ class ThumbnailEntryDragSource extends Component {
 
     return connectDragSource(
       <div className="ThumbnailEntryContainer">
+        <DragPreview {...this.props} />
         <ThumbnailEntry {...this.props} />
       </div>,
       { dropEffect }
