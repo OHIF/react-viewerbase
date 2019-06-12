@@ -18,6 +18,7 @@ import {
   ThumbnailEntry,
   ToolbarSection,
   Tooltip,
+  AboutPreferencesModal,
   UserPreferences,
   UserPreferencesModal,
 } from './components';
@@ -65,6 +66,7 @@ export {
   ToolbarButton,
   ToolbarSection,
   Tooltip,
+  AboutPreferencesModal,
   UserPreferences,
   UserPreferencesModal,
   ViewerbaseDragDropContext,

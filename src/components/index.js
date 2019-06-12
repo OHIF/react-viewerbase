@@ -7,7 +7,11 @@ import { LayoutButton, LayoutChooser } from './layoutButton';
 import { MeasurementTable, MeasurementTableItem } from './measurementTable';
 import { Overlay, OverlayTrigger } from './overlayTrigger';
 import { TableList, TableListItem } from './tableList';
-import { UserPreferences, UserPreferencesModal } from './userPreferencesModal';
+import {
+  AboutPreferencesModal,
+  UserPreferences,
+  UserPreferencesModal,
+} from './userPreferencesModal';
 
 import { CineDialog } from './cineDialog';
 import { QuickSwitch } from './quickSwitch';
@@ -38,6 +42,7 @@ export {
   ThumbnailEntry,
   ToolbarSection,
   Tooltip,
+  AboutPreferencesModal,
   UserPreferences,
   UserPreferencesModal,
 };

@@ -1,0 +1,42 @@
+---
+name: About Preferences Modal
+menu: Components
+route: /components/about-preferences-modal
+---
+
+import { Playground, Props } from 'docz'
+import { State } from 'react-powerplug'
+import { AboutPreferencesModal } from './../index.js'
+
+# About Preferences Modal
+
+## Basic usage
+
+<Playground>
+    <State initial={{
+        isOpen: false
+    }}>
+
+        {({ state, setState }) => (
+            <React.Fragment>
+                <button
+                    className="btn btn-primary"
+                    type="button"
+                    onClick={ () => setState({ isOpen: true }) }
+                >
+                    Open user preferences
+                </button>
+                <AboutPreferencesModal
+                    {...state}
+                    onCancel={() => setState({ isOpen: false })}
+                />
+            </React.Fragment>
+        )}
+
+    </State>
+
+</Playground>
+
+## API
+
+<Props of={AboutPreferencesModal} />
