@@ -31,6 +31,7 @@ class CineDialog extends PureComponent {
     onClickBackButton: PropTypes.func,
     onClickSkipToStart: PropTypes.func,
     onClickSkipToEnd: PropTypes.func,
+    /** i18next translation function */
     t: PropTypes.func.isRequired,
   };
 
