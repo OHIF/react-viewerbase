@@ -12,9 +12,6 @@ dist/
 .rpt2_cache
 .docz/
 .yalc
-
-# YALC (for Erik)
-.yalc
 yalc.lock
 
 # Log
