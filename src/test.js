@@ -33,7 +33,7 @@ describe('Top level exports', () => {
       'ToolbarButton',
       'ToolbarSection',
       'Tooltip',
-      'AboutPreferencesModal',
+      'AboutModal',
       'UserPreferences',
       'UserPreferencesModal',
       'ViewerbaseDragDropContext',

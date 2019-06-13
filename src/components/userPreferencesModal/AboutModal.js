@@ -7,7 +7,7 @@ import 'react-bootstrap-modal/lib/css/rbm-patch.css';
 // TODO: Is this the only component importing these?
 import './../../design/styles/common/modal.styl';
 
-export class AboutPreferencesModal extends Component {
+export class AboutModal extends Component {
   constructor(props) {
     super(props);
   }
@@ -86,9 +86,7 @@ export class AboutPreferencesModal extends Component {
                 </tr>
               </thead>
               <tbody>
-                {AboutPreferencesModal.itemsPreset.map(item =>
-                  this.renderTableRow(item)
-                )}
+                {AboutModal.itemsPreset.map(item => this.renderTableRow(item))}
                 {/* <tr>
                   <td>Repository URL</td>
                   <td>

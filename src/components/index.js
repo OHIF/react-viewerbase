@@ -8,7 +8,7 @@ import { MeasurementTable, MeasurementTableItem } from './measurementTable';
 import { Overlay, OverlayTrigger } from './overlayTrigger';
 import { TableList, TableListItem } from './tableList';
 import {
-  AboutPreferencesModal,
+  AboutModal,
   UserPreferences,
   UserPreferencesModal,
 } from './userPreferencesModal';
@@ -42,7 +42,7 @@ export {
   ThumbnailEntry,
   ToolbarSection,
   Tooltip,
-  AboutPreferencesModal,
+  AboutModal,
   UserPreferences,
   UserPreferencesModal,
 };

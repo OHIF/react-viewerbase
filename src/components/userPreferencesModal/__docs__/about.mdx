@@ -1,14 +1,14 @@
 ---
-name: About Preferences Modal
+name: About Modal
 menu: Components
-route: /components/about-preferences-modal
+route: /components/about-modal
 ---
 
 import { Playground, Props } from 'docz'
 import { State } from 'react-powerplug'
-import { AboutPreferencesModal } from './../index.js'
+import { AboutModal } from './../index.js'
 
-# About Preferences Modal
+# About  Modal
 
 ## Basic usage
 
@@ -24,9 +24,9 @@ import { AboutPreferencesModal } from './../index.js'
                     type="button"
                     onClick={ () => setState({ isOpen: true }) }
                 >
-                    Open user preferences
+                    Open about modal
                 </button>
-                <AboutPreferencesModal
+                <AboutModal
                     {...state}
                     onCancel={() => setState({ isOpen: false })}
                 />
@@ -39,4 +39,4 @@ import { AboutPreferencesModal } from './../index.js'
 
 ## API
 
-<Props of={AboutPreferencesModal} />
+<Props of={AboutModal} />
