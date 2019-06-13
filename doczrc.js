@@ -8,7 +8,7 @@ import { css } from 'docz-plugin-css';
 export default {
   dest: 'example/build',
   public: '/public',
-  wrapper: 'src/__docs__/Wrapper',
+  wrapper: 'src/__docs__/wrapper',
   indexHtml: 'src/__docs__/index.html',
   // Limited support for importing `.styl` files
   codeSandbox: false,
