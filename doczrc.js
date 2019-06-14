@@ -37,7 +37,7 @@ export default {
         'Study List',
         'Table List',
         'Toolbar Section',
-        'About Preferences Modal',
+        'About Modal',
         'User Preferences Modal',
       ],
     },
