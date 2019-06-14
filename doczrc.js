@@ -3,11 +3,12 @@
  * https://www.docz.site/docs/project-configuration
  */
 
-import { css } from 'docz-plugin-css'
+import { css } from 'docz-plugin-css';
 
 export default {
   dest: 'example/build',
   public: '/public',
+  wrapper: 'src/__docs__/wrapper',
   indexHtml: 'src/__docs__/index.html',
   // Limited support for importing `.styl` files
   codeSandbox: false,
@@ -41,6 +42,7 @@ export default {
       ],
     },
     'Styling & Theming',
+    'Translating',
     'Compatibility',
   ],
   // Rollup Aliases?
@@ -61,7 +63,7 @@ export default {
   // How we delete our rule:
   // https://github.com/neutrinojs/webpack-chain/issues/48
   onCreateWebpackChain: config => {
-    config.module.rules.delete('svg')
+    config.module.rules.delete('svg');
 
     // config.module
     //   .rule('svg')
@@ -79,10 +81,10 @@ export default {
         ...babelrc.plugins,
         require.resolve('babel-plugin-inline-react-svg'),
       ],
-    }
-    return newBabelRc
+    };
+    return newBabelRc;
   },
-}
+};
 
 /*
  * Alternative ways to extend/modify underlying webpack config
