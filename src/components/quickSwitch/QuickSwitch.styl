@@ -5,12 +5,15 @@
     box-shadow: 0 0 0 5000px rgba(0, 0, 0, 0.8)
     transition: opacity 0.3s ease
     opacity: 0
+    content: ''
 
   &:hover
     z-index: 50
 
     &:before
+      display: table;
       opacity: 1
+      content: ''
 
   &:not(.left):not(.right)
     left: 50%
