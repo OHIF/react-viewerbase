@@ -1,12 +1,13 @@
 import './toolbar-button.styl';
 
 import { Icon } from './../elements/Icon';
+import { withTranslation } from 'react-i18next';
 import PropTypes from 'prop-types';
 import React from 'react';
 import classnames from 'classnames';
 
 export function ToolbarButton(props) {
-  const { active, icon, textActive, onClick, setToolActive } = props;
+  const { active, icon, textActive, onClick, setToolActive, t } = props;
   const className = classnames(props.className, { active });
   const iconProps = typeof icon === 'string' ? { name: icon } : icon;
   const label = active && textActive ? textActive : props.text;
@@ -30,7 +31,7 @@ export function ToolbarButton(props) {
     <div className={className} onClick={handleClick}>
       {iconProps && <Icon {...iconProps} />}
       <div className="toolbar-button-label">
-        {label}
+        {t(label)}
         {arrowIcon}
       </div>
     </div>
@@ -52,6 +53,7 @@ ToolbarButton.propTypes = {
   setToolActive: PropTypes.func,
   expandableButton: PropTypes.bool,
   expanded: PropTypes.bool,
+  t: PropTypes.func.isRequired,
 };
 
 ToolbarButton.defaultProps = {
@@ -60,4 +62,4 @@ ToolbarButton.defaultProps = {
   command: 'ToolbarButton',
 };
 
-export default ToolbarButton;
+export default withTranslation('Buttons')(ToolbarButton);

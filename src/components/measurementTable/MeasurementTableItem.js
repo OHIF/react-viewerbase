@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { withTranslation } from 'react-i18next';
 
 import { Icon } from './../../elements/Icon';
 import { OverlayTrigger } from './../overlayTrigger';
@@ -8,7 +9,7 @@ import { TableListItem } from './../tableList/TableListItem.js';
 
 import './MeasurementTableItem.styl';
 
-export class MeasurementTableItem extends Component {
+class MeasurementTableItem extends Component {
   static propTypes = {
     measurementData: PropTypes.object.isRequired,
     onItemClick: PropTypes.func.isRequired,
@@ -17,6 +18,7 @@ export class MeasurementTableItem extends Component {
     onEditDescription: PropTypes.func,
     itemClass: PropTypes.string,
     itemIndex: PropTypes.number,
+    t: PropTypes.func,
   };
 
   render() {
@@ -34,7 +36,7 @@ export class MeasurementTableItem extends Component {
                 className="in tooltip-warning"
                 id="tooltip-left"
               >
-                <div className="warningTitle">{warningTitle}</div>
+                <div className="warningTitle">{this.props.t(warningTitle)}</div>
                 <div className="warningContent">{this.getWarningContent()}</div>
               </Tooltip>
             }
@@ -54,7 +56,7 @@ export class MeasurementTableItem extends Component {
         <span style={{ marginRight: '4px' }}>
           <Icon name="edit" width="14px" height="14px" />
         </span>
-        {btnLabel}
+        {this.props.t(btnLabel)}
       </button>
     );
   };
@@ -94,7 +96,7 @@ export class MeasurementTableItem extends Component {
       >
         <div>
           <div className="measurementLocation">
-            {this.props.measurementData.label}
+            {this.props.t(this.props.measurementData.label)}
           </div>
           <div>{this.getDataDisplayText()}</div>
           <div className="rowActions">{actionButtons}</div>
@@ -152,3 +154,9 @@ export class MeasurementTableItem extends Component {
     }
   };
 }
+
+const connectedComponent = withTranslation('MeasurementTable')(
+  MeasurementTableItem
+);
+export { connectedComponent as MeasurementTableItem };
+export default connectedComponent;
