@@ -1,0 +1,102 @@
+---
+name: Translating
+route: /translating
+---
+
+# Translating
+
+**React Viewerbase** supports internationalization using
+[i18next](https://www.i18next.com/) through the npm package
+[@ohif/i18n](https://www.npmjs.com/package/@ohif/i18n), where is the main
+instance of i18n containing several languages and tools.
+
+## How to translate components
+
+All you need is to use the
+[withTranslation HOC](https://react.i18next.com/latest/withtranslation-hoc) or
+the [useTranslation Hook](https://react.i18next.com/latest/usetranslation-hook)
+to get the `t` prop inside the component.
+
+e.g.:
+
+```js
+import React from 'react';
+import { withTranslation } from 'react-i18next';
+
+function MyComponent({ t }) {
+  return <p>{t('my translated text')}</p>;
+}
+
+export default withTranslation('MyNameSpace')(MyComponent);
+```
+
+> **React-viewerbase** already implements the
+> [I18nextProvider](https://react.i18next.com/latest/i18nextprovider) in the
+> whole application, you don't need to care about it, but more information about
+> how it was implemented can be found [here](#i18next-provider).
+
+---
+
+## Namespaces
+
+For further information about namespaces and how they work, please visit
+[OHIF Namespaces docs](https://docs.ohif.org/essentials/translating.html#namespaces).
+
+### How to get right the Name Space of a react-viewerbase component?
+
+Check the component's page in this site, the NameSpace information should be on
+the bottom line.
+
+Also, a nameSpace is defined when exporting a component, this information can be
+found on exports trough the code, in case of missing in docs.
+
+E.g.
+
+```
+export default withTranslation('TheNamespaceYouAreLookingFor')(TheComponentYouWantToUse);
+```
+
+## How to use another NameSpace inside the current NameSpace?
+
+i18next provides a parsing feature able to get translations strings from any
+NameSpace, like this following example getting data from `InnerSpace` NameSpace:
+
+```
+$t(InnerSpace:Reset)
+export default withTranslation('OuterSpace')(TheComponent);
+```
+
+---
+
+## I18next Provider
+
+**React Viewerbase** pass down the `t` function trough the
+[docz wrappers](https://www.docz.site/docs/project-configuration#wrapper) and
+trough overlay components via
+[react-overlays](https://github.com/OHIF/react-viewerbase/blob/master/src/components/overlayTrigger/Overlay.js).
+
+When loaded inside OHIF Viewer, the i18next provider is used as peer dependency,
+so its the same of the main one shared with other extensions.
+
+Using it as a peer dependency, prevents double bundling repeated npm modules.
+
+---
+
+## Extending and Overriding languages
+
+[How to Extend languages with @ohif/i18n](https://docs.ohif.org/essentials/translating.html#extending-languages-in-ohifi18n)
+
+## Changing the language
+
+**@ohif/i18n** automatically detects the language you want to set by adding a
+query param called `lng` in the url to change the language.
+
+E.g.
+
+```
+https://react.ohif.org?lng=es
+```
+
+## Debugging translations
+
+[How to Debug @ohif/i18n](https://docs.ohif.org/essentials/translating.html#debugging-translations)
