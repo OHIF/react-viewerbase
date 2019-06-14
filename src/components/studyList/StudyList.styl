@@ -49,6 +49,9 @@ placeholder-color(c)
     font-weight: 100
     line-height: $study-list-toolbar-height
 
+  .pull-right
+    float: right!important;
+
 .theadBackground
   height: 121px
   position: absolute
@@ -90,6 +93,12 @@ placeholder-color(c)
     text-align: center
 
   table#tblStudyList
+    width: 100%;
+    max-width: 100%;
+    margin-bottom: 20px;
+    border-spacing: 0;
+    border-collapse: collapse;
+
     > tr
       height: 20px
 
@@ -99,8 +108,10 @@ placeholder-color(c)
       tr
         th
           padding: 0
-          border-bottom: solid 1px var(--ui-border-color-active)
-          width: 100%
+          border-bottom: 1px solid var(--ui-border-color-active);
+          width: 100%;
+          text-align: left;
+          border-top: 0;
 
           &.studyDate
             min-width: 230px
@@ -144,7 +155,6 @@ placeholder-color(c)
             font-weight: normal
             width: calc(100% - 10px)
             border-radius: 4px
-            box-sizing: border-box
 
             transition(all 0.15s ease)
             placeholder-color(var(--input-placeholder-color))
@@ -169,6 +179,7 @@ placeholder-color(c)
           background-color: var(--ui-gray-darker)
 
         td
+          padding: 8px;
           height: $body-cell-height
           line-height: $body-cell-height
           color: var(--table-text-primary-color)
@@ -193,6 +204,40 @@ placeholder-color(c)
             border-top: 1px solid var(--ui-gray-lighter)
             border-bottom: 1px solid var(--ui-gray-lighter)
             background-color: var(--table-hover-color)
+
+.form-control
+  display: block;
+  width: 100%;
+  height: 34px;
+  padding: 6px 12px;
+  font-size: 14px;
+  line-height: 1.42857143;
+  color: #555;
+  background-color: #fff;
+  background-image: none;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+
+  &:focus
+    border-color: #66afe9;
+    outline: 0;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(102,175,233,.6);
+    box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(102,175,233,.6);
+
+  &::-ms-expand
+    border: 0;
+    background-color: transparent;
+
+  &[disabled],
+  &[readonly],
+  fieldset[disabled] &
+    background-color: @input-bg-disabled;
+    opacity: 1;
+
+  &[disabled],
+  fieldset[disabled] &
+    cursor: @cursor-disabled;
 
 @media only screen and (max-width: 1362px)
   #studyListContainer
