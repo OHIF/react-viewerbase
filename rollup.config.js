@@ -13,6 +13,8 @@ import url from 'rollup-plugin-url';
 const globals = {
   react: 'React',
   'react-dom': 'ReactDOM',
+  'react-i18next': 'reactI18next',
+  '@ohif/i18n': 'i18n',
 };
 
 export default {
