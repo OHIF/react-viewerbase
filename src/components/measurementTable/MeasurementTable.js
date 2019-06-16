@@ -1,6 +1,7 @@
 import './MeasurementTable.styl';
 
 import React, { Component } from 'react';
+import { withTranslation } from 'react-i18next';
 
 import { Icon } from './../../elements/Icon';
 import { MeasurementTableItem } from './MeasurementTableItem.js';
@@ -10,7 +11,7 @@ import { ScrollableArea } from './../../ScrollableArea/ScrollableArea.js';
 import { TableList } from './../tableList';
 import { Tooltip } from './../tooltip';
 
-export class MeasurementTable extends Component {
+class MeasurementTable extends Component {
   static propTypes = {
     measurementCollection: PropTypes.array.isRequired,
     timepoints: PropTypes.array.isRequired,
@@ -21,6 +22,7 @@ export class MeasurementTable extends Component {
     onEditDescriptionClick: PropTypes.func,
     selectedMeasurementNumber: PropTypes.number,
     overwallWarnings: PropTypes.object,
+    t: PropTypes.func,
   };
 
   static defaultProps = {
@@ -50,7 +52,9 @@ export class MeasurementTable extends Component {
                   id="tooltip-left"
                   style={{}}
                 >
-                  <div className="warningTitle">Criteria nonconformities</div>
+                  <div className="warningTitle">
+                    {this.props.t('Criteria nonconformities')}
+                  </div>
                   <div className="warningContent">
                     {this.getWarningContent()}
                   </div>
@@ -123,10 +127,12 @@ export class MeasurementTable extends Component {
   getCustomHeader = measureGroup => {
     return (
       <React.Fragment>
-        <div className="tableListHeaderTitle">{measureGroup.groupName}</div>
+        <div className="tableListHeaderTitle">
+          {this.props.t(measureGroup.groupName)}
+        </div>
         {measureGroup.maxMeasurements && (
           <div className="maxMeasurements">
-            MAX {measureGroup.maxMeasurements}
+            {this.props.t('MAX')} {measureGroup.maxMeasurements}
           </div>
         )}
         <div className="numberOfItems">{measureGroup.measurements.length}</div>
@@ -159,3 +165,9 @@ export class MeasurementTable extends Component {
     }
   };
 }
+
+const connectedComponent = withTranslation('MeasurementTable')(
+  MeasurementTable
+);
+export { connectedComponent as MeasurementTable };
+export default connectedComponent;

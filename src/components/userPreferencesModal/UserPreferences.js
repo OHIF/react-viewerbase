@@ -1,21 +1,23 @@
-import './UserPreferences.styl';
-
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 import { HotKeysPreferences } from './HotKeysPreferences';
-import PropTypes from 'prop-types';
 import { WindowLevelPreferences } from './WindowLevelPreferences';
+import { GeneralPreferences } from './GeneralPreferences';
+import './UserPreferences.styl';
 
-// TODO: Make this more generic. Tabs should not be restricted to these entries
 export class UserPreferences extends Component {
   static defaultProps = {
     hotKeysData: {},
     windowLevelData: {},
+    generalData: {},
   };
 
+  // TODO: Make this more generic. Tabs should not be restricted to these entries
   static propTypes = {
     hotKeysData: PropTypes.object.isRequired,
     windowLevelData: PropTypes.object.isRequired,
+    generalData: PropTypes.object.isRequired,
   };
 
   state = {
@@ -50,11 +52,27 @@ export class UserPreferences extends Component {
     }
   }
 
+  renderGeneralTab() {
+    return (
+      <form className="form-themed themed">
+        <div className="form-content">
+          <GeneralPreferences generalData={this.props.generalData} />
+        </div>
+      </form>
+    );
+  }
+
   renderTabs(tabIndex) {
-    if (tabIndex === 0) {
-      return this.renderHotkeysTab();
-    } else {
-      return this.renderWindowLevelTab();
+    switch (tabIndex) {
+      case 0:
+        return this.renderHotkeysTab();
+      case 1:
+        return this.renderWindowLevelTab();
+      case 2:
+        return this.renderGeneralTab();
+
+      default:
+        break;
     }
   }
 
@@ -82,6 +100,14 @@ export class UserPreferences extends Component {
               className={this.getTabClass(1)}
             >
               <button>Window Level</button>
+            </li>
+            <li
+              onClick={() => {
+                this.tabClick(2);
+              }}
+              className={this.getTabClass(2)}
+            >
+              <button>General</button>
             </li>
           </ul>
         </div>

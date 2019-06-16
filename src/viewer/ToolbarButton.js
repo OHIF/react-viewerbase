@@ -4,9 +4,10 @@ import { Icon } from './../elements/Icon';
 import PropTypes from 'prop-types';
 import React from 'react';
 import classnames from 'classnames';
+import { withTranslation } from 'react-i18next';
 
 export function ToolbarButton(props) {
-  const { isActive, icon, labelWhenActive, onClick } = props;
+  const { isActive, icon, labelWhenActive, onClick, t } = props;
   const className = classnames(props.className, { active: isActive });
   const iconProps = typeof icon === 'string' ? { name: icon } : icon;
   const label = isActive && labelWhenActive ? labelWhenActive : props.label;
@@ -26,7 +27,7 @@ export function ToolbarButton(props) {
     <div className={className} onClick={handleClick}>
       {iconProps && <Icon {...iconProps} />}
       <div className="toolbar-button-label">
-        {label}
+        {t(label)}
         {arrowIcon}
       </div>
     </div>
@@ -51,6 +52,7 @@ ToolbarButton.propTypes = {
   isExpandable: PropTypes.bool,
   /** Direction of expandable 'caret' symbol */
   isExpanded: PropTypes.bool,
+  t: PropTypes.func.isRequired,
 };
 
 ToolbarButton.defaultProps = {
@@ -58,4 +60,4 @@ ToolbarButton.defaultProps = {
   className: 'toolbar-button',
 };
 
-export default ToolbarButton;
+export default withTranslation('Buttons')(ToolbarButton);
