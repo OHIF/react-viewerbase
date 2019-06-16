@@ -1,9 +1,11 @@
-import React, { PureComponent } from 'react';
-import ToolbarButton from '../../viewer/ToolbarButton';
-import ExpandableToolMenu from '../../viewer/ExpandableToolMenu';
-import classnames from 'classnames';
 import './ToolbarSection.styl';
+
+import React, { PureComponent } from 'react';
+
+import ExpandableToolMenu from '../../viewer/ExpandableToolMenu';
 import PropTypes from 'prop-types';
+import ToolbarButton from '../../viewer/ToolbarButton';
+import classnames from 'classnames';
 
 class ToolbarSection extends PureComponent {
   static defaultProps = {
@@ -24,11 +26,9 @@ class ToolbarSection extends PureComponent {
         buttons: PropTypes.arrayOf(PropTypes.shape({})),
       })
     ).isRequired,
+    activeButtons: PropTypes.arrayOf(PropTypes.string).isRequired,
     /** Class for toolbar section container */
     className: PropTypes.string,
-    activeCommand: PropTypes.string,
-    /** Called when a button is clicked/touched */
-    setToolActive: PropTypes.func,
   };
 
   render() {
@@ -39,7 +39,6 @@ class ToolbarSection extends PureComponent {
             key={`expandable-${index}`}
             {...item}
             activeCommand={this.props.activeCommand}
-            setToolActive={this.props.setToolActive}
           />
         );
       } else {
@@ -48,7 +47,6 @@ class ToolbarSection extends PureComponent {
             key={index}
             {...item}
             active={item.command === this.props.activeCommand}
-            setToolActive={this.props.setToolActive}
           />
         );
       }
