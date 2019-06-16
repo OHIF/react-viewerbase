@@ -1,7 +1,7 @@
 import { Component } from 'react';
+import PropTypes from 'prop-types';
 import React from 'react';
 import ToolbarButton from './ToolbarButton.js';
-import PropTypes from 'prop-types';
 
 const wLPresetIDs = [
   'setWLPresetSoftTissue',

@@ -31,7 +31,6 @@ export default class ExpandableToolMenu extends React.Component {
     ]),
     onGroupMenuClick: PropTypes.func,
     activeCommand: PropTypes.string,
-    setToolActive: PropTypes.func,
   };
 
   static defaultProps = {
@@ -60,7 +59,6 @@ export default class ExpandableToolMenu extends React.Component {
           key={index}
           {...item}
           active={item.command === this.props.activeCommand}
-          setToolActive={this.props.setToolActive}
         />
       );
     });
