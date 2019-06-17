@@ -6,7 +6,7 @@ export default [
       {
         measurementId: '123',
         measurementNumber: '123',
-        itemNumber: '1',
+        itemNumber: 1,
         label: 'Chest Wall Posterior',
         hasWarnings: true,
         warningTitle: 'Criteria nonconformities',
@@ -28,7 +28,7 @@ export default [
       {
         measurementId: '124',
         measurementNumber: '124',
-        itemNumber: '2',
+        itemNumber: 2,
         label: 'Bone Extremity',
         data: [
           {
@@ -49,7 +49,7 @@ export default [
       {
         measurementId: '125',
         measurementNumber: '125',
-        itemNumber: '1',
+        itemNumber: 1,
         label: 'Chest Wall Single Site',
         data: [
           {
@@ -64,7 +64,7 @@ export default [
       {
         measurementId: '126',
         measurementNumber: '126',
-        itemNumber: '2',
+        itemNumber: 2,
         label: 'Extremity Multiple Sites',
         data: [
           {

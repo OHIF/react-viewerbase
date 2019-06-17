@@ -21,6 +21,7 @@ import circleO from './icons/circle-o.svg';
 import cog from './icons/cog.svg';
 import createComment from './icons/create-comment.svg';
 import createScreenCapture from './icons/create-screen-capture.svg';
+import crosshairs from './icons/crosshairs.svg';
 import cube from './icons/cube.svg';
 import d3Rotate from './icons/3d-rotate.svg';
 import database from './icons/database.svg';
@@ -87,6 +88,7 @@ const ICONS = {
   'sort-down': sortDown,
   info,
   cube,
+  crosshairs,
   'dot-circle': dotCircle,
   'angle-left': angleLeft,
   '3d-rotate': d3Rotate,
