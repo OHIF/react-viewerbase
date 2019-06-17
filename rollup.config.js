@@ -6,9 +6,9 @@ import pkg from './package.json';
 import postcss from 'rollup-plugin-postcss';
 import resolve from 'rollup-plugin-node-resolve';
 import url from 'rollup-plugin-url';
+import autoprefixer from 'autoprefixer';
 
 // Deal with https://github.com/rollup/rollup-plugin-commonjs/issues/297
-
 
 const globals = {
   react: 'React',
@@ -40,6 +40,7 @@ export default {
     external(),
     postcss({
       modules: false,
+      plugins: [autoprefixer],
     }),
     url(),
     babel({
