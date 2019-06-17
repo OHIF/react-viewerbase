@@ -35,6 +35,7 @@ export function ToolbarButton(props) {
 }
 
 ToolbarButton.propTypes = {
+  id: PropTypes.string,
   isActive: PropTypes.bool,
   /** Display text/label for button */
   label: PropTypes.string.isRequired,

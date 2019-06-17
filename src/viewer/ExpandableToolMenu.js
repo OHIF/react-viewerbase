@@ -13,8 +13,8 @@ class ExpandableToolMenu extends React.Component {
     /** Array of buttons to render when expanded */
     buttons: PropTypes.arrayOf(
       PropTypes.shape({
-        command: PropTypes.string,
-        text: PropTypes.string.isRequired,
+        id: PropTypes.string,
+        label: PropTypes.string.isRequired,
         icon: PropTypes.oneOfType([
           PropTypes.string,
           PropTypes.shape({
@@ -42,7 +42,7 @@ class ExpandableToolMenu extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      expanded: false,
+      isExpanded: false,
     };
   }
 
@@ -57,12 +57,12 @@ class ExpandableToolMenu extends React.Component {
   );
 
   getButtons = () => {
-    return this.props.buttons.map((item, index) => {
+    return this.props.buttons.map((button, index) => {
       return (
         <ToolbarButton
           key={index}
-          {...item}
-          active={item.command === this.props.activeCommand}
+          {...button}
+          isActive={button.id === this.props.activeCommand}
         />
       );
     });
@@ -72,7 +72,7 @@ class ExpandableToolMenu extends React.Component {
     let isActive = false;
     if (this.props.activeCommand) {
       this.props.buttons.forEach(button => {
-        if (this.props.activeCommand === button.command) {
+        if (this.props.activeCommand === button.id) {
           isActive = true;
         }
       });
@@ -86,13 +86,13 @@ class ExpandableToolMenu extends React.Component {
       this.props.onGroupMenuClick();
     }
     this.setState({
-      expanded: !this.state.expanded,
+      isExpanded: !this.state.isExpanded,
     });
   };
 
   onOverlayHide = () => {
     this.setState({
-      expanded: false,
+      isExpanded: false,
     });
   };
 
@@ -109,14 +109,13 @@ class ExpandableToolMenu extends React.Component {
       >
         <ToolbarButton
           key="menu-button"
-          command="More"
           type="tool"
-          text={this.props.text}
+          label={this.props.text}
           icon={this.props.icon}
           className={'toolbar-button expandableToolMenu'}
-          active={this.isActive()}
-          expandableButton={true}
-          expanded={this.state.expanded}
+          isActive={this.isActive()}
+          isExpandable={true}
+          isExpanded={this.state.isExpanded}
         />
       </OverlayTrigger>
     );

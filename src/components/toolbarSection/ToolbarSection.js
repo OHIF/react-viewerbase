@@ -15,7 +15,7 @@ class ToolbarSection extends PureComponent {
   static propTypes = {
     buttons: PropTypes.arrayOf(
       PropTypes.shape({
-        text: PropTypes.string.isRequired,
+        label: PropTypes.string.isRequired,
         icon: PropTypes.oneOfType([
           PropTypes.string,
           PropTypes.shape({
@@ -32,21 +32,21 @@ class ToolbarSection extends PureComponent {
   };
 
   render() {
-    const items = this.props.buttons.map((item, index) => {
-      if (item.buttons && Array.isArray(item.buttons)) {
+    const items = this.props.buttons.map((button, index) => {
+      if (button.buttons && Array.isArray(button.buttons)) {
         return (
           <ExpandableToolMenu
             key={`expandable-${index}`}
-            {...item}
-            activeCommand={this.props.activeCommand}
+            {...button}
+            activeCommand={button.activeButton}
           />
         );
       } else {
         return (
           <ToolbarButton
             key={index}
-            {...item}
-            active={item.command === this.props.activeCommand}
+            {...button}
+            active={this.props.activeButtons.includes(button.id)}
           />
         );
       }
