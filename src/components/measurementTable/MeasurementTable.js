@@ -28,6 +28,7 @@ export class MeasurementTable extends Component {
     overallWarnings: {
       warningList: [],
     },
+    readOnly: false,
   };
 
   state = {
@@ -94,7 +95,8 @@ export class MeasurementTable extends Component {
     return measureGroup.measurements.map((measurement, index) => {
       const key = measurement.measurementNumber;
       const itemIndex = measurement.itemNumber || index + 1;
-      const itemClass = selectedKey === key ? 'selected' : '';
+      const itemClass =
+        selectedKey === key && !this.props.readOnly ? 'selected' : '';
 
       return (
         <MeasurementTableItem
