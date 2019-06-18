@@ -4,7 +4,10 @@ import i18n from '@ohif/i18n';
 import './LanguageSwitcher.styl';
 
 const LanguageSwitcher = () => {
-  const [currentLanguage, setCurrentLanguage] = useState();
+  const getCurrentLanguage = (language = i18n.language) =>
+    language.split('-')[0];
+
+  const [currentLanguage, setCurrentLanguage] = useState(getCurrentLanguage());
   const languages = [
     // TODO: list of available languages should come from i18n.options.resources
     {
@@ -16,9 +19,6 @@ const LanguageSwitcher = () => {
       label: 'Spanish',
     },
   ];
-
-  const getCurrentLanguage = (language = i18n.language) =>
-    language.split('-')[0];
 
   const onChange = () => {
     const { value } = event.target;
@@ -32,7 +32,17 @@ const LanguageSwitcher = () => {
   };
 
   useEffect(() => {
-    setCurrentLanguage(getCurrentLanguage());
+    let mounted = true;
+
+    i18n.on('languageChanged', () => {
+      if (mounted) {
+        setCurrentLanguage(getCurrentLanguage());
+      }
+    });
+
+    return () => {
+      mounted = false;
+    };
   }, []);
 
   return (
