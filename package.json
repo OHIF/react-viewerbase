@@ -22,7 +22,9 @@
     "lint": "eslint -c .eslintrc --fix src && prettier --single-quote --write src/**/*.{js,jsx,json,css}",
     "prepare": "yarn build",
     "prepublishOnly": "yarn build",
-    "generateStaticSite": "docz build"
+    "generateStaticSite": "docz build",
+    "contributors:add": "all-contributors add",
+    "contributors:generate": "all-contributors generate"
   },
   "husky": {
     "hooks": {
@@ -45,12 +47,18 @@
     "dist"
   ],
   "peerDependencies": {
+    "@ohif/i18n": "^0.0.4",
+    "i18next": "^17.0.3",
     "react": "^16.8.6",
-    "react-dom": "^16.8.6"
+    "react-dom": "^16.8.6",
+    "react-i18next": "^10.11.0"
   },
   "dependencies": {
     "@babel/runtime": "7.2.0",
+    "@ohif/i18n": "^0.0.4",
     "classnames": "2.2.6",
+    "i18next": "^17.0.3",
+    "i18next-browser-languagedetector": "^3.0.1",
     "lodash.isequal": "4.5.0",
     "moment": "2.24.0",
     "prop-types": "15.6.2",
@@ -58,6 +66,7 @@
     "react-dates": "18.4.1",
     "react-dnd": "7.0.2",
     "react-dnd-touch-backend": "^0.8.3",
+    "react-i18next": "^10.11.0",
     "react-with-direction": "1.3.0"
   },
   "devDependencies": {
@@ -68,6 +77,8 @@
     "@babel/preset-env": "^7.2.3",
     "@babel/preset-react": "^7.0.0",
     "@mdx-js/tag": "^0.20.3",
+    "all-contributors-cli": "6.7.0",
+    "autoprefixer": "^9.6.0",
     "babel-eslint": "^9.0.0",
     "babel-plugin-inline-react-svg": "1.1.0",
     "commitizen": "3.0.7",
