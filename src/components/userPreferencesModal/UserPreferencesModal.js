@@ -3,7 +3,6 @@ import './UserPreferencesModal.styl';
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Modal from 'react-bootstrap-modal';
-import i18n from '@ohif/i18n';
 import { withTranslation } from 'react-i18next';
 
 import 'react-bootstrap-modal/lib/css/rbm-patch.css';
@@ -23,16 +22,6 @@ class UserPreferencesModal extends Component {
     onResetToDefaults: PropTypes.func,
     windowLevelData: PropTypes.object,
     hotKeysData: PropTypes.object,
-    generalData: PropTypes.shape({
-      currentLanguage: PropTypes.string.isRequired,
-      languages: PropTypes.arrayOf(
-        PropTypes.shape({
-          value: PropTypes.string,
-          label: PropTypes.string,
-        })
-      ).isRequired,
-      onChange: PropTypes.func.isRequired,
-    }),
     t: PropTypes.func,
   };
 
@@ -42,43 +31,12 @@ class UserPreferencesModal extends Component {
     this.state = {
       windowLevelData: cloneDeep(props.windowLevelData),
       hotKeysData: cloneDeep(props.hotKeysData),
-      generalData: {
-        currentLanguage: i18n.language.substring(0, 2),
-        // TODO: list of available languages should come from i18n.options.resources
-        languages: [
-          {
-            value: 'en',
-            label: 'English',
-          },
-          {
-            value: 'es',
-            label: 'Spanish',
-          },
-        ],
-        onChange: language => {
-          this.changeLanguage(language);
-        },
-      },
     };
   }
 
   static defaultProps = {
     isOpen: false,
   };
-
-  changeLanguage(language) {
-    this.setState({
-      generalData: {
-        ...this.state.generalData,
-        currentLanguage: language,
-      },
-    });
-
-    i18n.init({
-      fallbackLng: language.split('-')[0],
-      lng: language,
-    });
-  }
 
   save = () => {
     this.props.onSave({
@@ -121,7 +79,6 @@ class UserPreferencesModal extends Component {
           <UserPreferences
             windowLevelData={this.state.windowLevelData}
             hotKeysData={this.state.hotKeysData}
-            generalData={this.state.generalData}
           />
         </Modal.Body>
         <Modal.Footer>
