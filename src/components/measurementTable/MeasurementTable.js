@@ -16,6 +16,7 @@ class MeasurementTable extends Component {
     measurementCollection: PropTypes.array.isRequired,
     timepoints: PropTypes.array.isRequired,
     overallWarnings: PropTypes.object.isRequired,
+    readOnly: PropTypes.bool,
     onItemClick: PropTypes.func,
     onRelabelClick: PropTypes.func,
     onDeleteClick: PropTypes.func,
@@ -29,6 +30,7 @@ class MeasurementTable extends Component {
     overallWarnings: {
       warningList: [],
     },
+    readOnly: false,
   };
 
   state = {
@@ -97,7 +99,8 @@ class MeasurementTable extends Component {
     return measureGroup.measurements.map((measurement, index) => {
       const key = measurement.measurementNumber;
       const itemIndex = measurement.itemNumber || index + 1;
-      const itemClass = selectedKey === key ? 'selected' : '';
+      const itemClass =
+        selectedKey === key && !this.props.readOnly ? 'selected' : '';
 
       return (
         <MeasurementTableItem
@@ -115,6 +118,8 @@ class MeasurementTable extends Component {
   };
 
   onItemClick = (event, measurementData) => {
+    if (this.props.readOnly) return;
+
     this.setState({
       selectedKey: measurementData.measurementNumber,
     });
