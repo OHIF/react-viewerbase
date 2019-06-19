@@ -22,7 +22,9 @@
     "lint": "eslint -c .eslintrc --fix src && prettier --single-quote --write src/**/*.{js,jsx,json,css}",
     "prepare": "yarn build",
     "prepublishOnly": "yarn build",
-    "generateStaticSite": "docz build"
+    "generateStaticSite": "docz build",
+    "contributors:add": "all-contributors add",
+    "contributors:generate": "all-contributors generate"
   },
   "husky": {
     "hooks": {
@@ -75,6 +77,7 @@
     "@babel/preset-env": "^7.2.3",
     "@babel/preset-react": "^7.0.0",
     "@mdx-js/tag": "^0.20.3",
+    "all-contributors-cli": "6.7.0",
     "autoprefixer": "^9.6.0",
     "babel-eslint": "^9.0.0",
     "babel-plugin-inline-react-svg": "1.1.0",
