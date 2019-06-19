@@ -60,20 +60,23 @@ export class AboutModal extends Component {
           <Modal.Title>About</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <div>
+          <div class="btn-group">
             <a
-              class="btn btn-default inline"
+              class="btn btn-default"
               target="_blank"
               href="https://groups.google.com/forum/#!forum/cornerstone-platform"
             >
               Visit the forum
             </a>
             <a
-              class="btn btn-default inline"
+              class="btn btn-default"
               target="_blank"
               href="https://github.com/OHIF/Viewers/issues"
             >
               Report an issue
+            </a>
+            <a class="btn btn-default" target="_blank" href="http://ohif.org">
+              More details
             </a>
           </div>
           <div>
@@ -87,41 +90,6 @@ export class AboutModal extends Component {
               </thead>
               <tbody>
                 {AboutModal.itemsPreset.map(item => this.renderTableRow(item))}
-                {/* <tr>
-                  <td>Repository URL</td>
-                  <td>
-                    <a target="_blank" href="https://github.com/OHIF/Viewers">
-                      https://github.com/OHIF/Viewers
-                    </a>
-                  </td>
-                </tr>
-                <tr>
-                  <td>Last Commit Hash</td>
-                  <td>
-                    <a
-                      target="_blank"
-                      href="https://github.com/OHIF/Viewers/commit/"
-                    />
-                  </td>
-                </tr>
-                <tr>
-                  <td>Latest Tag</td>
-                  <td>
-                    <a
-                      target="_blank"
-                      href="https://github.com/OHIF/Viewers/releases/tag/"
-                    />
-                  </td>
-                </tr>
-                <tr>
-                  <td>Branch</td>
-                  <td>
-                    <a
-                      target="_blank"
-                      href="https://github.com/OHIF/Viewers/tree/"
-                    />
-                  </td>
-                </tr> */}
               </tbody>
             </table>
           </div>
