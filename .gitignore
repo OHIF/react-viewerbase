@@ -11,6 +11,8 @@ build
 dist/
 .rpt2_cache
 .docz/
+.yalc
+yalc.lock
 
 # Log
 npm-debug.log*

@@ -178,6 +178,9 @@ placeholder-color(c)
           white-space: nowrap
           transition(all 0.1s ease)
 
+          &.emptyCell
+            color: #516873
+
           &.emptyValue
             color: var(--ui-gray-light)
 
@@ -255,6 +258,7 @@ placeholder-color(c)
             width: auto
 
       tbody > tr > td
+
         &:first-child
           padding-left: $tablePaddingMediumScreen
 

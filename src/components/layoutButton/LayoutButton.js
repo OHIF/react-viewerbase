@@ -1,5 +1,4 @@
 import React, { PureComponent } from 'react';
-
 import { LayoutChooser } from './LayoutChooser.js';
 import PropTypes from 'prop-types';
 import ToolbarButton from '../../viewer/ToolbarButton';
