@@ -39,6 +39,15 @@
         "code",
         "maintenance"
       ]
+    },
+    {
+      "login": "maltempi",
+      "name": "Thiago Maltempi",
+      "avatar_url": "https://avatars3.githubusercontent.com/u/7017182?v=4",
+      "profile": "https://github.com/maltempi",
+      "contributions": [
+        "code"
+      ]
     }
   ],
   "contributorsPerLine": 7
