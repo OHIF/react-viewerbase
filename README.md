@@ -15,7 +15,7 @@
 <hr />
 
 [![CircleCI][circleci-image]][circleci-url]
-[![All Contributors][all-contributors-image]][contributing-url]
+[![All Contributors](https://img.shields.io/badge/all_contributors-1-orange.svg?style=flat-square)](#contributors)
 [![code style: prettier][prettier-image]][prettier-url]
 [![semantic-release][semantic-image]][semantic-url]
 
@@ -53,12 +53,12 @@ yarn add react-viewerbase --exact
 ## Usage
 
 ```jsx
-import React, { Component } from 'react'
-import { LayoutButton } from 'react-viewerbase'
+import React, { Component } from 'react';
+import { LayoutButton } from 'react-viewerbase';
 
 class Example extends Component {
   constructor(props) {
-    super(props)
+    super(props);
 
     this.state = {
       selectedCell: {
@@ -66,7 +66,7 @@ class Example extends Component {
         col: 1,
         row: 1,
       },
-    }
+    };
   }
 
   render() {
@@ -75,7 +75,7 @@ class Example extends Component {
         selectedCell={this.state.selectedCell}
         onChange={cell => this.setState({ selectedCell: cell })}
       />
-    )
+    );
   }
 }
 ```
@@ -94,6 +94,25 @@ _Develop w/ Hot Reloading:_
 _Build for Production:_
 
 `yarn build`
+
+## Contributors ✨
+
+Thanks goes to these wonderful people
+([emoji key](https://allcontributors.org/docs/en/emoji-key)):
+
+<!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
+<!-- prettier-ignore -->
+<table>
+  <tr>
+    <td align="center"><a href="https://github.com/swederik"><img src="https://avatars3.githubusercontent.com/u/607793?v=4" width="100px;" alt="Erik Ziegler"/><br /><sub><b>Erik Ziegler</b></sub></a><br /><a href="https://github.com/OHIF/react-viewerbase/commits?author=swederik" title="Code">💻</a></td>
+  </tr>
+</table>
+
+<!-- ALL-CONTRIBUTORS-LIST:END -->
+
+This project follows the
+[all-contributors](https://github.com/all-contributors/all-contributors)
+specification. Contributions of any kind welcome!
 
 ## Issues
 
