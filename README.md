@@ -15,7 +15,7 @@
 <hr />
 
 [![CircleCI][circleci-image]][circleci-url]
-[![All Contributors](https://img.shields.io/badge/all_contributors-7-orange.svg?style=flat-square)](#contributors)
+[![All Contributors](https://img.shields.io/badge/all_contributors-8-orange.svg?style=flat-square)](#contributors)
 [![code style: prettier][prettier-image]][prettier-url]
 [![semantic-release][semantic-image]][semantic-url]
 
@@ -111,6 +111,9 @@ Thanks goes to these wonderful people
     <td align="center"><a href="https://www.linkedin.com/in/siliconvalleynextgeneration/"><img src="https://avatars0.githubusercontent.com/u/1230575?v=4" width="100px;" alt="Esref Durna"/><br /><sub><b>Esref Durna</b></sub></a><br /><a href="https://github.com/OHIF/react-viewerbase/commits?author=EsrefDurna" title="Code">💻</a></td>
     <td align="center"><a href="http://www.isomics.com"><img src="https://avatars0.githubusercontent.com/u/126077?v=4" width="100px;" alt="Steve Pieper"/><br /><sub><b>Steve Pieper</b></sub></a><br /><a href="https://github.com/OHIF/react-viewerbase/commits?author=pieper" title="Code">💻</a></td>
     <td align="center"><a href="http://www.biharck.com.br"><img src="https://avatars0.githubusercontent.com/u/1713255?v=4" width="100px;" alt="Biharck Araujo"/><br /><sub><b>Biharck Araujo</b></sub></a><br /><a href="https://github.com/OHIF/react-viewerbase/commits?author=biharck" title="Code">💻</a></td>
+  </tr>
+  <tr>
+    <td align="center"><a href="https://rodrigoea.com/"><img src="https://avatars3.githubusercontent.com/u/1905961?v=4" width="100px;" alt="Rodrigo Antinarelli"/><br /><sub><b>Rodrigo Antinarelli</b></sub></a><br /><a href="https://github.com/OHIF/react-viewerbase/commits?author=rodrigolabs" title="Code">💻</a></td>
   </tr>
 </table>
 
