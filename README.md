@@ -15,7 +15,7 @@
 <hr />
 
 [![CircleCI][circleci-image]][circleci-url]
-[![All Contributors](https://img.shields.io/badge/all_contributors-10-orange.svg?style=flat-square)](#contributors)
+[![All Contributors](https://img.shields.io/badge/all_contributors-11-orange.svg?style=flat-square)](#contributors)
 [![code style: prettier][prettier-image]][prettier-url]
 [![semantic-release][semantic-image]][semantic-url]
 
@@ -116,6 +116,7 @@ Thanks goes to these wonderful people
     <td align="center"><a href="https://rodrigoea.com/"><img src="https://avatars3.githubusercontent.com/u/1905961?v=4" width="100px;" alt="Rodrigo Antinarelli"/><br /><sub><b>Rodrigo Antinarelli</b></sub></a><br /><a href="https://github.com/OHIF/react-viewerbase/commits?author=rodrigolabs" title="Code">💻</a></td>
     <td align="center"><a href="https://github.com/jfmedeiros1820"><img src="https://avatars1.githubusercontent.com/u/2211708?v=4" width="100px;" alt="João Felipe de Medeiros Moreira"/><br /><sub><b>João Felipe de Medeiros Moreira</b></sub></a><br /><a href="https://github.com/OHIF/react-viewerbase/commits?author=jfmedeiros1820" title="Code">💻</a></td>
     <td align="center"><a href="https://github.com/jamesg1"><img src="https://avatars3.githubusercontent.com/u/3621147?v=4" width="100px;" alt="James Gosbell"/><br /><sub><b>James Gosbell</b></sub></a><br /><a href="https://github.com/OHIF/react-viewerbase/commits?author=jamesg1" title="Code">💻</a></td>
+    <td align="center"><a href="https://github.com/evren217"><img src="https://avatars1.githubusercontent.com/u/4920551?v=4" width="100px;" alt="Evren Ozkan"/><br /><sub><b>Evren Ozkan</b></sub></a><br /><a href="https://github.com/OHIF/react-viewerbase/commits?author=evren217" title="Code">💻</a></td>
   </tr>
 </table>
 
