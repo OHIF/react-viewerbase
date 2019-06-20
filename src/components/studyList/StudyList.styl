@@ -1,3 +1,6 @@
+@import './../../design/styles/common/form.styl'
+@import './../../design/styles/common/global.styl'
+
 $study-list-padding = 8%;
 $study-list-toolbar-height = 75px;
 $body-cell-height = 40px;
@@ -48,9 +51,6 @@ placeholder-color(c)
     font-size: 40px
     font-weight: 100
     line-height: $study-list-toolbar-height
-
-  .pull-right
-    float: right!important;
 
 .theadBackground
   height: 121px
@@ -204,40 +204,6 @@ placeholder-color(c)
             border-top: 1px solid var(--ui-gray-lighter)
             border-bottom: 1px solid var(--ui-gray-lighter)
             background-color: var(--table-hover-color)
-
-.form-control
-  display: block;
-  width: 100%;
-  height: 34px;
-  padding: 6px 12px;
-  font-size: 14px;
-  line-height: 1.42857143;
-  color: #555;
-  background-color: #fff;
-  background-image: none;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
-
-  &:focus
-    border-color: #66afe9;
-    outline: 0;
-    -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(102,175,233,.6);
-    box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(102,175,233,.6);
-
-  &::-ms-expand
-    border: 0;
-    background-color: transparent;
-
-  &[disabled],
-  &[readonly],
-  fieldset[disabled] &
-    background-color: @input-bg-disabled;
-    opacity: 1;
-
-  &[disabled],
-  fieldset[disabled] &
-    cursor: @cursor-disabled;
 
 @media only screen and (max-width: 1362px)
   #studyListContainer

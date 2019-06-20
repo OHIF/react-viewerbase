@@ -1,7 +1,6 @@
-$borderColor = rgba(77, 99, 110, 0.81)
+@import './../../design/styles/common/button.styl'
 
-.pull-left
-  float: left!important;
+$borderColor = rgba(77, 99, 110, 0.81)
 
 .dropdown-menu
   position: absolute;
@@ -25,23 +24,14 @@ $borderColor = rgba(77, 99, 110, 0.81)
   -webkit-box-shadow: 0 6px 12px rgba(0,0,0,.175);
   box-shadow: 0 6px 12px rgba(0,0,0,.175);
 
-.btn-group, .btn-group-vertical
-  position: relative;
-  display: inline-block;
-  vertical-align: middle;
-
 .layoutChooser
   .selectedBefore
     background-color: #5cc3eb
-  //theme('background', '$uiGrayDarkest', 0.95)
+
   border: 1px solid $borderColor;
   border-radius: 8px
-  //height: 92px
-  //min-height: 92px
-  //min-width: 92px // to override bootstrap's dropdown-menu class
   padding: 5px 0;
   position: absolute;
-  //width: 92px
   z-index: 5000
 
   table
@@ -49,12 +39,8 @@ $borderColor = rgba(77, 99, 110, 0.81)
     border-spacing: 0;
     border-collapse: collapse;
     td
-      //theme('border', '1px solid $uiBorderColorDark')
       cursor: pointer
-      //height: 20px
       transition(background-color 0.1s ease)
-      //width: 20px
 
       &:hover, &.hover // Add the hover class here to be triggered by mouseenter/mouseleave
         background-color: #209ac9
-        //theme('background-color', '$activeColor')

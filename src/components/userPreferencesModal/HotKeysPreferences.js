@@ -28,8 +28,8 @@ export class HotKeysPreferences extends Component {
         this.columns[hotKey.column] = [key];
       }
     });
-
-    this.columnClass = `col-md-${12 / Object.keys(this.columns).length || 1}`;
+    this.columnClass =
+      12 / Object.keys(this.columns).length > 1 ? 'column' : 'column-full';
 
     this.state = {
       hotKeys: this.props.hotKeysData,
@@ -224,7 +224,7 @@ export class HotKeysPreferences extends Component {
 
   render() {
     return (
-      <div className="row">
+      <div className="HotKeysPreferences">
         {Object.keys(this.columns)
           .sort()
           .map(columnIndex =>

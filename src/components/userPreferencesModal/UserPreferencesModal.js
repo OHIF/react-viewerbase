@@ -67,7 +67,7 @@ class UserPreferencesModal extends Component {
         show={this.props.isOpen}
         onHide={this.props.onCancel}
         aria-labelledby="ModalHeader"
-        className="modal fade themed in"
+        className="ModalHeader modal fade themed in"
         backdrop={false}
         large={true}
         keyboard={false}
