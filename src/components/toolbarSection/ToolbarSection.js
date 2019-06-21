@@ -46,7 +46,7 @@ class ToolbarSection extends PureComponent {
           <ToolbarButton
             key={index}
             {...button}
-            active={this.props.activeButtons.includes(button.id)}
+            isActive={this.props.activeButtons.includes(button.id)}
           />
         );
       }
