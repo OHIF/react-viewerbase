@@ -1,3 +1,4 @@
+import './HotKeysPreferences.styl';
 import React, { Component } from 'react';
 import {
   allowedKeys,
@@ -237,9 +238,9 @@ export class HotKeysPreferences extends Component {
     );
 
     return (
-      <div className="row">
+      <div className="HotKeysPreferences">
         {/* <!-- Column 1 --> */}
-        <div className="col-md-6">
+        <div className="column">
           <table className="full-width">
             <thead>
               <tr>
@@ -255,7 +256,7 @@ export class HotKeysPreferences extends Component {
           </table>
         </div>
         {/* <!-- Column 2 --> */}
-        <div className="col-md-6">
+        <div className="column">
           <table className="full-width">
             <thead>
               <tr>

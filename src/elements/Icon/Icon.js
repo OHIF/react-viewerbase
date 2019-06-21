@@ -8,7 +8,8 @@ const Icon = props => {
 };
 
 Icon.propTypes = {
+  /** The string name of the icon to display */
   name: PropTypes.string.isRequired,
 };
 
-export { Icon };
+export default Icon;

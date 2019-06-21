@@ -1,6 +1,8 @@
-import PropTypes from 'prop-types';
-import React from 'react';
+import './Tooltip.styl';
+
 import classNames from 'classnames';
+import React from 'react';
+import PropTypes from 'prop-types';
 
 const propTypes = {
   /** Sets the direction the Tooltip is positioned towards. */
