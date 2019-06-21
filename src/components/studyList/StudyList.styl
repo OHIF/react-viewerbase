@@ -1,3 +1,6 @@
+@import './../../design/styles/common/form.styl'
+@import './../../design/styles/common/global.styl'
+
 $study-list-padding = 8%;
 $study-list-toolbar-height = 75px;
 $body-cell-height = 40px;
@@ -90,6 +93,12 @@ placeholder-color(c)
     text-align: center
 
   table#tblStudyList
+    width: 100%;
+    max-width: 100%;
+    margin-bottom: 20px;
+    border-spacing: 0;
+    border-collapse: collapse;
+
     > tr
       height: 20px
 
@@ -99,8 +108,10 @@ placeholder-color(c)
       tr
         th
           padding: 0
-          border-bottom: solid 1px var(--ui-border-color-active)
-          width: 100%
+          border-bottom: 1px solid var(--ui-border-color-active);
+          width: 100%;
+          text-align: left;
+          border-top: 0;
 
           &.studyDate
             min-width: 230px
@@ -144,7 +155,6 @@ placeholder-color(c)
             font-weight: normal
             width: calc(100% - 10px)
             border-radius: 4px
-            box-sizing: border-box
 
             transition(all 0.15s ease)
             placeholder-color(var(--input-placeholder-color))
@@ -169,6 +179,7 @@ placeholder-color(c)
           background-color: var(--ui-gray-darker)
 
         td
+          padding: 8px;
           height: $body-cell-height
           line-height: $body-cell-height
           color: var(--table-text-primary-color)

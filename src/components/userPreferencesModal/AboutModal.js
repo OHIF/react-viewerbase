@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Modal from 'react-bootstrap-modal';
+import './AboutModal.styl';
 
 import 'react-bootstrap-modal/lib/css/rbm-patch.css';
 
@@ -51,7 +52,7 @@ export class AboutModal extends Component {
         show={this.props.isOpen}
         onHide={this.props.onCancel}
         aria-labelledby="ModalHeader"
-        className="modal fade themed in"
+        className="AboutModal modal fade themed in"
         backdrop={false}
         large={true}
         keyboard={false}
@@ -60,28 +61,32 @@ export class AboutModal extends Component {
           <Modal.Title>About</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <div class="btn-group">
+          <div className="btn-group">
             <a
-              class="btn btn-default"
+              className="btn btn-default"
               target="_blank"
               href="https://groups.google.com/forum/#!forum/cornerstone-platform"
             >
               Visit the forum
             </a>
             <a
-              class="btn btn-default"
+              className="btn btn-default"
               target="_blank"
               href="https://github.com/OHIF/Viewers/issues"
             >
               Report an issue
             </a>
-            <a class="btn btn-default" target="_blank" href="http://ohif.org">
+            <a
+              className="btn btn-default"
+              target="_blank"
+              href="http://ohif.org"
+            >
               More details
             </a>
           </div>
           <div>
             <h3>Version Information</h3>
-            <table class="table table-responsive">
+            <table className="table table-responsive">
               <thead>
                 <tr>
                   <th>Name</th>

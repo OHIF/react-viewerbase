@@ -90,11 +90,7 @@ class LayoutChooser extends PureComponent {
         columns * this.props.boxSize + (columns + 5) * this.props.cellBorder,
     };
     return (
-      <div
-        className="layoutChooser pull-left dropdown-menu"
-        role="menu"
-        style={style}
-      >
+      <div className="layoutChooser dropdown-menu" role="menu" style={style}>
         <table>
           <tbody>
             {this.state.table.map((row, i) => {
