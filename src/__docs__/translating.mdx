@@ -10,6 +10,29 @@ route: /translating
 [@ohif/i18n](https://www.npmjs.com/package/@ohif/i18n), where is the main
 instance of i18n containing several languages and tools.
 
+## How to use running react-viewerbase locally
+
+**React-viewerbase** already implements the
+[I18nextProvider](https://react.i18next.com/latest/i18nextprovider) in the whole
+application, more information about how it was implemented in the Docz Theme can
+be found [here](#i18next-provider).
+
+## How to use **inside** OHIF Viewer
+
+[OHIF Viewers](https://github.com/OHIF/Viewers) already implements the
+[I18nextProvider](https://react.i18next.com/latest/i18nextprovider) in the whole
+application, you don't need to care about it, but more information about how it
+was implemented can be found
+[here](https://docs.ohif.org/essentials/translating.html).
+
+## How to use **outside** OHIF Viewer
+
+**Important**: using **react-viewerbase** outside
+[OHIF Viewers](https://github.com/OHIF/Viewers) requires a
+[I18nextProvider](https://react.i18next.com/latest/i18nextprovider) in the main
+React App, please check how to implement it
+[here](https://docs.ohif.org/essentials/translating.html#using-outside-of-ohif-viewer).
+
 ## How to translate components
 
 All you need is to use the
@@ -29,11 +52,6 @@ function MyComponent({ t }) {
 
 export default withTranslation('MyNameSpace')(MyComponent);
 ```
-
-> **React-viewerbase** already implements the
-> [I18nextProvider](https://react.i18next.com/latest/i18nextprovider) in the
-> whole application, you don't need to care about it, but more information about
-> how it was implemented can be found [here](#i18next-provider).
 
 ---
 
@@ -56,7 +74,7 @@ E.g.
 export default withTranslation('TheNamespaceYouAreLookingFor')(TheComponentYouWantToUse);
 ```
 
-## How to use another NameSpace inside the current NameSpace?
+### How to use another NameSpace inside the current NameSpace?
 
 i18next provides a parsing feature able to get translations strings from any
 NameSpace, like this following example getting data from `InnerSpace` NameSpace:
@@ -88,14 +106,8 @@ Using it as a peer dependency, prevents double bundling repeated npm modules.
 
 ## Changing the language
 
-**@ohif/i18n** automatically detects the language you want to set by adding a
-query param called `lng` in the url to change the language.
-
-E.g.
-
-```
-https://react.ohif.org?lng=es
-```
+The language choosing method is the same implemented in
+[OHIF Viewers](https://docs.ohif.org/essentials/translating.html#changing-the-language)
 
 > You can also change the language of the components displayed in this
 > documentation by choosing an option in the
