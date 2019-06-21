@@ -1,8 +1,10 @@
-import React, { PureComponent } from 'react';
-import PropTypes from 'prop-types';
-import ViewportLoadingIndicator from '../../viewer/ViewportLoadingIndicator';
-import ViewportErrorIndicator from '../../viewer/ViewportErrorIndicator';
 import './ImageThumbnail.styl';
+
+import React, { PureComponent } from 'react';
+
+import PropTypes from 'prop-types';
+import ViewportErrorIndicator from '../../viewer/ViewportErrorIndicator';
+import ViewportLoadingIndicator from '../../viewer/ViewportLoadingIndicator';
 
 // TODO: How should we have this component depend on Cornerstone?
 // - Passed in as a prop?

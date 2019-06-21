@@ -1,7 +1,9 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
 import './LayoutManager.css';
+
+import React, { Component } from 'react';
+
 import LayoutPanelDropTarget from './LayoutPanelDropTarget.js';
+import PropTypes from 'prop-types';
 
 function defaultViewportPlugin(props) {
   return <div>{JSON.stringify(props)}</div>;
@@ -45,6 +47,7 @@ export class LayoutManager extends Component {
     availablePlugins: PropTypes.object.isRequired,
     setViewportData: PropTypes.func,
     studies: PropTypes.array,
+    children: PropTypes.node,
   };
 
   onDrop = ({ viewportIndex, item }) => {
@@ -69,12 +72,16 @@ export class LayoutManager extends Component {
     return pluginComponent;
   };
 
-  getChildComponent(plugin, data, viewportIndex) {
+  getChildComponent(plugin, data, viewportIndex, children) {
     if (data.displaySet) {
       const PluginComponent = this.getPluginComponent(plugin);
 
       return (
-        <PluginComponent viewportData={data} viewportIndex={viewportIndex} />
+        <PluginComponent
+          viewportData={data}
+          viewportIndex={viewportIndex}
+          children={[children]}
+        />
       );
     }
 
@@ -127,7 +134,8 @@ export class LayoutManager extends Component {
       const childComponent = this.getChildComponent(
         plugin,
         data,
-        viewportIndex
+        viewportIndex,
+        this.props.children
       );
       const content = this.getContent(
         childComponent,
