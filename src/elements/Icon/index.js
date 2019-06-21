@@ -1,2 +1,4 @@
-export { Icon } from './Icon.js';
-export { ICONS } from './getIcon.js';
+import { ICONS } from './getIcon.js';
+import Icon from './Icon.js';
+
+export { Icon, ICONS };
