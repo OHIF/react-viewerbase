@@ -1,7 +1,7 @@
 import './CineDialog.styl';
 
 import React, { PureComponent } from 'react';
-import { withTranslation } from 'react-i18next';
+import { withTranslation } from '../../utils/LanguageProvider';
 import { Icon } from './../../elements/Icon';
 import PropTypes from 'prop-types';
 
@@ -198,5 +198,5 @@ class CineDialog extends PureComponent {
 }
 
 const connectedComponent = withTranslation('CineDialog')(CineDialog);
-export { connectedComponent };
+export { connectedComponent as CineDialog };
 export default connectedComponent;

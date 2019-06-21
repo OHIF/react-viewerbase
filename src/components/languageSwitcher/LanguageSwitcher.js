@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import i18n from '@ohif/i18n';
 
 import './LanguageSwitcher.styl';
+import { withTranslation } from '../../utils/LanguageProvider';
 
 const LanguageSwitcher = () => {
   const getCurrentLanguage = (language = i18n.language) =>
@@ -62,4 +63,4 @@ const LanguageSwitcher = () => {
   );
 };
 
-export default LanguageSwitcher;
+export default withTranslation('UserPreferencesModal')(LanguageSwitcher);

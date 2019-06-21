@@ -1,7 +1,7 @@
 import './MeasurementTable.styl';
 
 import React, { Component } from 'react';
-import { withTranslation } from 'react-i18next';
+import { withTranslation } from '../../utils/LanguageProvider';
 
 import { Icon } from './../../elements/Icon';
 import { MeasurementTableItem } from './MeasurementTableItem.js';
