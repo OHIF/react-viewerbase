@@ -1,4 +1,5 @@
 import React, { PureComponent } from 'react';
+
 import { LayoutChooser } from './LayoutChooser.js';
 import PropTypes from 'prop-types';
 import ToolbarButton from '../../viewer/ToolbarButton';
@@ -44,8 +45,8 @@ export class LayoutButton extends PureComponent {
     return (
       <div className="btn-group">
         <ToolbarButton
-          active={this.state.dropdownVisible}
-          text={'Layout'}
+          isActive={this.state.dropdownVisible}
+          label={'Layout'}
           icon="th"
           onClick={this.onClick}
         />

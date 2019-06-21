@@ -1,7 +1,7 @@
 import { Component } from 'react';
+import PropTypes from 'prop-types';
 import React from 'react';
 import ToolbarButton from './ToolbarButton.js';
-import PropTypes from 'prop-types';
 
 const wLPresetIDs = [
   'setWLPresetSoftTissue',
@@ -38,22 +38,22 @@ export default class PresetToggle extends Component {
       return <ToolbarButton key={index} {...item} click={this.onClick} />;
     });*/
 
-    const wlPresetItems = this.props.buttons.map((item, index) => {
-      if (wLPresetIDs.includes(item.command)) {
-        return <ToolbarButton key={index} {...item} click={this.onClick} />;
+    const wlPresetItems = this.props.buttons.map((button, index) => {
+      if (wLPresetIDs.includes(button.command)) {
+        return <ToolbarButton key={index} {...button} click={this.onClick} />;
       }
       return '';
     });
 
-    const toolItems = this.props.buttons.map((item, index) => {
-      if (!wLPresetIDs.includes(item.command)) {
-        return <ToolbarButton key={index} {...item} click={this.onClick} />;
+    const toolItems = this.props.buttons.map((button, index) => {
+      if (!wLPresetIDs.includes(button.command)) {
+        return <ToolbarButton key={index} {...button} click={this.onClick} />;
       }
       return '';
     });
 
-    const selectedButton = this.props.buttons.find(item => {
-      return item.id === this.state.selected;
+    const selectedButton = this.props.buttons.find(button => {
+      return button.id === this.state.selected;
     });
 
     return (
@@ -69,7 +69,7 @@ export default class PresetToggle extends Component {
   }
 
   onClick = id => {
-    const buttonItem = this.props.buttons.find(item => item.command === id);
+    const buttonItem = this.props.buttons.find(button => button.command === id);
 
     this.setState({
       selected: buttonItem.id,
