@@ -1,18 +1,8 @@
-import classNames from 'classnames';
-import React from 'react';
 import PropTypes from 'prop-types';
-import isRequiredForA11y from 'prop-types-extra/lib/isRequiredForA11y';
+import React from 'react';
+import classNames from 'classnames';
 
 const propTypes = {
-  /**
-   * An html id attribute, necessary for accessibility
-   * @type {string|number}
-   * @required
-   */
-  id: isRequiredForA11y(
-    PropTypes.oneOfType([PropTypes.string, PropTypes.number])
-  ),
-
   /** Sets the direction the Tooltip is positioned towards. */
   placement: PropTypes.oneOf(['top', 'right', 'bottom', 'left']),
 
