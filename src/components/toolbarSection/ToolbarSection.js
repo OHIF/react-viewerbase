@@ -15,6 +15,7 @@ class ToolbarSection extends PureComponent {
   static propTypes = {
     buttons: PropTypes.arrayOf(
       PropTypes.shape({
+        id: PropTypes.string,
         label: PropTypes.string.isRequired,
         icon: PropTypes.oneOfType([
           PropTypes.string,
@@ -26,6 +27,7 @@ class ToolbarSection extends PureComponent {
         buttons: PropTypes.arrayOf(PropTypes.shape({})),
       })
     ).isRequired,
+    /** Array of string button ids that should show as active */
     activeButtons: PropTypes.arrayOf(PropTypes.string).isRequired,
     /** Class for toolbar section container */
     className: PropTypes.string,
@@ -46,7 +48,7 @@ class ToolbarSection extends PureComponent {
           <ToolbarButton
             key={index}
             {...button}
-            active={this.props.activeButtons.includes(button.id)}
+            isActive={this.props.activeButtons.includes(button.id)}
           />
         );
       }

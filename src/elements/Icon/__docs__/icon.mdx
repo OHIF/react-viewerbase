@@ -31,12 +31,11 @@ import { Icon, ICONS } from './../index.js';
               style={{
                 display: 'flex',
                 flexDirection: 'column',
-                flexBasis: '25%',
-                minWidth: '100px',
-                margin: '16px',
+                flexBasis: '150px',
+                margin: '2px',
                 backgroundColor: 'rgb(11, 95, 255)',
-                borderRadius: '8px',
-                padding: '16px',
+                borderRadius: '4px',
+                padding: '8px',
                 alignItems: 'center',
               }}
             >
@@ -63,6 +62,9 @@ plugins [by following the advice laid out here][svgo-configure]
 ## API
 
 <Props of={Icon} />
+
+The `Icon` component takes a single prop of `name`, which indicates which Icon
+should be displayed. Again, the icon responds to contextual text/font styles.
 
 ## Attribution
 
