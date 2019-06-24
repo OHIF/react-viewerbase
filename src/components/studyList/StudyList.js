@@ -10,6 +10,7 @@ import { StudyListLoadingText } from './StudyListLoadingText.js';
 import { StudylistToolbar } from './StudyListToolbar.js';
 import { isInclusivelyBeforeDay } from 'react-dates';
 import moment from 'moment';
+import debounce from 'lodash.debounce';
 
 const today = moment();
 const lastWeek = moment().subtract(7, 'day');
@@ -91,15 +92,25 @@ class StudyList extends Component {
     };
 
     this.getChangeHandler = this.getChangeHandler.bind(this);
+    this.getBlurHandler = this.getBlurHandler.bind(this);
     this.onInputKeydown = this.onInputKeydown.bind(this);
     this.nextPage = this.nextPage.bind(this);
     this.prevPage = this.prevPage.bind(this);
     this.onRowsPerPageChange = this.onRowsPerPageChange.bind(this);
+    this.delayedSearch = debounce(this.search, 250);
   }
 
   getChangeHandler(key) {
     return event => {
-      this.setSearchData(key, event.target.value);
+      this.delayedSearch.cancel();
+      this.setSearchData(key, event.target.value, this.delayedSearch);
+    };
+  }
+
+  getBlurHandler(key) {
+    return event => {
+      this.delayedSearch.cancel();
+      this.setSearchData(key, event.target.value, this.search);
     };
   }
 
@@ -124,6 +135,7 @@ class StudyList extends Component {
       event.preventDefault();
       event.stopPropagation();
 
+      this.delayedSearch.cancel();
       // reset the page because user is doing a new search
       this.setSearchData('currentPage', 0, this.search);
     }
@@ -167,15 +179,18 @@ class StudyList extends Component {
 
   nextPage(currentPage) {
     currentPage = currentPage + 1;
+    this.delayedSearch.cancel();
     this.setSearchData('currentPage', currentPage, this.search);
   }
 
   prevPage(currentPage) {
     currentPage = currentPage - 1;
+    this.delayedSearch.cancel();
     this.setSearchData('currentPage', currentPage, this.search);
   }
 
   onRowsPerPageChange(rowsPerPage) {
+    this.delayedSearch.cancel();
     this.setSearchDataBatch({ rowsPerPage, currentPage: 0 }, this.search);
   }
 
@@ -196,6 +211,7 @@ class StudyList extends Component {
         order = 'asc';
       }
 
+      this.delayedSearch.cancel();
       this.setSearchData('sortData', { field, order }, this.search);
     };
   }
@@ -324,6 +340,7 @@ class StudyList extends Component {
                             value={this.state[fieldName]}
                             onKeyDown={this.onInputKeydown}
                             onChange={this.getChangeHandler(fieldName)}
+                            onBlur={this.getBlurHandler(fieldName)}
                           />
                         )}
                         {field.inputType === 'date-range' && (
