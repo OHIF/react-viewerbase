@@ -3,8 +3,7 @@ import React, { cloneElement } from 'react';
 import PropTypes from 'prop-types';
 import { Overlay as BaseOverlay } from 'react-overlays';
 import elementType from 'prop-types-extra/lib/elementType';
-import i18n from '@ohif/i18n';
-import { I18nextProvider } from 'react-i18next';
+import { withTranslation } from '../../utils/LanguageProvider';
 
 import Fade from './Fade';
 
@@ -88,11 +87,9 @@ class Overlay extends React.Component {
     }
 
     return (
-      <I18nextProvider i18n={i18n}>
-        <BaseOverlay {...props} transition={transition}>
-          {child}
-        </BaseOverlay>
-      </I18nextProvider>
+      <BaseOverlay {...props} transition={transition}>
+        {child}
+      </BaseOverlay>
     );
   }
 }
@@ -100,4 +97,6 @@ class Overlay extends React.Component {
 Overlay.propTypes = propTypes;
 Overlay.defaultProps = defaultProps;
 
-export { Overlay };
+const connectedComponent = withTranslation()(Overlay);
+export { connectedComponent as Overlay };
+export default connectedComponent;

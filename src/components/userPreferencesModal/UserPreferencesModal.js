@@ -3,7 +3,7 @@ import './UserPreferencesModal.styl';
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Modal from 'react-bootstrap-modal';
-import { withTranslation } from 'react-i18next';
+import { withTranslation } from '../../utils/LanguageProvider';
 
 import 'react-bootstrap-modal/lib/css/rbm-patch.css';
 import cloneDeep from 'lodash.clonedeep';
