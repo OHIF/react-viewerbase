@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import { Icon } from './../../elements/Icon';
+import './RadioButtonList.css';
 
 export class RadioButtonList extends Component {
   constructor(props) {
@@ -18,6 +19,7 @@ export class RadioButtonList extends Component {
   }
 
   handleChange(e) {
+    console.log('clicked', e);
     this.setState({ checked: e.target.value });
   }
 
@@ -34,13 +36,23 @@ export class RadioButtonList extends Component {
         />
       );
 
+      //needed to style the custom radio check
+      let inputSpan;
+      if (this.state.checked === button.id) {
+        inputSpan = (
+          <span className="ohif-radio-button ohif-selected">{input}</span>
+        );
+      } else {
+        inputSpan = <span className="ohif-radio-button">{input}</span>;
+      }
+
       return (
-        <div className="ohif-radio-button" key={button.id}>
-          <label>
-            {input}
+        <span className="ohif-radio-button-container" key={button.id}>
+          <label className="ohif-radio-button-label">
+            {inputSpan}
             {button.label}
           </label>
-        </div>
+        </span>
       );
     });
 
