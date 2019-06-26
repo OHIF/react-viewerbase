@@ -8,39 +8,34 @@ export class RadioButtonList extends Component {
     super(props);
     this.state = {};
 
-    //onChange specified through props
-    //FORMAT: { label : String, id?: String, checked? : Boolean, onClick ? : Function}
-    this.buttons = props.description.map(button => {
-      if (!button.id) {
-        button.id = button.label.replace(/ /g, '');
-      }
-
-      let input;
+    for (let button of props.description) {
       if (button.checked) {
-        this.state.buttonChecked = button.id;
-        input = (
-          <input
-            type="radio"
-            defaultChecked
-            onClick={() => {
-              this.handleClick(button.id);
-            }}
-          />
-        );
-      } else {
-        input = (
-          <input
-            type="radio"
-            onClick={() => {
-              this.handleClick(button.id);
-            }}
-          />
-        );
+        this.state.checked = button.id;
       }
+    }
 
-      //strip spaces out of label to make id if none is provided
+    let handleChange = this.handleChange.bind(this);
+  }
+
+  handleChange(e) {
+    this.setState({ checked: e.target.value });
+  }
+
+  render() {
+    let buttons = this.props.description.map(button => {
+      let input = (
+        <input
+          type="radio"
+          checked={this.state.checked === button.id}
+          onChange={e => {
+            this.handleChange(e);
+          }}
+          value={button.id}
+        />
+      );
+
       return (
-        <div className="ohif-radio" key={button.id}>
+        <div className="ohif-radio-button" key={button.id}>
           <label>
             {input}
             {button.label}
@@ -48,20 +43,10 @@ export class RadioButtonList extends Component {
         </div>
       );
     });
-  }
 
-  setDefaultChecked(button) {
-    return button.checked ? 'defaultChecked' : '';
-  }
-
-  handleClick(e) {
-    console.log('hello from handle click!');
-  }
-
-  render() {
     return (
       <div className="ohif-radio-button-group">
-        <form>{this.buttons}</form>
+        <form>{buttons}</form>
       </div>
     );
   }
