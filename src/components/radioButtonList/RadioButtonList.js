@@ -8,7 +8,13 @@ export class RadioButtonList extends Component {
   //TODO: Add fields to propTypes.description?
   //These would be label (required), id (required), and checked (optional).
   static propTypes = {
-    description: PropTypes.array.isRequired,
+    description: PropTypes.arrayOf(
+      PropTypes.shape({
+        label: PropTypes.string.isRequired,
+        id: PropTypes.string.isRequired,
+        checked: PropTypes.bool,
+      })
+    ),
   };
 
   constructor(props) {

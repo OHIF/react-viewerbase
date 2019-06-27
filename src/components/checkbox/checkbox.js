@@ -1,7 +1,13 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import './checkbox.css';
 
 export class Checkbox extends Component {
+  static propTypes = {
+    label: PropTypes.string.isRequired,
+    checked: PropTypes.bool,
+  };
+
   constructor(props) {
     super(props);
     this.state = { checked: props.checked, label: props.label };
