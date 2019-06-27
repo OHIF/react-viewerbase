@@ -50,9 +50,6 @@
 
 .ohif-radio-button-container .ohif-radio-button.ohif-selected:after {
   display: block;
-}
-
-.ohif-radio-button.ohif-selected:after {
   top: 14%;
   left: 14%;
   border-radius: 50%;
@@ -62,5 +59,4 @@
 .ohif-radio-button-label {
   font-size: 12px;
   font-weight: 500;
-  height: var(--height);
 }
