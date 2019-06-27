@@ -1,10 +1,16 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import classnames from 'classnames';
-import { Icon } from './../../elements/Icon';
 import './RadioButtonList.css';
 
 export class RadioButtonList extends Component {
+  static className = 'RadioButtonList';
+
+  //TODO: Add fields to propTypes.description?
+  //These would be label (required), id (required), and checked (optional).
+  static propTypes = {
+    description: PropTypes.array.isRequired,
+  };
+
   constructor(props) {
     super(props);
     this.state = {};
