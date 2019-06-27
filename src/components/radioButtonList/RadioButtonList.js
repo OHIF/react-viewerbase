@@ -20,12 +20,9 @@ export class RadioButtonList extends Component {
         this.state.checked = button.id;
       }
     }
-
-    let handleChange = this.handleChange.bind(this);
   }
 
   handleChange(e) {
-    console.log('clicked', e);
     this.setState({ checked: e.target.value });
   }
 
