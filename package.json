@@ -15,8 +15,8 @@
   "scripts": {
     "cm": "npx git-cz",
     "dev": "docz dev",
-    "test": "cross-env CI=1 react-scripts test --env=jsdom",
-    "test:watch": "react-scripts test --env=jsdom",
+    "test": "cross-env CI=1 react-scripts test --env=jsdom --transformIgnorePatterns \"node_modules/(?!react-dnd)/\"",
+    "test:watch": "react-scripts test --env=jsdom --transformIgnorePatterns \"node_modules/(?!react-dnd)/\"",
     "build": "rollup -c",
     "start": "rollup -c -w",
     "lint": "eslint -c .eslintrc --fix src && prettier --single-quote --write src/**/*.{js,jsx,json,css}",
