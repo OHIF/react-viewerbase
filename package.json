@@ -59,6 +59,7 @@
     "classnames": "2.2.6",
     "i18next": "^17.0.3",
     "i18next-browser-languagedetector": "^3.0.1",
+    "lodash.debounce": "^4.0.8",
     "lodash.isequal": "4.5.0",
     "moment": "2.24.0",
     "prop-types": "15.6.2",
