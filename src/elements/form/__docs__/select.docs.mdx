@@ -15,25 +15,22 @@ import { Select } from './../index.js';
 <Playground>
   <State
     initial={{
-      title: 'Test Title',
-      align: 'left',
-      list: [
+      options: [
         {
-          title: 'Edit',
-          icon: {
-            name: 'edit',
-          },
+          key: 'Option1',
+          value: '1'
         },
         {
-          title: 'Retry',
-          icon: {
-            name: 'reset',
-          },
-        },
+          key: 'Option2',
+          value: '2'
+        }
       ],
+      value:'2'
     }}
   >
+
     {({ state, setState }) => <Select {...state} />}
+
   </State>
 </Playground>
 
