@@ -39,6 +39,8 @@ export class LayoutManager extends Component {
     defaultPlugin: 'defaultViewportPlugin',
   };
 
+  static loadIndicatorDelay = 45;
+
   static propTypes = {
     viewportData: PropTypes.array.isRequired,
     supportsDragAndDrop: PropTypes.bool.isRequired,
@@ -48,6 +50,58 @@ export class LayoutManager extends Component {
     setViewportData: PropTypes.func,
     studies: PropTypes.array,
     children: PropTypes.node,
+  };
+
+  // TODO: add another state property called isLoading
+  // for the entire layout so we can show one giant loading
+  // screen during complex layout changes
+  state = {
+    viewportLoading: [],
+  };
+
+  componentDidMount() {
+    const { loadHandlerManager } = cornerstoneTools;
+    loadHandlerManager.setStartLoadHandler(this.startLoadingHandler);
+    loadHandlerManager.setEndLoadHandler(this.doneLoadingHandler);
+  }
+
+  startLoadingHandler = element => {
+    // Find element inside viewportData, get viewportIndex
+    const viewportIndex = this.props.viewportData.findIndex(
+      v => v.dom === element
+    );
+    if (viewportIndex === -1) {
+      return;
+    }
+
+    clearTimeout(this.loadHandlerTimeout[viewportIndex]);
+    this.loadHandlerTimeout[viewportIndex] = setTimeout(() => {
+      const viewportLoading = this.state.viewportLoading;
+      viewportLoading[viewportIndex] = true;
+
+      this.setState({
+        viewportLoading,
+      });
+    }, LayoutManager.loadIndicatorDelay);
+  };
+
+  doneLoadingHandler = () => {
+    // Find element inside viewportData, get viewportIndex
+    const viewportIndex = this.props.viewportData.findIndex(
+      v => v.dom === element
+    );
+    if (viewportIndex === -1) {
+      return;
+    }
+
+    clearTimeout(this.loadHandlerTimeout[viewportIndex]);
+
+    const viewportLoading = this.state.viewportLoading;
+    viewportLoading[viewportIndex] = false;
+
+    this.setState({
+      viewportLoading,
+    });
   };
 
   onDrop = ({ viewportIndex, item }) => {
@@ -80,6 +134,7 @@ export class LayoutManager extends Component {
         <PluginComponent
           viewportData={data}
           viewportIndex={viewportIndex}
+          isLoading={this.state.viewportLoading[viewportIndex]}
           children={[children]}
         />
       );
