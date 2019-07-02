@@ -1,4 +1,4 @@
-import React, { PureComponent } from 'react';
+import React, { PureComponent, memo } from 'react';
 import { DragLayer } from 'react-dnd';
 import PropTypes from 'prop-types';
 import { ThumbnailEntry } from './ThumbnailEntry';
@@ -58,15 +58,19 @@ const onOffsetChange = monitor => () => {
   const transform = `translate(${offset.x}px, ${offset.y}px)`;
   dragPreviewRef.style['transform'] = transform;
   dragPreviewRef.style['-webkit-transform'] = transform;
-  dragPreviewRef.classList.toggle('test');
+};
+
+const updateRef = ref => {
+  dragPreviewRef = ref;
 };
 
 class DragPreview extends PureComponent {
   render() {
-    if (!this.props.isDragging) return null;
+    const { isDragging } = this.props;
+    if (!isDragging) return null;
     return (
       <div className="DragPreview">
-        <div className="source-preview" ref={ref => (dragPreviewRef = ref)}>
+        <div className="source-preview" ref={updateRef}>
           <ThumbnailEntry {...this.props} />
         </div>
       </div>
@@ -78,4 +82,4 @@ DragPreview.propTypes = {
   isDragging: PropTypes.bool,
 };
 
-export default DragLayer(collector)(DragPreview);
+export default DragLayer(collector)(memo(DragPreview));
