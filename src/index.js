@@ -25,7 +25,7 @@ import {
 import { ICONS, Icon } from './elements';
 
 // Alias this for now as not all dependents are using strict versioning
-import { Select as Dropdown } from './elements/form';
+import { DropdownMenu as Dropdown } from './elements/form';
 import ExpandableToolMenu from './viewer/ExpandableToolMenu.js';
 import LayoutManager from './LayoutChooser/LayoutManager.js';
 import LayoutPanelDropTarget from './LayoutChooser/LayoutPanelDropTarget.js';
