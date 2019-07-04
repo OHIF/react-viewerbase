@@ -65,11 +65,13 @@ export class LayoutManager extends Component {
     loadHandlerManager.setEndLoadHandler(this.doneLoadingHandler);
   }
 
+  loadHandlerTimeout = {};
+
   startLoadingHandler = element => {
+    debugger;
     // Find element inside viewportData, get viewportIndex
-    const viewportIndex = this.props.viewportData.findIndex(
-      v => v.dom === element
-    );
+    const viewportIndex = Number(element.dataset.viewportIndex);
+
     if (viewportIndex === -1) {
       return;
     }
@@ -85,11 +87,11 @@ export class LayoutManager extends Component {
     }, LayoutManager.loadIndicatorDelay);
   };
 
-  doneLoadingHandler = () => {
+  doneLoadingHandler = element => {
+    debugger;
     // Find element inside viewportData, get viewportIndex
-    const viewportIndex = this.props.viewportData.findIndex(
-      v => v.dom === element
-    );
+    const viewportIndex = Number(element.dataset.viewportIndex);
+
     if (viewportIndex === -1) {
       return;
     }
