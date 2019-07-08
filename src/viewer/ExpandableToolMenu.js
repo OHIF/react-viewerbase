@@ -81,6 +81,17 @@ class ExpandableToolMenu extends React.Component {
     return isActive;
   };
 
+  activeIcon = () => {
+    if (this.props.activeCommand) {
+      return (
+        this.props.buttons.find(btn => this.props.activeCommand === btn.id)
+          .icon || this.props.icon
+      );
+    }
+
+    return this.props.icon;
+  };
+
   onExpandableToolClick = () => {
     if (this.props.onGroupMenuClick) {
       this.props.onGroupMenuClick();
@@ -111,7 +122,7 @@ class ExpandableToolMenu extends React.Component {
           key="menu-button"
           type="tool"
           label={this.props.text}
-          icon={this.props.icon}
+          icon={this.activeIcon()}
           className={'toolbar-button expandableToolMenu'}
           isActive={this.isActive()}
           isExpandable={true}
