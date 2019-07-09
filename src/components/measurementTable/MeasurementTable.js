@@ -149,7 +149,7 @@ class MeasurementTable extends Component {
     return this.props.timepoints.map((timepoint, index) => {
       return (
         <div key={index} className="measurementTableHeaderItem">
-          <div className="timepointLabel">{timepoint.label}</div>
+          <div className="timepointLabel">{this.props.t(timepoint.key)}</div>
           <div className="timepointDate">{timepoint.date}</div>
         </div>
       );

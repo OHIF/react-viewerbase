@@ -1,6 +1,7 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import './PaginationArea.styl';
+import { withTranslation } from '../../utils/LanguageProvider';
 
 class PaginationArea extends PureComponent {
   static defaultProps = {
@@ -43,7 +44,7 @@ class PaginationArea extends PureComponent {
                   disabled={this.props.currentPage === 0}
                   className="btn page-link"
                 >
-                  Previous
+                  {this.props.t('Previous')}
                 </button>
               </li>
               <li className="page-item next">
@@ -55,7 +56,7 @@ class PaginationArea extends PureComponent {
                   }
                   className="btn page-link"
                 >
-                  Next
+                  {this.props.t('Next')}
                 </button>
               </li>
             </ul>
@@ -68,7 +69,7 @@ class PaginationArea extends PureComponent {
   renderRowsPerPageDropdown() {
     return (
       <div className="form-inline form-group rows-per-page">
-        <span>Show</span>
+        <span>{this.props.t('Show')}</span>
         <select
           onChange={this.onRowsPerPageChange}
           defaultValue={this.props.rowsPerPage}
@@ -81,7 +82,7 @@ class PaginationArea extends PureComponent {
             );
           })}
         </select>
-        <span>rows per page</span>
+        <span>{this.props.t('RowsPerPage')}</span>
       </div>
     );
   }
@@ -106,4 +107,5 @@ class PaginationArea extends PureComponent {
   }
 }
 
-export { PaginationArea };
+const connectedComponent = withTranslation('PaginationArea')(PaginationArea);
+export { connectedComponent as PaginationArea };
