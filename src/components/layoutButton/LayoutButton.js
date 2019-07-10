@@ -3,8 +3,9 @@ import React, { PureComponent } from 'react';
 import { LayoutChooser } from './LayoutChooser.js';
 import PropTypes from 'prop-types';
 import ToolbarButton from '../../viewer/ToolbarButton';
+import { withTranslation } from '../../utils/LanguageProvider';
 
-export class LayoutButton extends PureComponent {
+class LayoutButton extends PureComponent {
   static defaultProps = {
     dropdownVisible: false,
   };
@@ -46,7 +47,7 @@ export class LayoutButton extends PureComponent {
       <div className="btn-group">
         <ToolbarButton
           isActive={this.state.dropdownVisible}
-          label={'Layout'}
+          label={this.props.t('Layout')}
           icon="th"
           onClick={this.onClick}
         />
@@ -61,4 +62,4 @@ export class LayoutButton extends PureComponent {
   }
 }
 
-export default LayoutButton;
+export default withTranslation('Common')(LayoutButton);
