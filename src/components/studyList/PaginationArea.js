@@ -107,5 +107,5 @@ class PaginationArea extends PureComponent {
   }
 }
 
-const connectedComponent = withTranslation('PaginationArea')(PaginationArea);
+const connectedComponent = withTranslation('Common')(PaginationArea);
 export { connectedComponent as PaginationArea };

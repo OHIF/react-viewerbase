@@ -265,7 +265,7 @@ class StudyList extends Component {
         sort: 0,
       },
       accessionNumber: {
-        displayText: this.props.t('Accession'),
+        displayText: this.props.t('AccessionNumber'),
         sort: 0,
       },
       studyDate: {
@@ -278,7 +278,7 @@ class StudyList extends Component {
         sort: 0,
       },
       studyDescription: {
-        displayText: this.props.t('Description'),
+        displayText: this.props.t('StudyDescription'),
         sort: 0,
       },
     };

@@ -171,7 +171,7 @@ class MeasurementTable extends Component {
   };
 }
 
-const connectedComponent = withTranslation('MeasurementTable')(
+const connectedComponent = withTranslation(['MeasurementTable', 'Common'])(
   MeasurementTable
 );
 export { connectedComponent as MeasurementTable };
