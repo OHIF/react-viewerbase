@@ -1,10 +1,29 @@
-import React, { Component } from 'react';
+import React, { PureComponent, memo } from 'react';
 import { DragLayer } from 'react-dnd';
 import PropTypes from 'prop-types';
 import { ThumbnailEntry } from './ThumbnailEntry';
 import './DragPreview.styl';
 
-function collect(monitor) {
+let subscribedToOffsetChange = false;
+let dragPreviewRef = null;
+
+const collector = monitor => {
+  if (!subscribedToOffsetChange) {
+    monitor.subscribeToOffsetChange(onOffsetChange(monitor));
+    subscribedToOffsetChange = true;
+  }
+
+  if (dragPreviewRef) {
+    const offset =
+      monitor.getSourceClientOffset() || monitor.getInitialSourceClientOffset();
+
+    if (offset) {
+      const transform = `translate(${offset.x}px, ${offset.y}px)`;
+      dragPreviewRef.style['transform'] = transform;
+      dragPreviewRef.style['-webkit-transform'] = transform;
+    }
+  }
+
   const item = monitor.getItem();
   let newItem = {};
   if (item) {
@@ -22,44 +41,36 @@ function collect(monitor) {
       stackPercentComplete: item.stackPercentComplete,
     };
   }
+
   return {
     ...newItem,
-    currentOffset: monitor.getSourceClientOffset(),
     isDragging: monitor.isDragging(),
   };
-}
+};
 
-class DragPreview extends Component {
-  getLayerStyles(currentOffset) {
-    if (!currentOffset) {
-      return {
-        display: 'none',
-      };
-    }
+const onOffsetChange = monitor => () => {
+  if (!dragPreviewRef) return;
 
-    const x = currentOffset.x;
-    const y = currentOffset.y;
-    const transform = `translate(${x}px, ${y}px)`;
+  const offset =
+    monitor.getSourceClientOffset() || monitor.getInitialSourceClientOffset();
+  if (!offset) return;
 
-    return {
-      pointerEvents: 'none',
-      transform: transform,
-      WebkitTransform: transform,
-    };
-  }
+  const transform = `translate(${offset.x}px, ${offset.y}px)`;
+  dragPreviewRef.style['transform'] = transform;
+  dragPreviewRef.style['-webkit-transform'] = transform;
+};
 
+const updateRef = ref => {
+  dragPreviewRef = ref;
+};
+
+class DragPreview extends PureComponent {
   render() {
-    const { currentOffset, isDragging } = this.props;
-    if (!isDragging) {
-      return null;
-    }
-
+    const { isDragging } = this.props;
+    if (!isDragging) return null;
     return (
       <div className="DragPreview">
-        <div
-          className="source-preview"
-          style={this.getLayerStyles(currentOffset)}
-        >
+        <div className="source-preview" ref={updateRef}>
           <ThumbnailEntry {...this.props} />
         </div>
       </div>
@@ -69,10 +80,6 @@ class DragPreview extends Component {
 
 DragPreview.propTypes = {
   isDragging: PropTypes.bool,
-  currentOffset: PropTypes.shape({
-    x: PropTypes.number.isRequired,
-    y: PropTypes.number.isRequired,
-  }),
 };
 
-export default DragLayer(collect)(DragPreview);
+export default DragLayer(collector)(memo(DragPreview));

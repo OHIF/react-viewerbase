@@ -5,6 +5,7 @@
   overflow: hidden
   background-color: black
   padding-bottom: 20px
+  padding-top: 10px
 
   .scrollable-study-thumbnails
     height: 100%
@@ -23,8 +24,15 @@
 
     .ThumbnailEntryContainer
       margin: 0 auto;
-      padding-top: 1rem
-      padding-bottom: 1.5rem
+      padding-bottom: 2.5rem;
+
+      .noselect
+        -moz-user-select: none; /* Firefox */
+        -ms-user-select: none; /* Internet Explorer */
+        -khtml-user-select: none; /* KHTML browsers (e.g. Konqueror) */
+        -webkit-user-select: none; /* Chrome, Safari, and Opera */
+        -webkit-touch-callout: none; /* Disable Android and iOS callouts*/
+
 
 .draggable
   cursor: copy
