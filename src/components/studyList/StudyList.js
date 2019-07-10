@@ -310,6 +310,7 @@ class StudyList extends Component {
               />
             }
           </div>
+          {this.props.children}
         </div>
         <div className="theadBackground" />
         <div id="studyListContainer">
