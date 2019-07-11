@@ -176,12 +176,12 @@ export class SelectTree extends Component {
         currentNode: null,
         value: null,
       });
-      return this.props.onSelected(event, item);
     } else {
       this.setState({
         currentNode: item,
       });
     }
+    return this.props.onSelected(event, item);
   };
 
   onBreadcrumbSelected = () => {
