@@ -16,7 +16,8 @@ class ToolbarSection extends PureComponent {
     buttons: PropTypes.arrayOf(
       PropTypes.shape({
         id: PropTypes.string,
-        label: PropTypes.string.isRequired,
+        label: PropTypes.string /** If it's a button */,
+        text: PropTypes.string /** If it's a group */,
         icon: PropTypes.oneOfType([
           PropTypes.string,
           PropTypes.shape({
