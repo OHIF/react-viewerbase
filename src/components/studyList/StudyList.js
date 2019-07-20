@@ -7,7 +7,6 @@ import { Icon } from './../../elements/Icon';
 import { PaginationArea } from './PaginationArea.js';
 import PropTypes from 'prop-types';
 import { StudyListLoadingText } from './StudyListLoadingText.js';
-import { StudylistToolbar } from './StudyListToolbar.js';
 import { isInclusivelyBeforeDay } from 'react-dates';
 import moment from 'moment';
 import debounce from 'lodash.debounce';
@@ -25,7 +24,6 @@ class StudyList extends Component {
     currentPage: PropTypes.number,
     rowsPerPage: PropTypes.number,
     studyListDateFilterNumDays: PropTypes.number,
-    studyListFunctionsEnabled: PropTypes.bool,
     defaultSort: PropTypes.shape({
       field: PropTypes.string.isRequired,
       order: PropTypes.oneOf(['desc', 'asc']).isRequired,
@@ -301,14 +299,6 @@ class StudyList extends Component {
           <div className="header pull-left">{this.props.t('StudyList')}</div>
           <div className="studyCount pull-right">
             {this.props.studies.length}
-          </div>
-          <div className="pull-right">
-            {
-              <StudylistToolbar
-                studyListFunctionsEnabled={this.props.studyListFunctionsEnabled}
-                onImport={this.props.onImport}
-              />
-            }
           </div>
           {this.props.children}
         </div>

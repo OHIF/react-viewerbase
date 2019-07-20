@@ -33,7 +33,6 @@ import moment from 'moment'
                 <StudyList
                     studies={state.studies}
                     pageOptions={[1, 2, 3, 5, 10, 15, 20, 25, 50, 100]}
-                    studyListFunctionsEnabled={true}
                     onImport={(e) => alert('Import study mock ' + e)}
                     onSelectItem={(studyInstanceUid) => { alert(studyInstanceUid + ' has selected! Now you can open your study.'); }}
                     rowsPerPage={5}
