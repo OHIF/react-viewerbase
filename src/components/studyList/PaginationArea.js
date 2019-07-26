@@ -36,7 +36,7 @@ class PaginationArea extends PureComponent {
     return (
       <div className="col-xs-8 col-sm-9 col-md-9">
         <div className="form-inline form-group page-buttons noselect">
-          <label>
+          <React.Fragment>
             <ul className="pagination-control no-margins">
               <li className="page-item prev">
                 <button
@@ -60,7 +60,7 @@ class PaginationArea extends PureComponent {
                 </button>
               </li>
             </ul>
-          </label>
+          </React.Fragment>
         </div>
       </div>
     );
