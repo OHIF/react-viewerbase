@@ -303,12 +303,9 @@ class StudyList extends Component {
             {this.props.studies.length}
           </div>
           <div className="pull-right">
-            {
-              <StudylistToolbar
-                studyListFunctionsEnabled={this.props.studyListFunctionsEnabled}
-                onImport={this.props.onImport}
-              />
-            }
+            {this.props.studyListFunctionsEnabled ? (
+              <StudylistToolbar onImport={this.props.onImport} />
+            ) : null}
           </div>
           {this.props.children}
         </div>
