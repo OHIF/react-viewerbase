@@ -5,7 +5,7 @@ export class GeneralPreferences extends Component {
   render() {
     return (
       <div className="general-preferences-wrapper">
-        <div className="col-sm-3">
+        <div>
           <label htmlFor="language-select" className="p-r-1">
             Language
           </label>

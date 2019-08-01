@@ -34,7 +34,7 @@ class PaginationArea extends PureComponent {
 
   renderPaginationButtons() {
     return (
-      <div className="col-xs-8 col-sm-9 col-md-9">
+      <div>
         <div className="form-inline form-group page-buttons noselect">
           <React.Fragment>
             <ul className="pagination-control no-margins">
