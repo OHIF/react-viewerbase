@@ -1,3 +1,12 @@
+> ⚠️ THIS REPOSITORY IS ARCHIVED ⚠️
+> 
+> Don't worry, it's still being actively developed, we've just moved 😅
+>
+> - New Repository: [OHIF/Viewers](https://github.com/OHIF/Viewers)
+> - New Location: [OHIF/Viewers --> root/platform/ui/](https://github.com/OHIF/Viewers/tree/master/platform/ui)
+>
+> Related announcement: [🎉 From Many Repositories to a Monorepo 🤖](https://github.com/OHIF/Viewers/issues/768)
+
 <!-- prettier-ignore-start -->
 <!-- markdownlint-disable -->
 <div align="center">
